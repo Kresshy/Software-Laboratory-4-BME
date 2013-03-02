@@ -29,7 +29,7 @@ public abstract class BaseObject {
     private Color color;
 
     // Abstract methods
-    public void handleTick();
+    public abstract void handleTick();
 
     // Public interface
     public int getRadius() {}

@@ -59,6 +59,9 @@ public class FoodStorage extends Storage {
 }
 
 public class AntHill extends Storage {
+    // Members
+    private Scene scene;
+
     // Constructor
     public AntHill() {}
 
@@ -74,19 +77,65 @@ public class AntHill extends Storage {
 
 public class Obstacle extends BaseObject {
     // Members
-    boolean solid;
+    private boolean solid;
+
+    // Constructor
+    public Obstacle() {}
 
     // Public interface
+    public boolean isSolid() {}
     public void handleTick() {}
     public void interact() {}
 }
 
 public class AntSinker extends Obstacle {
-
+    // Public interface
+    public void interact() {}
 }
 
 // Creature and descendants
 
 public abstract class Creature extends BaseObject {
+    // Members
+    private Scene scene;
 
+    // Public interface
+    public void setScene(Scene scene) {}
+}
+
+public class Ant extends Creature {
+    // Members
+    private AntHill home;
+    private FoodStorage source;
+    private boolean poisoned;
+    private boolean cargo;
+    private int health;
+
+    // Constructor
+    public Ant() {}
+
+    // Public interface
+    public void setSource(FoodStorage source) {}
+    public void handleTick() {}
+    public void terminateAnt() {}
+}
+
+public class AntEater extends Creature {
+    // Members
+    public boolean visible;
+    private int hunger;
+    private int wait;
+
+    // Constructor
+    public AntEater() {}
+
+    // Public interface
+    public boolean isVisible() {}
+    public void handleTick() {}
+}
+
+// Effect and descendants
+
+public abstract class Effect {
+    // Members
 }

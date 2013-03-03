@@ -52,8 +52,11 @@ AntEater.tick() {
         // ...
         // Ha van ennivaló hangya és éhes
         if (hunger > 0) {
-            ant.terminateAnt();
-            hunger -= 1;
+            for (Ant ant : scene.ants) {
+                if (pointInRange(ant.getPosition())) {
+                    ant.terminateAnt();
+                    hunger -= 1;
+                }
         }
     } else {
         // Háttérben
@@ -65,3 +68,15 @@ AntEater.tick() {
         }
     }
 }
+
+// Hangyaboly tick-kezelése
+
+AntHill.tick() {
+    if (amount < capacity) {
+        // Hangya létrehozása
+        amount += 1;
+    }
+}
+
+// Effekt tick-kezelése
+

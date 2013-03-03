@@ -36,10 +36,10 @@ public class Scene {
     public List<Storage> getStorages() {}
     public List<Obstacle> getObstacles() {}
     public List<Creature> getCreatures() {}
-    public List<Effect> discoverNeighborhood(Point p) {}
-    public boolean checkForObstacles(Point p) {}
-    public void placeEffect(Effect e) {}
-    public void buildScene(String settings) {}
+    public List<Effect> discoverNeighborhood(Point point) {}
+    public boolean checkForObstacles(Point point) {}
+    public void placeEffect(Effect effect) {}
+    public void buildScene(String settings) {} // Ez itt csak placeholder, fogalmam sincs hogyan tároljuk a pályákat és milyen paraméterekre lesz szükség
     public void delegateTick() {}
 }
 
@@ -78,6 +78,7 @@ public abstract class BaseObject {
     public void setPosition(Point position) {}
     public Color getColor() {}
     public void setColor(Color color) {}
+    public boolean pointInRange(Point point)
     public void drawObject(Canvas canvas) {}
 }
 

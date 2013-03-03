@@ -1,23 +1,61 @@
+/* Log:
+ *  - Gazsi: 3-3,5 óra
+ */
+
 import java.awt.Point;
+import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Canvas;
 
 // Game
 
 public class Game {
+    // Members
+    private Scene scene;
+    private Timer timer;
 
+    // Public interface
+    public Scene getScene() {}
+    public Timer getTimer() {}
 }
 
 // Scene
 
 public class Scene {
+    // Members
+    private Dimension dimension;
+    private List<Ant> ants;
+    private List<Storage> storages;
+    private List<Obstacle> obstacles;
+    private List<Creature> creatures;
+    private List<Effect> effects; // Ez elvileg nem lista lesz, de még nem tudom megmondani hogy mi
 
+    // Public interface
+    public Dimension getDimension() {}
+    public List<Ant> getAnts() {}
+    public List<Storage> getStorages() {}
+    public List<Obstacle> getObstacles() {}
+    public List<Creature> getCreatures() {}
+    public List<Effect> discoverNeighborhood(Point p) {}
+    public void placeEffect(Effect e) {}
+    public void delegateTick() {}
 }
 
 // Timer
 
 public class Timer {
+    // Members
+    private int interval;
+    private Game game;
 
+    // Protected methods
+    protected void tick() {} // Nem biztos hogy protected lesz, implementációtól függ
+
+    // Public interface
+    public void getInterval() {}
+    public void setInterval() {}
+    public void startTimer() {}
+    public void stopTimer() {}
 }
 
 // BaseObject

@@ -96,11 +96,36 @@ Effect.handleTick() {
 // Hangya halála
 
 Ant.terminate() {
-    source.putItems(cargo);
+    if (source != null)
+        source.putItems(cargo);
     // ...
     home.putItems(1);
     // ...
     // Eltávolítás a scene-ből
 }
 
+// Hangya megmérgezése
 
+Ant.routeAndMove() {
+    obstacles = scene.discoverObstacles()
+    // ...
+    for (Obstacle obstacle : obstacles)
+        obstacle.interact(this);
+}
+
+Poison.interact() {
+    creature.setPoisoned(true);
+}
+
+// Hangyalesővel való interakció
+
+Ant.routeAndMove() {
+    obstacles = scene.discoverObstacles()
+    // ...
+    for (Obstacle obstacle : obstacles)
+        obstacle.interact(this);
+}
+
+AntSinker.interact() {
+    creature.terminate();
+}

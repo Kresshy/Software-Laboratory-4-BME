@@ -175,6 +175,7 @@ public class Ant extends Creature {
 
     // Public interface
     public void setSource(Storage storage) {} // Ételfelvételkor használva, hogy tudja hova kell visszavinni halál esetén
+    public void setPoisoned(boolean poisoned) {}
     public void handleTick() {}
     public void terminate() {} // Override
 }
@@ -187,6 +188,9 @@ public class AntEater extends Creature {
 
     // Constructor
     public AntEater() {}
+
+    // Protected methods
+    protected void routeAndMove() {}
 
     // Public interface
     public boolean isVisible() {}

@@ -37,7 +37,9 @@ public class Scene {
     public List<Obstacle> getObstacles() {}
     public List<Creature> getCreatures() {}
     public List<Effect> discoverNeighborhood(Point p) {}
+    public boolean checkForObstacles(Point p) {}
     public void placeEffect(Effect e) {}
+    public void buildScene(String settings) {}
     public void delegateTick() {}
 }
 
@@ -62,9 +64,9 @@ public class Timer {
 
 public abstract class BaseObject {
     // Members
-    private int radius;
-    private Point position;
-    private Color color;
+    protected int radius;
+    protected Point position;
+    protected Color color;
 
     // Abstract methods
     public abstract void handleTick();
@@ -83,8 +85,8 @@ public abstract class BaseObject {
 
 public abstract class Storage extends BaseObject {
     // Members
-    private int amount;
-    private int capacity;
+    protected int amount;
+    protected int capacity;
 }
 
 public class FoodStorage extends Storage {
@@ -115,7 +117,7 @@ public class AntHill extends Storage {
 
 public class Obstacle extends BaseObject {
     // Members
-    private boolean solid;
+    protected boolean solid;
 
     // Constructor
     public Obstacle() {}
@@ -135,7 +137,7 @@ public class AntSinker extends Obstacle {
 
 public abstract class Creature extends BaseObject {
     // Members
-    private Scene scene;
+    protected Scene scene;
 
     // Public interface
     public void setScene(Scene scene) {}

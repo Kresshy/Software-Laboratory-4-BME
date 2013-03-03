@@ -1,5 +1,5 @@
 /* Log:
- *  - Gazsi: 3-3,5 óra
+ *  - Gazsi: 5+ óra
  */
 
 import java.awt.Point;
@@ -36,9 +36,11 @@ public class Scene {
     public List<Storage> getStorages() {}
     public List<Obstacle> getObstacles() {}
     public List<Creature> getCreatures() {}
-    public List<Effect> discoverNeighborhood(Point point) {}
-    public boolean checkForObstacles(Point point) {}
-    public void placeEffect(Effect effect) {}
+    public Map<Point, Effect> discoverEffects(Point point) {}
+    public List<Obstacle> discoverObstacles(Point point) {} // Egy pont környéki akadályokat adja vissza, a hangya útvonaltervezéséhez és a mérgezéshez kell
+    public void placeEffect(Point point, Effect effect) {} // Új effektet tárol el, szagnyom letételéhez szükséges
+    public void clearEffects(Point point) {} // Egy pont körzetében eltünteti az effekteket, szagtalanító sprayhez szüksége
+    public void placeObstacle(Obstacle obstacle) {} // Új akadályt tárol el, méreg sprayhez szükséges
     public void buildScene(String settings) {} // Ez itt csak placeholder, fogalmam sincs hogyan tároljuk a pályákat és milyen paraméterekre lesz szükség
     public void delegateTick() {}
 }
@@ -78,16 +80,20 @@ public abstract class BaseObject {
     public void setPosition(Point position) {}
     public Color getColor() {}
     public void setColor(Color color) {}
-    public boolean pointInRange(Point point)
-    public void drawObject(Canvas canvas) {}
+    public boolean pointInRange(Point point) {} // Megmondja, hogy egy pont az objektum sugarában van-e
+    public void drawObject(Canvas canvas) {} // Kirajzoláshoz szükséges
 }
 
 // Storage and descendants
 
 public abstract class Storage extends BaseObject {
     // Members
-    protected int amount;
-    protected int capacity;
+    protected int amount; // Tárolt elemek
+    protected int capacity; // Tárolt elemek maximális száma
+    
+    // Abstract methods
+    public int getItems() {} // Tárolóból elemeket vesz ki, ételfelvételhez szükséges
+    public void putItems(int count) {} // Tárolóba elemeket tesz vissza, étel visszatételéhez és hangyák újjáéledéséhez szükséges
 }
 
 public class FoodStorage extends Storage {
@@ -96,29 +102,30 @@ public class FoodStorage extends Storage {
 
     // Public interface
     public void handleTick() {}
-    public int getFood() {}
+    public int getItems() {} // Ételfelvétel
+    public void putItems(int count) {} // Ételvisszarakás
 }
 
 public class AntHill extends Storage {
     // Members
-    private Scene scene;
+    private Scene scene; // Szükséges hogy a hangyák ismerhessék a scene-t
 
     // Constructor
     public AntHill() {}
 
     // Protected methods
-    protected void spawnAnts() {}
+    protected int getItems() {} // Remélem lehet így kitakarni
 
     // Public interface
     public void handleTick() {}
-    public void replaceAnt() {}
+    public void putItems(int count) {} // Hangyák halálakor, hogy újabb hangya szülessen
 }
 
 // Obstacle and descendants
 
 public class Obstacle extends BaseObject {
     // Members
-    protected boolean solid;
+    protected boolean solid; // Tömörség/áthatolhatatlanság
 
     // Constructor
     public Obstacle() {}
@@ -126,12 +133,12 @@ public class Obstacle extends BaseObject {
     // Public interface
     public boolean isSolid() {}
     public void handleTick() {}
-    public void interact() {}
+    public void interact(Creature creature) {} // Interakció, pl mérgezéskor és hangyaleső táplálkozásakor
 }
 
 public class AntSinker extends Obstacle {
     // Public interface
-    public void interact() {}
+    public void interact(Creature creature) {} // Override
 }
 
 // Creature and descendants
@@ -142,28 +149,29 @@ public abstract class Creature extends BaseObject {
 
     // Public interface
     public void setScene(Scene scene) {}
+    public void terminate() {}
 }
 
 public class Ant extends Creature {
     // Members
-    private AntHill home;
-    private FoodStorage source;
+    private Storage home;
+    private Storage source;
     private boolean poisoned;
-    private boolean cargo;
     private int health;
+    private int cargo;
 
     // Constructor
     public Ant() {}
 
     // Public interface
-    public void setSource(FoodStorage source) {}
+    public void setSource(Storage storage) {} // Ételfelvételkor használva, hogy tudja hova kell visszavinni halál esetén
     public void handleTick() {}
-    public void terminateAnt() {}
+    public void terminate() {} // Override
 }
 
 public class AntEater extends Creature {
     // Members
-    public boolean visible;
+    private boolean visible; // Jelen van-e
     private int hunger;
     private int wait;
 
@@ -179,4 +187,17 @@ public class AntEater extends Creature {
 
 public abstract class Effect {
     // Members
+    protected int timeout;
+    protected boolean attractive;
+    
+    // Abstract methods
+    public abstract void interact(Creature creature); // Nem tudom szükség van-e rá
+    
+    // Public interface
+    public void handleTick() {}
+}
+
+public class Pheromone extends Effect {
+    // Public interface
+    public void interact(Creature creature) {} // Nem tudom szükség van-e rá
 }

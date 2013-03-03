@@ -25,7 +25,7 @@ Scene.delegateTick() {
 
 // Hangya tick-kezelése
 
-Ant.tick() {
+Ant.handleTick() {
     if (health <= 0)
         terminateAnt();
     if (poisoned)
@@ -33,28 +33,28 @@ Ant.tick() {
     // ...
     scene.getStorages();
     // ...
-    scene.discoveryNeighborhood(position);
+    scene.discoverEffects(getPosition());
     // ...
-    scene.checkForObstacles();
+    scene.discoverObstacles(getPosition());
     // ...
-    position = newposition;
-    scene.placeEffect(newpheromone)
+    setPosition(Point);
+    scene.placeEffect(Point, Pheromone);
     // ...
 }
 
 
 // Hangyászsün tick-kezelése
 
-AntEater.tick() {
+AntEater.handleTick() {
     if (visible) {
         // Előtérben
-        scene.getAnts()
+        ants = scene.getAnts()
         // ...
         // Ha van ennivaló hangya és éhes
         if (hunger > 0) {
-            for (Ant ant : scene.ants) {
+            for (Ant ant : ants) {
                 if (pointInRange(ant.getPosition())) {
-                    ant.terminateAnt();
+                    ant.terminate();
                     hunger -= 1;
                 }
         }
@@ -71,7 +71,7 @@ AntEater.tick() {
 
 // Hangyaboly tick-kezelése
 
-AntHill.tick() {
+AntHill.handleTick() {
     if (amount < capacity) {
         // Hangya létrehozása
         amount += 1;
@@ -79,4 +79,28 @@ AntHill.tick() {
 }
 
 // Effekt tick-kezelése
+
+Effect.handleTick() {
+    if (timeout > 0)
+        timeout -= 1;
+}
+
+// Hangya ételfelvétele
+
+{
+    cargo = FoodStorage.getItems();
+    // ...
+    setSource(FoodStorage);
+}
+
+// Hangya halála
+
+Ant.terminate() {
+    source.putItems(cargo);
+    // ...
+    home.putItems(1);
+    // ...
+    // Eltávolítás a scene-ből
+}
+
 

@@ -170,6 +170,9 @@ public class Ant extends Creature {
     // Constructor
     public Ant() {}
 
+    // Protected methods
+    protected void routeAndMove() {}
+
     // Public interface
     public void setSource(Storage storage) {} // Ételfelvételkor használva, hogy tudja hova kell visszavinni halál esetén
     public void handleTick() {}

@@ -141,6 +141,13 @@ public class AntSinker extends Obstacle {
     public void interact(Creature creature) {} // Override
 }
 
+public class Poison extends Obstacle {
+    private int timeout;
+    // Public interface
+    public void handleTick() {}
+    public void interact(Creature creature) {} // Override
+}
+
 // Creature and descendants
 
 public abstract class Creature extends BaseObject {

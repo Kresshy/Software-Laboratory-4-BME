@@ -28,7 +28,7 @@ public class Scene {
     private List<Storage> storages;
     private List<Obstacle> obstacles;
     private List<Creature> creatures;
-    private List<Effect> effects; // Ez elvileg nem lista lesz, de még nem tudom megmondani hogy mi
+    private Map<Point, Effect> effects; // Ez elvileg nem lista lesz, de még nem tudom megmondani hogy mi
 
     // Public interface
     public Dimension getDimension() {}
@@ -90,7 +90,7 @@ public abstract class Storage extends BaseObject {
     // Members
     protected int amount; // Tárolt elemek
     protected int capacity; // Tárolt elemek maximális száma
-    
+
     // Abstract methods
     public int getItems() {} // Tárolóból elemeket vesz ki, ételfelvételhez szükséges
     public void putItems(int count) {} // Tárolóba elemeket tesz vissza, étel visszatételéhez és hangyák újjáéledéséhez szükséges
@@ -189,10 +189,10 @@ public abstract class Effect {
     // Members
     protected int timeout;
     protected boolean attractive;
-    
+
     // Abstract methods
     public abstract void interact(Creature creature); // Nem tudom szükség van-e rá
-    
+
     // Public interface
     public void handleTick() {}
 }

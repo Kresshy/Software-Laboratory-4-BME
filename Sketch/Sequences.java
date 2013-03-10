@@ -5,7 +5,6 @@ Scene.buildScene() {
     // Konfig alapján hangyák, bolyok, raktárak, sünök, akadályok létrehozása
 }
 
-
 // Tick delegálása
 
 Timer.tick() {
@@ -30,6 +29,12 @@ Ant.handleTick() {
         terminateAnt();
     if (poisoned)
         health -= 1;
+    // ...
+    routeAndMove();
+    // ...
+}
+
+Ant.routeAndMove() {
     // ...
     scene.getStorages();
     // ...
@@ -129,3 +134,11 @@ Ant.routeAndMove() {
 AntSinker.interact() {
     creature.terminate();
 }
+
+// Hangyaírtó fújása
+
+Scene.placeObstacle(Poison) // Vhogy jön a felhasználói interakció, létrehoz egy Poison-t és meghívja a függvényt
+
+// Szagtalanító fújása
+
+Scene.clearEffects(Point) // Vhogy jön a felhasználói interakció és meghívja a függvényt egy Pointtal

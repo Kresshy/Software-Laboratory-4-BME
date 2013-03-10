@@ -5,7 +5,7 @@ Scene.buildScene() {
     // Konfig alapján hangyák, bolyok, raktárak, sünök, akadályok létrehozása
 }
 
-// Tick delegálása
+// Tick delegálása és takarítás
 
 Timer.tick() {
     game.getScene().delegateTick()
@@ -13,13 +13,26 @@ Timer.tick() {
 
 Scene.delegateTick() {
     for (Ant ant : ants)
-        ant.tick();
+        ant.handleTick();
     for (Storage storage : storages)
-        storage.tick();
+        storage.handleTick();
     for (Creature creature : creatures)
-        creature.tick();
+        creature.handleTick();
+    for (Obstacle obstacle : obstacles)
+        obstacle.handleTick();
     for (Effect effect : effects)
-        effect.tick();
+        effect.handleTick();
+    // ...
+    clearDebris();
+}
+
+Scene.clearDebris() {
+    for (Obstacle obstacle : obstacles)
+        if (obstacle.isDebris())
+            // Eltávolítás
+    for (Effect effect : effects)
+        if (effect.isDebris())
+            // Eltávolítás
 }
 
 // Hangya tick-kezelése
@@ -81,6 +94,12 @@ AntHill.handleTick() {
         // Hangya létrehozása
         amount += 1;
     }
+}
+
+// Méreg tick-kezelése
+Poison.handleTick() {
+    if (timeout > 0)
+        timeout -= 1;
 }
 
 // Effekt tick-kezelése

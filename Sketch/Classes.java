@@ -30,6 +30,9 @@ public class Scene {
     private List<Creature> creatures;
     private Map<Point, Effect> effects; // Ez elvileg nem lista lesz, de még nem tudom megmondani hogy mi
 
+    // Protected methods
+    protected void clearDebris() {} // Eltávolítja a szemetet a pályáról (lejárt akadályok és effektek)
+
     // Public interface
     public Dimension getDimension() {}
     public List<Ant> getAnts() {}
@@ -132,6 +135,7 @@ public class Obstacle extends BaseObject {
 
     // Public interface
     public boolean isSolid() {}
+    public boolean isDebris() {} // Eltávolítandó-e az akadály
     public void handleTick() {}
     public void interact(Creature creature) {} // Interakció, pl mérgezéskor és hangyaleső táplálkozásakor
 }
@@ -144,7 +148,8 @@ public class AntSinker extends Obstacle {
 public class Poison extends Obstacle {
     private int timeout;
     // Public interface
-    public void handleTick() {}
+    public boolean isDebris() {} // Override
+    public void handleTick() {} // Override
     public void interact(Creature creature) {} // Override
 }
 
@@ -208,6 +213,7 @@ public abstract class Effect {
     public abstract void interact(Creature creature); // Nem tudom szükség van-e rá
 
     // Public interface
+    public void isDebris() {}
     public void handleTick() {}
 }
 

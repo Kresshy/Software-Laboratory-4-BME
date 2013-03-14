@@ -1,11 +1,13 @@
 package miracle.workers.szoftlab4;
 
 public class FoodStorage extends Storage {
-	// Constructor
+	 // Constructor
     public FoodStorage() {}
 
     // Public interface
     public void handleTick() {}
-    public int getFood() {
-		return amount;}
+    public int getItems() { // Ételfelvétel !!!!!!!!!!!!!!!!!!!!!!!!
+		return 0;
+	}
+    public void putItems(int count) {} // Ételvisszarakás
 }

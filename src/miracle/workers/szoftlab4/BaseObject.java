@@ -15,15 +15,19 @@ public abstract class BaseObject {
 
     // Public interface
     public int getRadius() {
-		return radius;}
+		return radius;
+	}
     public void setRadius(int radius) {}
     public Point getPosition() {
-		return position;}
+		return position;
+	}
     public void setPosition(Point position) {}
     public Color getColor() {
-		return color;}
+		return color;
+	}
     public void setColor(Color color) {}
-    public boolean pointInRange(Point point) {
-		return false;}
-    public void drawObject(Canvas canvas) {}
+    public boolean pointInRange(Point point) { // Megmondja, hogy egy pont az objektum sugarában van-e !!!!!!!!!!!!!!!
+		return false;
+	}
+    public void drawObject(Canvas canvas) {} // Kirajzoláshoz szükséges
 }

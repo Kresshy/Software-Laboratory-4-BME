@@ -75,13 +75,16 @@ public class Scene {
 
 	// Új akadályt tárol el, méreg sprayhez szükséges
 	public void placeObstacle(Obstacle obstacle) {
+		System.out.println(className + " placeObstacle");
 	}
 
 	// Ez itt csak placeholder, fogalmam sincs hogyan tároljuk a pályákat és
 	// milyen paraméterekre lesz szükség
 	public void buildScene(String settings) {
+		System.out.println(className + " buildScene");
 	}
 
 	public void delegateTick() {
+		System.out.println(className + " delegateTick");
 	}
 }

@@ -12,8 +12,8 @@ public class AntHill extends Storage {
 	}
 
 	// Protected methods
-	public int getItems() { // Remélem lehet így kitakarni - sajnos nem lehet //
-							// !!!!!!!!!!!!!!!!! ???????????????
+	// Itt vissza kéne adni a storage elemeit, jelenleg a hangyákat, illetve annak a számát
+	public int getItems() { // Remélem lehet így kitakarni - sajnos nem lehet !!!!!!!!!!!!
 		System.out.println(className + " getItems");
 		return 0;
 	}

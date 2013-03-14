@@ -7,11 +7,13 @@ public abstract class Storage extends BaseObject {
 	protected int capacity; // Tárolt elemek maximális száma
 
 	// Abstract methods
-	public abstract int getItems(); // Tárolóból elemeket vesz ki,
-									// ételfelvételhez szükséges
-
-	public abstract void putItems(int count); // Tárolóba elemeket tesz vissza,
-												// étel visszatételéhez és
-												// hangyák újjáéledéséhez
-												// szükséges
+	// Tárolóból elemeket vesz ki, // ételfelvételhez szükséges
+	public abstract int getItems(); 
+									
+	// Tárolóba elemeket tesz vissza, // étel visszatételéhez és 
+	// hangyák újjáéledéséhez // szükséges
+	public abstract void putItems(int count); 
+												
+												
+												
 }

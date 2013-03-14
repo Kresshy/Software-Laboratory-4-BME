@@ -7,6 +7,5 @@ public class AntSinker extends Obstacle {
 	@Override
 	public void interact(Creature creature) {
 		System.out.println(className + " interact");
-		
 	}
 }

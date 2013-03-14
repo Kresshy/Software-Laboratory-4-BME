@@ -17,8 +17,11 @@ public class Obstacle extends BaseObject {
 		return solid;
 	}
 
-	public boolean isDebris() { 							// Eltávolítandó-e az akadály
-		System.out.println(className + " isDebris"); 		// !!!!!!!!!!!!!!!!!!!!!!!!
+	// Eltávolítandó-e az akadály
+	// !!!!!!!!!!!!!!!!!!!!!!!!
+	// Szabi: ez így szerintem tök jó, visszaadja, hogy solid-e vagy sem ...
+	public boolean isDebris() { 							
+		System.out.println(className + " isDebris"); 		
 		return solid;
 	}
 

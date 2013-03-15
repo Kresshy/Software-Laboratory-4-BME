@@ -35,7 +35,7 @@ public class Timer extends Thread {
 	}
 
 	// Protected methods
-	// Nem biztos hogy protected lesz, implementációtól függ
+	// Nem biztos hogy protected lesz, implementaciotol fugg
 	protected void tick() {
 		System.out.println(className + " tick");
 		game.getScene().delegateTick();				// EZ IGY ITT ELEGGE KAKIS 

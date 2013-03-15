@@ -15,11 +15,11 @@ public class Scene {
 	private List<Storage> storages;
 	private List<Obstacle> obstacles;
 	private List<Creature> creatures;
-	private Map<Point, Effect> effects; // Ez elvileg nem lista lesz, de még nem
+	private Map<Point, Effect> effects; // Ez elvileg nem lista lesz, de meg nem
 										// tudom megmondani hogy mi
 
 	// Protected methods
-	// Eltávolítja a szemetet a pályáról (lejárt akadályok és effektek)
+	// Eltavolitja a szemetet a palyarol (lejart cuccok)
 	protected void clearDebris() {
 		System.out.println(className + " clearDebris");
 	}
@@ -55,31 +55,31 @@ public class Scene {
 		return effects;
 	}
 
-	// Egy pont környéki akadályokat adja vissza, a hangya útvonaltervezéséhez
-	// és a mérgezéshez kell
+	// Egy pont kornyeki akadalyokat adja vissza
+	// es a mergezeshez kell
 	public List<Obstacle> discoverObstacles(Point point) {
 		System.out.println(className + " discoverObstacles");
 		return obstacles;
 	}
 
-	// Új effektet tárol el, szagnyom letételéhez szükséges
+	// uj effekteket tarol el, szagnyom letetelehez szukseges
 	public void placeEffect(Point point, Effect effect) {
 		System.out.println(className + " placeEffect");
 	} 
 
-	// Egy pont körzetében eltünteti az effekteket, szagtalanító sprayhez
-	// szüksége
+	// pont korzeteben eltunteti az effekteket, sprayhez
+	// szukseges
 	public void clearEffects(Point point) {
 		System.out.println(className + " clearEffect");
 	}
 
-	// Új akadályt tárol el, méreg sprayhez szükséges
+	// uj akadalyt tarol el, sprayhez szukseges
 	public void placeObstacle(Obstacle obstacle) {
 		System.out.println(className + " placeObstacle");
 	}
 
-	// Ez itt csak placeholder, fogalmam sincs hogyan tároljuk a pályákat és
-	// milyen paraméterekre lesz szükség
+	// Ez itt csak placeholder, fogalmam sincs hogyan taroljuk a palyakat es
+	// milyen parameterekre lesz szukseg
 	public void buildScene(String settings) {
 		System.out.println(className + " buildScene");
 	}

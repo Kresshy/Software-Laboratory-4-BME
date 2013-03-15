@@ -5,7 +5,7 @@ public class Obstacle extends BaseObject {
 	private static final String className = "Obstacle";
 
 	// Members
-	protected boolean solid; // Tömörség/áthatolhatatlanság
+	protected boolean solid; // Tomorseg athatolhatalansag
 
 	// Constructor
 	public Obstacle() {
@@ -17,19 +17,17 @@ public class Obstacle extends BaseObject {
 		return solid;
 	}
 
-	// Eltávolítandó-e az akadály
-	// !!!!!!!!!!!!!!!!!!!!!!!!
-	// Szabi: ez így szerintem tök jó, visszaadja, hogy solid-e vagy sem ...
+	// Eltavolitando-e az akadaly
 	public boolean isDebris() { 							
 		System.out.println(className + " isDebris"); 		
-		return solid;
+		return false;
 	}
 
 	public void handleTick() {
 		System.out.println(className + " handleTick");
 	}
 
-	// Interakció, pl mérgezéskor és hangyalesõ táplálkozásakor
+	// Interakcio pl mergezeskor vagy hangyaleso talalkozasakor
 	public void interact(Creature creature) {
 		System.out.println(className + " interact");
 	} 

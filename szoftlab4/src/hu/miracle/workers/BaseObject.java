@@ -47,16 +47,17 @@ public abstract class BaseObject {
 		System.out.println(className + " setColor");
 	}
 
-	// Megmondja, hogy egy pont az objektum sugarában van-e !!!!!!!!!
-	// Itt kötekedett, hogy ne booleant adjunk vissza, hanem a sugaraban levo objektumokat
+	// Megmondja, hogy egy pont az objektum sugaraban van-e !!!!!!!!!
+	// Itt kotekedett, hogy ne booleant adjunk vissza, hanem a sugaraban levo objektumokat
 	public List pointInRange(Point point) { 				
 		System.out.println(className + " pointInRange"); 	
 															
 		return Collections.EMPTY_LIST;
 	}
-
+	
+	// Kirajzolashoz szukseges
 	public void drawObject(Canvas canvas) {
 		System.out.println(className + " drawObject");
 		
-	} // Kirajzoláshoz szükséges
+	} 
 }

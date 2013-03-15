@@ -13,13 +13,13 @@ public class FoodStorage extends Storage {
 		System.out.println(className + " handleTick");
 	}
 
-	 // Ételfelvétel !!!!!!!!!!!!!!!!!!!!!!!!
+	 // Etelfelvetel !!!!!!!!!!!!!!!!!!!!!!!!
 	public int getItems() {
 		System.out.println(className + " getItems");
 		return 0;
 	}
 
-	// Ételvisszarakás
+	// Etelvisszarakas
 	public void putItems(int count) {
 		System.out.println(className + " putItems");
 	} 

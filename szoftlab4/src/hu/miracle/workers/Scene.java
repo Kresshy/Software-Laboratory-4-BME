@@ -86,5 +86,21 @@ public class Scene {
 
 	public void delegateTick() {
 		System.out.println(className + " delegateTick");
+		
+		for(Ant ant: ants){
+			ant.handleTick();
+		}
+		
+		for(Storage storage: storages){
+			storage.handleTick();
+		}
+		
+		for(Obstacle obstacle: obstacles){
+			obstacle.handleTick();
+		}
+		
+		for(Creature creature: creatures){
+			creature.handleTick();
+		}
 	}
 }

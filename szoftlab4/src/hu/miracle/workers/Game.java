@@ -13,8 +13,17 @@ public class Game {
     	System.out.println(className + " getScene");
 		return scene;
 	}
+    
     public Timer getTimer() {
     	System.out.println(className + " getTimer");
 		return timer;
 	}
+    
+    public void setScene(Scene scene){
+    	this.scene = scene;
+    }
+    
+    public void setTimer(Timer timer){
+    	this.timer = timer;
+    }
 }

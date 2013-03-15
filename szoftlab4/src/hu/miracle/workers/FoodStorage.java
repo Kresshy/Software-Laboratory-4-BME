@@ -2,25 +2,23 @@ package hu.miracle.workers;
 
 public class FoodStorage extends Storage {
 
-	private static final String className = "FoodStorage";
-
 	// Constructor
 	public FoodStorage() {
 	}
 
 	// Public interface
 	public void handleTick() {
-		System.out.println(className + " handleTick");
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 	}
 
-	// Etelfelvetel !!!!!!!!!!!!!!!!!!!!!!!!
+	// Ételfelvétel
 	public int getItems() {
-		System.out.println(className + " getItems");
+		System.out.println(getClass().getCanonicalName() + ".getItems()");
 		return 0;
 	}
 
-	// Etelvisszarakas
+	// Ételvisszarakás
 	public void putItems(int count) {
-		System.out.println(className + " putItems");
+		System.out.println(getClass().getCanonicalName() + ".putItems()");
 	}
 }

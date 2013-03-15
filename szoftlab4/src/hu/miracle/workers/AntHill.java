@@ -2,32 +2,30 @@ package hu.miracle.workers;
 
 public class AntHill extends Storage {
 
-	private static final String className = "AntHill";
-
 	// Members
-	// szukseges, hogy a hangyak ismerjek a scenet
-	private Scene scene;
+	private Scene scene; // Szükséges hogy a hangyák ismerhessék a scene-t
 
 	// Constructor
 	public AntHill() {
 	}
 
 	// Protected methods
-	// Itt visszaadjuk a tarolo elemeit, ebben az osztalyban a hangyak lesznek
-	// azok
-	// remelem igy ki lehet takaritani - sajnos nem lehet !!!!!!!!!!!!
+	// Nem használjuk kivülről, mert a storage-ból elem kivételére van. Viszont
+	// a visszatérési értékében be lehet konfigolni hányasával spawnoljanak a
+	// hangyák.
 	public int getItems() {
-		System.out.println(className + " getItems");
+		System.out.println(getClass().getCanonicalName() + ".getItems()");
 		return 0;
 	}
 
 	// Public interface
 	public void handleTick() {
-		System.out.println(className + " handleTick");
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 	}
 
 	// Hangyak halalakor uj hangya szulethessen
 	public void putItems(int count) {
-		System.out.println(className + " putItems");
-	}
+		System.out.println(getClass().getCanonicalName() + ".putItems()");
+	} // Hangyák halálakor, hogy újabb hangya szülessen
+
 }

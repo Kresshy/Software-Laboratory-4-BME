@@ -2,10 +2,8 @@ package hu.miracle.workers;
 
 public class Obstacle extends BaseObject {
 
-	private static final String className = "Obstacle";
-
 	// Members
-	protected boolean solid; // Tomorseg athatolhatalansag
+	protected boolean solid; // Tömörség/áthatolhatatlanság
 
 	// Constructor
 	public Obstacle() {
@@ -13,22 +11,23 @@ public class Obstacle extends BaseObject {
 
 	// Public interface
 	public boolean isSolid() {
-		System.out.println(className + " isSolid");
+		System.out.println(getClass().getCanonicalName() + ".isSolid()");
 		return solid;
 	}
 
-	// Eltavolitando-e az akadaly
+	// Eltávolítandó-e az akadály
 	public boolean isDebris() {
-		System.out.println(className + " isDebris");
+		System.out.println(getClass().getCanonicalName() + ".isDebris()");
 		return false;
 	}
 
 	public void handleTick() {
-		System.out.println(className + " handleTick");
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 	}
 
-	// Interakcio pl mergezeskor vagy hangyaleso talalkozasakor
+	// Interakció, pl mérgezéskor és hangyaleső táplálkozásakor
 	public void interact(Creature creature) {
-		System.out.println(className + " interact");
+		System.out.println(getClass().getCanonicalName() + ".interact()");
 	}
+
 }

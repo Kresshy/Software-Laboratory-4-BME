@@ -2,8 +2,6 @@ package hu.miracle.workers;
 
 public class AntEater extends Creature {
 
-	private static final String className = "AntEater";
-
 	// Members
 	private boolean visible; // Jelen van-e
 	private int hunger;
@@ -15,16 +13,16 @@ public class AntEater extends Creature {
 
 	// Protected methods
 	protected void routeAndMove() {
-		System.out.println(className + " routeAndMove");
+		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
 	}
 
 	// Public interface
 	public boolean isVisible() {
-		System.out.println(className + " isVisible");
+		System.out.println(getClass().getCanonicalName() + ".isVisible()");
 		return visible;
 	}
 
 	public void handleTick() {
-		System.out.println(className + " handleTick");
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 	}
 }

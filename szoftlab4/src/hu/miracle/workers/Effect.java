@@ -2,22 +2,26 @@ package hu.miracle.workers;
 
 public abstract class Effect {
 
-	private static final String className = "Effect";
-
 	// Members
 	protected int timeout;
 	protected boolean attractive;
 
 	// Abstract methods
-	// Nem tudom szukseg van-e ra
+	// Nem tudom szükség van-e rá
 	public abstract void interact(Creature creature);
 
 	// Public interface
-	public void isDebris() {
-		System.out.println(className + " isDebris");
+	public boolean isAttractive() {
+		System.out.println(getClass().getCanonicalName() + ".isAttractive()");
+		return attractive;
+	}
+
+	public boolean isDebris() {
+		System.out.println(getClass().getCanonicalName() + ".isDebris()");
+		return false;
 	}
 
 	public void handleTick() {
-		System.out.println(className + " handleTick");
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 	}
 }

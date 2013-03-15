@@ -2,8 +2,6 @@ package hu.miracle.workers;
 
 public class Timer extends Thread {
 
-	private static final String className = "Timer";
-
 	// Members
 	private int interval;
 	private Game game;
@@ -35,41 +33,41 @@ public class Timer extends Thread {
 	}
 
 	// Protected methods
-	// Nem biztos hogy protected lesz, implementaciotol fugg
+	// Nem biztos hogy protected lesz, implementációtól függ
 	protected void tick() {
-		System.out.println(className + " tick");
-		game.getScene().delegateTick(); // EZ IGY ITT ELEGGE KAKIS
+		System.out.println(getClass().getCanonicalName() + ".tick()");
+		game.getScene().delegateTick();
 	}
 
 	// Public interface
 	public int getInterval() {
-		System.out.println(className + "  getInterval");
+		System.out.println(getClass().getCanonicalName() + ".getInterval()");
 		return interval;
 	}
 
 	synchronized public void startTimer() {
-		System.out.println(className + " startTimer");
+		System.out.println(getClass().getCanonicalName() + ".startTimer()");
 		suspended = false;
 		notify();
 	}
 
-	public void stopTimer() {
-		System.out.println(className + "  stopTimer");
+	synchronized public void stopTimer() {
+		System.out.println(getClass().getCanonicalName() + ".stopTimer()");
 		suspended = true;
 	}
 
 	public Game getGame() {
-		System.out.println(className + " getGame");
+		System.out.println(getClass().getCanonicalName() + ".getGame()");
 		return game;
 	}
 
 	public void setGame(Game game) {
-		System.out.println(className + " setGame");
+		System.out.println(getClass().getCanonicalName() + ".setGame()");
 		this.game = game;
 	}
 
 	public void setInterval(int interval) {
-		System.out.println(className + " setInterval");
+		System.out.println(getClass().getCanonicalName() + ".setInterval()");
 		this.interval = interval;
 	}
 }

@@ -2,14 +2,12 @@ package hu.miracle.workers;
 
 public class Main {
 
-	private static final String className = "Main";
-
 	private static Game game;
 	private static Scene scene;
 	private static Timer timer;
 
 	public static void main(String[] args) {
-		System.out.println(className + " main");
+		System.out.println(Main.class.getCanonicalName() + ".main()");
 
 		game = new Game();
 
@@ -44,6 +42,6 @@ public class Main {
 		}
 
 		System.exit(0);
-
 	}
+
 }

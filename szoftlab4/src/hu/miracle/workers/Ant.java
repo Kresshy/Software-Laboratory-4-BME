@@ -2,8 +2,6 @@ package hu.miracle.workers;
 
 public class Ant extends Creature {
 
-	private static final String className = "Ant";
-
 	// Members
 	private Storage home;
 	private Storage source;
@@ -18,25 +16,25 @@ public class Ant extends Creature {
 
 	// Protected methods
 	protected void routeAndMove() {
-		System.out.println(className + "routeAndMove");
+		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
 	}
 
 	// Public interface
 	public void setPoisoned(boolean poisoned) {
-		System.out.println(className + "setPoisoned");
+		System.out.println(getClass().getCanonicalName() + ".setPoisoned()");
 	}
 
 	public void handleTick() {
-		System.out.println(className + "handleTick");
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 	}
 
 	@Override
 	public void terminate() {
-		System.out.println(className + "terminate");
+		System.out.println(getClass().getCanonicalName() + ".terminate()");
 	}
 
 	public void setSource(Storage storage) {
-		System.out.println(className + "setSource");
+		System.out.println(getClass().getCanonicalName() + ".setSource()");
 	}
 
 }

@@ -1,9 +1,10 @@
 package hu.miracle.workers;
 
-public class AntSinker extends Obstacle {
+public class Pheromone extends Effect {
 
 	@Override
 	public void interact(Creature creature) {
 		System.out.println(getClass().getCanonicalName() + ".interact()");
 	}
+
 }

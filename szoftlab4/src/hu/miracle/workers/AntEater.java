@@ -1,5 +1,7 @@
 package hu.miracle.workers;
 
+import java.util.List;
+
 public class AntEater extends Creature {
 
 	// Members
@@ -24,5 +26,30 @@ public class AntEater extends Creature {
 
 	public void handleTick() {
 		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+
+		if (visible) {
+			// Eloterben
+			List<Ant> ants = scene.getAnts();
+			// ...
+			// Ha van ennivalo hangya es ehes
+			if (hunger > 0) {
+				for (Ant ant : ants) {
+					if (pointInRange(ant.getPosition())) {
+						ant.terminate();
+						hunger -= 1;
+					}
+				}
+			}
+
+		} else {
+			// Hatterben
+			if (wait > 0) {
+				wait -= 1;
+			} else {
+				// Belepesi pont meghatarozasa
+				// Megjelenes
+			}
+
+		}
 	}
 }

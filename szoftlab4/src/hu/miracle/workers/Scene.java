@@ -3,6 +3,7 @@ package hu.miracle.workers;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,9 +15,9 @@ public class Scene {
 	private List<Storage> storages;
 	private List<Obstacle> obstacles;
 	private List<Creature> creatures;
-	private Map<Point, Effect> effects; // Ez a tároló továbbra sem végleges,
-										// csak implementációkor derül ki, hogy
-										// lábonlőttük-e magunkat.
+	private Map<Point, Effect> effects; // Ez a tarolo tovabbra sem vegleges,
+										// csak implementaciokor derul ki, hogy
+										// labonlottuk-e magunkat.
 
 	// Constructor
 	public Scene() {
@@ -24,12 +25,25 @@ public class Scene {
 		this.storages = new ArrayList<Storage>();
 		this.obstacles = new ArrayList<Obstacle>();
 		this.creatures = new ArrayList<Creature>();
+		this.effects = new HashMap<Point, Effect>();
 	}
 
 	// Protected methods
-	// Eltávolítja a szemetet a pályáról (lejárt akadályok és effektek)
+	// Eltavolitja a szemetet a palyarol (lejart akadalyok es effektek)
 	protected void clearDebris() {
 		System.out.println(getClass().getCanonicalName() + ".clearDebris()");
+
+		for (Obstacle obstacle : obstacles) {
+			if (obstacle.isDebris()) {
+				// Eltavolitas
+			}
+		}
+
+		for (Effect effect : effects.values()) {
+			if (effect.isDebris()) {
+				// Eltavolitas
+			}
+		}
 	}
 
 	// Public interface
@@ -58,38 +72,38 @@ public class Scene {
 		return creatures;
 	}
 
-	// Egy objektum környéki effekteket adja vissza, a hangya
-	// útvonaltervezéséhez kell
+	// Egy objektum kornyeki effekteket adja vissza, a hangya
+	// utvonaltervezesehez kell
 	public Map<Point, Effect> discoverEffects(BaseObject object) {
 		System.out.println(getClass().getCanonicalName() + ".discoverEffects()");
 		return effects;
 	}
 
-	// Egy objektum környéki akadályokat adja vissza, a hangya
-	// útvonaltervezéséhez és a mérgezéshez kell
+	// Egy objektum kornyeki akadalyokat adja vissza, a hangya
+	// utvonaltervezesehez es a mergezeshez kell
 	public List<Obstacle> discoverObstacles(BaseObject object) {
 		System.out.println(getClass().getCanonicalName() + ".discoverObstacles()");
 		return obstacles;
 	}
 
-	// Új effektet tárol el, szagnyom letételéhez szükséges
+	// uj effektet tarol el, szagnyom letetelehez szukseges
 	public void placeEffect(Point point, Effect effect) {
 		System.out.println(getClass().getCanonicalName() + ".placeEffect()");
 	}
 
-	// Egy pont körzetében eltünteti az effekteket, szagtalanító sprayhez
-	// szükséges
+	// Egy pont korzeteben eltunteti az effekteket, szagtalanito sprayhez
+	// szukseges
 	public void clearEffects(Point point) {
 		System.out.println(getClass().getCanonicalName() + ".clearEffect()");
 	}
 
-	// Új akadályt tárol el, méreg sprayhez szükséges
+	// uj akadalyt tarol el, mereg sprayhez szukseges
 	public void placeObstacle(Obstacle obstacle) {
 		System.out.println(getClass().getCanonicalName() + ".placeObstacle()");
 	}
 
-	// Ez itt csak placeholder, fogalmam sincs hogyan tároljuk a pályákat és
-	// milyen paraméterekre lesz szükség
+	// Ez itt csak placeholder, fogalmam sincs hogyan taroljuk a palyakat es
+	// milyen parameterekre lesz szukseg
 	public void buildScene(String settings) {
 		System.out.println(getClass().getCanonicalName() + ".buildScene()");
 	}
@@ -109,6 +123,8 @@ public class Scene {
 		for (Creature creature : creatures) {
 			creature.handleTick();
 		}
+
+		clearDebris();
 	}
 
 }

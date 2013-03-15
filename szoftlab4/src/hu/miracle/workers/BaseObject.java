@@ -42,13 +42,13 @@ public abstract class BaseObject {
 		System.out.println(getClass().getCanonicalName() + ".setColor()");
 	}
 
-	// Megmondja, hogy egy pont az objektum sugarában van-e
+	// Megmondja, hogy egy pont az objektum sugaraban van-e
 	public boolean pointInRange(Point point) {
 		System.out.println(getClass().getCanonicalName() + ".pointInRange()");
 		return false;
 	}
 
-	// Kirajzoláshoz szükséges
+	// Kirajzolashoz szukseges
 	public void drawObject(Canvas canvas) {
 		System.out.println(getClass().getCanonicalName() + ".drawObject()");
 	}

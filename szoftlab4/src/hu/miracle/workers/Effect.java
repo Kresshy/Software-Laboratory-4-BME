@@ -7,7 +7,7 @@ public abstract class Effect {
 	protected boolean attractive;
 
 	// Abstract methods
-	// Nem tudom szükség van-e rá
+	// Nem tudom szukseg van-e ra
 	public abstract void interact(Creature creature);
 
 	// Public interface

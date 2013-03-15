@@ -1,9 +1,9 @@
 package hu.miracle.workers;
 
 public class Ant extends Creature {
-	
+
 	private static final String className = "Ant";
-	
+
 	// Members
 	private Storage home;
 	private Storage source;
@@ -13,7 +13,7 @@ public class Ant extends Creature {
 
 	// Constructor
 	public Ant() {
-		
+
 	}
 
 	// Protected methods
@@ -33,10 +33,10 @@ public class Ant extends Creature {
 	@Override
 	public void terminate() {
 		System.out.println(className + "terminate");
-	} 
-	
+	}
+
 	public void setSource(Storage storage) {
 		System.out.println(className + "setSource");
-	} 
+	}
 
 }

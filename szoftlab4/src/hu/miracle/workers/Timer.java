@@ -8,7 +8,7 @@ public class Timer extends Thread {
 	private int interval;
 	private Game game;
 	private boolean suspended;
-	
+
 	public Timer(Game game) {
 		this.game = game;
 		this.interval = 1000;
@@ -18,17 +18,17 @@ public class Timer extends Thread {
 	@Override
 	public void run() {
 		try {
-			
+
 			while (true) {
 				sleep(interval);
 				tick();
 				synchronized (this) {
-					while(suspended){
+					while (suspended) {
 						wait();
 					}
 				}
 			}
-			
+
 		} catch (InterruptedException e) {
 			System.out.println("Timer Interrupted");
 		}
@@ -38,7 +38,7 @@ public class Timer extends Thread {
 	// Nem biztos hogy protected lesz, implementaciotol fugg
 	protected void tick() {
 		System.out.println(className + " tick");
-		game.getScene().delegateTick();				// EZ IGY ITT ELEGGE KAKIS 
+		game.getScene().delegateTick(); // EZ IGY ITT ELEGGE KAKIS
 	}
 
 	// Public interface

@@ -13,7 +13,7 @@ public class FoodStorage extends Storage {
 		System.out.println(className + " handleTick");
 	}
 
-	 // Etelfelvetel !!!!!!!!!!!!!!!!!!!!!!!!
+	// Etelfelvetel !!!!!!!!!!!!!!!!!!!!!!!!
 	public int getItems() {
 		System.out.println(className + " getItems");
 		return 0;
@@ -22,5 +22,5 @@ public class FoodStorage extends Storage {
 	// Etelvisszarakas
 	public void putItems(int count) {
 		System.out.println(className + " putItems");
-	} 
+	}
 }

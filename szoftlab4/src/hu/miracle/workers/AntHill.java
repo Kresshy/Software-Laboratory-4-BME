@@ -6,16 +6,17 @@ public class AntHill extends Storage {
 
 	// Members
 	// szukseges, hogy a hangyak ismerjek a scenet
-	private Scene scene; 
+	private Scene scene;
 
 	// Constructor
 	public AntHill() {
 	}
 
 	// Protected methods
-	// Itt visszaadjuk a tarolo elemeit, ebben az osztalyban a hangyak lesznek azok
+	// Itt visszaadjuk a tarolo elemeit, ebben az osztalyban a hangyak lesznek
+	// azok
 	// remelem igy ki lehet takaritani - sajnos nem lehet !!!!!!!!!!!!
-	public int getItems() { 
+	public int getItems() {
 		System.out.println(className + " getItems");
 		return 0;
 	}
@@ -28,5 +29,5 @@ public class AntHill extends Storage {
 	// Hangyak halalakor uj hangya szulethessen
 	public void putItems(int count) {
 		System.out.println(className + " putItems");
-	} 
+	}
 }

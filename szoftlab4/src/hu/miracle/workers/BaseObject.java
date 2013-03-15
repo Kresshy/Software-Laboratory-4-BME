@@ -3,7 +3,6 @@ package hu.miracle.workers;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Point;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,16 +47,17 @@ public abstract class BaseObject {
 	}
 
 	// Megmondja, hogy egy pont az objektum sugaraban van-e !!!!!!!!!
-	// Itt kotekedett, hogy ne booleant adjunk vissza, hanem a sugaraban levo objektumokat
-	public List pointInRange(Point point) { 				
-		System.out.println(className + " pointInRange"); 	
-															
+	// Itt kotekedett, hogy ne booleant adjunk vissza, hanem a sugaraban levo
+	// objektumokat
+	public List pointInRange(Point point) {
+		System.out.println(className + " pointInRange");
+
 		return Collections.EMPTY_LIST;
 	}
-	
+
 	// Kirajzolashoz szukseges
 	public void drawObject(Canvas canvas) {
 		System.out.println(className + " drawObject");
-		
-	} 
+
+	}
 }

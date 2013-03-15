@@ -18,8 +18,8 @@ public class Obstacle extends BaseObject {
 	}
 
 	// Eltavolitando-e az akadaly
-	public boolean isDebris() { 							
-		System.out.println(className + " isDebris"); 		
+	public boolean isDebris() {
+		System.out.println(className + " isDebris");
 		return false;
 	}
 
@@ -30,5 +30,5 @@ public class Obstacle extends BaseObject {
 	// Interakcio pl mergezeskor vagy hangyaleso talalkozasakor
 	public void interact(Creature creature) {
 		System.out.println(className + " interact");
-	} 
+	}
 }

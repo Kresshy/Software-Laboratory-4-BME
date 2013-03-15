@@ -8,12 +8,10 @@ public abstract class Storage extends BaseObject {
 
 	// Abstract methods
 	// Tarolabal elemeket vesz ki, etelfelvetelhez szukseges
-	public abstract int getItems(); 
-									
-	// Taroloba elemeket tesz vissza, etel visszatetelehez es 
+	public abstract int getItems();
+
+	// Taroloba elemeket tesz vissza, etel visszatetelehez es
 	// hangyak ujjaeledesehez szukseges
-	public abstract void putItems(int count); 
-												
-												
-												
+	public abstract void putItems(int count);
+
 }

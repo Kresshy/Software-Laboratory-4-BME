@@ -10,7 +10,7 @@ public abstract class Effect {
 
 	// Abstract methods
 	// Nem tudom szukseg van-e ra
-	public abstract void interact(Creature creature); 
+	public abstract void interact(Creature creature);
 
 	// Public interface
 	public void isDebris() {

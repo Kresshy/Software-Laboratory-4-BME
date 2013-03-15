@@ -65,7 +65,7 @@ public class Scene {
 	// uj effekteket tarol el, szagnyom letetelehez szukseges
 	public void placeEffect(Point point, Effect effect) {
 		System.out.println(className + " placeEffect");
-	} 
+	}
 
 	// pont korzeteben eltunteti az effekteket, sprayhez
 	// szukseges
@@ -86,20 +86,20 @@ public class Scene {
 
 	public void delegateTick() {
 		System.out.println(className + " delegateTick");
-		
-		for(Ant ant: ants){
+
+		for (Ant ant : ants) {
 			ant.handleTick();
 		}
-		
-		for(Storage storage: storages){
+
+		for (Storage storage : storages) {
 			storage.handleTick();
 		}
-		
-		for(Obstacle obstacle: obstacles){
+
+		for (Obstacle obstacle : obstacles) {
 			obstacle.handleTick();
 		}
-		
-		for(Creature creature: creatures){
+
+		for (Creature creature : creatures) {
 			creature.handleTick();
 		}
 	}

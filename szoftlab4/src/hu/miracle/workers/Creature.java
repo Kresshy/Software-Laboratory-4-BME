@@ -1,7 +1,7 @@
 package hu.miracle.workers;
 
 public abstract class Creature extends BaseObject {
-	
+
 	private static String className = "Creature";
 
 	// Members

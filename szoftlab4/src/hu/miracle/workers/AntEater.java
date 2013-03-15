@@ -1,9 +1,9 @@
 package hu.miracle.workers;
 
 public class AntEater extends Creature {
-	
+
 	private static final String className = "AntEater";
-	
+
 	// Members
 	private boolean visible; // Jelen van-e
 	private int hunger;

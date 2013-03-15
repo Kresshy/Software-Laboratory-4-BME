@@ -2,6 +2,7 @@ package hu.miracle.workers;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,13 @@ public class Scene {
 	private List<Creature> creatures;
 	private Map<Point, Effect> effects; // Ez elvileg nem lista lesz, de meg nem
 										// tudom megmondani hogy mi
+	
+	public Scene() {
+		this.ants = new ArrayList<Ant>();
+		this.storages = new ArrayList<Storage>();
+		this.obstacles = new ArrayList<Obstacle>();
+		this.creatures = new ArrayList<Creature>();
+	}
 
 	// Protected methods
 	// Eltavolitja a szemetet a palyarol (lejart cuccok)

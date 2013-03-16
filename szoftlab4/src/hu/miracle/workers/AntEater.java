@@ -11,8 +11,10 @@ public class AntEater extends Creature {
 	private int wait;
 
 	// Constructor
-	public AntEater(Scene scene) {
+	public AntEater(Scene scene, int wait, int hunger) {
 		super(scene);
+		this.wait = wait;
+		this.hunger = hunger;
 	}
 
 	// Protected methods
@@ -20,8 +22,11 @@ public class AntEater extends Creature {
 		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
 
 		for (Ant ant : scene.getAnts()) {
-			if(pointInRange(ant.getPosition()) == true) {
-				ant.terminate();
+			if (pointInRange(ant.getPosition()) == true) {
+				if (hunger > 0) {
+					ant.terminate();
+					hunger--;
+				}
 			}
 		}
 	}

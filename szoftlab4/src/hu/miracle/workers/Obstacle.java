@@ -6,7 +6,8 @@ public class Obstacle extends BaseObject {
 	protected boolean solid; // Tomorseg/athatolhatatlansag
 
 	// Constructor
-	public Obstacle() {
+	public Obstacle(boolean solid) {
+		this.solid = solid;
 	}
 
 	// Public interface

@@ -2,119 +2,151 @@ package hu.miracle.workers;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.Map;
 
 public class Ant extends Creature {
 
-	// Members
-	private Storage home;
-	private Storage source;
 	private boolean poisoned;
 	private int health;
 	private int cargo;
+	private Storage home;
+	private Storage source;
 
-	// Constructor
-	// FIXME
-	public Ant(Storage home, Storage source, boolean poisoned, int health, Scene scene) {
+	public Ant(Scene scene, Storage home) {
 		super(scene);
 		this.home = home;
-		this.source = source;
-		this.poisoned = poisoned;
-		this.health = health;
+		this.poisoned = false;
+		this.health = 5; // TODO: Kezdőérték meghatározása
 		this.cargo = 0;
+	}
+
+	@Override
+	public void handleTick() {
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+
+		// Ha elfogyott az élete
+		if (health <= 0) {
+			// Megsemmisítés
+			terminate();
+		}
+
+		// Ha meg van mérgezve
+		if (poisoned) {
+			// Élet csökkentése
+			health--;
+		}
+
+		// Ételfelvétel
+		// Ha nincs rakomány
+		if (cargo == 0) {
+			// Minden tárolóra
+			for (Storage storage : scene.getStorages()) {
+				// Ha a tároló vonzza a hangyát és van benne étel
+				if (storage.isAttractive() && storage.hasItems()) {
+					// Ha a hangya hatókörében van
+					if (pointInRange(storage.getPosition())) {
+						// Rakomány feltöltése
+						cargo = storage.getItems();
+						// Ételforrás beállítása
+						setSource(storage);
+					}
+				}
+			}
+		}
+
+		// Ételletétel
+		// Ha a hangya hatókörében van
+		if (pointInRange(home.getPosition())) {
+			// Rakomány kiürítése
+			cargo = 0;
+			// Ételforrás törlése
+			setSource(null);
+		}
+
+		// Mozgás
+		routeAndMove();
 	}
 
 	// Protected methods
 	protected void routeAndMove() {
 		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
 
-		// TODO: Átnézni, befejezni
-		// ...
-		scene.getStorages();
-		// ...
-		scene.discoverEffects(this);
-		// ...
-		List<Obstacle> obstacles = scene.discoverObstacles(this);
-		for (Obstacle obstacle : obstacles) {
-			obstacle.interact(this);
+		// Céltároló kiválasztása
+		Storage target = null;
+		// Ha van rakomány
+		if (cargo > 0) {
+			// Célpont beállítása a szülőbolyra
+			target = home;
+		} else {
+			// Legközelebbi vonzó tároló meghatározása
+			// Minden tárolóra
+			for (Storage storage : scene.getStorages()) {
+				// Ha a tároló vonzza a hangyát és van benne étel
+				if (storage.isAttractive() && storage.hasItems()) {
+					// Ha még nincs célpont vagy az aktuális tároló közelebb van
+					if (target == null
+							|| getPosition().distance(storage.getPosition()) < getPosition()
+									.distance(target.getPosition())) {
+						// Célpont beállítása a tárolóra
+						target = storage;
+					}
+				}
+			}
 		}
-		// ...
-		Point newpos = new Point();
-		// FIXME: Pheromone konstruktor
-		Pheromone pheromone = null; // = new Pheromone();
-		setPosition(newpos);
-		scene.placeEffect(newpos, pheromone);
-		// ...
+
+		// Új pozíció meghatározása
+		Point new_position = new Point();
+		// TODO: Algoritmus kidolgozása
+
+		// Effectek figyelembe vétele az útválasztásnál
+		// TODO: Meghatározni, hogy hatnak-e az effektek a haza tartó hangyákra
+		Map<Point, Effect> effects = scene.discoverEffects(this);
+		// TODO: Algoritmus kidolgozása
+
+		// Akadályok figyelembe vétele az útválasztásnál
+		List<Obstacle> obstacles = scene.discoverObstacles(this);
+		// TODO: Algoritmus kidolgozása
+
+		// Lépés
+		// Új pozíció beállítása
+		setPosition(new_position);
+		// Szagnyom letétele
+		Pheromone new_pheromone = new Pheromone();
+		scene.placeEffect(new_position, new_pheromone);
+		// Akadályokra lépés
+		obstacles = scene.discoverObstacles(this);
+		// TODO: Algoritmus kidolgozása
 	}
 
 	// Public interface
 	public void setPoisoned(boolean poisoned) {
 		System.out.println(getClass().getCanonicalName() + ".setPoisoned()");
 
+		// Mérgezettség beállítása
 		this.poisoned = poisoned;
 	}
 
-	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+	public void setSource(Storage source) {
+		System.out.println(getClass().getCanonicalName() + ".setSource()");
 
-		if (health <= 0) {
-			terminate();
-		}
-		if (poisoned) {
-			health -= 1;
-		}
-
-		// FIXME: Kajafelvétel/-letétel
-		for (Storage storage : scene.getStorages()) {
-
-			// Ezt felejtsd el.
-			if (storage instanceof FoodStorage) {
-
-				if (pointInRange(storage.getPosition())) {
-					cargo = storage.getItems();
-					source = storage;
-				}
-			}
-		}
-
-		routeAndMove();
+		// Ételforrás beállítása
+		this.source = source;
 	}
 
 	@Override
 	public void terminate() {
 		System.out.println(getClass().getCanonicalName() + ".terminate()");
 
+		// Étel visszatétele
 		if (source != null) {
 			source.putItems(cargo);
 		}
-		// ...
+
+		// Előkészítés respawnra.
 		home.putItems(1);
-		// ...
-		// TODO: Eltávolítás a scene-ből
-		// health = 0;
-	}
 
-	public void setSource(Storage storage) {
-		System.out.println(getClass().getCanonicalName() + ".setSource()");
-		// TODO
-	}
-
-	// FIXME: Eltávolítás
-	public boolean isDead() {
-		if (health > 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	@Override
-	public boolean pointInRange(Point point) {
-		// FIXME: Egyszerűsítés
-		if (Point.distance(this.position.x, this.position.y, point.x, point.y) < this.radius) {
-			return true;
-		} else {
-			return false;
-		}
+		// Eltávolítás a scene-ből
+		scene.getAnts().remove(this);
 	}
 
 }

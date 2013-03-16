@@ -16,6 +16,10 @@ public abstract class Storage extends BaseObject {
 	public abstract void putItems(int count);
 
 	// Public interface
+	public boolean hasItems() {
+		return (amount < 0);
+	}
+
 	public boolean isAttractive() {
 		System.out.println(getClass().getCanonicalName() + ".isAttractive()");
 		// FIXME

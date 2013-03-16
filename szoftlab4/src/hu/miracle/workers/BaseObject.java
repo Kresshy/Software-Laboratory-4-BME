@@ -42,10 +42,12 @@ public abstract class BaseObject {
 		System.out.println(getClass().getCanonicalName() + ".setColor()");
 	}
 
-	// Megmondja, hogy egy pont az objektum sugaraban van-e
 	public boolean pointInRange(Point point) {
 		System.out.println(getClass().getCanonicalName() + ".pointInRange()");
-		return false;
+
+		// A pont az objektum hatókörében van-e
+		// TODO: Hatókör meghatározása
+		return (getPosition().distance(point) < radius);
 	}
 
 	// Kirajzolashoz szukseges

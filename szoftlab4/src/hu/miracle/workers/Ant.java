@@ -41,12 +41,15 @@ public class Ant extends Creature {
 
 		routeAndMove();
 
+		
+		
 	}
 
 	@Override
 	public void terminate() {
 		System.out.println(getClass().getCanonicalName() + ".terminate()");
-
+		
+		health = 0;
 	}
 
 	public void setSource(Storage storage) {

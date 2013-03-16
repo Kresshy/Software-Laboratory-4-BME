@@ -1,5 +1,8 @@
 package hu.miracle.workers;
 
+import java.awt.Point;
+import java.util.List;
+
 public class AntEater extends Creature {
 
 	// Members
@@ -14,6 +17,12 @@ public class AntEater extends Creature {
 	// Protected methods
 	protected void routeAndMove() {
 		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
+
+		for (Ant ant : scene.getAnts()) {
+			if(pointInRange(ant.getPosition()) == true) {
+				ant.terminate();
+			}
+		}
 	}
 
 	// Public interface
@@ -27,6 +36,16 @@ public class AntEater extends Creature {
 
 		if (visible) {
 			routeAndMove();
+		}
+	}
+
+	@Override
+	public boolean pointInRange(Point point) {
+
+		if (Point.distance(this.position.x, this.position.y, point.x, point.y) < this.radius) {
+			return true;
+		} else {
+			return false;
 		}
 
 	}

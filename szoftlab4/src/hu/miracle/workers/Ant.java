@@ -10,8 +10,12 @@ public class Ant extends Creature {
 	private int cargo;
 
 	// Constructor
-	public Ant() {
-
+	public Ant(Storage home, Storage source, boolean poisoned, int health) {
+		this.home = home;
+		this.source = source;
+		this.poisoned = poisoned;
+		this.health = health;
+		this.cargo = 0;
 	}
 
 	// Protected methods
@@ -22,32 +26,40 @@ public class Ant extends Creature {
 	// Public interface
 	public void setPoisoned(boolean poisoned) {
 		System.out.println(getClass().getCanonicalName() + ".setPoisoned()");
-		
+
 		this.poisoned = poisoned;
 	}
 
 	public void handleTick() {
 		System.out.println(getClass().getCanonicalName() + ".handleTick()");
-		
-		if(poisoned){
-			if(health > 0){
+
+		if (poisoned) {
+			if (health > 0) {
 				health--;
 			}
 		}
-		
+
 		routeAndMove();
-		
+
 	}
 
 	@Override
 	public void terminate() {
 		System.out.println(getClass().getCanonicalName() + ".terminate()");
-		
+
 	}
 
 	public void setSource(Storage storage) {
 		System.out.println(getClass().getCanonicalName() + ".setSource()");
-		
+
+	}
+
+	public boolean isDead() {
+		if (health > 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

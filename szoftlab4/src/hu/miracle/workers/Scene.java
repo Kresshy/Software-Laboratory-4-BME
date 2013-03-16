@@ -41,6 +41,28 @@ public class Scene {
 			}
 
 		}
+
+		Iterator it = effects.entrySet().iterator();
+
+		while (it.hasNext()) {
+
+			Map.Entry pairs = (Map.Entry) it.next();
+			Effect effect = (Effect) pairs.getValue();
+			Point keyPoint = (Point) pairs.getKey();
+
+			if (effect.isDebris()) {
+				it.remove();
+			}
+
+		}
+
+		// Hogyan tudja a hangya sajat magat terminalni ha meghal ?
+		//A listából is el kell távolítani ha döglött
+		// for (Ant ant : ants) {
+		// if (ant.isDead())
+		// ants.remove(ant);
+		// }
+
 	}
 
 	// Public interface
@@ -104,7 +126,7 @@ public class Scene {
 			Point keyPoint = (Point) pairs.getKey();
 
 			double distance = Point.distance(keyPoint.x, keyPoint.y, point.x, point.y);
-			
+
 			// A Szageltávolítónak fix sugarat adtam, hogy tudjuk vizsgálni
 			// beleesik-e ebbe a sugárba a pont vagy sem
 			if (distance < 4) {
@@ -125,6 +147,9 @@ public class Scene {
 	// milyen paraméterekre lesz szükség
 	public void buildScene(String settings) {
 		System.out.println(getClass().getCanonicalName() + ".buildScene()");
+
+		// IDE MIT TEGYUNK?
+
 	}
 
 	// ez a függvény kezeli a scene tickre történő tevékenységét is

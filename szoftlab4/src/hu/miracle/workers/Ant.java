@@ -41,6 +41,8 @@ public class Ant extends Creature {
 	// Public interface
 	public void setPoisoned(boolean poisoned) {
 		System.out.println(getClass().getCanonicalName() + ".setPoisoned()");
+
+		this.poisoned = poisoned;
 	}
 
 	@Override
@@ -58,6 +60,7 @@ public class Ant extends Creature {
 
 	public void setSource(Storage storage) {
 		System.out.println(getClass().getCanonicalName() + ".setSource()");
+
 	}
 
 	public void handleTick() {

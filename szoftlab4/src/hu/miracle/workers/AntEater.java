@@ -37,9 +37,12 @@ public class AntEater extends Creature {
 					if (pointInRange(ant.getPosition())) {
 						ant.terminate();
 						hunger -= 1;
+						break; // Hogy ne tomegesen hanem egyesevel egye a
+								// hangyakat
 					}
 				}
 			}
+			routeAndMove();
 
 		} else {
 			// Hatterben
@@ -51,5 +54,6 @@ public class AntEater extends Creature {
 			}
 
 		}
+
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,8 @@ public class Scene {
 		for (Obstacle obstacle : obstacles) {
 			if (obstacle.isDebris()) {
 				// Eltavolitas
+				// obstacles.remove(obstacle); // Az iteratoros eltavolitassal
+				// gondok lehetnek
 			}
 		}
 
@@ -74,6 +77,7 @@ public class Scene {
 
 	// Egy objektum kornyeki effekteket adja vissza, a hangya
 	// utvonaltervezesehez kell
+	// Mi baj a BaseObject-tel Szabi?
 	public Map<Point, Effect> discoverEffects(BaseObject object) {
 		System.out.println(getClass().getCanonicalName() + ".discoverEffects()");
 		return effects;
@@ -89,17 +93,38 @@ public class Scene {
 	// uj effektet tarol el, szagnyom letetelehez szukseges
 	public void placeEffect(Point point, Effect effect) {
 		System.out.println(getClass().getCanonicalName() + ".placeEffect()");
+		effects.put(point, effect);
 	}
 
 	// Egy pont korzeteben eltunteti az effekteket, szagtalanito sprayhez
 	// szukseges
 	public void clearEffects(Point point) {
 		System.out.println(getClass().getCanonicalName() + ".clearEffect()");
+
+		Iterator it = effects.entrySet().iterator();
+
+		while (it.hasNext()) {
+
+			Map.Entry pairs = (Map.Entry) it.next();
+			Effect effect = (Effect) pairs.getValue();
+			Point keyPoint = (Point) pairs.getKey();
+
+			double distance = Point.distance(keyPoint.x, keyPoint.y, point.x, point.y);
+
+			// A Szageltávolítónak fix sugarat adtam, hogy tudjuk vizsgálni
+			// beleesik-e ebbe a sugárba a pont vagy sem
+			if (distance < 4) {
+				it.remove();
+			}
+
+		}
+
 	}
 
 	// uj akadalyt tarol el, mereg sprayhez szukseges
 	public void placeObstacle(Obstacle obstacle) {
 		System.out.println(getClass().getCanonicalName() + ".placeObstacle()");
+		obstacles.add(obstacle);
 	}
 
 	// Ez itt csak placeholder, fogalmam sincs hogyan taroljuk a palyakat es
@@ -108,8 +133,11 @@ public class Scene {
 		System.out.println(getClass().getCanonicalName() + ".buildScene()");
 	}
 
+	// ez a függvény kezeli a scene tickre történő tevékenységét is
 	public void delegateTick() {
 		System.out.println(getClass().getCanonicalName() + ".delegateTick()");
+
+		clearDebris();
 
 		for (Ant ant : ants) {
 			ant.handleTick();

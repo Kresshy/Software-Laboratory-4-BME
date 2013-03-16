@@ -8,9 +8,10 @@ public abstract class Storage extends BaseObject {
 	// Members
 	protected int amount; // Tarolt elemek
 	protected int capacity; // Tarolt elemek maximalis szama
+	protected int packet;
 	protected boolean attractive;
 
-	public Storage(Point position, Color color, int radius, int capacity, boolean attractive) {
+	public Storage(Point position, Color color, int radius, int capacity, int packet, boolean attractive) {
 		super(position, color, radius);
 		this.capacity = capacity;
 		this.attractive = attractive;
@@ -18,11 +19,25 @@ public abstract class Storage extends BaseObject {
 
 	// Abstract methods
 	// Tarolobol elemeket vesz ki, etelfelvetelhez szukseges
-	public abstract int getItems();
+	public int getItems() {
+		System.out.println(getClass().getCanonicalName() + ".getItems()");
+
+		// Maximálisan kivehető elemek meghatározása
+		int count = Math.min(capacity - amount, packet);
+		// Tárolt elemek csökkentése
+		amount -= count;
+		// Kivett elemek visszaadása
+		return count;
+	}
 
 	// Taroloba elemeket tesz vissza, etel visszatetelehez es
 	// hangyak ujjaeledesehez szukseges
-	public abstract void putItems(int count);
+	public void putItems(int count) {
+		System.out.println(getClass().getCanonicalName() + ".putItems()");
+		
+		// Tárolt elemek növelése
+		amount = Math.min(capacity, amount + count);
+	}
 
 	// Public interface
 	public boolean hasItems() {

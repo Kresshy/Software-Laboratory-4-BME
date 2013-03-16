@@ -2,42 +2,38 @@ package hu.miracle.workers;
 
 public abstract class Effect {
 
-	// Members
-	protected int timeout;
 	protected boolean attractive;
-	
+	protected int timeout;
+
 	public Effect(int timeout, boolean attractive) {
 		this.timeout = timeout;
 		this.attractive = attractive;
 	}
 
-	// Abstract methods
-	// Nem tudom szukseg van-e ra
+	public void handleTick() {
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+
+		// Ha még nem illant el
+		if (timeout > 0) {
+			// Hátralévő idő csökkentése
+			timeout--;
+		}
+	}
+
 	public abstract void interact(Creature creature);
 
-	// Public interface
 	public boolean isAttractive() {
 		System.out.println(getClass().getCanonicalName() + ".isAttractive()");
+
+		// Vonzalom visszaadása
 		return attractive;
 	}
 
 	public boolean isDebris() {
 		System.out.println(getClass().getCanonicalName() + ".isDebris()");
-		
-		// FIXME
-		if (timeout > 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}
 
-	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
-		
-		if (timeout > 0){
-			timeout--;
-		}
+		// Eltakaríthatóság visszaadása
+		return (timeout <= 0);
 	}
 
 }

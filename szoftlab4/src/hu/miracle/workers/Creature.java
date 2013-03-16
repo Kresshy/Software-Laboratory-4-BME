@@ -5,7 +5,6 @@ import java.awt.Point;
 
 public abstract class Creature extends BaseObject {
 
-	// Members
 	protected Scene scene;
 
 	public Creature(Point position, Color color, int radius, Scene scene) {
@@ -13,9 +12,11 @@ public abstract class Creature extends BaseObject {
 		this.scene = scene;
 	}
 
-	// Public interface
 	public void setScene(Scene scene) {
 		System.out.println(getClass().getCanonicalName() + ".setScene()");
+
+		// Pálya beállítása
+		this.scene = scene;
 	}
 
 	public void terminate() {

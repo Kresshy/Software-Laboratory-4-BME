@@ -7,21 +7,9 @@ public class AntHill extends Storage {
 
 	private Scene scene;
 
-	public AntHill(Point position, Scene scene, int capacity) {
-		super(position, Color.BLUE, 3, capacity, false); // TODO: Grafikus jellemzők meghatározása
+	public AntHill(Point position, Scene scene, int capacity, int packet) {
+		super(position, Color.BLUE, 3, capacity, packet, false); // TODO: Grafikus jellemzők meghatározása
 		this.scene = scene;
-	}
-
-	@Override
-	public int getItems() {
-		System.out.println(getClass().getCanonicalName() + ".getItems()");
-
-		// Maximum kivehető elemek meghatározása
-		int count = Math.min(capacity - amount, 3);
-		// Elemek kivétele
-		amount += count;
-		// Elemek visszaadása
-		return count;
 	}
 
 	@Override
@@ -36,15 +24,6 @@ public class AntHill extends Storage {
 			// Tárolás
 			scene.getAnts().add(ant);
 		}
-	}
-
-	@Override
-	public void putItems(int count) {
-		System.out.println(getClass().getCanonicalName() + ".putItems()");
-
-		// Hangyák halála
-		// Sorbaállítás
-		amount -= count;
 	}
 
 }

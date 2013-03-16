@@ -1,11 +1,15 @@
 package hu.miracle.workers;
 
+import java.awt.Color;
+import java.awt.Point;
+
 public abstract class Creature extends BaseObject {
 
 	// Members
 	protected Scene scene;
-	
-	public Creature(Scene scene) {
+
+	public Creature(Point position, Color color, int radius, Scene scene) {
+		super(position, color, radius);
 		this.scene = scene;
 	}
 

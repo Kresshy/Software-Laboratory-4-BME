@@ -1,5 +1,7 @@
 package hu.miracle.workers;
 
+import java.awt.Color;
+import java.awt.Point;
 import java.util.List;
 
 public class AntEater extends Creature {
@@ -8,8 +10,8 @@ public class AntEater extends Creature {
 	private int hunger;
 	private int wait;
 
-	public AntEater(Scene scene) {
-		super(scene);
+	public AntEater(Point position, Scene scene) {
+		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők meghatározása
 		this.wait = 20; // TODO: Kezdőérték meghatározása
 		this.hunger = 10; // TODO: Kezdőérték meghatározása
 	}

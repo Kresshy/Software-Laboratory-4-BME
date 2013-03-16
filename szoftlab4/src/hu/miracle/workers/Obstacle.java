@@ -1,12 +1,16 @@
 package hu.miracle.workers;
 
+import java.awt.Color;
+import java.awt.Point;
+
 public class Obstacle extends BaseObject {
 
 	// Members
 	protected boolean solid; // Tomorseg/athatolhatatlansag
 
 	// Constructor
-	public Obstacle(boolean solid) {
+	public Obstacle(Point position, Color color, int radius, boolean solid) {
+		super(position, color, radius);
 		this.solid = solid;
 	}
 

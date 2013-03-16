@@ -1,5 +1,6 @@
 package hu.miracle.workers;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,8 @@ public class Ant extends Creature {
 	private Storage home;
 	private Storage source;
 
-	public Ant(Scene scene, Storage home) {
-		super(scene);
+	public Ant(Point position, Scene scene, Storage home) {
+		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők meghatározása
 		this.home = home;
 		this.poisoned = false;
 		this.health = 5; // TODO: Kezdőérték meghatározása

@@ -1,10 +1,13 @@
 package hu.miracle.workers;
 
+import java.awt.Color;
+import java.awt.Point;
+
 public class FoodStorage extends Storage {
 
 	// Constructor
-	public FoodStorage(int capacity) {
-		super(capacity, true);
+	public FoodStorage(Point position, int capacity) {
+		super(position, Color.RED, 3, capacity, true); // TODO: Grafikus jellemzők meghatározása
 	}
 
 	// Public interface

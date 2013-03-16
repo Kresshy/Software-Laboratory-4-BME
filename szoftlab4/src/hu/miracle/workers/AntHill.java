@@ -1,11 +1,14 @@
 package hu.miracle.workers;
 
+import java.awt.Color;
+import java.awt.Point;
+
 public class AntHill extends Storage {
 
 	private Scene scene;
 
-	public AntHill(Scene scene, int capacity) {
-		super(capacity, false);
+	public AntHill(Point position, Scene scene, int capacity) {
+		super(position, Color.BLUE, 3, capacity, false); // TODO: Grafikus jellemzők meghatározása
 		this.scene = scene;
 	}
 
@@ -29,7 +32,7 @@ public class AntHill extends Storage {
 		// Minden hangyára
 		for (int i = getItems(); i > 0; i--) {
 			// Létrehozás
-			Ant ant = new Ant(scene, this);
+			Ant ant = new Ant(getPosition(), scene, this);
 			// Tárolás
 			scene.getAnts().add(ant);
 		}

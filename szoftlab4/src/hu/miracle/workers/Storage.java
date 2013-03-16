@@ -1,5 +1,8 @@
 package hu.miracle.workers;
 
+import java.awt.Color;
+import java.awt.Point;
+
 public abstract class Storage extends BaseObject {
 
 	// Members
@@ -7,7 +10,8 @@ public abstract class Storage extends BaseObject {
 	protected int capacity; // Tarolt elemek maximalis szama
 	protected boolean attractive;
 
-	public Storage(int capacity, boolean attractive) {
+	public Storage(Point position, Color color, int radius, int capacity, boolean attractive) {
+		super(position, color, radius);
 		this.capacity = capacity;
 		this.attractive = attractive;
 	}

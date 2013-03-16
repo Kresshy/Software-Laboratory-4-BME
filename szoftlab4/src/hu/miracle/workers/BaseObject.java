@@ -6,41 +6,45 @@ import java.awt.Point;
 
 public abstract class BaseObject {
 
-	// Members
 	protected int radius;
 	protected Point position;
 	protected Color color;
 
-	// Abstract methods
-	public abstract void handleTick();
-
-	// Public interface
-	public int getRadius() {
-		System.out.println(getClass().getCanonicalName() + ".getRadius()");
-		return radius;
+	public BaseObject(Point position, Color color, int radius) {
+		this.position = position;
+		this.color = color;
+		this.radius = radius;
 	}
 
-	public void setRadius(int radius) {
-		System.out.println(getClass().getCanonicalName() + ".setRadius()");
-	}
+	public void drawObject(Canvas canvas) {
+		System.out.println(getClass().getCanonicalName() + ".drawObject()");
 
-	public Point getPosition() {
-		System.out.println(getClass().getCanonicalName() + ".getPosition()");
-		return position;
-	}
-
-	public void setPosition(Point position) {
-		System.out.println(getClass().getCanonicalName() + ".setPosition()");
+		// TODO: Algoritmus kidolgozása
 	}
 
 	public Color getColor() {
 		System.out.println(getClass().getCanonicalName() + ".getColor()");
+
+		// Szín visszaadása
 		return color;
 	}
 
-	public void setColor(Color color) {
-		System.out.println(getClass().getCanonicalName() + ".setColor()");
+	public Point getPosition() {
+		System.out.println(getClass().getCanonicalName() + ".getPosition()");
+
+		// Pozíció visszaadása
+		return position;
 	}
+
+	// Public interface
+	public int getRadius() {
+		System.out.println(getClass().getCanonicalName() + ".getRadius()");
+
+		// Sugár visszaadása
+		return radius;
+	}
+
+	public abstract void handleTick();
 
 	public boolean pointInRange(Point point) {
 		System.out.println(getClass().getCanonicalName() + ".pointInRange()");
@@ -50,9 +54,25 @@ public abstract class BaseObject {
 		return (getPosition().distance(point) < radius);
 	}
 
-	// Kirajzolashoz szukseges
-	public void drawObject(Canvas canvas) {
-		System.out.println(getClass().getCanonicalName() + ".drawObject()");
+	public void setColor(Color color) {
+		System.out.println(getClass().getCanonicalName() + ".setColor()");
+
+		// Szín beállítása
+		this.color = color;
+	}
+
+	public void setPosition(Point position) {
+		System.out.println(getClass().getCanonicalName() + ".setPosition()");
+
+		// Pozíció beállítása
+		this.position = position;
+	}
+
+	public void setRadius(int radius) {
+		System.out.println(getClass().getCanonicalName() + ".setRadius()");
+
+		// Sugár beállítása
+		this.radius = radius;
 	}
 
 }

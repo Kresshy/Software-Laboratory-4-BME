@@ -13,6 +13,7 @@ public class AntHill extends Storage {
 	// Nem használjuk kivülről, mert a storage-ból elem kivételére van. Viszont
 	// a visszatérési értékében be lehet konfigolni hányasával spawnoljanak a
 	// hangyák.
+	// TODO
 	public int getItems() {
 		System.out.println(getClass().getCanonicalName() + ".getItems()");
 		return 0;
@@ -26,6 +27,7 @@ public class AntHill extends Storage {
 	// Hangyak halalakor uj hangya szulethessen
 	public void putItems(int count) {
 		System.out.println(getClass().getCanonicalName() + ".putItems()");
+		// TODO
 	} // Hangyák halálakor, hogy újabb hangya szülessen
 
 }

@@ -37,6 +37,7 @@ public class Scene {
 		for (Obstacle obstacle : obstacles) {
 
 			if (obstacle.isDebris()) {
+				// TODO működik-e ?
 				obstacles.remove(obstacle);
 			}
 
@@ -56,6 +57,7 @@ public class Scene {
 
 		}
 
+		// TODO
 		// Hogyan tudja a hangya sajat magat terminalni ha meghal ?
 		//A listából is el kell távolítani ha döglött
 		// for (Ant ant : ants) {
@@ -148,6 +150,7 @@ public class Scene {
 	public void buildScene(String settings) {
 		System.out.println(getClass().getCanonicalName() + ".buildScene()");
 
+		// TODO
 		// IDE MIT TEGYUNK?
 
 	}

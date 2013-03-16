@@ -7,6 +7,7 @@ public abstract class Storage extends BaseObject {
 	protected int capacity; // Tárolt elemek maximális száma
 	protected boolean attractive;
 
+	// TODO EGÉSZ
 	// Abstract methods
 	// Tárolóból elemeket vesz ki, ételfelvételhez szükséges
 	public abstract int getItems();

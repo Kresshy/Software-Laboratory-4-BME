@@ -12,7 +12,8 @@ public class Ant extends Creature {
 	private int cargo;
 
 	// Constructor
-	public Ant(Storage home, Storage source, boolean poisoned, int health) {
+	public Ant(Storage home, Storage source, boolean poisoned, int health, Scene scene) {
+		super(scene);
 		this.home = home;
 		this.source = source;
 		this.poisoned = poisoned;

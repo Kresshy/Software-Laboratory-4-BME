@@ -4,6 +4,10 @@ public abstract class Creature extends BaseObject {
 
 	// Members
 	protected Scene scene;
+	
+	public Creature(Scene scene) {
+		this.scene = scene;
+	}
 
 	// Public interface
 	public void setScene(Scene scene) {

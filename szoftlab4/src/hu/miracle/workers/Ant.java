@@ -13,14 +13,21 @@ public class Ant extends Creature {
 	private int cargo;
 
 	// Constructor
-	public Ant() {
-
+	// FIXME
+	public Ant(Storage home, Storage source, boolean poisoned, int health, Scene scene) {
+		super(scene);
+		this.home = home;
+		this.source = source;
+		this.poisoned = poisoned;
+		this.health = health;
+		this.cargo = 0;
 	}
 
 	// Protected methods
 	protected void routeAndMove() {
 		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
 
+		// TODO: Átnézni, befejezni
 		// ...
 		scene.getStorages();
 		// ...
@@ -32,7 +39,8 @@ public class Ant extends Creature {
 		}
 		// ...
 		Point newpos = new Point();
-		Pheromone pheromone = new Pheromone();
+		// FIXME: Pheromone konstruktor
+		Pheromone pheromone = null; // = new Pheromone();
 		setPosition(newpos);
 		scene.placeEffect(newpos, pheromone);
 		// ...
@@ -45,6 +53,32 @@ public class Ant extends Creature {
 		this.poisoned = poisoned;
 	}
 
+	public void handleTick() {
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+
+		if (health <= 0) {
+			terminate();
+		}
+		if (poisoned) {
+			health -= 1;
+		}
+
+		// FIXME: Kajafelvétel/-letétel
+		for (Storage storage : scene.getStorages()) {
+
+			// Ezt felejtsd el.
+			if (storage instanceof FoodStorage) {
+
+				if (pointInRange(storage.getPosition())) {
+					cargo = storage.getItems();
+					source = storage;
+				}
+			}
+		}
+
+		routeAndMove();
+	}
+
 	@Override
 	public void terminate() {
 		System.out.println(getClass().getCanonicalName() + ".terminate()");
@@ -55,25 +89,32 @@ public class Ant extends Creature {
 		// ...
 		home.putItems(1);
 		// ...
-		// Eltavolitas a scene-bol
+		// TODO: Eltávolítás a scene-ből
+		// health = 0;
 	}
 
 	public void setSource(Storage storage) {
 		System.out.println(getClass().getCanonicalName() + ".setSource()");
-
+		// TODO
 	}
 
-	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
-
-		if (health <= 0) {
-			terminate();
+	// FIXME: Eltávolítás
+	public boolean isDead() {
+		if (health > 0) {
+			return false;
+		} else {
+			return true;
 		}
-		if (poisoned) {
-			health -= 1;
-		}
-		// ...
-		routeAndMove();
-		// ...
 	}
+
+	@Override
+	public boolean pointInRange(Point point) {
+		// FIXME: Egyszerűsítés
+		if (Point.distance(this.position.x, this.position.y, point.x, point.y) < this.radius) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

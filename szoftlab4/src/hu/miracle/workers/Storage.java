@@ -18,6 +18,7 @@ public abstract class Storage extends BaseObject {
 	// Public interface
 	public boolean isAttractive() {
 		System.out.println(getClass().getCanonicalName() + ".isAttractive()");
+		// FIXME
 		return false;
 	}
 

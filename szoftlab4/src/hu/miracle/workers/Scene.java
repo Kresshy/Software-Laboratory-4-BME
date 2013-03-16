@@ -37,8 +37,8 @@ public class Scene {
 		for (Obstacle obstacle : obstacles) {
 			if (obstacle.isDebris()) {
 				// Eltavolitas
-				// obstacles.remove(obstacle); // Az iteratoros eltavolitassal
-				// gondok lehetnek
+				// FIXME: Az iteratoros eltavolitassal gondok lehetnek
+				// obstacles.remove(obstacle);
 			}
 		}
 
@@ -47,6 +47,30 @@ public class Scene {
 				// Eltavolitas
 			}
 		}
+
+		// FIXME
+		Iterator it = effects.entrySet().iterator();
+
+		while (it.hasNext()) {
+
+			Map.Entry pairs = (Map.Entry) it.next();
+			Effect effect = (Effect) pairs.getValue();
+			Point keyPoint = (Point) pairs.getKey();
+
+			if (effect.isDebris()) {
+				it.remove();
+			}
+
+		}
+
+		// TODO
+		// Hogyan tudja a hangya sajat magat terminalni ha meghal ?
+		// A listából is el kell távolítani ha döglött
+		// for (Ant ant : ants) {
+		// if (ant.isDead())
+		// ants.remove(ant);
+		// }
+
 	}
 
 	// Public interface
@@ -101,6 +125,7 @@ public class Scene {
 	public void clearEffects(Point point) {
 		System.out.println(getClass().getCanonicalName() + ".clearEffect()");
 
+		// FIXME
 		Iterator it = effects.entrySet().iterator();
 
 		while (it.hasNext()) {
@@ -131,13 +156,14 @@ public class Scene {
 	// milyen parameterekre lesz szukseg
 	public void buildScene(String settings) {
 		System.out.println(getClass().getCanonicalName() + ".buildScene()");
+
+		// TODO: Nincs még semmink, amiből pályát lehetne építeni.
+
 	}
 
 	// ez a függvény kezeli a scene tickre történő tevékenységét is
 	public void delegateTick() {
 		System.out.println(getClass().getCanonicalName() + ".delegateTick()");
-
-		clearDebris();
 
 		for (Ant ant : ants) {
 			ant.handleTick();

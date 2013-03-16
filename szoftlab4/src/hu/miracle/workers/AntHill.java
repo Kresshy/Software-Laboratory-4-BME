@@ -10,9 +10,10 @@ public class AntHill extends Storage {
 	}
 
 	// Protected methods
-	// Nem hasznaljuk kivulrol, mert a storage-bol elem kivetelere van. Viszont
-	// a visszateresi ertekeben be lehet konfigolni hanyasaval spawnoljanak a
-	// hangyak.
+	// Nem használjuk kivülről, mert a storage-ból elem kivételére van. Viszont
+	// a visszatérési értékében be lehet konfigolni hányasával spawnoljanak a
+	// hangyák.
+	// TODO
 	public int getItems() {
 		System.out.println(getClass().getCanonicalName() + ".getItems()");
 		return 0;
@@ -28,9 +29,10 @@ public class AntHill extends Storage {
 		}
 	}
 
-	// Hangyak halalakor uj hangya szulethessen
+	// Hangyák halálakor, hogy újabb hangya szülessen
 	public void putItems(int count) {
 		System.out.println(getClass().getCanonicalName() + ".putItems()");
-	} // Hangyak halalakor, hogy ujabb hangya szulessen
+		// TODO
+	}
 
 }

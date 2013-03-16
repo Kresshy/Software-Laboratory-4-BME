@@ -1,5 +1,6 @@
 package hu.miracle.workers;
 
+import java.awt.Point;
 import java.util.List;
 
 public class AntEater extends Creature {
@@ -10,12 +11,24 @@ public class AntEater extends Creature {
 	private int wait;
 
 	// Constructor
-	public AntEater() {
+	public AntEater(Scene scene, int wait, int hunger) {
+		super(scene);
+		this.wait = wait;
+		this.hunger = hunger;
 	}
 
 	// Protected methods
 	protected void routeAndMove() {
 		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
+
+		for (Ant ant : scene.getAnts()) {
+			if (pointInRange(ant.getPosition()) == true) {
+				if (hunger > 0) {
+					ant.terminate();
+					hunger--;
+				}
+			}
+		}
 	}
 
 	// Public interface
@@ -53,6 +66,16 @@ public class AntEater extends Creature {
 				// Megjelenes
 			}
 
+		}
+	}
+
+	@Override
+	public boolean pointInRange(Point point) {
+
+		if (Point.distance(this.position.x, this.position.y, point.x, point.y) < this.radius) {
+			return true;
+		} else {
+			return false;
 		}
 
 	}

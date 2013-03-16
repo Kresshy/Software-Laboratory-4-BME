@@ -24,5 +24,10 @@ public class AntEater extends Creature {
 
 	public void handleTick() {
 		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+
+		if (visible) {
+			routeAndMove();
+		}
+
 	}
 }

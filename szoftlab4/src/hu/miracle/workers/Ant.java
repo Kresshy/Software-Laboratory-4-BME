@@ -22,19 +22,32 @@ public class Ant extends Creature {
 	// Public interface
 	public void setPoisoned(boolean poisoned) {
 		System.out.println(getClass().getCanonicalName() + ".setPoisoned()");
+		
+		this.poisoned = poisoned;
 	}
 
 	public void handleTick() {
 		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+		
+		if(poisoned){
+			if(health > 0){
+				health--;
+			}
+		}
+		
+		routeAndMove();
+		
 	}
 
 	@Override
 	public void terminate() {
 		System.out.println(getClass().getCanonicalName() + ".terminate()");
+		
 	}
 
 	public void setSource(Storage storage) {
 		System.out.println(getClass().getCanonicalName() + ".setSource()");
+		
 	}
 
 }

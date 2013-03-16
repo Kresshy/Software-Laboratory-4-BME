@@ -3,6 +3,8 @@ package hu.miracle.workers;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +26,21 @@ public class Scene {
 		this.storages = new ArrayList<Storage>();
 		this.obstacles = new ArrayList<Obstacle>();
 		this.creatures = new ArrayList<Creature>();
+		this.effects = new HashMap<Point, Effect>();
 	}
 
 	// Protected methods
 	// Eltávolítja a szemetet a pályáról (lejárt akadályok és effektek)
 	protected void clearDebris() {
 		System.out.println(getClass().getCanonicalName() + ".clearDebris()");
+
+		for (Obstacle obstacle : obstacles) {
+
+			if (obstacle.isDebris()) {
+				obstacles.remove(obstacle);
+			}
+
+		}
 	}
 
 	// Public interface
@@ -60,6 +71,7 @@ public class Scene {
 
 	// Egy objektum környéki effekteket adja vissza, a hangya
 	// útvonaltervezéséhez kell
+	// EZ ÍGY NEM JÓ KÖZE NINCS A BASEOBJECTNEK AZ EFFECTHEZ ...
 	public Map<Point, Effect> discoverEffects(BaseObject object) {
 		System.out.println(getClass().getCanonicalName() + ".discoverEffects()");
 		return effects;
@@ -75,17 +87,38 @@ public class Scene {
 	// Új effektet tárol el, szagnyom letételéhez szükséges
 	public void placeEffect(Point point, Effect effect) {
 		System.out.println(getClass().getCanonicalName() + ".placeEffect()");
+		effects.put(point, effect);
 	}
 
 	// Egy pont körzetében eltünteti az effekteket, szagtalanító sprayhez
 	// szükséges
 	public void clearEffects(Point point) {
 		System.out.println(getClass().getCanonicalName() + ".clearEffect()");
+
+		Iterator it = effects.entrySet().iterator();
+
+		while (it.hasNext()) {
+
+			Map.Entry pairs = (Map.Entry) it.next();
+			Effect effect = (Effect) pairs.getValue();
+			Point keyPoint = (Point) pairs.getKey();
+
+			double distance = Point.distance(keyPoint.x, keyPoint.y, point.x, point.y);
+			
+			// A Szageltávolítónak fix sugarat adtam, hogy tudjuk vizsgálni
+			// beleesik-e ebbe a sugárba a pont vagy sem
+			if (distance < 4) {
+				it.remove();
+			}
+
+		}
+
 	}
 
 	// Új akadályt tárol el, méreg sprayhez szükséges
 	public void placeObstacle(Obstacle obstacle) {
 		System.out.println(getClass().getCanonicalName() + ".placeObstacle()");
+		obstacles.add(obstacle);
 	}
 
 	// Ez itt csak placeholder, fogalmam sincs hogyan tároljuk a pályákat és
@@ -94,8 +127,11 @@ public class Scene {
 		System.out.println(getClass().getCanonicalName() + ".buildScene()");
 	}
 
+	// ez a függvény kezeli a scene tickre történő tevékenységét is
 	public void delegateTick() {
 		System.out.println(getClass().getCanonicalName() + ".delegateTick()");
+
+		clearDebris();
 
 		for (Ant ant : ants) {
 			ant.handleTick();

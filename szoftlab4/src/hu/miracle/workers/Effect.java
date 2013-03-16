@@ -24,4 +24,5 @@ public abstract class Effect {
 	public void handleTick() {
 		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 	}
+
 }

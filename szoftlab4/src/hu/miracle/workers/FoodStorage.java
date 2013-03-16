@@ -3,7 +3,8 @@ package hu.miracle.workers;
 public class FoodStorage extends Storage {
 
 	// Constructor
-	public FoodStorage() {
+	public FoodStorage(int capacity) {
+		super(capacity, true);
 	}
 
 	// Public interface

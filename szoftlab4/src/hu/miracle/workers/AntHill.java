@@ -2,37 +2,46 @@ package hu.miracle.workers;
 
 public class AntHill extends Storage {
 
-	// Members
-	private Scene scene; // Szukseges hogy a hangyak ismerhessek a scene-t
+	private Scene scene;
 
-	// Constructor
-	public AntHill() {
+	public AntHill(Scene scene, int capacity) {
+		super(capacity, false);
+		this.scene = scene;
 	}
 
-	// Protected methods
-	// Nem használjuk kivülről, mert a storage-ból elem kivételére van. Viszont
-	// a visszatérési értékében be lehet konfigolni hányasával spawnoljanak a
-	// hangyák.
-	// TODO
+	@Override
 	public int getItems() {
 		System.out.println(getClass().getCanonicalName() + ".getItems()");
-		return 0;
+
+		// Maximum kivehető elemek meghatározása
+		int count = Math.min(capacity - amount, 3);
+		// Elemek kivétele
+		amount += count;
+		// Elemek visszaadása
+		return count;
 	}
 
-	// Public interface
+	@Override
 	public void handleTick() {
 		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 
-		if (amount < capacity) {
-			// Hangya letrehozasa
-			amount += 1;
+		// Hangyák születése
+		// Minden hangyára
+		for (int i = getItems(); i > 0; i--) {
+			// Létrehozás
+			Ant ant = new Ant(scene, this);
+			// Tárolás
+			scene.getAnts().add(ant);
 		}
 	}
 
-	// Hangyák halálakor, hogy újabb hangya szülessen
+	@Override
 	public void putItems(int count) {
 		System.out.println(getClass().getCanonicalName() + ".putItems()");
-		// TODO
+
+		// Hangyák halála
+		// Sorbaállítás
+		amount -= count;
 	}
 
 }

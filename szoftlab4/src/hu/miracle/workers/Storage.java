@@ -7,6 +7,11 @@ public abstract class Storage extends BaseObject {
 	protected int capacity; // Tarolt elemek maximalis szama
 	protected boolean attractive;
 
+	public Storage(int capacity, boolean attractive) {
+		this.capacity = capacity;
+		this.attractive = attractive;
+	}
+
 	// Abstract methods
 	// Tarolobol elemeket vesz ki, etelfelvetelhez szukseges
 	public abstract int getItems();

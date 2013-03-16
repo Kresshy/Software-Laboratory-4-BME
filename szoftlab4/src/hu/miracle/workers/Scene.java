@@ -7,20 +7,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Scene {
 
-	// Members
 	private Dimension dimension;
 	private List<Ant> ants;
 	private List<Storage> storages;
 	private List<Obstacle> obstacles;
 	private List<Creature> creatures;
-	private Map<Point, Effect> effects; // Ez a tarolo tovabbra sem vegleges,
-										// csak implementaciokor derul ki, hogy
-										// labonlottuk-e magunkat.
+	private Map<Point, Effect> effects; // Ez a tároló továbbra sem végleges
 
-	// Constructor
 	public Scene() {
 		this.ants = new ArrayList<Ant>();
 		this.storages = new ArrayList<Storage>();
@@ -29,95 +26,36 @@ public class Scene {
 		this.effects = new HashMap<Point, Effect>();
 	}
 
-	// Protected methods
-	// Eltavolitja a szemetet a palyarol (lejart akadalyok es effektek)
+	public void buildScene(String settings) {
+		System.out.println(getClass().getCanonicalName() + ".buildScene()");
+
+		// TODO: Pálya építése
+	}
+
 	protected void clearDebris() {
 		System.out.println(getClass().getCanonicalName() + ".clearDebris()");
 
-		for (Obstacle obstacle : obstacles) {
+		// Minden akadályra
+		Iterator<Obstacle> iobstacles = obstacles.iterator();
+		while (iobstacles.hasNext()) {
+			Obstacle obstacle = iobstacles.next();
+			// Ha szemét
 			if (obstacle.isDebris()) {
-				// Eltavolitas
-				// FIXME: Az iteratoros eltavolitassal gondok lehetnek
-				// obstacles.remove(obstacle);
+				// Eltávolítás
+				iobstacles.remove();
 			}
 		}
 
-		for (Effect effect : effects.values()) {
-			if (effect.isDebris()) {
-				// Eltavolitas
+		// Minden effektre
+		Iterator<Entry<Point, Effect>> ieffects = effects.entrySet().iterator();
+		while (ieffects.hasNext()) {
+			Entry<Point, Effect> entry = ieffects.next();
+			// Ha szemét
+			if (entry.getValue().isDebris()) {
+				// Eltávolítás
+				ieffects.remove();
 			}
 		}
-
-		// FIXME
-		Iterator it = effects.entrySet().iterator();
-
-		while (it.hasNext()) {
-
-			Map.Entry pairs = (Map.Entry) it.next();
-			Effect effect = (Effect) pairs.getValue();
-			Point keyPoint = (Point) pairs.getKey();
-
-			if (effect.isDebris()) {
-				it.remove();
-			}
-
-		}
-
-		// TODO
-		// Hogyan tudja a hangya sajat magat terminalni ha meghal ?
-		// A listából is el kell távolítani ha döglött
-		// for (Ant ant : ants) {
-		// if (ant.isDead())
-		// ants.remove(ant);
-		// }
-
-	}
-
-	// Public interface
-	public Dimension getDimension() {
-		System.out.println(getClass().getCanonicalName() + ".getDimension()");
-		return dimension;
-	}
-
-	public List<Ant> getAnts() {
-		System.out.println(getClass().getCanonicalName() + ".getAnts()");
-		return ants;
-	}
-
-	public List<Storage> getStorages() {
-		System.out.println(getClass().getCanonicalName() + ".getStorages()");
-		return storages;
-	}
-
-	public List<Obstacle> getObstacles() {
-		System.out.println(getClass().getCanonicalName() + ".getObstacles()");
-		return obstacles;
-	}
-
-	public List<Creature> getCreatures() {
-		System.out.println(getClass().getCanonicalName() + ".getCreatures()");
-		return creatures;
-	}
-
-	// Egy objektum kornyeki effekteket adja vissza, a hangya
-	// utvonaltervezesehez kell
-	// Mi baj a BaseObject-tel Szabi?
-	public Map<Point, Effect> discoverEffects(BaseObject object) {
-		System.out.println(getClass().getCanonicalName() + ".discoverEffects()");
-		return effects;
-	}
-
-	// Egy objektum kornyeki akadalyokat adja vissza, a hangya
-	// utvonaltervezesehez es a mergezeshez kell
-	public List<Obstacle> discoverObstacles(BaseObject object) {
-		System.out.println(getClass().getCanonicalName() + ".discoverObstacles()");
-		return obstacles;
-	}
-
-	// uj effektet tarol el, szagnyom letetelehez szukseges
-	public void placeEffect(Point point, Effect effect) {
-		System.out.println(getClass().getCanonicalName() + ".placeEffect()");
-		effects.put(point, effect);
 	}
 
 	// Egy pont korzeteben eltunteti az effekteket, szagtalanito sprayhez
@@ -125,46 +63,23 @@ public class Scene {
 	public void clearEffects(Point point) {
 		System.out.println(getClass().getCanonicalName() + ".clearEffect()");
 
-		// FIXME
-		Iterator it = effects.entrySet().iterator();
-
-		while (it.hasNext()) {
-
-			Map.Entry pairs = (Map.Entry) it.next();
-			Effect effect = (Effect) pairs.getValue();
-			Point keyPoint = (Point) pairs.getKey();
-
-			double distance = Point.distance(keyPoint.x, keyPoint.y, point.x, point.y);
-
-			// A Szageltávolítónak fix sugarat adtam, hogy tudjuk vizsgálni
-			// beleesik-e ebbe a sugárba a pont vagy sem
-			if (distance < 4) {
-				it.remove();
+		// Minden effektre
+		Iterator<Entry<Point, Effect>> ieffects = effects.entrySet().iterator();
+		while (ieffects.hasNext()) {
+			Entry<Point, Effect> entry = ieffects.next();
+			// Ha a pont környezetébe esik
+			// TODO: Környezet méretének meghatározása
+			if (point.distance(entry.getKey()) < 10) {
+				// Eltávolítás
+				ieffects.remove();
 			}
-
 		}
-
 	}
 
-	// uj akadalyt tarol el, mereg sprayhez szukseges
-	public void placeObstacle(Obstacle obstacle) {
-		System.out.println(getClass().getCanonicalName() + ".placeObstacle()");
-		obstacles.add(obstacle);
-	}
-
-	// Ez itt csak placeholder, fogalmam sincs hogyan taroljuk a palyakat es
-	// milyen parameterekre lesz szukseg
-	public void buildScene(String settings) {
-		System.out.println(getClass().getCanonicalName() + ".buildScene()");
-
-		// TODO: Nincs még semmink, amiből pályát lehetne építeni.
-
-	}
-
-	// ez a függvény kezeli a scene tickre történő tevékenységét is
 	public void delegateTick() {
 		System.out.println(getClass().getCanonicalName() + ".delegateTick()");
 
+		// Tick-kezelések
 		for (Ant ant : ants) {
 			ant.handleTick();
 		}
@@ -177,8 +92,90 @@ public class Scene {
 		for (Creature creature : creatures) {
 			creature.handleTick();
 		}
-
+		// Szemét eltakarítása
 		clearDebris();
+	}
+
+	public Map<Point, Effect> discoverEffects(BaseObject object) {
+		System.out.println(getClass().getCanonicalName() + ".discoverEffects()");
+
+		Map<Point, Effect> inrange = new HashMap<Point, Effect>();
+		// Minden effektre
+		for (Entry<Point, Effect> entry : effects.entrySet()) {
+			// Ha az objektum hatókörében van
+			if (object.pointInRange(entry.getKey())) {
+				// Hozzáadás
+				inrange.put(entry.getKey(), entry.getValue());
+			}
+		}
+		// Hatókörben lévő effektek visszaadása
+		return inrange;
+	}
+
+	public List<Obstacle> discoverObstacles(BaseObject object) {
+		System.out.println(getClass().getCanonicalName() + ".discoverObstacles()");
+
+		List<Obstacle> inrange = new ArrayList<Obstacle>();
+		// Minden akadályra
+		for (Obstacle obstacle : obstacles) {
+			// Ha az objektum hatókörében van
+			if (object.pointInRange(obstacle.getPosition())) {
+				// Hozzáadás
+				inrange.add(obstacle);
+			}
+		}
+		// Hatókörben lévő akadályok visszaadása
+		return inrange;
+	}
+
+	public List<Ant> getAnts() {
+		System.out.println(getClass().getCanonicalName() + ".getAnts()");
+
+		// Hangyák visszaadása
+		return ants;
+	}
+
+	public List<Creature> getCreatures() {
+		System.out.println(getClass().getCanonicalName() + ".getCreatures()");
+
+		// Élőlények visszaadása
+		return creatures;
+	}
+
+	// Public interface
+	public Dimension getDimension() {
+		System.out.println(getClass().getCanonicalName() + ".getDimension()");
+
+		// Méret visszaadása
+		return dimension;
+	}
+
+	public List<Obstacle> getObstacles() {
+		System.out.println(getClass().getCanonicalName() + ".getObstacles()");
+
+		// Akadályok visszaadása
+		return obstacles;
+	}
+
+	public List<Storage> getStorages() {
+		System.out.println(getClass().getCanonicalName() + ".getStorages()");
+
+		// Tárolók visszaadása
+		return storages;
+	}
+
+	public void placeEffect(Point point, Effect effect) {
+		System.out.println(getClass().getCanonicalName() + ".placeEffect()");
+
+		// Új effekt eltárolása
+		effects.put(point, effect);
+	}
+
+	public void placeObstacle(Obstacle obstacle) {
+		System.out.println(getClass().getCanonicalName() + ".placeObstacle()");
+
+		// Új objektum eltárolása
+		obstacles.add(obstacle);
 	}
 
 }

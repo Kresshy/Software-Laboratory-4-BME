@@ -5,24 +5,24 @@ import java.awt.Point;
 
 public class Obstacle extends BaseObject {
 
-	// Members
-	protected boolean solid; // Tomorseg/athatolhatatlansag
+	protected boolean solid;
 
-	// Constructor
 	public Obstacle(Point position, Color color, int radius, boolean solid) {
 		super(position, color, radius);
 		this.solid = solid;
 	}
 
-	// Public interface
 	public boolean isSolid() {
 		System.out.println(getClass().getCanonicalName() + ".isSolid()");
+
+		// Tömörség visszaadása
 		return solid;
 	}
 
-	// Eltavolitando-e az akadaly
 	public boolean isDebris() {
 		System.out.println(getClass().getCanonicalName() + ".isDebris()");
+
+		// Eltávolíthatóság visszaadása
 		return false;
 	}
 
@@ -30,7 +30,6 @@ public class Obstacle extends BaseObject {
 		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 	}
 
-	// Interakcio, pl mergezeskor es hangyaleso taplalkozasakor
 	public void interact(Creature creature) {
 		System.out.println(getClass().getCanonicalName() + ".interact()");
 	}

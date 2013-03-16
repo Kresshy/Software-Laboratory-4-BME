@@ -1,82 +1,68 @@
 package hu.miracle.workers;
 
-import java.awt.Point;
 import java.util.List;
 
 public class AntEater extends Creature {
 
-	// Members
-	private boolean visible; // Jelen van-e
+	private boolean visible;
 	private int hunger;
 	private int wait;
 
-	// Constructor
-	public AntEater(Scene scene, int wait, int hunger) {
+	public AntEater(Scene scene) {
 		super(scene);
-		this.wait = wait;
-		this.hunger = hunger;
-	}
-
-	// Protected methods
-	protected void routeAndMove() {
-		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
-
-		for (Ant ant : scene.getAnts()) {
-			if (pointInRange(ant.getPosition()) == true) {
-				if (hunger > 0) {
-					ant.terminate();
-					hunger--;
-				}
-			}
-		}
-	}
-
-	// Public interface
-	public boolean isVisible() {
-		System.out.println(getClass().getCanonicalName() + ".isVisible()");
-		return visible;
-	}
-
-	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
-
-		if (visible) {
-			// Eloterben
-			List<Ant> ants = scene.getAnts();
-			// ...
-			// Ha van ennivalo hangya es ehes
-			if (hunger > 0) {
-				for (Ant ant : ants) {
-					if (pointInRange(ant.getPosition())) {
-						ant.terminate();
-						hunger -= 1;
-						break; // Hogy ne tomegesen hanem egyesevel egye a
-								// hangyakat
-					}
-				}
-			}
-			routeAndMove();
-
-		} else {
-			// Hatterben
-			if (wait > 0) {
-				wait -= 1;
-			} else {
-				// Belepesi pont meghatarozasa
-				// Megjelenes
-			}
-
-		}
+		this.wait = 20; // TODO: Kezdőérték meghatározása
+		this.hunger = 10; // TODO: Kezdőérték meghatározása
 	}
 
 	@Override
-	public boolean pointInRange(Point point) {
+	public void handleTick() {
+		System.out.println(getClass().getCanonicalName() + ".handleTick()");
 
-		if (Point.distance(this.position.x, this.position.y, point.x, point.y) < this.radius) {
-			return true;
+		// Ha a sün előtérben van
+		if (visible) {
+			// Ha a sün éhes
+			if (hunger > 0) {
+				List<Ant> ants = scene.getAnts();
+				// Minden hangyára
+				for (Ant ant : ants) {
+					// Ha a sün hatókörében van
+					if (pointInRange(ant.getPosition())) {
+						// Hangya elpusztítása
+						ant.terminate();
+						// Éhség csökkentése
+						hunger -= 1;
+						// Hogy egyesével egye a hangyákat
+						break;
+					}
+				}
+			}
+
+			// Mozgás
+			routeAndMove();
 		} else {
-			return false;
+			// Ha várakozik
+			if (wait > 0) {
+				// Várakozási idő csökkentése
+				wait--;
+			} else {
+				// Belépési pont és irány meghatározása
+				// TODO: Algoritmus kidolgozása
+				// Megjelenés
+				visible = true;
+			}
 		}
+	}
 
+	public boolean isVisible() {
+		System.out.println(getClass().getCanonicalName() + ".isVisible()");
+
+		// Láthatóság visszaadása
+		return visible;
+	}
+
+	protected void routeAndMove() {
+		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
+
+		// TODO: Algoritmus kidolgozása
 	}
 }

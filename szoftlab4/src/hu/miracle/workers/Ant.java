@@ -36,6 +36,8 @@ public class Ant extends Creature {
 				}		
 			}
 		}
+		
+		
 	}
 
 	// Public interface

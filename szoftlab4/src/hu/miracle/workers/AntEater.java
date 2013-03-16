@@ -11,7 +11,8 @@ public class AntEater extends Creature {
 	private int wait;
 
 	// Constructor
-	public AntEater() {
+	public AntEater(Scene scene) {
+		super(scene);
 	}
 
 	// Protected methods

@@ -54,12 +54,12 @@ public class Main {
 		timer.start();
 
 		while (true) {
-			
+
 			int menuresult = showMenu();
 
 			switch (menuresult) {
 			case 1:
-				//hangya utnak inditasa
+				// hangya utnak inditasa
 				Point pos = new Point(0, 0);
 				AntHill hill = new AntHill(pos, scene, 1, 1);
 				Ant ant = new Ant(pos, scene, hill);
@@ -101,7 +101,7 @@ public class Main {
 				break;
 
 			case 7:
-				//egy tick eldobasa
+				// egy tick eldobasa
 				timer.tick();
 				break;
 
@@ -110,7 +110,7 @@ public class Main {
 				break;
 
 			case 9:
-				//hangya belelep a hangyalesobe
+				// hangya belelep a hangyalesobe
 				// Inicializálás
 				Point c9pos = new Point(0, 0);
 				AntHill c9hill = new AntHill(c9pos, scene, 1, 1);
@@ -125,17 +125,17 @@ public class Main {
 				break;
 
 			case 10:
-				//jatek szuneteltetese
+				// jatek szuneteltetese
 				timer.stopTimer();
 				break;
 
 			case 11:
-				//jatek folytatasa
+				// jatek folytatasa
 				timer.startTimer();
 				break;
 
 			case 12:
-				//nehezsegi szint beallitasa
+				// nehezsegi szint beallitasa
 				try {
 					System.out.println("Kérem adjon meg egy nehézségi szintet (1-3):");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -148,7 +148,7 @@ public class Main {
 				break;
 
 			case 13:
-				//toplista kiirasa
+				// toplista kiirasa
 				try {
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 					int score;
@@ -162,7 +162,7 @@ public class Main {
 				break;
 
 			case 14:
-				//kilepes
+				// kilepes
 				System.exit(0);
 				break;
 
@@ -173,5 +173,5 @@ public class Main {
 		}
 
 	}
-	
+
 }

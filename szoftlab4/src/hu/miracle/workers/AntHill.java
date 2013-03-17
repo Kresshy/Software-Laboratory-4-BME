@@ -11,7 +11,7 @@ public class AntHill extends Storage {
 		super(position, Color.BLUE, 3, capacity, packet, false); // TODO: Grafikus jellemzők meghatározása
 		this.scene = scene;
 	}
-
+	
 	@Override
 	public void handleTick() {
 		System.out.println(getClass().getCanonicalName() + ".handleTick()");

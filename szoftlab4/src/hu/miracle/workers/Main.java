@@ -52,7 +52,7 @@ public class Main {
 		timer = new Timer(game, 1000);
 		game.setTimer(timer);
 		timer.start();
-		timer.stopTimer();
+		//timer.stopTimer();
 
 		while (true) {
 			
@@ -84,7 +84,7 @@ public class Main {
 				break;
 
 			case 7:
-				// TODO: egy timer tick
+				timer.tick();
 				break;
 
 			case 8:
@@ -148,6 +148,5 @@ public class Main {
 
 		}
 
-		// System.exit(0);
 	}
 }

@@ -10,13 +10,13 @@ public class Timer extends Thread {
 	public Timer(Game game) {
 		this.game = game;
 		this.interval = 1000;
-		this.suspended = false;
+		this.suspended = true;
 	}
 
 	public Timer(Game game, int interval) {
 		this.game = game;
 		this.interval = interval;
-		this.suspended = false;
+		this.suspended = true;
 	}
 
 	@Override
@@ -24,13 +24,13 @@ public class Timer extends Thread {
 		try {
 
 			while (true) {
-				sleep(interval);
-				tick();
 				synchronized (this) {
 					while (suspended) {
 						wait();
 					}
 				}
+				sleep(interval);
+				tick();
 			}
 
 		} catch (InterruptedException e) {

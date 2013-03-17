@@ -1,11 +1,9 @@
 package hu.miracle.workers;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -20,30 +18,7 @@ public class Game {
 	public Game(Scene scene, Timer timer) {
 		this.scene = scene;
 		this.timer = timer;
-
-		topList=new ArrayList<Integer>();
-		
-		File file = new File(path);
-		if (file.exists()) {
-			try {
-
-				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-				topList = (ArrayList<Integer>) ois.readObject();
-
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		} else {
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		this.topList = new ArrayList<Integer>();
 
 	}
 
@@ -99,6 +74,19 @@ public class Game {
 		}
 
 		Collections.sort(topList);
+
+	}
+
+	public void saveTopList() {
+		File file = new File(path);
+
+		try {
+			ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream(file));
+			ous.writeObject(topList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

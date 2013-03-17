@@ -14,6 +14,7 @@ public abstract class Storage extends BaseObject {
 			boolean attractive) {
 		super(position, color, radius);
 		this.capacity = capacity;
+		this.amount = capacity;
 		this.attractive = attractive;
 	}
 
@@ -21,7 +22,7 @@ public abstract class Storage extends BaseObject {
 		System.out.println(getClass().getCanonicalName() + ".getItems()");
 
 		// Maximálisan kivehető elemek meghatározása
-		int count = Math.min(capacity - amount, packet);
+		int count = Math.min(amount - packet, packet);
 		// Tárolt elemek csökkentése
 		amount -= count;
 		// Kivett elemek visszaadása
@@ -29,9 +30,9 @@ public abstract class Storage extends BaseObject {
 	}
 
 	public boolean hasItems() {
-
+		System.out.println(getClass().getCanonicalName() + ".hasItems()");
 		// Tartalmazás visszaadása
-		return (amount < 0);
+		return (amount > 0);
 	}
 
 	public boolean isAttractive() {

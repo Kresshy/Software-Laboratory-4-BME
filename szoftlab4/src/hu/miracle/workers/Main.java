@@ -1,7 +1,8 @@
 package hu.miracle.workers;
 
-import java.io.DataInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
 
@@ -10,34 +11,35 @@ public class Main {
 	private static Timer timer;
 
 	public static int showMenu() {
-		DataInputStream in = new DataInputStream(System.in);
-		System.out.println("Válasszon az alábbi menüpontok közül!");
-		System.out.println("Játék szimulálása:");
-		System.out.println("\t1: Egy hangya útnak indítása");
-		System.out.println("\t2: Hangya ételt vesz fel");
-		System.out.println("\t3: Hangya elpusztulása (méreg miatt)");
-		System.out.println("\t4: Hangyászsün elindítása");
-		System.out.println("\t5: Méreg spray fújása");
-		System.out.println("\t6: Szagtalanító spray fújása");
-		System.out.println("\t7: Egy Timer tick");
-		System.out.println("\t8: Hangya egy akadályt kerül ki");
-		System.out.println("\t9: Hangya a hangyalesőbe lép");
-		System.out.println("10: Játék szüneteltetése");
-		System.out.println("11: Játék folytatása");
-		System.out.println("12: Játék nehézségének beállítása");
-		System.out.println("13: Toplista mentése");
-		System.out.println("14: Kilépés");
-
 		int result = 0;
-		try {
-			result = Integer.parseInt(in.readLine());
-		} catch (NumberFormatException e) {
-			System.out
-					.println("Nem megfelelő értéket adott meg! Kérem egy egész számot adjon meg!");
-		} catch (IOException e) {
-			e.printStackTrace();
+		boolean success = false;
+		String menu[] = { "Hangya szuletese", "Hangya etelfelvetele",
+				"Hangya mereg altali pusztulasa", "Hangyaszsun szuletese",
+				"Hangyairto spray fujasa", "Szagtalanito spray fujasa", "Idozito tick",
+				"Hangya akadalyelkerulese", "Hangya hangyalesobe lepese", "Jatek szuneteltetese",
+				"Jatek folytatasa", "Jatek nehezsegenek beallitasa", "Toplista mentese", "Kilepes" };
+		BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("Jatek szimulalasa\nValasszon az alabbi menupontok kozul:\n");
+		for (int i = 0; i < menu.length; i++) {
+			String scenario = menu[i];
+			System.out.println(String.format("%2d. %s", i + 1, scenario));
 		}
 
+		while (!success) {
+			try {
+				System.out.print("\nValasztott menupont: ");
+				result = Integer.parseInt(bfread.readLine().trim());
+				if (0 < result && result <= menu.length) {
+					success = true;
+				} else {
+					System.out.println("Nem megfelelo ertek! Kerem a menupontok kozul valasszon!");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Nem megfelelo ertek! Kerem egy egesz szamot adjon meg!");
+			} catch (IOException e) {
+			}
+		}
 		return result;
 	}
 
@@ -46,12 +48,9 @@ public class Main {
 
 		int menuresult = showMenu();
 
-		game = new Game();
 		scene = new Scene();
 		timer = new Timer(game, 1000);
-
-		game.setScene(scene);
-		game.setTimer(timer);
+		game = new Game(scene, timer);
 
 		switch (menuresult) {
 		case 1:
@@ -111,7 +110,6 @@ public class Main {
 			break;
 
 		default:
-			System.out.println("Nincs ilyen menüpont!");
 			break;
 		}
 

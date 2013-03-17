@@ -5,6 +5,11 @@ public class Game {
 	private Scene scene;
 	private Timer timer;
 
+	public Game(Scene scene, Timer timer) {
+		this.scene = scene;
+		this.timer = timer;
+	}
+
 	public Scene getScene() {
 		System.out.println(getClass().getCanonicalName() + ".getScene()");
 

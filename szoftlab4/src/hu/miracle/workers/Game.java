@@ -21,6 +21,8 @@ public class Game {
 		this.scene = scene;
 		this.timer = timer;
 
+		topList=new ArrayList<Integer>();
+		
 		File file = new File(path);
 		if (file.exists()) {
 			try {
@@ -29,22 +31,16 @@ public class Game {
 				topList = (ArrayList<Integer>) ois.readObject();
 
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			try {
-
 				file.createNewFile();
-
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

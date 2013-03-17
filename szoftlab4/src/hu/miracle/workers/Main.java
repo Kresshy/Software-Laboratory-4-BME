@@ -87,7 +87,6 @@ public class Main {
 			break;
 
 		case 9:
-			// TODO: hangya a hangyalesobe lep
 			// Inicializálás
 			Point c9pos = new Point(0, 0);
 			AntHill c9hill = new AntHill(c9pos, scene, 1, 1);
@@ -102,23 +101,18 @@ public class Main {
 			break;
 
 		case 10:
-			// TODO: game pause
 			timer.stopTimer();
 			break;
 
 		case 11:
-			// TODO: game resume
 			timer.startTimer();
 			break;
 
 		case 12:
-			// TODO: nehezseg beallitasa
 			try {
-
 				System.out.println("Kérem adjon meg egy nehézségi szintet (1-3):");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				game.setDifficulty(Integer.parseInt(br.readLine()));
-
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -127,22 +121,16 @@ public class Main {
 			break;
 
 		case 13:
-			// TODO: toplista mentese
 			try {
-
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				int score;
 				score = Integer.parseInt(br.readLine());
 				game.writeTopList(score);
-
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			break;
 
 		case 14:

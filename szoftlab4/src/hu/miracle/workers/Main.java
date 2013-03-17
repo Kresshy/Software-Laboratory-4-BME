@@ -47,101 +47,107 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println(Main.class.getCanonicalName() + ".main()");
 
-		int menuresult = showMenu();
-
 		scene = new Scene();
+		game = new Game(scene);
 		timer = new Timer(game, 1000);
-		game = new Game(scene, timer);
+		game.setTimer(timer);
+		timer.start();
+		timer.stopTimer();
 
-		switch (menuresult) {
-		case 1:
-			// TODO: hangya utnak inditasa
-			break;
+		while (true) {
+			
+			int menuresult = showMenu();
 
-		case 2:
-			// TODO: hangya etelfelvetele
-			break;
+			switch (menuresult) {
+			case 1:
+				// TODO: hangya utnak inditasa
+				break;
 
-		case 3:
-			// TODO: hangya mereg miatt elpusztul
-			break;
+			case 2:
+				// TODO: hangya etelfelvetele
+				break;
 
-		case 4:
-			// TODO: hangyaszsun elinditasa
-			break;
+			case 3:
+				// TODO: hangya mereg miatt elpusztul
+				break;
 
-		case 5:
-			// TODO: mereg spray fujas
-			break;
+			case 4:
+				// TODO: hangyaszsun elinditasa
+				break;
 
-		case 6:
-			// TODO: szagtalanito spray fujas
-			break;
+			case 5:
+				// TODO: mereg spray fujas
+				break;
 
-		case 7:
-			// TODO: egy timer tick
-			break;
+			case 6:
+				// TODO: szagtalanito spray fujas
+				break;
 
-		case 8:
-			// TODO: hangya kikeruli az akadalyt
-			break;
+			case 7:
+				// TODO: egy timer tick
+				break;
 
-		case 9:
-			// Inicializálás
-			Point c9pos = new Point(0, 0);
-			AntHill c9hill = new AntHill(c9pos, scene, 1, 1);
-			AntSinker c9sink = new AntSinker(c9pos);
-			Ant c9ant = new Ant(c9pos, scene, c9hill);
-			scene.getObstacles().add(c9sink);
-			scene.getAnts().add(c9ant);
-			// Tick
-			System.out.println("<START>");
-			c9ant.handleTick();
-			System.out.println("<END>");
-			break;
+			case 8:
+				// TODO: hangya kikeruli az akadalyt
+				break;
 
-		case 10:
-			timer.stopTimer();
-			break;
+			case 9:
+				// Inicializálás
+				Point c9pos = new Point(0, 0);
+				AntHill c9hill = new AntHill(c9pos, scene, 1, 1);
+				AntSinker c9sink = new AntSinker(c9pos);
+				Ant c9ant = new Ant(c9pos, scene, c9hill);
+				scene.getObstacles().add(c9sink);
+				scene.getAnts().add(c9ant);
+				// Tick
+				System.out.println("<START>");
+				c9ant.handleTick();
+				System.out.println("<END>");
+				break;
 
-		case 11:
-			timer.startTimer();
-			break;
+			case 10:
+				timer.stopTimer();
+				break;
 
-		case 12:
-			try {
-				System.out.println("Kérem adjon meg egy nehézségi szintet (1-3):");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				game.setDifficulty(Integer.parseInt(br.readLine()));
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+			case 11:
+				timer.startTimer();
+				break;
+
+			case 12:
+				try {
+					System.out.println("Kérem adjon meg egy nehézségi szintet (1-3):");
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					game.setDifficulty(Integer.parseInt(br.readLine()));
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+
+			case 13:
+				try {
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					int score;
+					score = Integer.parseInt(br.readLine());
+					game.writeTopList(score);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+
+			case 14:
+				System.exit(0);
+				break;
+
+			default:
+				break;
 			}
-			break;
 
-		case 13:
-			try {
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				int score;
-				score = Integer.parseInt(br.readLine());
-				game.writeTopList(score);
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-
-		case 14:
-			System.exit(0);
-			break;
-
-		default:
-			break;
 		}
 
-		System.exit(0);
-
+		// System.exit(0);
 	}
 }

@@ -15,9 +15,9 @@ public class Game {
 	private ArrayList<Integer> topList;
 	private static final String path = "savegame.dat";
 
-	public Game(Scene scene, Timer timer) {
+	public Game(Scene scene) {
 		this.scene = scene;
-		this.timer = timer;
+//		this.timer = timer;
 		this.topList = new ArrayList<Integer>();
 
 	}

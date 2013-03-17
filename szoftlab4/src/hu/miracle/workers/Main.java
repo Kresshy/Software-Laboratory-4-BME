@@ -125,21 +125,33 @@ public class Main {
 				break;
 
 			case 10:
-				// jatek szuneteltetese
+				System.out.println("<START>");
 				timer.stopTimer();
+				System.out.println("<END>");
+
 				break;
 
 			case 11:
-				// jatek folytatasa
+				System.out.println("<START>");
+				System.out.println("Az óra elindul majd automatikusan megáll 10sec múlva!");
 				timer.startTimer();
+				try {
+					Thread.sleep(10000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				timer.stopTimer();
+				System.out.println("<END>");
 				break;
 
 			case 12:
-				// nehezsegi szint beallitasa
 				try {
+					System.out.println("<START>");
 					System.out.println("Kérem adjon meg egy nehézségi szintet (1-3):");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 					game.setDifficulty(Integer.parseInt(br.readLine()));
+					System.out.println("<END>");
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -148,12 +160,13 @@ public class Main {
 				break;
 
 			case 13:
-				// toplista kiirasa
 				try {
+					System.out.println("<START>");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 					int score;
 					score = Integer.parseInt(br.readLine());
 					game.writeTopList(score);
+					System.out.println("<END>");
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

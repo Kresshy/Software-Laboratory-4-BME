@@ -1,13 +1,54 @@
 package hu.miracle.workers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Game {
 
 	private Scene scene;
 	private Timer timer;
+	private int difficulty;
+	private ArrayList<Integer> topList;
+	private static final String path = "savegame.dat";
 
 	public Game(Scene scene, Timer timer) {
 		this.scene = scene;
 		this.timer = timer;
+
+		File file = new File(path);
+		if (file.exists()) {
+			try {
+
+				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+				topList = (ArrayList<Integer>) ois.readObject();
+
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+
+				file.createNewFile();
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	public Scene getScene() {
@@ -36,6 +77,33 @@ public class Game {
 
 		// Időzítő beállítása
 		this.timer = timer;
+	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	public void writeTopList(int score) {
+
+		if (topList.isEmpty()) {
+
+			topList.add(new Integer(score));
+
+		} else {
+
+			if (topList.get(0) < score) {
+				topList.remove(0);
+				topList.add(new Integer(score));
+
+			}
+		}
+
+		Collections.sort(topList);
+
 	}
 
 }

@@ -52,7 +52,6 @@ public class Main {
 		timer = new Timer(game, 1000);
 		game.setTimer(timer);
 		timer.start();
-		//timer.stopTimer();
 
 		while (true) {
 			

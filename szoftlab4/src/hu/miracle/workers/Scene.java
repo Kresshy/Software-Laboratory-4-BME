@@ -79,19 +79,24 @@ public class Scene {
 	public void delegateTick() {
 		System.out.println(getClass().getCanonicalName() + ".delegateTick()");
 
-		// Tick-kezelések
-		for (Ant ant : ants) {
-			ant.handleTick();
+		try {
+			// Tick-kezelések
+			for (Ant ant : ants) {
+				ant.handleTick();
+			}
+			for (Storage storage : storages) {
+				storage.handleTick();
+			}
+			for (Obstacle obstacle : obstacles) {
+				obstacle.handleTick();
+			}
+			for (Creature creature : creatures) {
+				creature.handleTick();
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
-		for (Storage storage : storages) {
-			storage.handleTick();
-		}
-		for (Obstacle obstacle : obstacles) {
-			obstacle.handleTick();
-		}
-		for (Creature creature : creatures) {
-			creature.handleTick();
-		}
+
 		// Szemét eltakarítása
 		clearDebris();
 	}

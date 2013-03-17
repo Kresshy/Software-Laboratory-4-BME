@@ -54,15 +54,15 @@ public class Ant extends Creature {
 					}
 				}
 			}
-		}
-
-		// Ételletétel
-		// Ha a hangya hatókörében van
-		if (pointInRange(home.getPosition())) {
-			// Rakomány kiürítése
-			cargo = 0;
-			// Ételforrás törlése
-			setSource(null);
+		} else {
+			// Ételletétel
+			// Ha a hangya hatókörében van
+			if (pointInRange(home.getPosition())) {
+				// Rakomány kiürítése
+				cargo = 0;
+				// Ételforrás törlése
+				setSource(null);
+			}
 		}
 
 		// Mozgás
@@ -72,6 +72,8 @@ public class Ant extends Creature {
 	// Protected methods
 	protected void routeAndMove() {
 		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
+
+		/* Skeletonban nem szükséges 
 
 		// Céltároló kiválasztása
 		Storage target = null;
@@ -95,11 +97,13 @@ public class Ant extends Creature {
 				}
 			}
 		}
+		*/
 
 		// Új pozíció meghatározása
 		Point new_position = new Point();
 		// TODO: Algoritmus kidolgozása
 
+		/*
 		// Effectek figyelembe vétele az útválasztásnál
 		// TODO: Meghatározni, hogy hatnak-e az effektek a haza tartó hangyákra
 		Map<Point, Effect> effects = scene.discoverEffects(this);
@@ -108,6 +112,7 @@ public class Ant extends Creature {
 		// Akadályok figyelembe vétele az útválasztásnál
 		List<Obstacle> obstacles = scene.discoverObstacles(this);
 		// TODO: Algoritmus kidolgozása
+		*/
 
 		// Lépés
 		// Új pozíció beállítása
@@ -116,8 +121,13 @@ public class Ant extends Creature {
 		Pheromone new_pheromone = new Pheromone();
 		scene.placeEffect(new_position, new_pheromone);
 		// Akadályokra lépés
-		obstacles = scene.discoverObstacles(this);
+		List<Obstacle> obstacles = scene.discoverObstacles(this);
 		// TODO: Algoritmus kidolgozása
+		for (Obstacle obstacle : obstacles) {
+			if (obstacle.pointInRange(new_position)) {
+				obstacle.interact(this);
+			}
+		}
 	}
 
 	// Public interface

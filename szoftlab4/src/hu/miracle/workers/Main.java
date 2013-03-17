@@ -1,5 +1,6 @@
 package hu.miracle.workers;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -87,6 +88,17 @@ public class Main {
 
 		case 9:
 			// TODO: hangya a hangyalesobe lep
+			// Inicializálás
+			Point c9pos = new Point(0,0);
+			AntHill c9hill = new AntHill(c9pos, scene, 1, 1);
+			AntSinker c9sink = new AntSinker(c9pos);
+			Ant c9ant = new Ant(c9pos, scene, c9hill);
+			scene.getObstacles().add(c9sink);
+			scene.getAnts().add(c9ant);
+			// Tick
+			System.out.println("<START>");
+			c9ant.handleTick();
+			System.out.println("<END>");
 			break;
 
 		case 10:

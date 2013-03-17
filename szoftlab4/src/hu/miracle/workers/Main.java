@@ -59,11 +59,29 @@ public class Main {
 
 			switch (menuresult) {
 			case 1:
-				// TODO: hangya utnak inditasa
+				//hangya utnak inditasa
+				Point pos = new Point(0, 0);
+				AntHill hill = new AntHill(pos, scene, 1, 1);
+				Ant ant = new Ant(pos, scene, hill);
+				scene.getAnts().add(ant);
+				// Tick
+				System.out.println("<START>");
+				ant.handleTick();
+				System.out.println("<END>");
 				break;
 
 			case 2:
-				// TODO: hangya etelfelvetele
+				// hangya etelfelvetele
+				Point pos1 = new Point(0, 0);
+				AntHill hill1 = new AntHill(pos1, scene, 1, 1);
+				FoodStorage fs1 = new FoodStorage(pos1, 50, 50);
+				Ant ant1 = new Ant(pos1, scene, hill1);
+				scene.getStorages().add(fs1);
+				scene.getAnts().add(ant1);
+				// Tick
+				System.out.println("<START>");
+				ant1.handleTick();
+				System.out.println("<END>");
 				break;
 
 			case 3:
@@ -83,6 +101,7 @@ public class Main {
 				break;
 
 			case 7:
+				//egy tick eldobasa
 				timer.tick();
 				break;
 
@@ -91,6 +110,7 @@ public class Main {
 				break;
 
 			case 9:
+				//hangya belelep a hangyalesobe
 				// Inicializálás
 				Point c9pos = new Point(0, 0);
 				AntHill c9hill = new AntHill(c9pos, scene, 1, 1);
@@ -105,14 +125,17 @@ public class Main {
 				break;
 
 			case 10:
+				//jatek szuneteltetese
 				timer.stopTimer();
 				break;
 
 			case 11:
+				//jatek folytatasa
 				timer.startTimer();
 				break;
 
 			case 12:
+				//nehezsegi szint beallitasa
 				try {
 					System.out.println("Kérem adjon meg egy nehézségi szintet (1-3):");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -125,6 +148,7 @@ public class Main {
 				break;
 
 			case 13:
+				//toplista kiirasa
 				try {
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 					int score;
@@ -138,6 +162,7 @@ public class Main {
 				break;
 
 			case 14:
+				//kilepes
 				System.exit(0);
 				break;
 
@@ -148,4 +173,5 @@ public class Main {
 		}
 
 	}
+	
 }

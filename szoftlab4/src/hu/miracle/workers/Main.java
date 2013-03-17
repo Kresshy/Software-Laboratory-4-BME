@@ -125,6 +125,7 @@ public class Main {
 				break;
 
 			case 10:
+				// egy tick eldobasa
 				System.out.println("<START>");
 				timer.stopTimer();
 				System.out.println("<END>");
@@ -132,13 +133,13 @@ public class Main {
 				break;
 
 			case 11:
+				// jatek folytatasa
 				System.out.println("<START>");
 				System.out.println("Az óra elindul majd automatikusan megáll 10sec múlva!");
 				timer.startTimer();
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				timer.stopTimer();
@@ -146,6 +147,7 @@ public class Main {
 				break;
 
 			case 12:
+				// jatek nehezsegenek beallitasa
 				try {
 					System.out.println("<START>");
 					System.out.println("Kérem adjon meg egy nehézségi szintet (1-3):");
@@ -160,6 +162,7 @@ public class Main {
 				break;
 
 			case 13:
+				// toplista mentes
 				try {
 					System.out.println("<START>");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

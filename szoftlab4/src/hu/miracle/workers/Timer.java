@@ -12,13 +12,13 @@ public class Timer extends Thread {
 		this.interval = 1000;
 		this.suspended = false;
 	}
-	
+
 	public Timer(Game game, int interval) {
 		this.game = game;
 		this.interval = interval;
 		this.suspended = false;
 	}
-	
+
 	@Override
 	public void run() {
 		try {

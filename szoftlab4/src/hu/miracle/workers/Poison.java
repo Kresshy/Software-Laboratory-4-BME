@@ -14,27 +14,33 @@ public class Poison extends Obstacle {
 
 	@Override
 	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Ha még nem illant el
 		if (timeout > 0) {
 			// Hátralévő idő csökkentése
 			timeout--;
 		}
+
+		CallLogger.getLogger().exiting();
 	}
 
 	@Override
 	public void interact(Creature creature) {
-		System.out.println(getClass().getCanonicalName() + ".interact()");
+		CallLogger.getLogger().entering(this, "interact");
 
 		// FIXME
 		// Mérgezés beállítása
 		((Ant) creature).setPoisoned(true);
+
+		CallLogger.getLogger().exiting();
 	}
 
 	@Override
 	public boolean isDebris() {
-		System.out.println(getClass().getCanonicalName() + ".isDebris()");
+		CallLogger.getLogger().entering(this, "isDebris");
+
+		CallLogger.getLogger().exiting();
 
 		// Eltakaríthatóság visszaadása
 		return (timeout <= 0);

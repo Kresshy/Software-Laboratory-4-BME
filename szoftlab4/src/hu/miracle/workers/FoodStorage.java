@@ -10,7 +10,9 @@ public class FoodStorage extends Storage {
 	}
 
 	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+		CallLogger.getLogger().entering(this, "handleTick");
+
+		CallLogger.getLogger().exiting();
 	}
 
 }

@@ -27,13 +27,15 @@ public class Scene {
 	}
 
 	public void buildScene(String settings) {
-		System.out.println(getClass().getCanonicalName() + ".buildScene()");
+		CallLogger.getLogger().entering(this, "buildScene");
 
 		// TODO: Pálya építése
+
+		CallLogger.getLogger().exiting();
 	}
 
 	protected void clearDebris() {
-		System.out.println(getClass().getCanonicalName() + ".clearDebris()");
+		CallLogger.getLogger().entering(this, "clearDebris");
 
 		// Minden akadályra
 		Iterator<Obstacle> iobstacles = obstacles.iterator();
@@ -56,12 +58,14 @@ public class Scene {
 				ieffects.remove();
 			}
 		}
+
+		CallLogger.getLogger().exiting();
 	}
 
 	// Egy pont korzeteben eltunteti az effekteket, szagtalanito sprayhez
 	// szukseges
 	public void clearEffects(Point point) {
-		System.out.println(getClass().getCanonicalName() + ".clearEffect()");
+		CallLogger.getLogger().entering(this, "clearEffect");
 
 		// Minden effektre
 		Iterator<Entry<Point, Effect>> ieffects = effects.entrySet().iterator();
@@ -74,10 +78,12 @@ public class Scene {
 				ieffects.remove();
 			}
 		}
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public void delegateTick() {
-		System.out.println(getClass().getCanonicalName() + ".delegateTick()");
+		CallLogger.getLogger().entering(this, "delegateTick");
 
 		try {
 			// Tick-kezelések
@@ -99,10 +105,12 @@ public class Scene {
 
 		// Szemét eltakarítása
 		clearDebris();
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public Map<Point, Effect> discoverEffects(BaseObject object) {
-		System.out.println(getClass().getCanonicalName() + ".discoverEffects()");
+		CallLogger.getLogger().entering(this, "discoverEffects");
 
 		Map<Point, Effect> inrange = new HashMap<Point, Effect>();
 		// Minden effektre
@@ -113,12 +121,15 @@ public class Scene {
 				inrange.put(entry.getKey(), entry.getValue());
 			}
 		}
+
+		CallLogger.getLogger().exiting();
+
 		// Hatókörben lévő effektek visszaadása
 		return inrange;
 	}
 
 	public List<Obstacle> discoverObstacles(BaseObject object) {
-		System.out.println(getClass().getCanonicalName() + ".discoverObstacles()");
+		CallLogger.getLogger().entering(this, "discoverObstacles");
 
 		List<Obstacle> inrange = new ArrayList<Obstacle>();
 		// Minden akadályra
@@ -129,19 +140,26 @@ public class Scene {
 				inrange.add(obstacle);
 			}
 		}
+
+		CallLogger.getLogger().exiting();
+
 		// Hatókörben lévő akadályok visszaadása
 		return inrange;
 	}
 
 	public List<Ant> getAnts() {
-		System.out.println(getClass().getCanonicalName() + ".getAnts()");
+		CallLogger.getLogger().entering(this, "getAnts");
+
+		CallLogger.getLogger().exiting();
 
 		// Hangyák visszaadása
 		return ants;
 	}
 
 	public List<Creature> getCreatures() {
-		System.out.println(getClass().getCanonicalName() + ".getCreatures()");
+		CallLogger.getLogger().entering(this, "getCreatures");
+
+		CallLogger.getLogger().exiting();
 
 		// Élőlények visszaadása
 		return creatures;
@@ -149,38 +167,48 @@ public class Scene {
 
 	// Public interface
 	public Dimension getDimension() {
-		System.out.println(getClass().getCanonicalName() + ".getDimension()");
+		CallLogger.getLogger().entering(this, "getDimension");
+
+		CallLogger.getLogger().exiting();
 
 		// Méret visszaadása
 		return dimension;
 	}
 
 	public List<Obstacle> getObstacles() {
-		System.out.println(getClass().getCanonicalName() + ".getObstacles()");
+		CallLogger.getLogger().entering(this, "getObstacles");
+
+		CallLogger.getLogger().exiting();
 
 		// Akadályok visszaadása
 		return obstacles;
 	}
 
 	public List<Storage> getStorages() {
-		System.out.println(getClass().getCanonicalName() + ".getStorages()");
+		CallLogger.getLogger().entering(this, "getStorages");
+
+		CallLogger.getLogger().exiting();
 
 		// Tárolók visszaadása
 		return storages;
 	}
 
 	public void placeEffect(Point point, Effect effect) {
-		System.out.println(getClass().getCanonicalName() + ".placeEffect()");
+		CallLogger.getLogger().entering(this, "placeEffect");
 
 		// Új effekt eltárolása
 		effects.put(point, effect);
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public void placeObstacle(Obstacle obstacle) {
-		System.out.println(getClass().getCanonicalName() + ".placeObstacle()");
+		CallLogger.getLogger().entering(this, "placeObstacle");
 
 		// Új objektum eltárolása
 		obstacles.add(obstacle);
+
+		CallLogger.getLogger().exiting();
 	}
 
 }

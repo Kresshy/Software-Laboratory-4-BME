@@ -13,25 +13,33 @@ public class Obstacle extends BaseObject {
 	}
 
 	public boolean isSolid() {
-		System.out.println(getClass().getCanonicalName() + ".isSolid()");
+		CallLogger.getLogger().entering(this, "isSolid");
+
+		CallLogger.getLogger().exiting();
 
 		// Tömörség visszaadása
 		return solid;
 	}
 
 	public boolean isDebris() {
-		System.out.println(getClass().getCanonicalName() + ".isDebris()");
+		CallLogger.getLogger().entering(this, "isDebris");
+
+		CallLogger.getLogger().exiting();
 
 		// Eltávolíthatóság visszaadása
 		return false;
 	}
 
 	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+		CallLogger.getLogger().entering(this, "handleTick");
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public void interact(Creature creature) {
-		System.out.println(getClass().getCanonicalName() + ".interact()");
+		CallLogger.getLogger().entering(this, "interact");
+
+		CallLogger.getLogger().exiting();
 	}
 
 }

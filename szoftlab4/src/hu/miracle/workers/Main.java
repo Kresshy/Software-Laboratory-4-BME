@@ -48,9 +48,8 @@ public class Main {
 		System.out.println(Main.class.getCanonicalName() + ".main()");
 
 		scene = new Scene();
-		game = new Game(scene);
-		timer = new Timer(game, 1000);
-		game.setTimer(timer);
+		timer = new Timer(1000);
+		game = new Game(scene, timer);
 		timer.start();
 
 		while (true) {
@@ -127,7 +126,7 @@ public class Main {
 			case 10:
 				// egy tick eldobasa
 				System.out.println("<START>");
-				timer.stopTimer();
+				timer.pause();
 				System.out.println("<END>");
 
 				break;
@@ -136,13 +135,13 @@ public class Main {
 				// jatek folytatasa
 				System.out.println("<START>");
 				System.out.println("Az óra elindul majd automatikusan megáll 10sec múlva!");
-				timer.startTimer();
+				timer.pause();
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				timer.stopTimer();
+				timer.pause();
 				System.out.println("<END>");
 				break;
 

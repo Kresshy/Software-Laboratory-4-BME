@@ -2,21 +2,13 @@ package hu.miracle.workers;
 
 public class Timer extends Thread {
 
-	// Members
 	private int interval;
 	private Game game;
-	private boolean suspended;
+	private boolean enabled;
 
-	public Timer(Game game) {
-		this.game = game;
-		this.interval = 1000;
-		this.suspended = true;
-	}
-
-	public Timer(Game game, int interval) {
-		this.game = game;
+	public Timer(int interval) {
 		this.interval = interval;
-		this.suspended = true;
+		this.enabled = true;
 	}
 
 	@Override
@@ -25,7 +17,7 @@ public class Timer extends Thread {
 
 			while (true) {
 				synchronized (this) {
-					while (suspended) {
+					while (!enabled) {
 						wait();
 					}
 				}
@@ -38,42 +30,62 @@ public class Timer extends Thread {
 		}
 	}
 
-	// Protected methods
-	// Nem biztos hogy protected lesz, implementaciotol fugg
 	protected void tick() {
-		System.out.println(getClass().getCanonicalName() + ".tick()");
+		CallLogger.getLogger().entering(this, "tick");
+
 		game.getScene().delegateTick();
+
+		CallLogger.getLogger().exiting();
 	}
 
-	// Public interface
 	public int getInterval() {
-		System.out.println(getClass().getCanonicalName() + ".getInterval()");
+		CallLogger.getLogger().entering(this, "getInterval");
+
+		CallLogger.getLogger().exiting();
+
 		return interval;
 	}
 
-	synchronized public void startTimer() {
-		System.out.println(getClass().getCanonicalName() + ".startTimer()");
-		suspended = false;
-		notify();
+	synchronized public void start() {
+		CallLogger.getLogger().entering(this, "start");
+
+		if (game != null) {
+			enabled = true;
+			notify();
+		}
+
+		CallLogger.getLogger().exiting();
 	}
 
-	synchronized public void stopTimer() {
-		System.out.println(getClass().getCanonicalName() + ".stopTimer()");
-		suspended = true;
+	synchronized public void pause() {
+		CallLogger.getLogger().entering(this, "pause");
+
+		enabled = false;
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public Game getGame() {
-		System.out.println(getClass().getCanonicalName() + ".getGame()");
+		CallLogger.getLogger().entering(this, "getGame");
+
+		CallLogger.getLogger().exiting();
+
 		return game;
 	}
 
 	public void setGame(Game game) {
-		System.out.println(getClass().getCanonicalName() + ".setGame()");
+		CallLogger.getLogger().entering(this, "setGame");
+
+		CallLogger.getLogger().exiting();
+
 		this.game = game;
 	}
 
 	public void setInterval(int interval) {
-		System.out.println(getClass().getCanonicalName() + ".setInterval()");
+		CallLogger.getLogger().entering(this, "setInterval");
+
 		this.interval = interval;
+
+		CallLogger.getLogger().exiting();
 	}
 }

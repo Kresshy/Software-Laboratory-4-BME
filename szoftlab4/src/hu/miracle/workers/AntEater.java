@@ -11,14 +11,15 @@ public class AntEater extends Creature {
 	private int wait;
 
 	public AntEater(Point position, Scene scene) {
-		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők meghatározása
+		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők
+													// meghatározása
 		this.wait = 20; // TODO: Kezdőérték meghatározása
 		this.hunger = 10; // TODO: Kezdőérték meghatározása
 	}
 
 	@Override
 	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Ha a sün előtérben van
 		if (visible) {
@@ -53,18 +54,24 @@ public class AntEater extends Creature {
 				visible = true;
 			}
 		}
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public boolean isVisible() {
-		System.out.println(getClass().getCanonicalName() + ".isVisible()");
+		CallLogger.getLogger().entering(this, "isVisible");
+
+		CallLogger.getLogger().exiting();
 
 		// Láthatóság visszaadása
 		return visible;
 	}
 
 	protected void routeAndMove() {
-		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
+		CallLogger.getLogger().entering(this, "routeAndMove");
 
 		// TODO: Algoritmus kidolgozása
+
+		CallLogger.getLogger().exiting();
 	}
 }

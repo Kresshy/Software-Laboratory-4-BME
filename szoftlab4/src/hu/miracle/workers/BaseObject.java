@@ -17,20 +17,26 @@ public abstract class BaseObject {
 	}
 
 	public void drawObject(Canvas canvas) {
-		System.out.println(getClass().getCanonicalName() + ".drawObject()");
+		CallLogger.getLogger().entering(this, "drawObject");
 
 		// TODO: Algoritmus kidolgozása
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public Color getColor() {
-		System.out.println(getClass().getCanonicalName() + ".getColor()");
+		CallLogger.getLogger().entering(this, "getColor");
+
+		CallLogger.getLogger().exiting();
 
 		// Szín visszaadása
 		return color;
 	}
 
 	public Point getPosition() {
-		System.out.println(getClass().getCanonicalName() + ".getPosition()");
+		CallLogger.getLogger().entering(this, "getPosition");
+
+		CallLogger.getLogger().exiting();
 
 		// Pozíció visszaadása
 		return position;
@@ -38,7 +44,9 @@ public abstract class BaseObject {
 
 	// Public interface
 	public int getRadius() {
-		System.out.println(getClass().getCanonicalName() + ".getRadius()");
+		CallLogger.getLogger().entering(this, "getRadius");
+
+		CallLogger.getLogger().exiting();
 
 		// Sugár visszaadása
 		return radius;
@@ -47,32 +55,42 @@ public abstract class BaseObject {
 	public abstract void handleTick();
 
 	public boolean pointInRange(Point point) {
-		System.out.println(getClass().getCanonicalName() + ".pointInRange()");
+		CallLogger.getLogger().entering(this, "pointInRange");
+
+		double distance = getPosition().distance(point);
+
+		CallLogger.getLogger().exiting();
 
 		// A pont az objektum hatókörében van-e
 		// TODO: Hatókör meghatározása
-		return (getPosition().distance(point) < radius);
+		return (distance < radius);
 	}
 
 	public void setColor(Color color) {
-		System.out.println(getClass().getCanonicalName() + ".setColor()");
+		CallLogger.getLogger().entering(this, "setColor");
 
 		// Szín beállítása
 		this.color = color;
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public void setPosition(Point position) {
-		System.out.println(getClass().getCanonicalName() + ".setPosition()");
+		CallLogger.getLogger().entering(this, "setPosition");
 
 		// Pozíció beállítása
 		this.position = position;
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public void setRadius(int radius) {
-		System.out.println(getClass().getCanonicalName() + ".setRadius()");
+		CallLogger.getLogger().entering(this, "setRadius");
 
 		// Sugár beállítása
 		this.radius = radius;
+
+		CallLogger.getLogger().exiting();
 	}
 
 }

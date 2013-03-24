@@ -11,10 +11,10 @@ public class AntHill extends Storage {
 		super(position, Color.BLUE, 3, capacity, packet, false); // TODO: Grafikus jellemzők meghatározása
 		this.scene = scene;
 	}
-	
+
 	@Override
 	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Hangyák születése
 		// Minden hangyára
@@ -24,6 +24,8 @@ public class AntHill extends Storage {
 			// Tárolás
 			scene.getAnts().add(ant);
 		}
+
+		CallLogger.getLogger().exiting();
 	}
 
 }

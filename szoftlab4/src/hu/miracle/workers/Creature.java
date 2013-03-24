@@ -13,14 +13,18 @@ public abstract class Creature extends BaseObject {
 	}
 
 	public void setScene(Scene scene) {
-		System.out.println(getClass().getCanonicalName() + ".setScene()");
+		CallLogger.getLogger().entering(this, "setScene");
 
 		// Pálya beállítása
 		this.scene = scene;
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public void terminate() {
-		System.out.println(getClass().getCanonicalName() + ".terminate()");
+		CallLogger.getLogger().entering(this, "terminate");
+
+		CallLogger.getLogger().exiting();
 	}
 
 }

@@ -19,34 +19,44 @@ public abstract class Storage extends BaseObject {
 	}
 
 	public int getItems() {
-		System.out.println(getClass().getCanonicalName() + ".getItems()");
+		CallLogger.getLogger().entering(this, "getItems");
 
 		// Maximálisan kivehető elemek meghatározása
 		int count = Math.min(amount - packet, packet);
 		// Tárolt elemek csökkentése
 		amount -= count;
+
+		CallLogger.getLogger().exiting();
+
 		// Kivett elemek visszaadása
 		return count;
 	}
 
 	public boolean hasItems() {
-		System.out.println(getClass().getCanonicalName() + ".hasItems()");
+		CallLogger.getLogger().entering(this, "hasItems");
+
+		CallLogger.getLogger().exiting();
+
 		// Tartalmazás visszaadása
 		return (amount > 0);
 	}
 
 	public boolean isAttractive() {
-		System.out.println(getClass().getCanonicalName() + ".isAttractive()");
+		CallLogger.getLogger().entering(this, "isAttractive");
+
+		CallLogger.getLogger().exiting();
 
 		// Vonzalom visszadása
 		return attractive;
 	}
 
 	public void putItems(int count) {
-		System.out.println(getClass().getCanonicalName() + ".putItems()");
+		CallLogger.getLogger().entering(this, "putItems");
 
 		// Tárolt elemek növelése
 		amount = Math.min(capacity, amount + count);
+
+		CallLogger.getLogger().exiting();
 	}
 
 }

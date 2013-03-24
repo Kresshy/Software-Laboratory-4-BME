@@ -24,7 +24,7 @@ public class Ant extends Creature {
 
 	@Override
 	public void handleTick() {
-		System.out.println(getClass().getCanonicalName() + ".handleTick()");
+		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Ha elfogyott az élete
 		if (health <= 0) {
@@ -67,52 +67,50 @@ public class Ant extends Creature {
 
 		// Mozgás
 		routeAndMove();
+
+		CallLogger.getLogger().exiting();
 	}
 
 	// Protected methods
 	protected void routeAndMove() {
-		System.out.println(getClass().getCanonicalName() + ".routeAndMove()");
+		CallLogger.getLogger().entering(this, "routeAndMove");
 
-		/* Skeletonban nem szükséges 
-
-		// Céltároló kiválasztása
-		Storage target = null;
-		// Ha van rakomány
-		if (cargo > 0) {
-			// Célpont beállítása a szülőbolyra
-			target = home;
-		} else {
-			// Legközelebbi vonzó tároló meghatározása
-			// Minden tárolóra
-			for (Storage storage : scene.getStorages()) {
-				// Ha a tároló vonzza a hangyát és van benne étel
-				if (storage.isAttractive() && storage.hasItems()) {
-					// Ha még nincs célpont vagy az aktuális tároló közelebb van
-					if (target == null
-							|| getPosition().distance(storage.getPosition()) < getPosition()
-									.distance(target.getPosition())) {
-						// Célpont beállítása a tárolóra
-						target = storage;
-					}
-				}
-			}
-		}
-		*/
+		// // Céltároló kiválasztása
+		// Storage target = null;
+		// // Ha van rakomány
+		// if (cargo > 0) {
+		// // Célpont beállítása a szülőbolyra
+		// target = home;
+		// } else {
+		// // Legközelebbi vonzó tároló meghatározása
+		// // Minden tárolóra
+		// for (Storage storage : scene.getStorages()) {
+		// // Ha a tároló vonzza a hangyát és van benne étel
+		// if (storage.isAttractive() && storage.hasItems()) {
+		// // Ha még nincs célpont vagy az aktuális tároló közelebb van
+		// if (target == null
+		// || getPosition().distance(storage.getPosition()) < getPosition()
+		// .distance(target.getPosition())) {
+		// // Célpont beállítása a tárolóra
+		// target = storage;
+		// }
+		// }
+		// }
+		// }
 
 		// Új pozíció meghatározása
 		Point new_position = new Point();
 		// TODO: Algoritmus kidolgozása
 
-		/*
-		// Effectek figyelembe vétele az útválasztásnál
-		// TODO: Meghatározni, hogy hatnak-e az effektek a haza tartó hangyákra
-		Map<Point, Effect> effects = scene.discoverEffects(this);
-		// TODO: Algoritmus kidolgozása
-
-		// Akadályok figyelembe vétele az útválasztásnál
-		List<Obstacle> obstacles = scene.discoverObstacles(this);
-		// TODO: Algoritmus kidolgozása
-		*/
+		// // Effectek figyelembe vétele az útválasztásnál
+		// // TODO: Meghatározni, hogy hatnak-e az effektek a haza tartó
+		// hangyákra
+		// Map<Point, Effect> effects = scene.discoverEffects(this);
+		// // TODO: Algoritmus kidolgozása
+		//
+		// // Akadályok figyelembe vétele az útválasztásnál
+		// List<Obstacle> obstacles = scene.discoverObstacles(this);
+		// // TODO: Algoritmus kidolgozása
 
 		// Lépés
 		// Új pozíció beállítása
@@ -128,26 +126,32 @@ public class Ant extends Creature {
 				obstacle.interact(this);
 			}
 		}
+
+		CallLogger.getLogger().exiting();
 	}
 
 	// Public interface
 	public void setPoisoned(boolean poisoned) {
-		System.out.println(getClass().getCanonicalName() + ".setPoisoned()");
+		CallLogger.getLogger().entering(this, "setPoisoned");
 
 		// Mérgezettség beállítása
 		this.poisoned = poisoned;
+
+		CallLogger.getLogger().exiting();
 	}
 
 	public void setSource(Storage source) {
-		System.out.println(getClass().getCanonicalName() + ".setSource()");
+		CallLogger.getLogger().entering(this, "setSource");
 
 		// Ételforrás beállítása
 		this.source = source;
+
+		CallLogger.getLogger().exiting();
 	}
 
 	@Override
 	public void terminate() {
-		System.out.println(getClass().getCanonicalName() + ".terminate()");
+		CallLogger.getLogger().entering(this, "terminate");
 
 		// Étel visszatétele
 		if (source != null) {
@@ -159,6 +163,8 @@ public class Ant extends Creature {
 
 		// Eltávolítás a scene-ből
 		scene.getAnts().remove(this);
+
+		CallLogger.getLogger().exiting();
 	}
 
 }

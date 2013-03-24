@@ -10,6 +10,7 @@ public class CallLogger {
 
 	private PrintStream ostream;
 	private boolean enabled;
+	private boolean entered;
 	private int depth;
 
 	public CallLogger(PrintStream ostream) {
@@ -47,24 +48,34 @@ public class CallLogger {
 
 	public void entering(Object obj, String method) {
 		if (enabled) {
+			if (depth > 0 && entered) {
+				depth--;
+				ostream.println(indentation() + "{");
+				depth++;
+			}
 			String output = indentation();
 			if (obj != null) {
-				output += String.format("%s<%s>.%s() {", obj.getClass().getCanonicalName(),
+				output += String.format("%s<%s>.%s()", obj.getClass().getSimpleName(),
 						Integer.toHexString(obj.hashCode()), method);
 			} else {
-				output += String.format("%s() {", method);
+				output += String.format("%s()", method);
 			}
 			ostream.println(output);
 			depth++;
+			entered = true;
 		}
 	}
 
 	public void exiting() {
 		if (enabled) {
 			depth--;
-			String output = indentation();
-			output += String.format("}");
-			ostream.println(output);
+			if (!entered) {
+				String output = indentation();
+				output += "}";
+				ostream.println(output);
+			} else {
+				entered = false;
+			}
 		}
 	}
 

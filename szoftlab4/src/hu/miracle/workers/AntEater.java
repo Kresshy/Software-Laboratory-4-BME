@@ -15,6 +15,7 @@ public class AntEater extends Creature {
 													// meghatározása
 		this.wait = 20; // TODO: Kezdőérték meghatározása
 		this.hunger = 10; // TODO: Kezdőérték meghatározása
+		this.visible = true;
 	}
 
 	@Override

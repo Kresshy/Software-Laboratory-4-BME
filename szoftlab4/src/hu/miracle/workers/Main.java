@@ -89,7 +89,7 @@ public class Main {
 				AntHill hill2 = new AntHill(pos2, scene, 1, 1);
 				Ant ant2 = new Ant(pos2, scene, hill2);
 				ant2.setPoisoned(true);
-				scene.getAnts().add(ant2);				
+				scene.getAnts().add(ant2);
 				// Tick
 				System.out.println("<START>");
 				ant2.handleTick();
@@ -99,18 +99,25 @@ public class Main {
 				break;
 
 			case 4:
-				// TODO: hangyaszsun elinditasa
-				
+				// hangyaszsun elinditasa
+				Point pos3 = new Point(0, 0);
+				AntEater anteater1 = new AntEater(pos3, scene);
+				scene.getCreatures().add(anteater1);
+				// Tick
+				System.out.println("<START>");
+				anteater1.handleTick();
+				System.out.println("<END>");
+
 				break;
 
 			case 5:
 				// TODO: mereg spray fujas
-				
+
 				break;
 
 			case 6:
 				// TODO: szagtalanito spray fujas
-				
+
 				break;
 
 			case 7:
@@ -120,7 +127,7 @@ public class Main {
 
 			case 8:
 				// TODO: hangya kikeruli az akadalyt
-				
+
 				break;
 
 			case 9:

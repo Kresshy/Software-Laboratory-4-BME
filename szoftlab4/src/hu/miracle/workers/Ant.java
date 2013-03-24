@@ -18,7 +18,7 @@ public class Ant extends Creature {
 												// meghatározása
 		this.home = home;
 		this.poisoned = false;
-		this.health = 5; // TODO: Kezdőérték meghatározása
+		this.health = 2; // TODO: Kezdőérték meghatározása
 		this.cargo = 0;
 	}
 

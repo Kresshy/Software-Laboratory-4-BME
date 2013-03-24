@@ -112,13 +112,20 @@ public class Main {
 				break;
 
 			case 5:
-				// TODO: mereg spray fujas
-
+				// mereg spray fujas
+				Point pos5 = new Point(10, 10);
+				Poison poison5 = new Poison(pos5);
+				System.out.println("<START>");
+				scene.getObstacles().add(poison5);
+				System.out.println("<END>");
 				break;
 
 			case 6:
-				// TODO: szagtalanito spray fujas
-
+				// szagtalanito spray fujas
+				Point pos6 = new Point(10, 10);
+				System.out.println("<START>");
+				scene.clearEffects(pos6);
+				System.out.println("<END>");
 				break;
 
 			case 7:
@@ -130,7 +137,7 @@ public class Main {
 				// hangya kikeruli az akadalyt
 				Point pos8 = new Point(0, 0);
 				AntHill hill8 = new AntHill(pos8, scene, 1, 1);
-				Obstacle obs8 = new Obstacle(pos8, new Color(100,100,100), 10, true);
+				Obstacle obs8 = new Obstacle(pos8, new Color(100, 100, 100), 10, true);
 				Ant ant8 = new Ant(pos8, scene, hill8);
 				scene.getObstacles().add(obs8);
 				scene.getAnts().add(ant8);

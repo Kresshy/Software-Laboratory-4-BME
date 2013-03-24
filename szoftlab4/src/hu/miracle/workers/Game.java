@@ -75,8 +75,8 @@ public class Game {
 		this.difficulty = difficulty;
 	}
 
-	public void writeTopList(int score) {
-		CallLogger.getLogger().entering(this, "writeTopList");
+	public void addHighscore(String name, int score) {
+		CallLogger.getLogger().entering(this, "addHighscore");
 
 		if (topList.isEmpty()) {
 
@@ -96,8 +96,8 @@ public class Game {
 		CallLogger.getLogger().exiting();
 	}
 
-	public void saveTopList() {
-		CallLogger.getLogger().entering(this, "saveTopList");
+	public void saveHighscores() {
+		CallLogger.getLogger().entering(this, "saveHighscores");
 
 		File file = new File(path);
 

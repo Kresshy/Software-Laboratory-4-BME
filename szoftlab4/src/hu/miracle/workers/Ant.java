@@ -30,6 +30,7 @@ public class Ant extends Creature {
 		if (health <= 0) {
 			// Megsemmisítés
 			terminate();
+			return;
 		}
 
 		// Ha meg van mérgezve
@@ -99,18 +100,21 @@ public class Ant extends Creature {
 		// }
 
 		// Új pozíció meghatározása
-		Point new_position = new Point();
+		Point new_position = getPosition();
 		// TODO: Algoritmus kidolgozása
 
-		// // Effectek figyelembe vétele az útválasztásnál
-		// // TODO: Meghatározni, hogy hatnak-e az effektek a haza tartó
-		// hangyákra
-		// Map<Point, Effect> effects = scene.discoverEffects(this);
-		// // TODO: Algoritmus kidolgozása
-		//
-		// // Akadályok figyelembe vétele az útválasztásnál
-		// List<Obstacle> obstacles = scene.discoverObstacles(this);
-		// // TODO: Algoritmus kidolgozása
+		// Effectek figyelembe vétele az útválasztásnál
+		// TODO: Meghatározni, hogy hatnak-e az effektek a haza tartó hangyákra
+		Map<Point, Effect> effects = scene.discoverEffects(this);
+		// TODO: Algoritmus kidolgozása
+
+		// Akadályok figyelembe vétele az útválasztásnál
+		List<Obstacle> obstacles = scene.discoverObstacles(this);
+		for (Obstacle obstacle : obstacles) {
+			if (obstacle.isSolid()) {
+			}
+		}
+		// TODO: Algoritmus kidolgozása
 
 		// Lépés
 		// Új pozíció beállítása
@@ -119,10 +123,10 @@ public class Ant extends Creature {
 		Pheromone new_pheromone = new Pheromone();
 		scene.placeEffect(new_position, new_pheromone);
 		// Akadályokra lépés
-		List<Obstacle> obstacles = scene.discoverObstacles(this);
+		obstacles = scene.discoverObstacles(this);
 		// TODO: Algoritmus kidolgozása
 		for (Obstacle obstacle : obstacles) {
-			if (obstacle.pointInRange(new_position)) {
+			if (!obstacle.isSolid()) {
 				obstacle.interact(this);
 			}
 		}

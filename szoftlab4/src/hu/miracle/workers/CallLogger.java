@@ -80,7 +80,12 @@ public class CallLogger {
 	}
 
 	public void finishing() {
-		while (depth > 0)
+		boolean tmp = enabled;
+		enable();
+		while (depth > 0) {
 			exiting();
+		}
+		if (!tmp)
+			disable();
 	}
 }

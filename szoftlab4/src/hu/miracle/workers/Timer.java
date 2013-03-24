@@ -1,6 +1,6 @@
 package hu.miracle.workers;
 
-public class Timer extends Thread {
+public class Timer {
 
 	private int interval;
 	private Game game;
@@ -9,25 +9,6 @@ public class Timer extends Thread {
 	public Timer(int interval) {
 		this.interval = interval;
 		this.enabled = true;
-	}
-
-	@Override
-	public void run() {
-		try {
-
-			while (true) {
-				synchronized (this) {
-					while (!enabled) {
-						wait();
-					}
-				}
-				sleep(interval);
-				tick();
-			}
-
-		} catch (InterruptedException e) {
-			System.out.println("Timer Interrupted");
-		}
 	}
 
 	protected void tick() {
@@ -57,8 +38,8 @@ public class Timer extends Thread {
 		CallLogger.getLogger().exiting();
 	}
 
-	synchronized public void pause() {
-		CallLogger.getLogger().entering(this, "pause");
+	synchronized public void stop() {
+		CallLogger.getLogger().entering(this, "stop");
 
 		enabled = false;
 

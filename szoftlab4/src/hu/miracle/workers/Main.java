@@ -1,5 +1,6 @@
 package hu.miracle.workers;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -126,8 +127,17 @@ public class Main {
 				break;
 
 			case 8:
-				// TODO: hangya kikeruli az akadalyt
-
+				// hangya kikeruli az akadalyt
+				Point pos8 = new Point(0, 0);
+				AntHill hill8 = new AntHill(pos8, scene, 1, 1);
+				Obstacle obs8 = new Obstacle(pos8, new Color(100,100,100), 10, true);
+				Ant ant8 = new Ant(pos8, scene, hill8);
+				scene.getObstacles().add(obs8);
+				scene.getAnts().add(ant8);
+				// Tick
+				System.out.println("<START>");
+				ant8.handleTick();
+				System.out.println("<END>");
 				break;
 
 			case 9:

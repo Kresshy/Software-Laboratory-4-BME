@@ -8,39 +8,6 @@ import java.util.Random;
 
 public class Main {
 
-	public static int showMenu() {
-		int result = 0;
-		boolean success = false;
-		String menu[] = { "Hangya mozgasa", "Hangya etelfelvetele",
-				"Hangya mereg altali pusztulasa", "Hangyaszsun mozgasa", "Hangyairto spray fujasa",
-				"Szagtalanito spray fujasa", "Idozito tick", "Hangya akadalyelkerulese",
-				"Hangya hangyalesobe lepese", "Jatek szuneteltetese", "Jatek folytatasa",
-				"Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes" };
-		BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
-
-		System.out.println("Jatek szimulalasa\nValasszon az alabbi menupontok kozul:\n");
-		for (int i = 0; i < menu.length; i++) {
-			String scenario = menu[i];
-			System.out.println(String.format("%2d. %s", i + 1, scenario));
-		}
-
-		while (!success) {
-			try {
-				System.out.print("\nValasztott menupont: ");
-				result = Integer.parseInt(bfread.readLine().trim());
-				if (0 < result && result <= menu.length) {
-					success = true;
-				} else {
-					System.out.println("Nem megfelelo ertek! Kerem a menupontok kozul valasszon!");
-				}
-			} catch (NumberFormatException e) {
-				System.out.println("Nem megfelelo ertek! Kerem egy egesz szamot adjon meg!");
-			} catch (IOException e) {
-			}
-		}
-		return result;
-	}
-
 	public static void main(String[] args) {
 		Random random = new Random();
 		CallLogger logger = CallLogger.getLogger();
@@ -52,6 +19,7 @@ public class Main {
 			Timer timer = new Timer(1000);
 			Game game = new Game(scene, timer);
 
+			// Inicializálás
 			Point position = new Point(0, 0);
 			AntHill hill = new AntHill(position, scene, 0, 0);
 			FoodStorage foodstore = new FoodStorage(position, 1, 1);
@@ -60,17 +28,21 @@ public class Main {
 			Ant ant = new Ant(position, scene, hill);
 			AntEater anteater = new AntEater(position, scene);
 
+			// Választott menüpont lekérdezése
 			int choice = showMenu();
 
-			System.out.println();
-			logger.enable();
-			logger.entering(null, "main");
-			logger.disable();
+			if (choice != 14) {
+				System.out.println();
+				logger.enable();
+				logger.entering(null, "main");
+				logger.disable();
+			}
 
+			// Választástól függően az egyes szituációk lejátszása
 			switch (choice) {
 			case 1:
 				/* Hangya mozgása */
-				// Inicializálás
+				// Szituáció inicializálása
 				scene.getAnts().add(ant);
 				// Tick
 				logger.enable();
@@ -80,7 +52,7 @@ public class Main {
 
 			case 2:
 				/* Hangya ételfelvétele */
-				// Inicializálás
+				// Szituáció inicializálása
 				scene.getStorages().add(foodstore);
 				scene.getAnts().add(ant);
 				// Tick
@@ -91,7 +63,7 @@ public class Main {
 
 			case 3:
 				/* Hangya méreg általi pusztulása */
-				// Inicializálás
+				// Szituáció inicializálása
 				scene.getAnts().add(ant);
 				scene.getObstacles().add(poison);
 				// Tick
@@ -106,7 +78,7 @@ public class Main {
 
 			case 4:
 				/* Hangyászsün mozgása */
-				// Inicializálás
+				// Szituáció inicializálása
 				scene.getCreatures().add(anteater);
 				// Tick
 				logger.enable();
@@ -132,7 +104,7 @@ public class Main {
 
 			case 7:
 				/* Időzítő tick */
-				// Inicializálás
+				// Szituáció inicializálása
 				scene.getAnts().add(new Ant(new Point(30, 30), scene, hill));
 				scene.getCreatures().add(anteater);
 				scene.getStorages().add(hill);
@@ -146,7 +118,7 @@ public class Main {
 
 			case 8:
 				/* Hangya akadályelkerülése */
-				// Inicializálás
+				// Szituáció inicializálása
 				scene.getAnts().add(ant);
 				scene.getObstacles().add(new Obstacle(position, null, 10, true));
 				// Tick
@@ -157,7 +129,7 @@ public class Main {
 
 			case 9:
 				/* Hangya hangyalesőbe lépése */
-				// Inicializálás
+				// Szituáció inicializálása
 				scene.getAnts().add(ant);
 				scene.getObstacles().add(sinker);
 				// Tick
@@ -208,9 +180,54 @@ public class Main {
 			}
 
 			CallLogger.getLogger().finishing();
-			System.out.println();
+			try {
+				System.out.println("\nNyomjon <Enter>-t a folytatashoz...");
+				BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
+				bfread.readLine();
+			} catch (IOException e) {
+			}
 		}
 
+	}
+
+	public static int showMenu() {
+		int result = 0;
+		boolean success = false;
+		// Menüpontok
+		String menu[] = { "Hangya mozgasa", "Hangya etelfelvetele",
+				"Hangya mereg altali pusztulasa", "Hangyaszsun mozgasa", "Hangyairto spray fujasa",
+				"Szagtalanito spray fujasa", "Idozito tick", "Hangya akadalyelkerulese",
+				"Hangya hangyalesobe lepese", "Jatek szuneteltetese", "Jatek folytatasa",
+				"Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes" };
+		BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
+
+		// Menü kiírása
+		System.out
+				.println("\nSkeleton - MiracleWorkers (c) 2013\nValasszon az alabbi menupontok kozul:\n");
+		for (int i = 0; i < menu.length; i++) {
+			String scenario = menu[i];
+			System.out.println(String.format("%2d. %s", i + 1, scenario));
+		}
+
+		// Amíg nincs sikeres választás
+		while (!success) {
+			try {
+				System.out.print("\nValasztott menupont: ");
+				result = Integer.parseInt(bfread.readLine().trim());
+				// Érvényesség ellenőrzése
+				if (0 < result && result <= menu.length) {
+					success = true;
+				} else {
+					System.out.println("Nem megfelelo ertek! Kerem a menupontok kozul valasszon!");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Nem megfelelo ertek! Kerem egy egesz szamot adjon meg!");
+			} catch (IOException e) {
+			}
+		}
+
+		// Választás visszaadása
+		return result;
 	}
 
 }

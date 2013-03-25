@@ -24,6 +24,8 @@ public abstract class Creature extends BaseObject {
 	public void terminate() {
 		CallLogger.getLogger().entering(this, "terminate");
 
+		// Dummy default implementáció
+		
 		CallLogger.getLogger().exiting();
 	}
 

@@ -12,6 +12,8 @@ public class FoodStorage extends Storage {
 	public void handleTick() {
 		CallLogger.getLogger().entering(this, "handleTick");
 
+		// Dummy default implementáció
+		
 		CallLogger.getLogger().exiting();
 	}
 

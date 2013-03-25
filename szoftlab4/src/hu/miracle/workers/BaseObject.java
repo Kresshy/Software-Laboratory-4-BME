@@ -42,7 +42,6 @@ public abstract class BaseObject {
 		return position;
 	}
 
-	// Public interface
 	public int getRadius() {
 		CallLogger.getLogger().entering(this, "getRadius");
 
@@ -57,6 +56,7 @@ public abstract class BaseObject {
 	public boolean pointInRange(Point point) {
 		CallLogger.getLogger().entering(this, "pointInRange");
 
+		// Távolság kiszámítása
 		double distance = getPosition().distance(point);
 
 		CallLogger.getLogger().exiting();

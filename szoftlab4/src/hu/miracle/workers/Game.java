@@ -1,26 +1,43 @@
 package hu.miracle.workers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Game {
+
+	public static class Highscore implements Comparable<Highscore> {
+		public int score;
+		public String name;
+
+		public Highscore(String name, int score) {
+			this.name = name;
+			this.score = score;
+		}
+
+		@Override
+		public int compareTo(Highscore o) {
+			if (score == o.score)
+				return 0;
+			else if (score > o.score)
+				return 1;
+			else
+				return -1;
+		}
+	}
+
+	private static final String path = "savegame.dat";
 
 	private Scene scene;
 	private Timer timer;
 	private int difficulty;
-	private ArrayList<Integer> topList;
-	private static final String path = "savegame.dat";
+	private List<Highscore> highscores;
 
 	public Game(Scene scene, Timer timer) {
 		this.scene = scene;
 		this.timer = timer;
 		this.timer.setGame(this);
-		this.topList = new ArrayList<Integer>();
-
+		this.highscores = new ArrayList<Highscore>();
 	}
 
 	public Scene getScene() {
@@ -78,20 +95,9 @@ public class Game {
 	public void addHighscore(String name, int score) {
 		CallLogger.getLogger().entering(this, "addHighscore");
 
-		if (topList.isEmpty()) {
-
-			topList.add(new Integer(score));
-
-		} else {
-
-			if (topList.get(0) < score) {
-				topList.remove(0);
-				topList.add(new Integer(score));
-
-			}
-		}
-
-		Collections.sort(topList);
+		highscores.add(new Highscore(name, score));
+		Collections.sort(highscores, Collections.reverseOrder());
+		highscores = highscores.subList(0, 10);
 
 		CallLogger.getLogger().exiting();
 	}
@@ -99,15 +105,7 @@ public class Game {
 	public void saveHighscores() {
 		CallLogger.getLogger().entering(this, "saveHighscores");
 
-		File file = new File(path);
-
-		try {
-			ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream(file));
-			ous.writeObject(topList);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// Dummy default implementáció
 
 		CallLogger.getLogger().exiting();
 	}

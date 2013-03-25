@@ -11,8 +11,7 @@ public class AntEater extends Creature {
 	private int wait;
 
 	public AntEater(Point position, Scene scene) {
-		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők
-													// meghatározása
+		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők meghatározása
 		this.wait = 20; // TODO: Kezdőérték meghatározása
 		this.hunger = 10; // TODO: Kezdőérték meghatározása
 		this.visible = true;

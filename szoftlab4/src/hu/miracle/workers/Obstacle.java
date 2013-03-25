@@ -32,12 +32,16 @@ public class Obstacle extends BaseObject {
 
 	public void handleTick() {
 		CallLogger.getLogger().entering(this, "handleTick");
+		
+		// Dummy default implementáció
 
 		CallLogger.getLogger().exiting();
 	}
 
 	public void interact(Creature creature) {
 		CallLogger.getLogger().entering(this, "interact");
+		
+		// Dummy default implementáció
 
 		CallLogger.getLogger().exiting();
 	}

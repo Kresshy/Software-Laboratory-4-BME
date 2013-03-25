@@ -10,6 +10,8 @@ public class Pheromone extends Effect {
 	@Override
 	public void interact(Creature creature) {
 		CallLogger.getLogger().entering(this, "interact");
+		
+		// Dummy default implementáció
 
 		CallLogger.getLogger().exiting();
 	}

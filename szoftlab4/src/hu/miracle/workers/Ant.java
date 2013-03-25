@@ -76,28 +76,7 @@ public class Ant extends Creature {
 	protected void routeAndMove() {
 		CallLogger.getLogger().entering(this, "routeAndMove");
 
-		// // Céltároló kiválasztása
-		// Storage target = null;
-		// // Ha van rakomány
-		// if (cargo > 0) {
-		// // Célpont beállítása a szülőbolyra
-		// target = home;
-		// } else {
-		// // Legközelebbi vonzó tároló meghatározása
-		// // Minden tárolóra
-		// for (Storage storage : scene.getStorages()) {
-		// // Ha a tároló vonzza a hangyát és van benne étel
-		// if (storage.isAttractive() && storage.hasItems()) {
-		// // Ha még nincs célpont vagy az aktuális tároló közelebb van
-		// if (target == null
-		// || getPosition().distance(storage.getPosition()) < getPosition()
-		// .distance(target.getPosition())) {
-		// // Célpont beállítása a tárolóra
-		// target = storage;
-		// }
-		// }
-		// }
-		// }
+		// TODO: Céltároló kiválasztása
 
 		// Új pozíció meghatározása
 		Point new_position = getPosition();

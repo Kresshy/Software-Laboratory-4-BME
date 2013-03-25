@@ -26,6 +26,7 @@ public class Game {
 		}
 	}
 
+	private static final int highscoresize = 10;
 	private static final String path = "savegame.dat";
 
 	private Scene scene;
@@ -95,9 +96,11 @@ public class Game {
 	public void addHighscore(String name, int score) {
 		CallLogger.getLogger().entering(this, "addHighscore");
 
+		// Highscore hozzáadása
 		highscores.add(new Highscore(name, score));
+		// Rendezés és a legjobb elemek kiválasztása
 		Collections.sort(highscores, Collections.reverseOrder());
-		highscores = highscores.subList(0, 10);
+		highscores = highscores.subList(0, (highscores.size() < highscoresize) ? highscores.size() : highscoresize);
 
 		CallLogger.getLogger().exiting();
 	}

@@ -14,8 +14,7 @@ public class Ant extends Creature {
 	private Storage source;
 
 	public Ant(Point position, Scene scene, Storage home) {
-		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők
-												// meghatározása
+		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők meghatározása
 		this.home = home;
 		this.poisoned = false;
 		this.health = 2; // TODO: Kezdőérték meghatározása

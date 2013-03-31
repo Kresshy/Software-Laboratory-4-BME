@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Obstacle extends BaseObject {
 
 	protected boolean solid;
-	
+
 	public Obstacle() {
-		
+
 	}
 
 	public Obstacle(Point position, Color color, int radius, boolean solid) {
@@ -39,7 +39,7 @@ public class Obstacle extends BaseObject {
 
 	public void handleTick() {
 		CallLogger.getLogger().entering(this, "handleTick");
-		
+
 		// Dummy default implementáció
 
 		CallLogger.getLogger().exiting();
@@ -47,7 +47,7 @@ public class Obstacle extends BaseObject {
 
 	public void interact(Creature creature) {
 		CallLogger.getLogger().entering(this, "interact");
-		
+
 		// Dummy default implementáció
 
 		CallLogger.getLogger().exiting();

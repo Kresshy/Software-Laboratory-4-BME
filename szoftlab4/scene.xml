@@ -15,12 +15,12 @@
         </ant>
     </ant>
     <creature>
-        <creature>
+        <ant>
             <radius>0</radius>
-        </creature>
-        <creature>
+        </ant>
+        <ant>
             <radius>0</radius>
-        </creature>
+        </ant>
     </creature>
     <obstacle>
         <obstacle>
@@ -34,11 +34,11 @@
         </obstacle>
     </obstacle>
     <storage>
-        <storage>
+        <foodstorage>
             <radius>0</radius>
-        </storage>
-        <storage>
+        </foodstorage>
+        <anthill>
             <radius>0</radius>
-        </storage>
+        </anthill>
     </storage>
 </scene>

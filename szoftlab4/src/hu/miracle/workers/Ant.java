@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 @XmlRootElement(name = "ant")
-@XmlSeeAlso({Storage.class})
+@XmlSeeAlso({ Storage.class })
 public class Ant extends Creature {
 
 	private boolean poisoned;
@@ -17,13 +17,14 @@ public class Ant extends Creature {
 	private int cargo;
 	private Storage home;
 	private Storage source;
-	
+
 	public Ant() {
-		
+
 	}
 
 	public Ant(Point position, Scene scene, Storage home) {
-		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők meghatározása
+		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők
+												// meghatározása
 		this.home = home;
 		this.poisoned = false;
 		this.health = 2; // TODO: Kezdőérték meghatározása

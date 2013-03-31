@@ -181,7 +181,7 @@ public class Main {
 				break;
 
 			case 15:
-				
+
 				try {
 					xmlBuilder.writeXML(scene);
 				} catch (JAXBException e1) {
@@ -193,9 +193,9 @@ public class Main {
 				}
 
 				break;
-				
+
 			case 16:
-				
+
 				try {
 					scene = xmlBuilder.readXML();
 				} catch (FileNotFoundException e1) {
@@ -229,7 +229,8 @@ public class Main {
 				"Hangya mereg altali pusztulasa", "Hangyaszsun mozgasa", "Hangyairto spray fujasa",
 				"Szagtalanito spray fujasa", "Idozito tick", "Hangya akadalyelkerulese",
 				"Hangya hangyalesobe lepese", "Jatek szuneteltetese", "Jatek folytatasa",
-				"Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes", "Scene to XML","XML to Scene" };
+				"Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes", "Scene to XML",
+				"XML to Scene" };
 		BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
 
 		// Menü kiírása

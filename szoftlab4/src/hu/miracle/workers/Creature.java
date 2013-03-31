@@ -8,11 +8,11 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name = "creature")
-//@XmlSeeAlso({Scene.class})
+@XmlSeeAlso({ Ant.class })
 public abstract class Creature extends BaseObject {
 
 	protected Scene scene;
-	
+
 	public Creature() {
 
 	}
@@ -36,7 +36,7 @@ public abstract class Creature extends BaseObject {
 		CallLogger.getLogger().entering(this, "terminate");
 
 		// Dummy default implementáció
-		
+
 		CallLogger.getLogger().exiting();
 	}
 

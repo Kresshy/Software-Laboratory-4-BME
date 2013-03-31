@@ -34,22 +34,8 @@ public class Scene {
 		this.ants.add(new Ant());
 
 		this.storages = new ArrayList<Storage>();
-		this.storages.add(new Storage() {
-
-			@Override
-			public void handleTick() {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		this.storages.add(new Storage() {
-
-			@Override
-			public void handleTick() {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		this.storages.add(new FoodStorage());
+		this.storages.add(new AntHill());
 
 		this.obstacles = new ArrayList<Obstacle>();
 		this.obstacles.add(new Obstacle());
@@ -57,24 +43,9 @@ public class Scene {
 		this.obstacles.add(new Obstacle());
 
 		this.creatures = new ArrayList<Creature>();
-		this.creatures.add(new Creature() {
-
-			@Override
-			public void handleTick() {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
-		this.creatures.add(new Creature() {
-
-			@Override
-			public void handleTick() {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
+		this.creatures.add(new Ant());
+		this.creatures.add(new Ant());
+				
 		this.effects = new HashMap<Point, Effect>();
 	}
 

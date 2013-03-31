@@ -168,7 +168,7 @@ public class Scene {
 		return inrange;
 	}
 
-	@XmlElementWrapper(name = "ant")
+	@XmlElementWrapper(name = "ants")
 	@XmlElementRef()
 	public List<Ant> getAnts() {
 		CallLogger.getLogger().entering(this, "getAnts");
@@ -179,7 +179,7 @@ public class Scene {
 		return ants;
 	}
 
-	@XmlElementWrapper(name = "creature")
+	@XmlElementWrapper(name = "creatures")
 	@XmlElementRef()
 	public List<Creature> getCreatures() {
 		CallLogger.getLogger().entering(this, "getCreatures");
@@ -202,7 +202,7 @@ public class Scene {
 		return dimension;
 	}
 
-	@XmlElementWrapper(name = "obstacle")
+	@XmlElementWrapper(name = "obstacles")
 	@XmlElementRef()
 	public List<Obstacle> getObstacles() {
 		CallLogger.getLogger().entering(this, "getObstacles");
@@ -213,7 +213,7 @@ public class Scene {
 		return obstacles;
 	}
 
-	@XmlElementWrapper(name = "storage")
+	@XmlElementWrapper(name = "storages")
 	@XmlElementRef()
 	public List<Storage> getStorages() {
 		CallLogger.getLogger().entering(this, "getStorages");

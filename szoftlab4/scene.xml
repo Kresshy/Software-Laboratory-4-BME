@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <scene>
-    <ant>
+    <ants>
         <ant>
             <radius>0</radius>
         </ant>
@@ -13,16 +13,16 @@
         <ant>
             <radius>0</radius>
         </ant>
-    </ant>
-    <creature>
+    </ants>
+    <creatures>
         <ant>
             <radius>0</radius>
         </ant>
         <ant>
             <radius>0</radius>
         </ant>
-    </creature>
-    <obstacle>
+    </creatures>
+    <obstacles>
         <obstacle>
             <radius>0</radius>
         </obstacle>
@@ -32,13 +32,13 @@
         <obstacle>
             <radius>0</radius>
         </obstacle>
-    </obstacle>
-    <storage>
+    </obstacles>
+    <storages>
         <foodstorage>
             <radius>0</radius>
         </foodstorage>
         <anthill>
             <radius>0</radius>
         </anthill>
-    </storage>
+    </storages>
 </scene>

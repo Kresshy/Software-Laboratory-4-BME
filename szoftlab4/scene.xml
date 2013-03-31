@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scene>
+    <ant>
+        <ant>
+            <radius>0</radius>
+        </ant>
+        <ant>
+            <radius>0</radius>
+        </ant>
+        <ant>
+            <radius>0</radius>
+        </ant>
+        <ant>
+            <radius>0</radius>
+        </ant>
+    </ant>
+    <creature>
+        <creature>
+            <radius>0</radius>
+        </creature>
+        <creature>
+            <radius>0</radius>
+        </creature>
+    </creature>
+    <obstacle>
+        <obstacle>
+            <radius>0</radius>
+        </obstacle>
+        <obstacle>
+            <radius>0</radius>
+        </obstacle>
+        <obstacle>
+            <radius>0</radius>
+        </obstacle>
+    </obstacle>
+    <storage>
+        <storage>
+            <radius>0</radius>
+        </storage>
+        <storage>
+            <radius>0</radius>
+        </storage>
+    </storage>
+</scene>

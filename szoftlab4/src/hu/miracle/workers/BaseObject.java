@@ -4,11 +4,20 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Point;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+@XmlRootElement(name = "BaseObject")
+@XmlSeeAlso({Ant.class, Creature.class, Obstacle.class, Storage.class})
 public abstract class BaseObject {
 
 	protected int radius;
 	protected Point position;
 	protected Color color;
+	
+	public BaseObject() {
+		
+	}
 
 	public BaseObject(Point position, Color color, int radius) {
 		this.position = position;

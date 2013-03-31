@@ -5,6 +5,11 @@ import java.awt.Point;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+@XmlRootElement(name = "ant")
+@XmlSeeAlso({Storage.class})
 public class Ant extends Creature {
 
 	private boolean poisoned;
@@ -12,6 +17,10 @@ public class Ant extends Creature {
 	private int cargo;
 	private Storage home;
 	private Storage source;
+	
+	public Ant() {
+		
+	}
 
 	public Ant(Point position, Scene scene, Storage home) {
 		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők meghatározása

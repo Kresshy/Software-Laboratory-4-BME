@@ -3,9 +3,16 @@ package hu.miracle.workers;
 import java.awt.Color;
 import java.awt.Point;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "obstacle")
 public class Obstacle extends BaseObject {
 
 	protected boolean solid;
+	
+	public Obstacle() {
+		
+	}
 
 	public Obstacle(Point position, Color color, int radius, boolean solid) {
 		super(position, color, radius);

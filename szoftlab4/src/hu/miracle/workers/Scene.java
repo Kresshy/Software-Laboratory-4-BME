@@ -9,6 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+@XmlRootElement(name = "scene")
+@XmlSeeAlso({ Ant.class, Storage.class, Obstacle.class, Creature.class, Effect.class })
 public class Scene {
 
 	private Dimension dimension;
@@ -18,11 +25,56 @@ public class Scene {
 	private List<Creature> creatures;
 	private Map<Point, Effect> effects; // Ez a tároló továbbra sem végleges
 
+	// TEST DATA CREATION FOR XML PARSING
 	public Scene() {
 		this.ants = new ArrayList<Ant>();
+		this.ants.add(new Ant());
+		this.ants.add(new Ant());
+		this.ants.add(new Ant());
+		this.ants.add(new Ant());
+
 		this.storages = new ArrayList<Storage>();
+		this.storages.add(new Storage() {
+
+			@Override
+			public void handleTick() {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		this.storages.add(new Storage() {
+
+			@Override
+			public void handleTick() {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
 		this.obstacles = new ArrayList<Obstacle>();
+		this.obstacles.add(new Obstacle());
+		this.obstacles.add(new Obstacle());
+		this.obstacles.add(new Obstacle());
+
 		this.creatures = new ArrayList<Creature>();
+		this.creatures.add(new Creature() {
+
+			@Override
+			public void handleTick() {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+		this.creatures.add(new Creature() {
+
+			@Override
+			public void handleTick() {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
 		this.effects = new HashMap<Point, Effect>();
 	}
 
@@ -145,6 +197,8 @@ public class Scene {
 		return inrange;
 	}
 
+	@XmlElementWrapper(name = "ant")
+	@XmlElementRef()
 	public List<Ant> getAnts() {
 		CallLogger.getLogger().entering(this, "getAnts");
 
@@ -154,6 +208,8 @@ public class Scene {
 		return ants;
 	}
 
+	@XmlElementWrapper(name = "creature")
+	@XmlElementRef()
 	public List<Creature> getCreatures() {
 		CallLogger.getLogger().entering(this, "getCreatures");
 
@@ -163,16 +219,20 @@ public class Scene {
 		return creatures;
 	}
 
-	// Public interface
+	 // Public interface
+//	@XmlElementWrapper(name = "dimension")
+//	@XmlElementRef()
 	public Dimension getDimension() {
-		CallLogger.getLogger().entering(this, "getDimension");
-
+	CallLogger.getLogger().entering(this, "getDimension");
+	
 		CallLogger.getLogger().exiting();
-
+		
 		// Méret visszaadása
 		return dimension;
 	}
 
+	@XmlElementWrapper(name = "obstacle")
+	@XmlElementRef()
 	public List<Obstacle> getObstacles() {
 		CallLogger.getLogger().entering(this, "getObstacles");
 
@@ -182,6 +242,8 @@ public class Scene {
 		return obstacles;
 	}
 
+	@XmlElementWrapper(name = "storage")
+	@XmlElementRef()
 	public List<Storage> getStorages() {
 		CallLogger.getLogger().entering(this, "getStorages");
 

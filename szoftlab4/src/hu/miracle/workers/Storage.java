@@ -3,12 +3,19 @@ package hu.miracle.workers;
 import java.awt.Color;
 import java.awt.Point;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "storage")
 public abstract class Storage extends BaseObject {
 
 	protected int amount;
 	protected int capacity;
 	protected int packet;
 	protected boolean attractive;
+	
+	public Storage() {
+		
+	}
 
 	public Storage(Point position, Color color, int radius, int capacity, int packet,
 			boolean attractive) {

@@ -2,9 +2,12 @@ package hu.miracle.workers;
 
 import java.awt.Point;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
+
+import javax.xml.bind.JAXBException;
 
 public class Main {
 
@@ -12,6 +15,8 @@ public class Main {
 		Random random = new Random();
 		CallLogger logger = CallLogger.getLogger();
 		logger.disable();
+
+		XMLBuilder xmlBuilder = new XMLBuilder();
 
 		while (true) {
 
@@ -175,6 +180,32 @@ public class Main {
 				System.exit(0);
 				break;
 
+			case 15:
+				
+				try {
+					xmlBuilder.writeXML(scene);
+				} catch (JAXBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				break;
+				
+			case 16:
+				
+				try {
+					scene = xmlBuilder.readXML();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (JAXBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			default:
 				break;
 			}
@@ -198,7 +229,7 @@ public class Main {
 				"Hangya mereg altali pusztulasa", "Hangyaszsun mozgasa", "Hangyairto spray fujasa",
 				"Szagtalanito spray fujasa", "Idozito tick", "Hangya akadalyelkerulese",
 				"Hangya hangyalesobe lepese", "Jatek szuneteltetese", "Jatek folytatasa",
-				"Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes" };
+				"Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes", "Scene to XML","XML to Scene" };
 		BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
 
 		// Menü kiírása

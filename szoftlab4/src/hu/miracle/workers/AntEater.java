@@ -16,6 +16,32 @@ public class AntEater extends Creature {
 		this.hunger = 10; // TODO: Kezdőérték meghatározása
 		this.visible = true;
 	}
+	
+	
+
+	public int getHunger() {
+		return hunger;
+	}
+
+
+
+	public void setHunger(int hunger) {
+		this.hunger = hunger;
+	}
+
+
+
+	public int getWait() {
+		return wait;
+	}
+
+
+
+	public void setWait(int wait) {
+		this.wait = wait;
+	}
+
+
 
 	@Override
 	public void handleTick() {

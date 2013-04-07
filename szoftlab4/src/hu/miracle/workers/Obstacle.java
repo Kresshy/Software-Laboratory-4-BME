@@ -5,18 +5,24 @@ import java.awt.Point;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "obstacle")
+//@XmlRootElement(name = "obstacle")
 public class Obstacle extends BaseObject {
 
 	protected boolean solid;
+	protected boolean movable;
+
+	public void setSolid(boolean solid) {
+		this.solid = solid;
+	}
 
 	public Obstacle() {
 
 	}
 
-	public Obstacle(Point position, Color color, int radius, boolean solid) {
+	public Obstacle(Point position, Color color, int radius, boolean solid, boolean movable) {
 		super(position, color, radius);
 		this.solid = solid;
+		this.movable = movable;
 	}
 
 	public boolean isSolid() {

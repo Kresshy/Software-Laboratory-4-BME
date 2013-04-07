@@ -7,8 +7,8 @@ import java.awt.Point;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-@XmlRootElement(name = "BaseObject")
-@XmlSeeAlso({ Ant.class, Creature.class, Obstacle.class, Storage.class })
+//@XmlRootElement(name = "BaseObject")
+//@XmlSeeAlso({ Ant.class, Creature.class, Obstacle.class, Storage.class })
 public abstract class BaseObject {
 
 	protected int radius;

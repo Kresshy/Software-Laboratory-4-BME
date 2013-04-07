@@ -6,8 +6,8 @@ import java.awt.Point;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-@XmlRootElement(name = "storage")
-@XmlSeeAlso({ FoodStorage.class, AntHill.class })
+//@XmlRootElement(name = "storage")
+//@XmlSeeAlso({ FoodStorage.class, AntHill.class })
 public abstract class Storage extends BaseObject {
 
 	protected int amount;

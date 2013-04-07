@@ -5,7 +5,7 @@ import java.awt.Point;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "anthill")
+//@XmlRootElement(name = "anthill")
 public class AntHill extends Storage {
 
 	private Scene scene;

@@ -1,44 +1,35 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?> 
 <scene>
-    <ants>
-        <ant>
-            <radius>0</radius>
-        </ant>
-        <ant>
-            <radius>0</radius>
-        </ant>
-        <ant>
-            <radius>0</radius>
-        </ant>
-        <ant>
-            <radius>0</radius>
-        </ant>
-    </ants>
-    <creatures>
-        <ant>
-            <radius>0</radius>
-        </ant>
-        <ant>
-            <radius>0</radius>
-        </ant>
-    </creatures>
-    <obstacles>
-        <obstacle>
-            <radius>0</radius>
-        </obstacle>
-        <obstacle>
-            <radius>0</radius>
-        </obstacle>
-        <obstacle>
-            <radius>0</radius>
-        </obstacle>
-    </obstacles>
-    <storages>
-        <foodstorage>
-            <radius>0</radius>
-        </foodstorage>
-        <anthill>
-            <radius>0</radius>
-        </anthill>
-    </storages>
+	<creatures> 
+		<anteater> 
+			<position x="10" y="10" /> 
+			<hunger>10</hunger>
+			<wait>20</wait>
+		</anteater>
+	</creatures>
+	<obstacles>
+		<obstacle>
+			<position x="10" y="10" />
+			<color>red</color>
+			<radius>10</radius>
+			<!-- true: pocsolya, false: kavics --> 
+			<solid>true</solid>
+			<movable>true</movable>
+		</obstacle>
+		<antsinker>
+			<position x="10" y="10" />
+		</antsinker>
+	</obstacles>
+	<storages>
+		<foodstorage>
+			<position x="10" y="10" />
+			<capacity>15</capacity>
+			<packet>1</packet>
+		</foodstorage>
+		<anthill>
+			<position x="10" y="10" />
+			<amount>10</amount>
+			<packet>1</packet>
+		</anthill>
+	</storages>
 </scene>

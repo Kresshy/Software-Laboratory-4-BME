@@ -7,8 +7,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 
-@XmlRootElement(name = "creature")
-@XmlSeeAlso({ Ant.class })
+//@XmlRootElement(name = "creature")
+//@XmlSeeAlso({ Ant.class })
 public abstract class Creature extends BaseObject {
 
 	protected Scene scene;

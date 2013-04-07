@@ -14,8 +14,8 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-@XmlRootElement(name = "scene")
-@XmlSeeAlso({ Ant.class, Storage.class, Obstacle.class, Creature.class, Effect.class })
+//@XmlRootElement(name = "scene")
+//@XmlSeeAlso({ Ant.class, Storage.class, Obstacle.class, Creature.class, Effect.class })
 public class Scene {
 
 	private Dimension dimension;
@@ -45,7 +45,7 @@ public class Scene {
 		this.creatures = new ArrayList<Creature>();
 		this.creatures.add(new Ant());
 		this.creatures.add(new Ant());
-				
+
 		this.effects = new HashMap<Point, Effect>();
 	}
 
@@ -168,8 +168,8 @@ public class Scene {
 		return inrange;
 	}
 
-	@XmlElementWrapper(name = "ants")
-	@XmlElementRef()
+	// @XmlElementWrapper(name = "ants")
+	// @xmlelementref()
 	public List<Ant> getAnts() {
 		CallLogger.getLogger().entering(this, "getAnts");
 
@@ -179,8 +179,8 @@ public class Scene {
 		return ants;
 	}
 
-	@XmlElementWrapper(name = "creatures")
-	@XmlElementRef()
+	// @XmlElementWrapper(name = "creatures")
+	// @XmlElementRef()
 	public List<Creature> getCreatures() {
 		CallLogger.getLogger().entering(this, "getCreatures");
 
@@ -190,20 +190,20 @@ public class Scene {
 		return creatures;
 	}
 
-	 // Public interface
-//	@XmlElementWrapper(name = "dimension")
-//	@XmlElementRef()
+	// Public interface
+	// @XmlElementWrapper(name = "dimension")
+	// @XmlElementRef()
 	public Dimension getDimension() {
-	CallLogger.getLogger().entering(this, "getDimension");
-	
+		CallLogger.getLogger().entering(this, "getDimension");
+
 		CallLogger.getLogger().exiting();
-		
+
 		// Méret visszaadása
 		return dimension;
 	}
 
-	@XmlElementWrapper(name = "obstacles")
-	@XmlElementRef()
+	// @XmlElementWrapper(name = "obstacles")
+	// @XmlElementRef()
 	public List<Obstacle> getObstacles() {
 		CallLogger.getLogger().entering(this, "getObstacles");
 
@@ -213,8 +213,8 @@ public class Scene {
 		return obstacles;
 	}
 
-	@XmlElementWrapper(name = "storages")
-	@XmlElementRef()
+	// @XmlElementWrapper(name = "storages")
+	// @XmlElementRef()
 	public List<Storage> getStorages() {
 		CallLogger.getLogger().entering(this, "getStorages");
 

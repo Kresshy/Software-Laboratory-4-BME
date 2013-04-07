@@ -8,6 +8,9 @@ import java.io.InputStreamReader;
 import java.util.Random;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 public class Main {
 
@@ -125,7 +128,7 @@ public class Main {
 				/* Hangya akadályelkerülése */
 				// Szituáció inicializálása
 				scene.getAnts().add(ant);
-				scene.getObstacles().add(new Obstacle(position, null, 10, true));
+				scene.getObstacles().add(new Obstacle(position, null, 10, true, true));
 				// Tick
 				logger.enable();
 				ant.handleTick();
@@ -182,29 +185,37 @@ public class Main {
 
 			case 15:
 
-				try {
-					xmlBuilder.writeXML(scene);
-				} catch (JAXBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+//				try {
+//					xmlBuilder.writeXML(scene);
+//				} catch (JAXBException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
 
 				break;
 
 			case 16:
 
 				try {
-					scene = xmlBuilder.readXML();
+					scene = xmlBuilder.readXML("scene.xml");
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (JAXBException e1) {
+				} catch (SAXException e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
+				
 
 			default:
 				break;

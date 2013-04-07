@@ -8,8 +8,8 @@ import java.util.Map;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-@XmlRootElement(name = "ant")
-@XmlSeeAlso({ Storage.class })
+//@XmlRootElement(name = "ant")
+//@XmlSeeAlso({ Storage.class })
 public class Ant extends Creature {
 
 	private boolean poisoned;

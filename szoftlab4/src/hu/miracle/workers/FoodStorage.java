@@ -5,7 +5,7 @@ import java.awt.Point;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "foodstorage")
+//@XmlRootElement(name = "foodstorage")
 public class FoodStorage extends Storage {
 
 	public FoodStorage() {

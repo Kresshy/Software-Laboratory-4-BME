@@ -118,7 +118,7 @@ public class XMLBuilder {
 
 		NodeList creature = doc.getElementsByTagName("anteater");
 		NodeList obstacle = doc.getElementsByTagName("obstacle");
-		NodeList antsinker = doc.getElementsByTagName("anthill");
+		NodeList antsinker = doc.getElementsByTagName("antsinker");
 		NodeList foodstrg = doc.getElementsByTagName("foodstorage");
 		NodeList anthill = doc.getElementsByTagName("anthill");
 

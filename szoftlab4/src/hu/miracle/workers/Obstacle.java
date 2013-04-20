@@ -8,9 +8,10 @@ public class Obstacle extends BaseObject {
 	protected boolean solid;
 	protected boolean movable;
 
-	public Obstacle(Point position, Color color, int radius, boolean solid) {
+	public Obstacle(Point position, Color color, int radius, boolean solid, boolean movable) {
 		super(position, color, radius);
 		this.solid = solid;
+		this.movable = movable;
 	}
 
 	public boolean isSolid() {

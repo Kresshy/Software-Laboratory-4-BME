@@ -120,7 +120,7 @@ public class Main {
 				/* Hangya akadályelkerülése */
 				// Szituáció inicializálása
 				scene.getAnts().add(ant);
-				scene.getObstacles().add(new Obstacle(position, null, 10, true));
+				scene.getObstacles().add(new Obstacle(position, null, 10, true, false));
 				// Tick
 				logger.enable();
 				ant.handleTick();

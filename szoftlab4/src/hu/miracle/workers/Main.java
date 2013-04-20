@@ -185,15 +185,15 @@ public class Main {
 
 			case 15:
 
-//				try {
-//					xmlBuilder.writeXML(scene);
-//				} catch (JAXBException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				} catch (IOException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
+				// try {
+				// xmlBuilder.writeXML(scene);
+				// } catch (JAXBException e1) {
+				// // TODO Auto-generated catch block
+				// e1.printStackTrace();
+				// } catch (IOException e1) {
+				// // TODO Auto-generated catch block
+				// e1.printStackTrace();
+				// }
 
 				break;
 
@@ -202,20 +202,18 @@ public class Main {
 				try {
 					scene = xmlBuilder.readXML("scene.xml");
 				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					System.out.println("File not found");
+					// e1.printStackTrace();
 				} catch (SAXException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("Bad XML format");
+					// e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("I/O Exception ...");
+					// e.printStackTrace();
 				} catch (ParserConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("Bad XML format");
+					// e.printStackTrace();
 				}
-				
-				
 
 			default:
 				break;
@@ -236,17 +234,14 @@ public class Main {
 		int result = 0;
 		boolean success = false;
 		// Menüpontok
-		String menu[] = { "Hangya mozgasa", "Hangya etelfelvetele",
-				"Hangya mereg altali pusztulasa", "Hangyaszsun mozgasa", "Hangyairto spray fujasa",
-				"Szagtalanito spray fujasa", "Idozito tick", "Hangya akadalyelkerulese",
-				"Hangya hangyalesobe lepese", "Jatek szuneteltetese", "Jatek folytatasa",
-				"Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes", "Scene to XML",
+		String menu[] = { "Hangya mozgasa", "Hangya etelfelvetele", "Hangya mereg altali pusztulasa", "Hangyaszsun mozgasa",
+				"Hangyairto spray fujasa", "Szagtalanito spray fujasa", "Idozito tick", "Hangya akadalyelkerulese", "Hangya hangyalesobe lepese",
+				"Jatek szuneteltetese", "Jatek folytatasa", "Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes", "Scene to XML",
 				"XML to Scene" };
 		BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
 
 		// Menü kiírása
-		System.out
-				.println("\nSkeleton - MiracleWorkers (c) 2013\nValasszon az alabbi menupontok kozul:\n");
+		System.out.println("\nSkeleton - MiracleWorkers (c) 2013\nValasszon az alabbi menupontok kozul:\n");
 		for (int i = 0; i < menu.length; i++) {
 			String scenario = menu[i];
 			System.out.println(String.format("%2d. %s", i + 1, scenario));

@@ -16,6 +16,9 @@
 			<solid>true</solid>
 			<movable>true</movable>
 		</obstacle>
+		<antsinker>
+			<position x="10" y="10" />
+		</antsinker>
 	</obstacles>
 	<storages>
 		<foodstorage>
@@ -23,5 +26,10 @@
 			<capacity>15</capacity>
 			<packet>1</packet>
 		</foodstorage>
+		<anthill>
+			<position x="10" y="10" />
+			<amount>10</amount>
+			<packet>1</packet>
+		</anthill>
 	</storages>
 </scene>

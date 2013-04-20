@@ -99,14 +99,6 @@ public class XMLBuilder {
 		Document doc = db.parse(new InputSource(new FileInputStream(new File(path))));
 		doc.getDocumentElement().normalize();
 
-		// NodeList sceneRootElement = doc.getElementsByTagName("scene");
-
-		// ez itt baromsag soha ne csinaljatok ilyet mert csak egy root element
-		// van nincs tobb xDs
-		// Element creaturesElement = (Element) sceneRootElement.item(0);
-		// Element obstaclesElement = (Element) sceneRootElement.item(1);
-		// Element storagesElement = (Element) sceneRootElement.item(2);
-
 		NodeList creature;
 		NodeList obstacle;
 		NodeList antsinker;
@@ -146,28 +138,36 @@ public class XMLBuilder {
 		Scene scene = new Scene();
 		if (creature != null) {
 			for (int i = 0; i < creature.getLength(); i++) {
-
+				
 				logToConsole("AntEater found...");
 				Element element = (Element) creature.item(i);
-				int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
-				logToConsole("x: " + x);
-				int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
-				logToConsole("y: " + y);
-				Point point = new Point(x, y);
 
-				AntEater ae = new AntEater(point, scene);
+				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("hunger").item(0) != null
+						&& element.getElementsByTagName("wait").item(0) != null) {
 
-				int hunger = Integer.parseInt(((Element) element.getElementsByTagName("hunger").item(0)).getTextContent());
-				logToConsole("hunger: " + hunger);
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					logToConsole("x: " + x);
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					logToConsole("y: " + y);
 
-				int wait = Integer.parseInt(((Element) element.getElementsByTagName("wait").item(0)).getTextContent());
-				logToConsole("wait: " + wait);
+					Point point = new Point(x, y);
 
-				ae.setHunger(hunger);
-				ae.setWait(wait);
-				logToConsole("Add AntEater");
-				scene.getCreatures().add(ae);
+					AntEater ae = new AntEater(point, scene);
 
+					int hunger = Integer.parseInt(((Element) element.getElementsByTagName("hunger").item(0)).getTextContent());
+					logToConsole("hunger: " + hunger);
+
+					int wait = Integer.parseInt(((Element) element.getElementsByTagName("wait").item(0)).getTextContent());
+					logToConsole("wait: " + wait);
+
+					ae.setHunger(hunger);
+					ae.setWait(wait);
+					logToConsole("Add AntEater");
+					scene.getCreatures().add(ae);
+
+				} else {
+					System.out.println("Cannot create object, fields are missing! Check XML format!");
+				}
 			}
 		}
 
@@ -176,52 +176,61 @@ public class XMLBuilder {
 
 				logToConsole("Obstacle found...");
 				Element element = (Element) obstacle.item(i);
-				int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
-				logToConsole("x: " + x);
-				int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
-				logToConsole("y: " + y);
-				Point point = new Point(x, y);
 
-				String color = ((Element) element.getElementsByTagName("color").item(0)).getTextContent();
-				logToConsole("Color: " + color);
+				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("radius").item(0) != null
+						&& element.getElementsByTagName("color").item(0) != null && element.getElementsByTagName("solid").item(0) != null
+						&& element.getElementsByTagName("movable").item(0) != null) {
 
-				Color clr = Color.white;
-				if (color.equals("red"))
-					clr = Color.red;
-				else if (color.equals("black"))
-					clr = Color.black;
-				else if (color.equals("green"))
-					clr = Color.green;
-				else if (color.equals("blue"))
-					clr = Color.blue;
-				else if (color.equals("yellow"))
-					clr = Color.yellow;
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					logToConsole("x: " + x);
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					logToConsole("y: " + y);
+					Point point = new Point(x, y);
 
-				int radius = Integer.parseInt(((Element) element.getElementsByTagName("radius").item(0)).getTextContent());
+					String color = ((Element) element.getElementsByTagName("color").item(0)).getTextContent();
+					logToConsole("Color: " + color);
 
-				logToConsole("radius: " + radius);
+					Color clr = Color.white;
+					if (color.equals("red"))
+						clr = Color.red;
+					else if (color.equals("black"))
+						clr = Color.black;
+					else if (color.equals("green"))
+						clr = Color.green;
+					else if (color.equals("blue"))
+						clr = Color.blue;
+					else if (color.equals("yellow"))
+						clr = Color.yellow;
 
-				String solid = ((Element) element.getElementsByTagName("solid").item(0)).getTextContent();
-				String movable = ((Element) element.getElementsByTagName("movable").item(0)).getTextContent();
+					int radius = Integer.parseInt(((Element) element.getElementsByTagName("radius").item(0)).getTextContent());
 
-				logToConsole("solid: " + solid + ", movable: " + movable);
+					logToConsole("radius: " + radius);
 
-				boolean sld;
-				boolean mvbl;
+					String solid = ((Element) element.getElementsByTagName("solid").item(0)).getTextContent();
+					String movable = ((Element) element.getElementsByTagName("movable").item(0)).getTextContent();
 
-				if (solid.equals("true"))
-					sld = true;
-				else
-					sld = false;
+					logToConsole("solid: " + solid + ", movable: " + movable);
 
-				if (movable.equals("true"))
-					mvbl = true;
-				else
-					mvbl = false;
+					boolean sld;
+					boolean mvbl;
 
-				logToConsole("Add Obstacle");
-				Obstacle ob = new Obstacle(point, clr, radius, sld, mvbl);
-				scene.getObstacles().add(ob);
+					if (solid.equals("true"))
+						sld = true;
+					else
+						sld = false;
+
+					if (movable.equals("true"))
+						mvbl = true;
+					else
+						mvbl = false;
+
+					logToConsole("Add Obstacle");
+					Obstacle ob = new Obstacle(point, clr, radius, sld, mvbl);
+					scene.getObstacles().add(ob);
+
+				} else {
+					System.out.println("Cannot create object, fields are missing! Check XML format!");
+				}
 			}
 		}
 
@@ -230,17 +239,24 @@ public class XMLBuilder {
 
 				logToConsole("AntSinker found...");
 				Element element = (Element) antsinker.item(i);
-				int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
-				logToConsole("x: " + x);
 
-				int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
-				logToConsole("y: " + y);
+				if (element.getElementsByTagName("position").item(0) != null) {
 
-				Point point = new Point(x, y);
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					logToConsole("x: " + x);
 
-				logToConsole("Add AntSinker");
-				AntSinker as = new AntSinker(point);
-				scene.getObstacles().add(as);
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					logToConsole("y: " + y);
+
+					Point point = new Point(x, y);
+
+					logToConsole("Add AntSinker");
+					AntSinker as = new AntSinker(point);
+					scene.getObstacles().add(as);
+
+				} else {
+					System.out.println("Cannot create object, fields are missing! Check XML format!");
+				}
 
 			}
 		}
@@ -251,23 +267,30 @@ public class XMLBuilder {
 				logToConsole("FoodStorage found...");
 				Element element = (Element) foodstrg.item(i);
 
-				int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
-				logToConsole("x: " + x);
+				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("capacity").item(0) != null
+						&& element.getElementsByTagName("packet").item(0) != null) {
 
-				int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
-				logToConsole("y: " + y);
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					logToConsole("x: " + x);
 
-				Point point = new Point(x, y);
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					logToConsole("y: " + y);
 
-				int capacity = Integer.parseInt(((Element) element.getElementsByTagName("capacity").item(0)).getTextContent());
-				logToConsole("capacity: " + capacity);
+					Point point = new Point(x, y);
 
-				int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet").item(0)).getTextContent());
-				logToConsole("packet: " + packet);
+					int capacity = Integer.parseInt(((Element) element.getElementsByTagName("capacity").item(0)).getTextContent());
+					logToConsole("capacity: " + capacity);
 
-				logToConsole("Add FoodStorage...");
-				FoodStorage fs = new FoodStorage(point, capacity, packet);
-				scene.getStorages().add(fs);
+					int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet").item(0)).getTextContent());
+					logToConsole("packet: " + packet);
+
+					logToConsole("Add FoodStorage...");
+					FoodStorage fs = new FoodStorage(point, capacity, packet);
+					scene.getStorages().add(fs);
+
+				} else {
+					System.out.println("Cannot create object, fields are missing! Check XML format!");
+				}
 
 			}
 		}
@@ -277,23 +300,31 @@ public class XMLBuilder {
 
 				logToConsole("AntHill found...");
 				Element element = (Element) anthill.item(i);
-				int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
-				logToConsole("x: " + x);
 
-				int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
-				logToConsole("y: " + y);
+				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("amount").item(0) != null
+						&& element.getElementsByTagName("packet").item(0) != null) {
 
-				Point point = new Point(x, y);
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					logToConsole("x: " + x);
 
-				int amount = Integer.parseInt(((Element) element.getElementsByTagName("amount").item(0)).getTextContent());
-				logToConsole("amount: " + amount);
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					logToConsole("y: " + y);
 
-				int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet").item(0)).getTextContent());
-				logToConsole("packet: " + packet);
+					Point point = new Point(x, y);
 
-				logToConsole("Add AntHill");
-				AntHill ah = new AntHill(point, scene, amount, packet);
-				scene.getStorages().add(ah);
+					int amount = Integer.parseInt(((Element) element.getElementsByTagName("amount").item(0)).getTextContent());
+					logToConsole("amount: " + amount);
+
+					int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet").item(0)).getTextContent());
+					logToConsole("packet: " + packet);
+
+					logToConsole("Add AntHill");
+					AntHill ah = new AntHill(point, scene, amount, packet);
+					scene.getStorages().add(ah);
+
+				} else {
+					System.out.println("Cannot create object, fields are missing! Check XML format!");
+				}
 
 			}
 		}

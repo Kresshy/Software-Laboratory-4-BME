@@ -58,6 +58,11 @@ public class AntEater extends Creature {
 			}
 		}
 
+		if (timeout > 0) {
+			// Hátralévő idő csökkentése
+			timeout--;
+		}
+
 		CallLogger.getLogger().exiting();
 	}
 

@@ -6,39 +6,19 @@ import java.util.List;
 
 public class Game {
 
-	public static class Highscore implements Comparable<Highscore> {
-		public int score;
-		public String name;
-
-		public Highscore(String name, int score) {
-			this.name = name;
-			this.score = score;
-		}
-
-		@Override
-		public int compareTo(Highscore o) {
-			if (score == o.score)
-				return 0;
-			else if (score > o.score)
-				return 1;
-			else
-				return -1;
-		}
-	}
-
 	private static final int highscoresize = 10;
 	private static final String path = "savegame.dat";
 
 	private Scene scene;
 	private Timer timer;
 	private int difficulty;
-	private List<Highscore> highscores;
+	private List<HighScore> highscores;
 
 	public Game(Scene scene, Timer timer) {
 		this.scene = scene;
 		this.timer = timer;
 		this.timer.setGame(this);
-		this.highscores = new ArrayList<Highscore>();
+		this.highscores = new ArrayList<HighScore>();
 	}
 
 	public Scene getScene() {
@@ -97,10 +77,11 @@ public class Game {
 		CallLogger.getLogger().entering(this, "addHighscore");
 
 		// Highscore hozzáadása
-		highscores.add(new Highscore(name, score));
+		highscores.add(new HighScore(name, score));
 		// Rendezés és a legjobb elemek kiválasztása
 		Collections.sort(highscores, Collections.reverseOrder());
-		highscores = highscores.subList(0, (highscores.size() < highscoresize) ? highscores.size() : highscoresize);
+		highscores = highscores.subList(0, (highscores.size() < highscoresize) ? highscores.size()
+				: highscoresize);
 
 		CallLogger.getLogger().exiting();
 	}

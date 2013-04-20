@@ -6,6 +6,7 @@ import java.awt.Point;
 public class Obstacle extends BaseObject {
 
 	protected boolean solid;
+	protected boolean movable;
 
 	public Obstacle(Point position, Color color, int radius, boolean solid) {
 		super(position, color, radius);
@@ -30,9 +31,13 @@ public class Obstacle extends BaseObject {
 		return false;
 	}
 
+	public boolean isMovable() {
+		return movable;
+	}
+
 	public void handleTick() {
 		CallLogger.getLogger().entering(this, "handleTick");
-		
+
 		// Dummy default implementáció
 
 		CallLogger.getLogger().exiting();
@@ -40,10 +45,9 @@ public class Obstacle extends BaseObject {
 
 	public void interact(Creature creature) {
 		CallLogger.getLogger().entering(this, "interact");
-		
+
 		// Dummy default implementáció
 
 		CallLogger.getLogger().exiting();
 	}
-
 }

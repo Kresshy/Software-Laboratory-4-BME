@@ -2,7 +2,6 @@ package hu.miracle.workers;
 
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Point;
 
 public abstract class BaseObject {
 

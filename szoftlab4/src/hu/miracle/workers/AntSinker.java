@@ -18,7 +18,7 @@ public class AntSinker extends Obstacle {
 		CallLogger.getLogger().exiting();
 	}
 	public String toString(){
-		return String.format("AntSinker %%d < position = (%d,%d), radius = %d>", position.getX(), position.getY(),radius);
+		return String.format("AntSinker %%d < position = (%d,%d), radius = %d >", position.getX(), position.getY(),radius);
 	}
 
 }

@@ -26,5 +26,8 @@ public class AntHill extends Storage {
 
 		CallLogger.getLogger().exiting();
 	}
+	public String toString(){
+		return String.format("AntHill %%d < position = (%d,%d), amount = %d, capacity = %d, packet = %d >", position.getX(), position.getY(),amount,capacity,packet);
+	}
 
 }

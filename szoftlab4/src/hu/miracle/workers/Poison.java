@@ -44,5 +44,8 @@ public class Poison extends Obstacle {
 		// Eltakaríthatóság visszaadása
 		return (timeout <= 0);
 	}
+	public String toString(){
+		return String.format("Poison %%d < position = (%d,%d), radius = %d, timeout = %d >", position.getX(), position.getY(),radius,timeout);
+	}
 
 }

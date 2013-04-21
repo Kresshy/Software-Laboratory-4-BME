@@ -106,11 +106,13 @@ public class CommandParser {
 	}
 
 	public void poison(String[] args) {
-
+		Point point=new Point(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
+		game.getScene().placeObstacle(new Poison(point));
 	}
 
 	public void deodorize(String[] args) {
-
+		Point point=new Point(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
+		game.getScene().clearEffects(point);
 	}
 
 	public void start(String[] args) {

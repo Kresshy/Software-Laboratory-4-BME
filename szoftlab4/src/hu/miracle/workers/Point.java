@@ -15,7 +15,7 @@ public class Point {
 	}
 	
 	public int distance(Point p) {
-		return (int) Math.sqrt( Math.pow(p.x - x, 2) + Math.pow(p.y - y, 2) );
+		return (int) Math.sqrt(Math.pow(p.x - x, 2) + Math.pow(p.y - y, 2));
 		
 	}
 	

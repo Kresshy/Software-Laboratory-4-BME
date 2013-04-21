@@ -168,5 +168,8 @@ public class Ant extends Creature {
 
 		CallLogger.getLogger().exiting();
 	}
+	public String toString(){
+		return String.format("Ant %%d < position = (%d,%d), health = %d, cargo = %d, poisoned = %s >", position.getX(), position.getY(), health, cargo, poisoned ? "true" : "false");
+	}
 
 }

@@ -11,37 +11,28 @@ public class AntEater extends Creature {
 	private int wait;
 
 	public AntEater(Point position, Scene scene) {
-		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők meghatározása
+		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők
+													// meghatározása
 		this.wait = 20; // TODO: Kezdőérték meghatározása
 		this.hunger = 10; // TODO: Kezdőérték meghatározása
 		this.visible = true;
 	}
-	
-	
 
 	public int getHunger() {
 		return hunger;
 	}
 
-
-
 	public void setHunger(int hunger) {
 		this.hunger = hunger;
 	}
-
-
 
 	public int getWait() {
 		return wait;
 	}
 
-
-
 	public void setWait(int wait) {
 		this.wait = wait;
 	}
-
-
 
 	@Override
 	public void handleTick() {
@@ -96,6 +87,26 @@ public class AntEater extends Creature {
 	protected void routeAndMove() {
 		CallLogger.getLogger().entering(this, "routeAndMove");
 
+		List<Ant> ants = scene.getAnts();
+
+		for (Ant ant : ants) {
+			if (pointInRange(ant.getPosition())) {
+				ant.terminate();
+			}
+		}
+
+		List<Obstacle> obstacles = scene.getObstacles();
+
+		// TODO: ellenorizni ezt nem vagom hogy kene
+		for (Obstacle obstacle : obstacles) {
+			if (pointInRange(obstacle.getPosition())) {
+				if (obstacle.movable) {
+					obstacle.setPosition(new Point(getPosition().x + 1, getPosition().y));
+				}
+			}
+		}
+
+		setPosition(new Point(getPosition().x + 1, getPosition().y));
 		// TODO: Algoritmus kidolgozása
 
 		CallLogger.getLogger().exiting();

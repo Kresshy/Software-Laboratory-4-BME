@@ -151,16 +151,14 @@ public class XMLBuilder {
 
 					Point point = new Point(x, y);
 
-					AntEater ae = new AntEater(point, scene);
-
 					int hunger = Integer.parseInt(((Element) element.getElementsByTagName("hunger").item(0)).getTextContent());
 					logToConsole("hunger: " + hunger);
 
 					int wait = Integer.parseInt(((Element) element.getElementsByTagName("wait").item(0)).getTextContent());
 					logToConsole("wait: " + wait);
+					
+					AntEater ae = new AntEater(point, scene, wait, hunger);
 
-					ae.setHunger(hunger);
-					ae.setWait(wait);
 					logToConsole("Add AntEater");
 					scene.getCreatures().add(ae);
 

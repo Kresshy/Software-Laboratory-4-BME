@@ -26,7 +26,7 @@ public class Main {
 			Poison poison = new Poison(position);
 			AntSinker sinker = new AntSinker(position);
 			Ant ant = new Ant(position, scene, hill);
-			AntEater anteater = new AntEater(position, scene);
+			AntEater anteater = new AntEater(position, scene, 20, 10);
 
 			// Választott menüpont lekérdezése
 			int choice = showMenu();

@@ -1,4 +1,4 @@
-package hu.miracle.workers;
+﻿package hu.miracle.workers;
 
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -120,7 +120,7 @@ public class Main {
 				/* Hangya akadályelkerülése */
 				// Szituáció inicializálása
 				scene.getAnts().add(ant);
-				scene.getObstacles().add(new Obstacle(position, null, 10, true, false));
+				scene.getObstacles().add(new Obstacle(position, null, 10, true, true));
 				// Tick
 				logger.enable();
 				ant.handleTick();
@@ -202,8 +202,7 @@ public class Main {
 		BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
 
 		// Menü kiírása
-		System.out
-				.println("\nSkeleton - MiracleWorkers (c) 2013\nValasszon az alabbi menupontok kozul:\n");
+		System.out.println("\nSkeleton - MiracleWorkers (c) 2013\nValasszon az alabbi menupontok kozul:\n");
 		for (int i = 0; i < menu.length; i++) {
 			String scenario = menu[i];
 			System.out.println(String.format("%2d. %s", i + 1, scenario));

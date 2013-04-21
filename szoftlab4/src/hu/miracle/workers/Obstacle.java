@@ -1,4 +1,4 @@
-package hu.miracle.workers;
+﻿package hu.miracle.workers;
 
 import java.awt.Color;
 import java.awt.Point;

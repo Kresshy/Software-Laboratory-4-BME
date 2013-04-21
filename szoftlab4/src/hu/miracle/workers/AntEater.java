@@ -75,9 +75,30 @@ public class AntEater extends Creature {
 		return visible;
 	}
 
+	// TODO ezt át kell gondolni, meg behúzni a régi verziót
 	protected void routeAndMove() {
 		CallLogger.getLogger().entering(this, "routeAndMove");
 
+		List<Ant> ants = scene.getAnts();
+
+		for (Ant ant : ants) {
+			if (pointInRange(ant.getPosition())) {
+				ant.terminate();
+			}
+		}
+
+		List<Obstacle> obstacles = scene.getObstacles();
+
+		// TODO: ellenorizni ezt nem vagom hogy kene
+		for (Obstacle obstacle : obstacles) {
+			if (pointInRange(obstacle.getPosition())) {
+				if (obstacle.movable) {
+					obstacle.setPosition(new Point(getPosition().x + 1, getPosition().y));
+				}
+			}
+		}
+
+		setPosition(new Point(getPosition().x + 1, getPosition().y));
 		// TODO: Algoritmus kidolgozása
 
 		CallLogger.getLogger().exiting();

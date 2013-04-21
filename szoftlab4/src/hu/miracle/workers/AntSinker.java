@@ -1,4 +1,4 @@
-package hu.miracle.workers;
+﻿package hu.miracle.workers;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -6,9 +6,7 @@ import java.awt.Point;
 public class AntSinker extends Obstacle {
 
 	public AntSinker(Point position) {
-		super(position, Color.GRAY, 2, false, false); // TODO: Grafikus
-														// jellemzők
-														// meghatározása
+		super(position, Color.GRAY, 2, false, false); // TODO: Grafikus jellemzők meghatározása
 	}
 
 	@Override

@@ -1,7 +1,10 @@
-package hu.miracle.workers;
+﻿package hu.miracle.workers;
 
-public class HighScore implements Comparable<HighScore> {
+import java.io.Serializable;
 
+public class HighScore implements Comparable<HighScore>, Serializable {
+
+	private static final long serialVersionUID = 1L;
 	public int score;
 	public String name;
 

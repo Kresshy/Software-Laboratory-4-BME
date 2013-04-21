@@ -96,11 +96,11 @@ public class CommandParser {
 	public void init(String[] args) {
 
 		try {
-			
+
 			XMLBuilder builder = new XMLBuilder();
 			Scene scene = builder.readXML(args[0]);
 			game.setScene(scene);
-			
+
 		} catch (SAXException e) {
 			System.out.println("Bad XML format");
 			e.printStackTrace();
@@ -108,7 +108,8 @@ public class CommandParser {
 			System.out.println("IOException, no file found or something other thing...");
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
-			System.out.println("Cannot parse String as Integer please check the XML file for bad values or whitespaces");
+			System.out
+					.println("Cannot parse String as Integer please check the XML file for bad values or whitespaces");
 			e.printStackTrace();
 		}
 	}
@@ -118,7 +119,13 @@ public class CommandParser {
 	}
 
 	public void move(String[] args) {
-
+		Point point = new Point(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+		if (args[0].equals("ant")) {
+			game.getScene().getAnts().get(Integer.parseInt(args[1])).setPosition(point);
+		}
+		if (args[0].equals("anteater")) {
+			game.getScene().getCreatures().get(Integer.parseInt(args[1])).setPosition(point);
+		}
 	}
 
 	public void tick(String[] args) {
@@ -126,12 +133,12 @@ public class CommandParser {
 	}
 
 	public void poison(String[] args) {
-		Point point=new Point(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
+		Point point = new Point(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
 		game.getScene().placeObstacle(new Poison(point));
 	}
 
 	public void deodorize(String[] args) {
-		Point point=new Point(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
+		Point point = new Point(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
 		game.getScene().clearEffects(point);
 	}
 

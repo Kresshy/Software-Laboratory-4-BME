@@ -1,7 +1,6 @@
 package hu.miracle.workers;
 
 import java.awt.Color;
-import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

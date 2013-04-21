@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 public class CommandParser {
 
 	private Game game;
@@ -91,6 +95,22 @@ public class CommandParser {
 
 	public void init(String[] args) {
 
+		try {
+			
+			XMLBuilder builder = new XMLBuilder();
+			Scene scene = builder.readXML(args[0]);
+			game.setScene(scene);
+			
+		} catch (SAXException e) {
+			System.out.println("Bad XML format");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("IOException, no file found or something other thing...");
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			System.out.println("Cannot parse String as Integer please check the XML file for bad values or whitespaces");
+			e.printStackTrace();
+		}
 	}
 
 	public void status(String[] args) {
@@ -124,11 +144,11 @@ public class CommandParser {
 	}
 
 	public void toplist(String[] args) {
-
+		game.addHighscore(args[0], Integer.parseInt(args[1]));
 	}
 
 	public void difficulty(String[] args) {
-
+		game.setDifficulty(Integer.parseInt(args[0]));
 	}
 
 }

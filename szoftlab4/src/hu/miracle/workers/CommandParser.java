@@ -102,7 +102,7 @@ public class CommandParser {
 	}
 
 	public void tick(String[] args) {
-
+		game.getTimer().tick();
 	}
 
 	public void poison(String[] args) {
@@ -114,11 +114,11 @@ public class CommandParser {
 	}
 
 	public void start(String[] args) {
-
+		game.getTimer().start();
 	}
 
 	public void stop(String[] args) {
-
+		game.getTimer().stop();
 	}
 
 	public void toplist(String[] args) {

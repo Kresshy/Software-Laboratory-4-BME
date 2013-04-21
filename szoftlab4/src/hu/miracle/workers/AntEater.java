@@ -92,12 +92,12 @@ public class AntEater extends Creature {
 		for (Obstacle obstacle : obstacles) {
 			if (pointInRange(obstacle.getPosition())) {
 				if (obstacle.movable) {
-					obstacle.setPosition(new Point(getPosition().x + 1, getPosition().y));
+					obstacle.setPosition(new Point(obstacle.getPosition().getX() + 1, obstacle.getPosition().getY()));
 				}
 			}
 		}
 
-		setPosition(new Point(getPosition().x + 1, getPosition().y));
+		setPosition(new Point(getPosition().getX() + 1, getPosition().getY()));
 		// TODO: Algoritmus kidolgozása
 
 		CallLogger.getLogger().exiting();

@@ -84,6 +84,7 @@ public class AntEater extends Creature {
 		return visible;
 	}
 
+	// TODO ezt át kell gondolni, meg behúzni a régi verziót
 	protected void routeAndMove() {
 		CallLogger.getLogger().entering(this, "routeAndMove");
 

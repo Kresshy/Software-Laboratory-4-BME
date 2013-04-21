@@ -1,14 +1,34 @@
 package hu.miracle.workers;
 
-public class Timer {
+public class Timer implements Runnable{
 
 	private int interval;
 	private Game game;
-	private boolean enabled;
+	private boolean suspended;
 
 	public Timer(int interval) {
 		this.interval = interval;
-		this.enabled = true;
+		this.suspended = true;
+	}
+	
+	@Override
+	public void run() {
+		try {
+
+			while (true) {
+				synchronized (this) {
+					while (suspended) {
+						System.out.println("stop");
+						wait();
+					}
+				}
+				Thread.sleep(interval);
+				tick();
+			}
+
+		} catch (InterruptedException e) {
+			System.out.println("Timer Interrupted");
+		}
 	}
 
 	public Game getGame() {
@@ -53,7 +73,8 @@ public class Timer {
 		// Ha van játék ahova a tick-eket továbbítsuk
 		if (game != null) {
 			// Engedélyezés
-			enabled = true;
+			suspended = false;
+			notify();
 		}
 
 		CallLogger.getLogger().exiting();
@@ -63,8 +84,7 @@ public class Timer {
 		CallLogger.getLogger().entering(this, "stop");
 
 		// Letiltás
-		enabled = false;
-
+		suspended = true;
 		CallLogger.getLogger().exiting();
 	}
 
@@ -73,7 +93,9 @@ public class Timer {
 
 		// Tick delegálása
 		game.getScene().delegateTick();
+		System.out.println("tick");
 
 		CallLogger.getLogger().exiting();
 	}
+
 }

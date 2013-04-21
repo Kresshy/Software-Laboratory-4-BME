@@ -12,10 +12,13 @@ public class Main {
 		CallLogger logger = CallLogger.getLogger();
 		logger.disable();
 
+		Timer timer = new Timer(1000);
+		Thread timerThread = new Thread(timer);
+		timerThread.start();
+
 		while (true) {
 
 			Scene scene = new Scene();
-			Timer timer = new Timer(1000);
 			Game game = new Game(scene, timer);
 
 			// Inicializálás
@@ -193,11 +196,9 @@ public class Main {
 		int result = 0;
 		boolean success = false;
 		// Menüpontok
-		String menu[] = { "Hangya mozgasa", "Hangya etelfelvetele",
-				"Hangya mereg altali pusztulasa", "Hangyaszsun mozgasa", "Hangyairto spray fujasa",
-				"Szagtalanito spray fujasa", "Idozito tick", "Hangya akadalyelkerulese",
-				"Hangya hangyalesobe lepese", "Jatek szuneteltetese", "Jatek folytatasa",
-				"Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes" };
+		String menu[] = { "Hangya mozgasa", "Hangya etelfelvetele", "Hangya mereg altali pusztulasa", "Hangyaszsun mozgasa",
+				"Hangyairto spray fujasa", "Szagtalanito spray fujasa", "Idozito tick", "Hangya akadalyelkerulese", "Hangya hangyalesobe lepese",
+				"Jatek szuneteltetese", "Jatek folytatasa", "Jatek nehezsegenek beallitasa", "Toplistara kerules", "Kilepes" };
 		BufferedReader bfread = new BufferedReader(new InputStreamReader(System.in));
 
 		// Menü kiírása

@@ -1,6 +1,7 @@
 ﻿package hu.miracle.workers;
 
 import java.awt.Color;
+import java.awt.Point;
 
 public class AntSinker extends Obstacle {
 
@@ -16,6 +17,9 @@ public class AntSinker extends Obstacle {
 		creature.terminate();
 
 		CallLogger.getLogger().exiting();
+	}
+	public String toString(){
+		return String.format("AntSinker %%d < position = (%d,%d), radius = %d>", position.getX(), position.getY(),radius);
 	}
 
 }

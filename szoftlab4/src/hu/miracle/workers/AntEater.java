@@ -1,6 +1,7 @@
 package hu.miracle.workers;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.util.List;
 
 public class AntEater extends Creature {
@@ -101,5 +102,8 @@ public class AntEater extends Creature {
 		// TODO: Algoritmus kidolgozása
 
 		CallLogger.getLogger().exiting();
+	}
+	public String toString(){
+		return String.format("AntEater %%d < position = (%d,%d)>", position.getX(), position.getY());
 	}
 }

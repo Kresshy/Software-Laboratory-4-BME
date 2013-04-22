@@ -170,14 +170,17 @@ public class CommandParser {
 
 	public void poison(String[] args) {
 		try {
-			int x = Integer.parseInt(args[0]);
-			int y = Integer.parseInt(args[1]);
-			Point point = new Point(x, y);
-			Poison poison = new Poison(point);
-			game.getScene().placeObstacle(poison);
-			int idx = game.getScene().getObstacles().indexOf(poison);
-			System.out.println(String.format("Poison %d deployed.", idx));
-			// System.out.println(String.format(poison.toString(), idx));
+			if(args.length >= 2){
+				int x = Integer.parseInt(args[0]);
+				int y = Integer.parseInt(args[1]);
+				Point point = new Point(x, y);
+				Poison poison = new Poison(point);
+				game.getScene().placeObstacle(poison);
+				int idx = game.getScene().getObstacles().indexOf(poison);
+				System.out.println(String.format("Poison %d deployed.", idx));
+				// System.out.println(String.format(poison.toString(), idx));
+			}
+			else System.out.println("Missing parameter(s)!");
 		} catch (NumberFormatException e) {
 			System.out.println("Hibas parameter!");
 		}
@@ -185,11 +188,14 @@ public class CommandParser {
 
 	public void deodorize(String[] args) {
 		try {
-			int x = Integer.parseInt(args[0]);
-			int y = Integer.parseInt(args[1]);
-			Point point = new Point(x, y);
-			game.getScene().clearEffects(point);
-			System.out.println("Deodorizer deployed.");
+			if(args.length >= 2){
+				int x = Integer.parseInt(args[0]);
+				int y = Integer.parseInt(args[1]);
+				Point point = new Point(x, y);
+				game.getScene().clearEffects(point);
+				System.out.println("Deodorizer deployed.");
+			}
+			else System.out.println("Missing parameter(s)!");
 		} catch (NumberFormatException e) {
 			System.out.println("Hibas parameter!");
 		}
@@ -213,10 +219,13 @@ public class CommandParser {
 
 	public void toplist(String[] args) {
 		try {
+			if (args.length >= 2){
 			String name = args[0];
-			int score = Integer.parseInt(args[1]);
-			game.addHighscore(name, score);
-			System.out.println("Highscore added.");
+				int score = Integer.parseInt(args[1]);
+				game.addHighscore(name, score);
+				System.out.println("Highscore added.");
+			}
+			else System.out.println("Missing parameter(s)!");
 		} catch (NumberFormatException e) {
 			System.out.println("Hibas parameter!");
 		}

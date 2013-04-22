@@ -80,7 +80,7 @@ public class AntEater extends Creature {
 		// TODO: ellenorizni ezt nem vagom hogy kene
 		for (Obstacle obstacle : obstacles) {
 			if (pointInRange(obstacle.getPosition())) {
-				if (obstacle.isMovable(Direction.RIGHT)) {
+				if (obstacle.isMovable(Direction.RIGHT, 2)) {
 					obstacle.moveToDirection(Direction.RIGHT);
 				}
 			}

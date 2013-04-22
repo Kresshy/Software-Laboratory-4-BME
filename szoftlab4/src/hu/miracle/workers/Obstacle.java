@@ -3,6 +3,7 @@
 import hu.miracle.workers.Point.Direction;
 
 import java.awt.Color;
+import java.util.List;
 
 public class Obstacle extends BaseObject {
 
@@ -35,13 +36,32 @@ public class Obstacle extends BaseObject {
 		return false;
 	}
 
-	public boolean isMovable(Direction dir) {
-		
+	public boolean isMovable(Direction dir, int deep) {
+
+		if (deep < 0)
+			return false;
+
+		deep--;
+
+		List<Obstacle> obstacles = scene.getObstacles();
+
+		for (Obstacle obstacle : obstacles) {
+			if (obstacle != this && obstacle.pointInRange(getPosition())) {
+				if (getPosition().direction(obstacle.getPosition()) == Direction.RIGHT
+						|| getPosition().direction(obstacle.getPosition()) == Direction.TOP_RIGHT
+						|| getPosition().direction(obstacle.getPosition()) == Direction.BOTTOM_RIGHT && getPosition() != obstacle.getPosition()) {
+					if (obstacle.isMovable(Direction.RIGHT, deep)) {
+						return movable;
+					}
+				}
+			}
+		}
+
 		return movable;
 	}
-	
+
 	public void moveToDirection(Direction dir) {
-		
+		setPosition(new Point(getPosition().getX() + 1, getPosition().getY()));
 	}
 
 	public void handleTick() {
@@ -56,15 +76,13 @@ public class Obstacle extends BaseObject {
 		CallLogger.getLogger().entering(this, "interact");
 
 		// Dummy default implementáció
-		
 
 		CallLogger.getLogger().exiting();
 	}
 
 	public String toString() {
-		return String.format(
-				"Obstacle %%d < position = %s, radius = %d, solid = %s, movable = %s >", position,
-				radius, String.valueOf(solid), String.valueOf(movable));
+		return String.format("Obstacle %%d < position = %s, radius = %d, solid = %s, movable = %s >", position, radius, String.valueOf(solid),
+				String.valueOf(movable));
 
 	}
 }

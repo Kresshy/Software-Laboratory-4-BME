@@ -87,9 +87,10 @@ public class Timer implements Runnable{
 	protected void tick() {
 		CallLogger.getLogger().entering(this, "tick");
 
+		// FIXME: Kimenet eltávolítása
+		System.out.println("-------------------- Tick --------------------");		
 		// Tick delegálása
 		game.getScene().delegateTick();
-		System.out.println("tick");
 
 		CallLogger.getLogger().exiting();
 	}

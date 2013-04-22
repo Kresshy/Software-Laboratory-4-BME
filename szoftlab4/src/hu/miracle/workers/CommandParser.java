@@ -26,6 +26,7 @@ public class CommandParser {
 		// Parancsbeolvasás
 		String line = "";
 		try {
+			out.print("> ");
 			line = in.readLine();
 		} catch (IOException e) {
 			// Sikertelen beolvasásnál kilépés
@@ -96,35 +97,54 @@ public class CommandParser {
 	public void init(String[] args) {
 
 		try {
-
+			String filename = args[0];
 			XMLBuilder builder = new XMLBuilder();
-			Scene scene = builder.readXML(args[0]);
+			Scene scene = builder.readXML(filename);
 			game.setScene(scene);
-
-		} catch (SAXException e) {
-			System.out.println("Bad XML format");
-			e.printStackTrace();
+			status(null);
 		} catch (IOException e) {
-			System.out.println("IOException, no file found or something other thing...");
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			System.out
-					.println("Cannot parse String as Integer please check the XML file for bad values or whitespaces");
-			e.printStackTrace();
+			System.out.println("Fajl nem olvashato!");
+		} catch (Exception e) {
+			System.out.println("Hibas XML fajl!");
 		}
 	}
 
 	public void status(String[] args) {
-
+		for (int i = 0; i < game.getScene().getAnts().size(); i++) {
+			Ant ant = game.getScene().getAnts().get(i);
+			System.out.println(String.format(ant.toString(), i));
+		}
+		for (int i = 0; i < game.getScene().getCreatures().size(); i++) {
+			Creature creature = game.getScene().getCreatures().get(i);
+			System.out.println(String.format(creature.toString(), i));
+		}
+		for (int i = 0; i < game.getScene().getStorages().size(); i++) {
+			Storage storage = game.getScene().getStorages().get(i);
+			System.out.println(String.format(storage.toString(), i));
+		}
+		for (int i = 0; i < game.getScene().getObstacles().size(); i++) {
+			Obstacle obstacle = game.getScene().getObstacles().get(i);
+			System.out.println(String.format(obstacle.toString(), i));
+		}
 	}
 
 	public void move(String[] args) {
-		Point point = new Point(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
-		if (args[0].equals("ant")) {
-			game.getScene().getAnts().get(Integer.parseInt(args[1])).setPosition(point);
-		}
-		if (args[0].equals("anteater")) {
-			game.getScene().getCreatures().get(Integer.parseInt(args[1])).setPosition(point);
+		try {
+			String type = args[0];
+			int id = Integer.parseInt(args[1]);
+			int x = Integer.parseInt(args[2]);
+			int y = Integer.parseInt(args[3]);
+			Point point = new Point(x, y);
+			if (type.equals("ant"))
+				game.getScene().getAnts().get(id).setPosition(point);
+			else if (type.equals("anteater"))
+				game.getScene().getCreatures().get(id).setPosition(point);
+			else
+				System.out.println("Hibas eloleny tipus!");
+		} catch (NumberFormatException e) {
+			System.out.println("Hibas parameter!");
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("Nem letezo eloleny!");
 		}
 	}
 
@@ -133,17 +153,39 @@ public class CommandParser {
 	}
 
 	public void poison(String[] args) {
-		Point point = new Point(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-		game.getScene().placeObstacle(new Poison(point));
+		try {
+			int x = Integer.parseInt(args[0]);
+			int y = Integer.parseInt(args[1]);
+			Point point = new Point(x, y);
+			Poison poison = new Poison(point);
+			game.getScene().placeObstacle(poison);
+			System.out.println(String.format("Poison %d deployed.", game.getScene().getObstacles()
+					.indexOf(poison)));
+		} catch (NumberFormatException e) {
+			System.out.println("Hibas parameter!");
+		}
 	}
 
 	public void deodorize(String[] args) {
-		Point point = new Point(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-		game.getScene().clearEffects(point);
+		try {
+			int x = Integer.parseInt(args[0]);
+			int y = Integer.parseInt(args[1]);
+			Point point = new Point(x, y);
+			game.getScene().clearEffects(point);
+			System.out.println("Deodorizer deployed.");
+		} catch (NumberFormatException e) {
+			System.out.println("Hibas parameter!");
+		}
 	}
 
 	public void start(String[] args) {
-		game.getTimer().start();
+		try {
+			int interval = Integer.parseInt(args[0]);
+			game.getTimer().setInterval(interval);
+			game.getTimer().start();
+		} catch (NumberFormatException e) {
+			System.out.println("Hibas parameter!");
+		}
 	}
 
 	public void stop(String[] args) {
@@ -151,11 +193,23 @@ public class CommandParser {
 	}
 
 	public void toplist(String[] args) {
-		game.addHighscore(args[0], Integer.parseInt(args[1]));
+		try {
+			String name = args[0];
+			int score = Integer.parseInt(args[1]);
+			game.addHighscore(name, score);
+			System.out.println("Highscore added.");
+		} catch (NumberFormatException e) {
+			System.out.println("Hibas parameter!");
+		}
 	}
 
 	public void difficulty(String[] args) {
-		game.setDifficulty(Integer.parseInt(args[0]));
+		try {
+			int difficulty = Integer.parseInt(args[0]);
+			game.setDifficulty(difficulty);
+		} catch (NumberFormatException e) {
+			System.out.println("Hibas parameter!");
+		}
 	}
 
 }

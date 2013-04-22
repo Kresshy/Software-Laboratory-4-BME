@@ -40,6 +40,8 @@ public class Scene {
 		Iterator<Obstacle> iobstacles = obstacles.iterator();
 		while (iobstacles.hasNext()) {
 			Obstacle obstacle = iobstacles.next();
+			// FIXME: Kimenet eltávolítása
+			System.out.println(String.format("Poison %d evaporated.", getObstacles().indexOf(obstacle)));
 			// Ha szemét
 			if (obstacle.isDebris()) {
 				// Eltávolítás

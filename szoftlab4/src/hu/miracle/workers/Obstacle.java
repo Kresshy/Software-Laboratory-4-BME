@@ -50,10 +50,11 @@ public class Obstacle extends BaseObject {
 
 		CallLogger.getLogger().exiting();
 	}
-	public String toString(){
+
+	public String toString() {
 		return String.format(
-				"Obstacle %%d < position = (%d,%d), radius = %d, solid = %s, movable = %s >", position.getX(), 
-				position.getY(),radius,solid ? "true" : "false", movable ? "true" : "false");
-		
+				"Obstacle %%d < position = %s, radius = %d, solid = %s, movable = %s >", position,
+				radius, String.valueOf(solid), String.valueOf(movable));
+
 	}
 }

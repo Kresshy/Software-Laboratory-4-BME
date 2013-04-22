@@ -4,30 +4,26 @@ public class Timer implements Runnable{
 
 	private int interval;
 	private Game game;
-	private boolean suspended;
+	private boolean enabled;
 
 	public Timer(int interval) {
 		this.interval = interval;
-		this.suspended = true;
+		this.enabled = false;
 	}
 	
 	@Override
 	public void run() {
 		try {
-
 			while (true) {
 				synchronized (this) {
-					while (suspended) {
-						System.out.println("stop");
+					while (enabled) {
 						wait();
 					}
 				}
 				Thread.sleep(interval);
 				tick();
 			}
-
 		} catch (InterruptedException e) {
-			System.out.println("Timer Interrupted");
 		}
 	}
 
@@ -73,7 +69,7 @@ public class Timer implements Runnable{
 		// Ha van játék ahova a tick-eket továbbítsuk
 		if (game != null) {
 			// Engedélyezés
-			suspended = false;
+			enabled = true;
 			notify();
 		}
 
@@ -84,7 +80,7 @@ public class Timer implements Runnable{
 		CallLogger.getLogger().entering(this, "stop");
 
 		// Letiltás
-		suspended = true;
+		enabled = false;
 		CallLogger.getLogger().exiting();
 	}
 

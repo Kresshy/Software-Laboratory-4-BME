@@ -11,12 +11,11 @@ public class AntEater extends Creature {
 	private int timeout;
 
 	public AntEater(Point position, Scene scene, int wait, int hunger) {
-		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők
-													// meghatározása
-		this.wait = wait; // TODO: Kezdőérték meghatározása
-		this.hunger = hunger; // TODO: Kezdőérték meghatározása
-		this.visible = true;
-		this.timeout = 20;
+		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők meghatározása
+		this.wait = wait;
+		this.hunger = hunger;
+		this.visible = false;
+		this.timeout = wait;
 	}
 
 	@Override
@@ -40,26 +39,24 @@ public class AntEater extends Creature {
 						break;
 					}
 				}
+			} else {
+				visible = false;
+				timeout = wait;
 			}
 
 			// Mozgás
 			routeAndMove();
 		} else {
 			// Ha várakozik
-			if (wait > 0) {
+			if (timeout > 0) {
 				// Várakozási idő csökkentése
-				wait--;
+				timeout--;
 			} else {
 				// Belépési pont és irány meghatározása
 				// TODO: Algoritmus kidolgozása
 				// Megjelenés
 				visible = true;
 			}
-		}
-
-		if (timeout > 0) {
-			// Hátralévő idő csökkentése
-			timeout--;
 		}
 
 		CallLogger.getLogger().exiting();
@@ -80,19 +77,14 @@ public class AntEater extends Creature {
 
 		List<Ant> ants = scene.getAnts();
 
-		for (Ant ant : ants) {
-			if (pointInRange(ant.getPosition())) {
-				ant.terminate();
-			}
-		}
-
 		List<Obstacle> obstacles = scene.getObstacles();
 
 		// TODO: ellenorizni ezt nem vagom hogy kene
 		for (Obstacle obstacle : obstacles) {
 			if (pointInRange(obstacle.getPosition())) {
 				if (obstacle.movable) {
-					obstacle.setPosition(new Point(obstacle.getPosition().getX() + 1, obstacle.getPosition().getY()));
+					obstacle.setPosition(new Point(obstacle.getPosition().getX() + 1, obstacle
+							.getPosition().getY()));
 				}
 			}
 		}
@@ -102,7 +94,10 @@ public class AntEater extends Creature {
 
 		CallLogger.getLogger().exiting();
 	}
-	public String toString(){
-		return String.format("AntEater %%d < position = (%d,%d)>", position.getX(), position.getY());
+
+	public String toString() {
+		return String.format(
+				"AntEater %%d < position = %s, hunger = %d, timeout = %d, visible = %s >",
+				position, hunger, timeout, String.valueOf(visible));
 	}
 }

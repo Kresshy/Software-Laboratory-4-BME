@@ -12,11 +12,14 @@ public class FoodStorage extends Storage {
 		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Dummy default implementáció
-		
+
 		CallLogger.getLogger().exiting();
 	}
-	public String toString(){
-		return String.format("FoodStorage %%d < position = (%d,%d), amount = %d, capacity = %d, packet = %d >", position.getX(), position.getY(),amount,capacity,packet);
+
+	public String toString() {
+		return String.format(
+				"FoodStorage %%d < position = %s, amount = %d, capacity = %d, packet = %d >",
+				position, amount, capacity, packet);
 	}
 
 }

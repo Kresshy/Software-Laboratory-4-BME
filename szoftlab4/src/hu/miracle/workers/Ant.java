@@ -13,7 +13,8 @@ public class Ant extends Creature {
 	private Storage source;
 
 	public Ant(Point position, Scene scene, Storage home) {
-		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők meghatározása
+		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők
+												// meghatározása
 		this.home = home;
 		this.poisoned = false;
 		this.health = 2; // TODO: Kezdőérték meghatározása
@@ -168,8 +169,10 @@ public class Ant extends Creature {
 
 		CallLogger.getLogger().exiting();
 	}
-	public String toString(){
-		return String.format("Ant %%d < position = (%d,%d), health = %d, cargo = %d, poisoned = %s >", position.getX(), position.getY(), health, cargo, poisoned ? "true" : "false");
+
+	public String toString() {
+		return String.format("Ant %%d < position = %s, health = %d, cargo = %d, poisoned = %s >",
+				position, health, cargo, String.valueOf(poisoned));
 	}
 
 }

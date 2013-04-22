@@ -8,7 +8,7 @@ public class Poison extends Obstacle {
 
 	public Poison(Point position) {
 		super(position, Color.GREEN, 5, false, false);
-		this.timeout = 10;
+		this.timeout = 5;
 	}
 
 	@Override

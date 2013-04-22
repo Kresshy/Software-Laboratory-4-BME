@@ -14,6 +14,7 @@ public abstract class Storage extends BaseObject {
 		super(position, color, radius);
 		this.capacity = capacity;
 		this.amount = capacity;
+		this.packet = packet;
 		this.attractive = attractive;
 	}
 
@@ -21,7 +22,7 @@ public abstract class Storage extends BaseObject {
 		CallLogger.getLogger().entering(this, "getItems");
 
 		// Maximálisan kivehető elemek meghatározása
-		int count = Math.min(amount - packet, packet);
+		int count = Math.min(amount, packet);
 		// Tárolt elemek csökkentése
 		amount -= count;
 

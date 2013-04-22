@@ -40,10 +40,10 @@ public class Scene {
 		Iterator<Obstacle> iobstacles = obstacles.iterator();
 		while (iobstacles.hasNext()) {
 			Obstacle obstacle = iobstacles.next();
-			// FIXME: Kimenet eltávolítása
-			System.out.println(String.format("Poison %d evaporated.", getObstacles().indexOf(obstacle)));
 			// Ha szemét
 			if (obstacle.isDebris()) {
+				// FIXME: Kimenet eltávolítása
+				System.out.println(String.format("Poison %d evaporated.", getObstacles().indexOf(obstacle)));
 				// Eltávolítás
 				iobstacles.remove();
 			}
@@ -57,6 +57,17 @@ public class Scene {
 			if (entry.getValue().isDebris()) {
 				// Eltávolítás
 				ieffects.remove();
+			}
+		}
+		
+		// Minden hangyára
+		Iterator<Ant> iants = ants.iterator();
+		while (iants.hasNext()) {
+			Ant	ant = iants.next();
+			// Ha szemét
+			if (ant == null) {
+				// Eltávolítás
+				iants.remove();
 			}
 		}
 
@@ -87,12 +98,6 @@ public class Scene {
 		CallLogger.getLogger().entering(this, "delegateTick");
 
 		// Tick-kezelések
-		for (Ant ant : ants) {
-			ant.handleTick();
-		}
-		for (Creature creature : creatures) {
-			creature.handleTick();
-		}
 		for (Storage storage : storages) {
 			storage.handleTick();
 		}
@@ -101,6 +106,12 @@ public class Scene {
 		}
 		for (Effect effect : effects.values()) {
 			effect.handleTick();
+		}
+		for (Ant ant : ants) {
+			ant.handleTick();
+		}
+		for (Creature creature : creatures) {
+			creature.handleTick();
 		}
 		// Szemét eltakarítása
 		clearDebris();

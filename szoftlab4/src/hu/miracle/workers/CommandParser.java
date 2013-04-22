@@ -6,10 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
-
 public class CommandParser {
 
 	private Game game;
@@ -26,8 +22,11 @@ public class CommandParser {
 		// Parancsbeolvasás
 		String line = "";
 		try {
-			out.print("> ");
+			// out.print("> ");
+			// out.flush();
 			line = in.readLine();
+			if (line == null)
+				return false;
 		} catch (IOException e) {
 			// Sikertelen beolvasásnál kilépés
 			return false;
@@ -39,31 +38,31 @@ public class CommandParser {
 		String[] args = extractArgs(tokens);
 
 		// Parancsfuttatás
-		if (cmd == "init")
+		if (cmd.equals("init"))
 			init(args);
-		else if (cmd == "status")
+		else if (cmd.equals("status"))
 			status(args);
-		else if (cmd == "move")
+		else if (cmd.equals("move"))
 			move(args);
-		else if (cmd == "status")
+		else if (cmd.equals("status"))
 			status(args);
-		else if (cmd == "tick")
+		else if (cmd.equals("tick"))
 			tick(args);
-		else if (cmd == "poison")
+		else if (cmd.equals("poison"))
 			poison(args);
-		else if (cmd == "deodorize")
+		else if (cmd.equals("deodorize"))
 			deodorize(args);
-		else if (cmd == "start")
+		else if (cmd.equals("start"))
 			start(args);
-		else if (cmd == "stop")
+		else if (cmd.equals("stop"))
 			stop(args);
-		else if (cmd == "toplist")
+		else if (cmd.equals("toplist"))
 			toplist(args);
-		else if (cmd == "difficulty")
+		else if (cmd.equals("difficulty"))
 			difficulty(args);
-		else if (cmd == "exit")
+		else if (cmd.equals("exit"))
 			return false;
-		else
+		else if (cmd.length() > 0)
 			out.println("Ervenytelen parancs!");
 
 		return true;
@@ -97,9 +96,12 @@ public class CommandParser {
 	public void init(String[] args) {
 
 		try {
-			String filename = args[0];
-			XMLBuilder builder = new XMLBuilder();
-			Scene scene = builder.readXML(filename);
+			Scene scene = new Scene();
+			if (args.length > 0) {
+				String filename = args[0];
+				XMLBuilder builder = new XMLBuilder();
+				scene = builder.readXML(filename);
+			}
 			game.setScene(scene);
 			status(null);
 		} catch (IOException e) {
@@ -149,7 +151,21 @@ public class CommandParser {
 	}
 
 	public void tick(String[] args) {
-		game.getTimer().tick();
+		try {
+			int count = 1;
+			if (args.length > 0)
+				count = Integer.parseInt(args[0]);
+			for (; count > 0; --count) {
+				game.getTimer().tick();
+				status(null);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("Hibas parameter!");
+		}
 	}
 
 	public void poison(String[] args) {
@@ -159,8 +175,9 @@ public class CommandParser {
 			Point point = new Point(x, y);
 			Poison poison = new Poison(point);
 			game.getScene().placeObstacle(poison);
-			System.out.println(String.format("Poison %d deployed.", game.getScene().getObstacles()
-					.indexOf(poison)));
+			int idx = game.getScene().getObstacles().indexOf(poison);
+			System.out.println(String.format("Poison %d deployed.", idx));
+			// System.out.println(String.format(poison.toString(), idx));
 		} catch (NumberFormatException e) {
 			System.out.println("Hibas parameter!");
 		}
@@ -180,7 +197,9 @@ public class CommandParser {
 
 	public void start(String[] args) {
 		try {
-			int interval = Integer.parseInt(args[0]);
+			int interval = 1;
+			if (args.length > 0)
+				interval = Integer.parseInt(args[0]);
 			game.getTimer().setInterval(interval);
 			game.getTimer().start();
 		} catch (NumberFormatException e) {

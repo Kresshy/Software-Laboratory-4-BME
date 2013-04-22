@@ -13,11 +13,10 @@ public class Ant extends Creature {
 	private Storage source;
 
 	public Ant(Point position, Scene scene, Storage home) {
-		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők
-												// meghatározása
+		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők meghatározása
 		this.home = home;
 		this.poisoned = false;
-		this.health = 2; // TODO: Kezdőérték meghatározása
+		this.health = 3; // TODO: Kezdőérték meghatározása
 		this.cargo = 0;
 	}
 
@@ -25,17 +24,17 @@ public class Ant extends Creature {
 	public void handleTick() {
 		CallLogger.getLogger().entering(this, "handleTick");
 
+		// Ha meg van mérgezve
+		if (poisoned) {
+			// Élet csökkentése
+			health--;
+		}
+
 		// Ha elfogyott az élete
 		if (health <= 0) {
 			// Megsemmisítés
 			terminate();
 			return;
-		}
-
-		// Ha meg van mérgezve
-		if (poisoned) {
-			// Élet csökkentése
-			health--;
 		}
 
 		// Ételfelvétel
@@ -155,7 +154,7 @@ public class Ant extends Creature {
 	@Override
 	public void terminate() {
 		CallLogger.getLogger().entering(this, "terminate");
-		
+
 		// FIXME: Kimenet eltávolítása
 		System.out.println(String.format("Ant %d died.", scene.getAnts().indexOf(this)));
 
@@ -163,12 +162,14 @@ public class Ant extends Creature {
 		if (source != null) {
 			source.putItems(cargo);
 		}
-		
+
 		// Előkészítés respawnra.
 		home.putItems(1);
 
 		// Eltávolítás a scene-ből
-		scene.getAnts().remove(this);
+		// scene.getAnts().remove(this);
+		int i = scene.getAnts().indexOf(this);
+		scene.getAnts().set(i, null);
 
 		CallLogger.getLogger().exiting();
 	}

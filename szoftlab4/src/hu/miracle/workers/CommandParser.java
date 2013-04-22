@@ -180,7 +180,7 @@ public class CommandParser {
 				System.out.println(String.format("Poison %d deployed.", idx));
 				// System.out.println(String.format(poison.toString(), idx));
 			}
-			else System.out.println("Missing parameter(s)!");
+			else System.out.println("Hianyzo parameter(ek)!");
 		} catch (NumberFormatException e) {
 			System.out.println("Hibas parameter!");
 		}
@@ -195,7 +195,7 @@ public class CommandParser {
 				game.getScene().clearEffects(point);
 				System.out.println("Deodorizer deployed.");
 			}
-			else System.out.println("Missing parameter(s)!");
+			else System.out.println("Hianyzo parameter(ek)!");
 		} catch (NumberFormatException e) {
 			System.out.println("Hibas parameter!");
 		}
@@ -225,7 +225,7 @@ public class CommandParser {
 				game.addHighscore(name, score);
 				System.out.println("Highscore added.");
 			}
-			else System.out.println("Missing parameter(s)!");
+			else System.out.println("Hianyzo parameter(ek)!");
 		} catch (NumberFormatException e) {
 			System.out.println("Hibas parameter!");
 		}

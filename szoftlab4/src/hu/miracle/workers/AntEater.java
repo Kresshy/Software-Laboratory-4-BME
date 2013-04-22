@@ -1,5 +1,7 @@
 package hu.miracle.workers;
 
+import hu.miracle.workers.Point.Direction;
+
 import java.awt.Color;
 import java.util.List;
 
@@ -78,8 +80,8 @@ public class AntEater extends Creature {
 		// TODO: ellenorizni ezt nem vagom hogy kene
 		for (Obstacle obstacle : obstacles) {
 			if (pointInRange(obstacle.getPosition())) {
-				if (obstacle.movable) {
-					;
+				if (obstacle.isMovable(Direction.RIGHT)) {
+					obstacle.moveToDirection(Direction.RIGHT);
 				}
 			}
 		}

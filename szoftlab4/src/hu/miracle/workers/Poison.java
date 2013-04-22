@@ -6,8 +6,8 @@ public class Poison extends Obstacle {
 
 	private int timeout;
 
-	public Poison(Point position) {
-		super(position, Color.GREEN, 5, false, false);
+	public Poison(Scene scene, Point position) {
+		super(scene, position, Color.GREEN, 5, false, false);
 		this.timeout = 5;
 	}
 

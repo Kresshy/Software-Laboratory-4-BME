@@ -174,7 +174,7 @@ public class CommandParser {
 				int x = Integer.parseInt(args[0]);
 				int y = Integer.parseInt(args[1]);
 				Point point = new Point(x, y);
-				Poison poison = new Poison(point);
+				Poison poison = new Poison(game.getScene(), point);
 				game.getScene().placeObstacle(poison);
 				int idx = game.getScene().getObstacles().indexOf(poison);
 				System.out.println(String.format("Poison %d deployed.", idx));

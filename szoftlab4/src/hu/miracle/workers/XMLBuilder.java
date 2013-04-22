@@ -18,7 +18,7 @@ import org.xml.sax.SAXException;
 public class XMLBuilder {
 
 	// loggolas csak akkor tortenik ha ez a valtozo true -> D as debug
-	private boolean D = false;
+	private boolean D = true;
 
 	public XMLBuilder() {
 
@@ -207,7 +207,7 @@ public class XMLBuilder {
 					logToConsole("Add Obstacle");
 
 					// objektum hozzaadasa a szinterhez
-					Obstacle ob = new Obstacle(point, clr, radius, sld, mvbl);
+					Obstacle ob = new Obstacle(scene, point, clr, radius, sld, mvbl);
 					scene.getObstacles().add(ob);
 
 				} else {
@@ -240,7 +240,7 @@ public class XMLBuilder {
 					logToConsole("Add AntSinker");
 
 					// beolvasott objektum hozzadasa a szinterhez
-					AntSinker as = new AntSinker(point);
+					AntSinker as = new AntSinker(scene, point);
 					scene.getObstacles().add(as);
 
 				} else {

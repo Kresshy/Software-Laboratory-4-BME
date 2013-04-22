@@ -1,16 +1,20 @@
 ﻿package hu.miracle.workers;
 
+import hu.miracle.workers.Point.Direction;
+
 import java.awt.Color;
 
 public class Obstacle extends BaseObject {
 
 	protected boolean solid;
 	protected boolean movable;
+	protected Scene scene;
 
-	public Obstacle(Point position, Color color, int radius, boolean solid, boolean movable) {
+	public Obstacle(Scene scene, Point position, Color color, int radius, boolean solid, boolean movable) {
 		super(position, color, radius);
 		this.solid = solid;
 		this.movable = movable;
+		this.scene = scene;
 	}
 
 	public boolean isSolid() {
@@ -31,8 +35,13 @@ public class Obstacle extends BaseObject {
 		return false;
 	}
 
-	public boolean isMovable() {
+	public boolean isMovable(Direction dir) {
+		
 		return movable;
+	}
+	
+	public void moveToDirection(Direction dir) {
+		
 	}
 
 	public void handleTick() {
@@ -47,6 +56,7 @@ public class Obstacle extends BaseObject {
 		CallLogger.getLogger().entering(this, "interact");
 
 		// Dummy default implementáció
+		
 
 		CallLogger.getLogger().exiting();
 	}

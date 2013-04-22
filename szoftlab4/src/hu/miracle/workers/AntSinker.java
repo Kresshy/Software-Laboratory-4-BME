@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public class AntSinker extends Obstacle {
 
-	public AntSinker(Point position) {
-		super(position, Color.GRAY, 2, false, false); // TODO: Grafikus jellemzők meghatározása
+	public AntSinker(Scene scene, Point position) {
+		super(scene, position, Color.GRAY, 2, false, false); // TODO: Grafikus jellemzők meghatározása
 	}
 
 	@Override

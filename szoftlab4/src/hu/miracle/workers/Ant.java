@@ -1,5 +1,7 @@
 package hu.miracle.workers;
 
+import hu.miracle.workers.Point.Direction;
+
 import java.awt.Color;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +15,8 @@ public class Ant extends Creature {
 	private Storage source;
 
 	public Ant(Point position, Scene scene, Storage home) {
-		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők meghatározása
+		super(position, Color.BLACK, 1, scene); // TODO: Grafikus jellemzők
+												// meghatározása
 		this.home = home;
 		this.poisoned = false;
 		this.health = 3; // TODO: Kezdőérték meghatározása
@@ -74,31 +77,40 @@ public class Ant extends Creature {
 	protected void routeAndMove() {
 		CallLogger.getLogger().entering(this, "routeAndMove");
 
-		// // Céltároló kiválasztása
-		// Storage target = null;
-		// // Ha van rakomány
-		// if (cargo > 0) {
-		// // Célpont beállítása a szülőbolyra
-		// target = home;
-		// } else {
-		// // Legközelebbi vonzó tároló meghatározása
-		// // Minden tárolóra
-		// for (Storage storage : scene.getStorages()) {
-		// // Ha a tároló vonzza a hangyát és van benne étel
-		// if (storage.isAttractive() && storage.hasItems()) {
-		// // Ha még nincs célpont vagy az aktuális tároló közelebb van
-		// if (target == null
-		// || getPosition().distance(storage.getPosition()) < getPosition()
-		// .distance(target.getPosition())) {
-		// // Célpont beállítása a tárolóra
-		// target = storage;
-		// }
-		// }
-		// }
-		// }
+		// Céltároló kiválasztása
+		Storage target = null;
+		// Ha van rakomány
+		if (cargo > 0) {
+			// Célpont beállítása a szülőbolyra
+			target = home;
+		} else {
+			// Legközelebbi vonzó tároló meghatározása
+			// Minden tárolóra
+			for (Storage storage : scene.getStorages()) {
+				// Ha a tároló vonzza a hangyát és van benne étel
+				if (storage.isAttractive() && storage.hasItems()) {
+					// Ha még nincs célpont vagy az aktuális tároló közelebb van
+					if (target == null
+							|| getPosition().distance(storage.getPosition()) < getPosition()
+									.distance(target.getPosition())) {
+						// Célpont beállítása a tárolóra
+						target = storage;
+					}
+				}
+			}
+		}
 
-		// Új pozíció meghatározása
-		Point new_position = getPosition();
+		Direction new_direction;
+		Point new_position;
+		if (target != null) {
+			// Új pozíció meghatározása
+			new_direction = getPosition().direction(target.getPosition());
+			new_position = getPosition().step(new_direction, 1);
+			setPosition(new_position);
+		} else {
+			new_direction = Direction.RIGHT;
+			new_position = getPosition();
+		}
 		// TODO: Algoritmus kidolgozása
 
 		// Effectek figyelembe vétele az útválasztásnál
@@ -110,6 +122,10 @@ public class Ant extends Creature {
 		List<Obstacle> obstacles = scene.discoverObstacles(this);
 		for (Obstacle obstacle : obstacles) {
 			if (obstacle.isSolid()) {
+				// Az óramutató irányába elfordul
+				new_direction = Direction.values()[(new_direction.ordinal() + 1)
+						% Direction.values().length];
+				new_position = getPosition().step(new_direction, 1);
 			}
 		}
 		// TODO: Algoritmus kidolgozása

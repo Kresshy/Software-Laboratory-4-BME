@@ -2,7 +2,7 @@ package hu.miracle.workers;
 
 public class Point {
 
-	private static enum Direction {
+	public static enum Direction {
 		TOP_RIGHT, RIGHT, BOTTOM_RIGHT, BOTTOM_LEFT, LEFT, TOP_LEFT
 	}
 
@@ -100,7 +100,7 @@ public class Point {
 			else
 				sy = 1;
 			// Lépés az adott irányba
-			return new Point(sx, sy).step(dir, count - 1);
+			return new Point(x + sx, y + sy).step(dir, count - 1);
 		} else
 			return this;
 	}

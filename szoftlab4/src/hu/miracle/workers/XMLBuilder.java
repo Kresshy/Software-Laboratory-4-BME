@@ -305,7 +305,7 @@ public class XMLBuilder {
 
 				// csak akkor olvassuk be az objektumot ha megfeleloen ki van
 				// toltve minden mezoje
-				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("amount").item(0) != null
+				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("capacity").item(0) != null
 						&& element.getElementsByTagName("packet").item(0) != null) {
 
 					// koordinatak beolvasasa
@@ -318,8 +318,8 @@ public class XMLBuilder {
 					Point point = new Point(x, y);
 
 					// amount beolvasasa
-					int amount = Integer.parseInt(((Element) element.getElementsByTagName("amount").item(0)).getTextContent());
-					logToConsole("amount: " + amount);
+					int capacity = Integer.parseInt(((Element) element.getElementsByTagName("capacity").item(0)).getTextContent());
+					logToConsole("capacity: " + capacity);
 
 					// packet beolvasasa
 					int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet").item(0)).getTextContent());
@@ -328,7 +328,7 @@ public class XMLBuilder {
 					logToConsole("Add AntHill");
 
 					// beolvasott objektum hozza adasa a szinterhez
-					AntHill ah = new AntHill(point, scene, amount, packet);
+					AntHill ah = new AntHill(point, scene, capacity, packet);
 					scene.getStorages().add(ah);
 
 				} else {

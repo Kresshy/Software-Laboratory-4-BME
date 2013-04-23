@@ -31,7 +31,6 @@ public class XMLBuilder {
 
 	public Scene readXML(String path) throws SAXException, IOException, ParserConfigurationException {
 
-		// AZ XML FÁJL FELDOLGOZÁSA
 		// Letrehozunk egy uj document builder factory-t
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();

@@ -9,16 +9,14 @@ import java.util.Arrays;
 public class CommandParser {
 
 	private Game game;
+	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	private static PrintWriter out = new PrintWriter(System.out, true);
 
 	public CommandParser(Game game) {
 		this.game = game;
 	}
 
 	public boolean readAndRun() {
-		// Be- és kimenet inicializálása
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		PrintWriter out = new PrintWriter(System.out, true);
-
 		// Parancsbeolvasás
 		String line = "";
 		try {

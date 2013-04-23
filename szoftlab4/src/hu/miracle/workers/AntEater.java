@@ -76,17 +76,19 @@ public class AntEater extends Creature {
 	protected void routeAndMove() {
 		CallLogger.getLogger().entering(this, "routeAndMove");
 		
+		Direction new_direction = Direction.RIGHT;
+		Point new_position = getPosition().step(new_direction, 1);
+		
 		List<Obstacle> obstacles = scene.getObstacles();
-		// TODO: ellenorizni ezt nem vagom hogy kene
 		for (Obstacle obstacle : obstacles) {
-			if (pointInRange(obstacle.getPosition())) {
-				if (obstacle.isMovable(Direction.RIGHT, 2)) {
-					obstacle.moveToDirection(Direction.RIGHT);
+			if (obstacle.pointInRange(new_position)) {
+				if (obstacle.isMovable(new_direction, 2)) {
+					obstacle.moveTo(new_direction);
 				}
 			}
 		}
 
-		setPosition(new Point(getPosition().getX() + 1, getPosition().getY()));
+		setPosition(new_position);
 		// TODO: Algoritmus kidolgozása
 
 		CallLogger.getLogger().exiting();

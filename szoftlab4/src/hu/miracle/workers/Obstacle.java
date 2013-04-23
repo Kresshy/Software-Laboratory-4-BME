@@ -11,7 +11,8 @@ public class Obstacle extends BaseObject {
 	protected boolean movable;
 	protected Scene scene;
 
-	public Obstacle(Scene scene, Point position, Color color, int radius, boolean solid, boolean movable) {
+	public Obstacle(Scene scene, Point position, Color color, int radius, boolean solid,
+			boolean movable) {
 		super(position, color, radius);
 		this.solid = solid;
 		this.movable = movable;
@@ -36,32 +37,51 @@ public class Obstacle extends BaseObject {
 		return false;
 	}
 
-	public boolean isMovable(Direction dir, int deep) {
+	public boolean isMovable(Direction direction, int depth) {
 
-		if (deep < 0)
-			return false;
+		if (depth > 0) {
+			// Következő munkapont meghatározása
+			Point op_point = getPosition();
+			// Amíg ki nem érünk az aktuális akadályból
+			while (pointInRange(op_point))
+				// Lépés a tolás irányába
+				op_point = op_point.step(direction, 1);
 
-		deep--;
-
-		List<Obstacle> obstacles = scene.getObstacles();
-
-		for (Obstacle obstacle : obstacles) {
-			if (obstacle != this && obstacle.pointInRange(getPosition())) {
-				if (getPosition().direction(obstacle.getPosition()) == Direction.RIGHT
-						|| getPosition().direction(obstacle.getPosition()) == Direction.TOP_RIGHT
-						|| getPosition().direction(obstacle.getPosition()) == Direction.BOTTOM_RIGHT && getPosition() != obstacle.getPosition()) {
-					if (obstacle.isMovable(Direction.RIGHT, deep)) {
-						return movable;
-					}
+			// Útban lévő akadályok ellenőrzése
+			boolean all_movable = true;
+			List<Obstacle> obstacles = scene.getObstacles();
+			// Minden akadályra
+			for (Obstacle obstacle : obstacles) {
+				if (obstacle != this && obstacle.movable && obstacle.pointInRange(op_point)) {
+					all_movable = all_movable
+							&& obstacle.isMovable(op_point.direction(obstacle.getPosition()),
+									depth - 1);
 				}
 			}
-		}
 
-		return movable;
+			return all_movable;
+		} else
+			return false;
 	}
 
-	public void moveToDirection(Direction dir) {
-		setPosition(new Point(getPosition().getX() + 1, getPosition().getY()));
+	public void moveTo(Direction direction) {
+		if (movable) {
+			// Következő munkapont meghatározása
+			Point op_point = getPosition();
+			// Amíg ki nem érünk az aktuális akadályból
+			while (pointInRange(op_point))
+				// Lépés a tolás irányába
+				op_point = op_point.step(direction, 1);
+
+			List<Obstacle> obstacles = scene.getObstacles();
+			for (Obstacle obstacle : obstacles) {
+				if (obstacle != this && obstacle.pointInRange(op_point)) {
+					obstacle.moveTo(op_point.direction(obstacle.getPosition()));
+				}
+			}
+
+			setPosition(getPosition().step(direction, 1));
+		}
 	}
 
 	public void handleTick() {
@@ -81,8 +101,9 @@ public class Obstacle extends BaseObject {
 	}
 
 	public String toString() {
-		return String.format("Obstacle %%d < position = %s, radius = %d, solid = %s, movable = %s >", position, radius, String.valueOf(solid),
-				String.valueOf(movable));
+		return String.format(
+				"Obstacle %%d < position = %s, radius = %d, solid = %s, movable = %s >", position,
+				radius, String.valueOf(solid), String.valueOf(movable));
 
 	}
 }

@@ -125,7 +125,8 @@ public class Ant extends Creature {
 			for (Obstacle obstacle : obstacles) {
 				if (obstacle.isSolid()) {
 					// Az óramutató járásának irányába elfordul
-					direction = Direction.values()[(direction.ordinal() + 1) % Direction.values().length];
+					direction = Direction.values()[(direction.ordinal() + 1)
+							% Direction.values().length];
 					setPosition(old_position.step(direction, 1));
 					clean_step = false;
 					break;

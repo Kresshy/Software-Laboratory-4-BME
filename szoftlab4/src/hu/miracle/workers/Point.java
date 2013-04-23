@@ -54,9 +54,14 @@ public class Point {
 		return Math.sqrt(Math.pow(p.cx - cx, 2) + Math.pow(p.cy - cy, 2));
 	}
 
-	public Direction direction(Point p) {
-		int dx = p.x - x;
-		int dy = p.y - y;
+	public Direction direction(Point to) {
+		int dx = to.x - x;
+		int dy = to.y - y;
+		// // Ha fordított irány kell
+		// if (reverse) {
+		// dx = -dx;
+		// dy = -dy;
+		// }
 		// Ha egy sorban vannak
 		if (dy == 0) {
 			// Ha jobbra haladunk

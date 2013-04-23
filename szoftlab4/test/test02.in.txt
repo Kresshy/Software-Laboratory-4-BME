@@ -1,0 +1,2 @@
+init test/test02.xml
+tick 3

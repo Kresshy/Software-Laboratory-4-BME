@@ -1,0 +1,2 @@
+init test08.xml
+tick 4

@@ -1,0 +1,13 @@
+AntEater 0 < position = (0,50), hunger = 10, timeout = 20, visible = false >
+FoodStorage 0 < position = (100,100), amount = 15, capacity = 15, packet = 1 >
+AntHill 1 < position = (10,10), amount = 15, capacity = 15, packet = 1 >
+Obstacle 0 < position = (40,30), radius = 3, solid = true, movable = true >
+AntSinker 1 < position = (50,70), radius = 2 >
+-------------------- Tick --------------------
+Ant 0 spawned.
+Ant 0 < position = (10,11), health = 3, cargo = 0, poisoned = false >
+AntEater 0 < position = (0,50), hunger = 10, timeout = 19, visible = false >
+FoodStorage 0 < position = (100,100), amount = 15, capacity = 15, packet = 1 >
+AntHill 1 < position = (10,10), amount = 14, capacity = 15, packet = 1 >
+Obstacle 0 < position = (40,30), radius = 3, solid = true, movable = true >
+AntSinker 1 < position = (50,70), radius = 2 >

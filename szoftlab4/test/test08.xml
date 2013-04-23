@@ -1,0 +1,18 @@
+<scene>
+    <creatures>
+        <anteater>
+            <position x="0" y="0" />
+            <hunger>1</hunger>
+            <wait>1</wait>
+        </anteater>
+    </creatures>
+    <obstacles>
+        <obstacle>
+            <position x="1" y="0" />
+            <color>red</color>
+            <radius>1</radius>
+            <solid>true</solid>
+            <movable>true</movable>
+        </obstacle>
+    </obstacles>
+</scene>

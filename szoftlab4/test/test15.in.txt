@@ -1,0 +1,2 @@
+init
+toplist tester 1200

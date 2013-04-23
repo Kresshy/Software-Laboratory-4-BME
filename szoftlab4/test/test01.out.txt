@@ -1,0 +1,19 @@
+AntHill 0 < position = (10,10), amount = 1, capacity = 1, packet = 1 >
+Poison 0 deployed.
+-------------------- Tick --------------------
+Ant 0 spawned.
+Ant 0 < position = (10,10), health = 3, cargo = 0, poisoned = true >
+AntHill 0 < position = (10,10), amount = 0, capacity = 1, packet = 1 >
+Poison 0 < position = (10,10), radius = 5, timeout = 4 >
+-------------------- Tick --------------------
+Ant 0 < position = (10,10), health = 2, cargo = 0, poisoned = true >
+AntHill 0 < position = (10,10), amount = 0, capacity = 1, packet = 1 >
+Poison 0 < position = (10,10), radius = 5, timeout = 3 >
+-------------------- Tick --------------------
+Ant 0 < position = (10,10), health = 1, cargo = 0, poisoned = true >
+AntHill 0 < position = (10,10), amount = 0, capacity = 1, packet = 1 >
+Poison 0 < position = (10,10), radius = 5, timeout = 2 >
+-------------------- Tick --------------------
+Ant 0 died.
+AntHill 0 < position = (10,10), amount = 1, capacity = 1, packet = 1 >
+Poison 0 < position = (10,10), radius = 5, timeout = 1 >

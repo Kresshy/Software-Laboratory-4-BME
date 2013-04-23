@@ -1,0 +1,9 @@
+AntEater 0 < position = (0,0), hunger = 1, timeout = 1, visible = false >
+-------------------- Tick --------------------
+AntEater 0 < position = (0,0), hunger = 1, timeout = 0, visible = false >
+-------------------- Tick --------------------
+AntEater 0 < position = (0,0), hunger = 1, timeout = 0, visible = true >
+-------------------- Tick --------------------
+AntEater 0 < position = (1,0), hunger = 1, timeout = 0, visible = true >
+-------------------- Tick --------------------
+AntEater 0 < position = (2,0), hunger = 1, timeout = 0, visible = true >

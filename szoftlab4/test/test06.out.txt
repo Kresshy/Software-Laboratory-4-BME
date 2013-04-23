@@ -1,0 +1,12 @@
+Poison 0 deployed.
+Poison 0 < position = (10,10), radius = 5, timeout = 5 >
+-------------------- Tick --------------------
+Poison 0 < position = (10,10), radius = 5, timeout = 4 >
+-------------------- Tick --------------------
+Poison 0 < position = (10,10), radius = 5, timeout = 3 >
+-------------------- Tick --------------------
+Poison 0 < position = (10,10), radius = 5, timeout = 2 >
+-------------------- Tick --------------------
+Poison 0 < position = (10,10), radius = 5, timeout = 1 >
+-------------------- Tick --------------------
+Poison 0 evaporated.

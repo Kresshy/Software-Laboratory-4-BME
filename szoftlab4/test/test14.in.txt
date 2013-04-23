@@ -1,0 +1,2 @@
+init
+deodorize 20 30

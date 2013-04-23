@@ -1,0 +1,14 @@
+<scene>
+    <storages>
+        <anthill>
+            <position x="10" y="10" />
+            <capacity>1</capacity>
+            <packet>1</packet>
+        </anthill>
+        <foodstorage>
+            <position x="12" y="10" />
+            <capacity>2</capacity>
+            <packet>1</packet>
+        </foodstorage>
+    </storages>
+</scene>

@@ -1,0 +1,9 @@
+<scene>
+    <storages>
+        <anthill>
+            <position x="10" y="10" />
+            <capacity>1</capacity>
+            <packet>1</packet>
+        </anthill>
+    </storages>
+</scene>

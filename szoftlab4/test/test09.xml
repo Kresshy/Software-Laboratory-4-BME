@@ -1,0 +1,9 @@
+<scene>
+    <creatures>
+        <anteater>
+            <position x="0" y="0" />
+            <hunger>1</hunger>
+            <wait>1</wait>
+        </anteater>
+    </creatures>
+</scene>

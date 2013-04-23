@@ -1,0 +1,33 @@
+<scene>
+    <creatures>
+        <anteater>
+            <position x="8" y="0" />
+            <hunger>10</hunger>
+            <wait>1</wait>
+        </anteater>
+    </creatures>
+    <obstacles>
+        <!-- 3 darab kavics a tesztelesre -->
+        <obstacle>
+            <position x="9" y="0" />
+            <color>red</color>
+            <radius>1</radius>
+            <solid>true</solid>
+            <movable>true</movable>
+        </obstacle>
+        <obstacle>
+            <position x="10" y="0" />
+            <color>red</color>
+            <radius>1</radius>
+            <solid>true</solid>
+            <movable>true</movable>
+        </obstacle>
+        <obstacle>
+            <position x="11" y="0" />
+            <color>red</color>
+            <radius>1</radius>
+            <solid>true</solid>
+            <movable>true</movable>
+        </obstacle>
+    </obstacles>
+</scene>

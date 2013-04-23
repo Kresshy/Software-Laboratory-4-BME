@@ -1,0 +1,4 @@
+init
+poison 10 10
+status
+tick 3

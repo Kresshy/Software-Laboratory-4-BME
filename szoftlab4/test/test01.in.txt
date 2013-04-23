@@ -1,0 +1,3 @@
+init test/test01.xml
+poison 10 10
+tick 4

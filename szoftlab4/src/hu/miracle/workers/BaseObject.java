@@ -62,7 +62,7 @@ public abstract class BaseObject {
 
 		// A pont az objektum hatókörében van-e
 		// TODO: Hatókör meghatározása
-		return (distance < radius);
+		return (distance <= radius);
 	}
 
 	public void setColor(Color color) {

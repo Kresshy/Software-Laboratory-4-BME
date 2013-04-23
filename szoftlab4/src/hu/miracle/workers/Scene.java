@@ -145,7 +145,7 @@ public class Scene {
 		// Minden akadályra
 		for (Obstacle obstacle : obstacles) {
 			// Ha az objektum hatókörében van
-			if (object.pointInRange(obstacle.getPosition())) {
+			if (obstacle.pointInRange(object.getPosition())) {
 				// Hozzáadás
 				inrange.add(obstacle);
 			}

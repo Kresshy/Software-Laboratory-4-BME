@@ -21,8 +21,8 @@ public class Point {
 	}
 
 	public void toCoords() {
-		cx = x * 2;
-		cy = y * 2;
+		cx = x * 2 + y % 2;
+		cy = y;
 	}
 
 	public static Point fromCoords(int cx, int cy) {
@@ -51,7 +51,7 @@ public class Point {
 
 	public double distance(Point p) {
 		// TODO
-		return Math.sqrt(Math.pow(p.x - x, 2) + Math.pow(p.y - y, 2));
+		return Math.sqrt(Math.pow(p.cx - cx, 2) + Math.pow(p.cy - cy, 2));
 	}
 
 	public Direction direction(Point p) {
@@ -90,15 +90,17 @@ public class Point {
 				sx = 1;
 			else if (dir == Direction.TOP_RIGHT || dir == Direction.BOTTOM_RIGHT)
 				sx = y % 2;
+			else if (dir == Direction.LEFT)
+				sx = -1;
 			else
 				sx = -(y + 1) % 2;
 			// Új y koordináta számítása
 			if (dir == Direction.LEFT || dir == Direction.RIGHT)
 				sy = 0;
 			else if (dir == Direction.BOTTOM_LEFT || dir == Direction.BOTTOM_RIGHT)
-				sy = -1;
-			else
 				sy = 1;
+			else
+				sy = -1;
 			// Lépés az adott irányba
 			return new Point(x + sx, y + sy).step(dir, count - 1);
 		} else

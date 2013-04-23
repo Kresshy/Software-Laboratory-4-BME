@@ -100,16 +100,14 @@ public class Ant extends Creature {
 			}
 		}
 
-		Direction new_direction;
-		Point new_position;
+		Direction direction;
+		Point old_position = getPosition();
 		if (target != null) {
 			// Új pozíció meghatározása
-			new_direction = getPosition().direction(target.getPosition());
-			new_position = getPosition().step(new_direction, 1);
-			setPosition(new_position);
+			direction = getPosition().direction(target.getPosition());
+			setPosition(getPosition().step(direction, 1));
 		} else {
-			new_direction = Direction.RIGHT;
-			new_position = getPosition();
+			direction = Direction.RIGHT;
 		}
 		// TODO: Algoritmus kidolgozása
 
@@ -119,23 +117,26 @@ public class Ant extends Creature {
 		// TODO: Algoritmus kidolgozása
 
 		// Akadályok figyelembe vétele az útválasztásnál
-		List<Obstacle> obstacles = scene.discoverObstacles(this);
-		for (Obstacle obstacle : obstacles) {
-			if (obstacle.isSolid()) {
-				// Az óramutató irányába elfordul
-				new_direction = Direction.values()[(new_direction.ordinal() + 1)
-						% Direction.values().length];
-				new_position = getPosition().step(new_direction, 1);
+		List<Obstacle> obstacles;
+		boolean clean_step = false;
+		while (!clean_step) {
+			clean_step = true;
+			obstacles = scene.discoverObstacles(this);
+			for (Obstacle obstacle : obstacles) {
+				if (obstacle.isSolid()) {
+					// Az óramutató járásának irányába elfordul
+					direction = Direction.values()[(direction.ordinal() + 1) % Direction.values().length];
+					setPosition(old_position.step(direction, 1));
+					clean_step = false;
+					break;
+				}
 			}
 		}
 		// TODO: Algoritmus kidolgozása
 
-		// Lépés
-		// Új pozíció beállítása
-		setPosition(new_position);
 		// Szagnyom letétele
 		Pheromone new_pheromone = new Pheromone();
-		scene.placeEffect(new_position, new_pheromone);
+		scene.placeEffect(getPosition(), new_pheromone);
 		// Akadályokra lépés
 		obstacles = scene.discoverObstacles(this);
 		// TODO: Algoritmus kidolgozása

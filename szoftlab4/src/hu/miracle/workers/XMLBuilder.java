@@ -18,7 +18,7 @@ import org.xml.sax.SAXException;
 public class XMLBuilder {
 
 	// loggolas csak akkor tortenik ha ez a valtozo true -> D as debug
-	private boolean D = true;
+	private boolean D = false;
 
 	public XMLBuilder() {
 

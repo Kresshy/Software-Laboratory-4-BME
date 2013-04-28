@@ -221,3 +221,13 @@ public class Pheromone extends Effect {
     // Public interface
     public void interact(Creature creature) {} // Nem tudom szükség van-e rá
 }
+
+public class ObjectDrawer {
+    // Members
+    private Game game;
+
+    // Contructor
+    public ObjectDrawer(Game game);
+
+    public drawObjects(Graphics graphics);
+}

@@ -161,3 +161,19 @@ Scene.placeObstacle(Poison) // Vhogy jön a felhasználói interakció, létreho
 // Szagtalanító fújása
 
 Scene.clearEffects(Point) // Vhogy jön a felhasználói interakció és meghívja a függvényt egy Pointtal
+
+// Objektumok kirajzolása
+
+ObjectDrawer.drawObjects(Graphics) {
+    Scene scene = game.getScene();
+    for (Ant ant : scene.getAnts())
+        // Kirajzolás
+    for (Storage storage : scene.getStorages())
+        // Kirajzolás
+    for (Creature creature : scene.getCreatures())
+        // Kirajzolás
+    for (Obstacle obstacle : scene.getObstacles())
+        // Kirajzolás
+    for (Effect effect : scene.getEffects())
+        // Kirajzolás
+}

@@ -222,12 +222,14 @@ public class Pheromone extends Effect {
     public void interact(Creature creature) {} // Nem tudom szükség van-e rá
 }
 
-public class ObjectDrawer {
+public class ObjectPainter {
     // Members
     private Game game;
 
     // Contructor
-    public ObjectDrawer(Game game);
+    public ObjectPainter(Game game);
 
-    public drawObjects(Graphics graphics);
+    // Public interface
+    public void paintObjects(Graphics graphics);
+    public void paintImage(Graphics graphics, Point position, String imageFile, int radius);
 }

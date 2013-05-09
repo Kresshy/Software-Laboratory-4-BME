@@ -1,12 +1,9 @@
 package hu.miracleworkers.model;
 
-import java.awt.Color;
-
 public class AntSinker extends Obstacle {
 
 	public AntSinker(Scene scene, Point position) {
-		// TODO: Grafikus jellemzők meghatározása
-		super(scene, position, Color.GRAY, 2, false, false);
+		super(scene, position, 2, false, false);
 	}
 
 	@Override

@@ -1,13 +1,11 @@
 package hu.miracleworkers.model;
 
-import java.awt.Color;
-
 public class Poison extends Obstacle {
 
 	private int	timeout;
 
 	public Poison(Scene scene, Point position) {
-		super(scene, position, Color.GREEN, 5, false, false);
+		super(scene, position, 5, false, false);
 		this.timeout = 5;
 	}
 

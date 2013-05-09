@@ -1,30 +1,13 @@
 package hu.miracleworkers.model;
 
-import java.awt.Canvas;
-import java.awt.Color;
-
 public abstract class BaseObject {
 
 	protected int	radius;
 	protected Point	position;
-	protected Color	color;
 
-	public BaseObject(Point position, Color color, int radius) {
+	public BaseObject(Point position, int radius) {
 		this.position = position;
-		this.color = color;
 		this.radius = radius;
-	}
-
-	public void drawObject(Canvas canvas) {
-
-		// TODO: Algoritmus kidolgozása
-
-	}
-
-	public Color getColor() {
-
-		// Szín visszaadása
-		return color;
 	}
 
 	public Point getPosition() {
@@ -49,13 +32,6 @@ public abstract class BaseObject {
 		// A pont az objektum hatókörében van-e
 		// TODO: Hatókör meghatározása
 		return (distance <= radius);
-	}
-
-	public void setColor(Color color) {
-
-		// Szín beállítása
-		this.color = color;
-
 	}
 
 	public void setPosition(Point position) {

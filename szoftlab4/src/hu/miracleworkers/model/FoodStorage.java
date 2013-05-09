@@ -1,12 +1,9 @@
 package hu.miracleworkers.model;
 
-import java.awt.Color;
-
 public class FoodStorage extends Storage {
 
 	public FoodStorage(Point position, int capacity, int packet) {
-		// TODO: Grafikus jellemzők meghatározása
-		super(position, Color.RED, 3, capacity, packet, true);
+		super(position, 3, capacity, packet, true);
 	}
 
 	public void handleTick() {

@@ -2,7 +2,6 @@ package hu.miracleworkers.model;
 
 import hu.miracleworkers.model.Point.Direction;
 
-import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +14,7 @@ public class Ant extends Creature {
 	private Storage	source;
 
 	public Ant(Point position, Scene scene, Storage home) {
-		// TODO: Grafikus jellemzők meghatározása
-		super(position, Color.BLACK, 1, scene);
+		super(position, 1, scene);
 		this.home = home;
 		this.poisoned = false;
 		this.health = 3; // TODO: Kezdőérték meghatározása

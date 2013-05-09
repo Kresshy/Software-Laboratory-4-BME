@@ -2,7 +2,6 @@ package hu.miracleworkers.model;
 
 import hu.miracleworkers.model.Point.Direction;
 
-import java.awt.Color;
 import java.util.List;
 
 public class AntEater extends Creature {
@@ -13,8 +12,7 @@ public class AntEater extends Creature {
 	private int		timeout;
 
 	public AntEater(Point position, Scene scene, int wait, int hunger) {
-		// TODO: Grafikus jellemzők meghatározása
-		super(position, Color.DARK_GRAY, 2, scene);
+		super(position, 2, scene);
 		this.wait = wait;
 		this.hunger = hunger;
 		this.visible = false;

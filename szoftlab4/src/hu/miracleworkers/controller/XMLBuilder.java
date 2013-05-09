@@ -8,7 +8,6 @@ import hu.miracleworkers.model.Obstacle;
 import hu.miracleworkers.model.Point;
 import hu.miracleworkers.model.Scene;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,7 +25,7 @@ import org.xml.sax.SAXException;
 public class XMLBuilder {
 
 	// loggolas csak akkor tortenik ha ez a valtozo true -> D as debug
-	private boolean D = false;
+	private boolean	D	= false;
 
 	public XMLBuilder() {
 
@@ -37,7 +36,8 @@ public class XMLBuilder {
 			System.out.println(message);
 	}
 
-	public Scene readXML(String path) throws SAXException, IOException, ParserConfigurationException {
+	public Scene readXML(String path) throws SAXException, IOException,
+			ParserConfigurationException {
 
 		// Letrehozunk egy uj document builder factory-t
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -114,22 +114,27 @@ public class XMLBuilder {
 
 				// csak akkor olvassuk be az objektumot ha minden mezoje
 				// helyesen van kitoltve
-				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("hunger").item(0) != null
+				if (element.getElementsByTagName("position").item(0) != null
+						&& element.getElementsByTagName("hunger").item(0) != null
 						&& element.getElementsByTagName("wait").item(0) != null) {
 
 					// koordinatak beolvasasa
-					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("x"));
 					logToConsole("x: " + x);
-					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("y"));
 					logToConsole("y: " + y);
 
 					Point point = new Point(x, y);
 
 					// ehseg es varakozas mennyisegenek beolvasasa
-					int hunger = Integer.parseInt(((Element) element.getElementsByTagName("hunger").item(0)).getTextContent());
+					int hunger = Integer.parseInt(((Element) element.getElementsByTagName("hunger")
+							.item(0)).getTextContent());
 					logToConsole("hunger: " + hunger);
 
-					int wait = Integer.parseInt(((Element) element.getElementsByTagName("wait").item(0)).getTextContent());
+					int wait = Integer.parseInt(((Element) element.getElementsByTagName("wait")
+							.item(0)).getTextContent());
 					logToConsole("wait: " + wait);
 
 					AntEater ae = new AntEater(point, scene, wait, hunger);
@@ -141,7 +146,8 @@ public class XMLBuilder {
 				} else {
 					// amennyiben hibas a beolvasas a kimenetre hibauzenetet
 					// kuldunk
-					System.out.println("Cannot create object, fields are missing! Check XML format!");
+					System.out
+							.println("Cannot create object, fields are missing! Check XML format!");
 				}
 			}
 		}
@@ -155,43 +161,32 @@ public class XMLBuilder {
 
 				// csak akkor olvassuk be az objektumot ha minden mezoje
 				// helyesen van kitoltve
-				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("radius").item(0) != null
-						&& element.getElementsByTagName("color").item(0) != null && element.getElementsByTagName("solid").item(0) != null
+				if (element.getElementsByTagName("position").item(0) != null
+						&& element.getElementsByTagName("radius").item(0) != null
+						&& element.getElementsByTagName("color").item(0) != null
+						&& element.getElementsByTagName("solid").item(0) != null
 						&& element.getElementsByTagName("movable").item(0) != null) {
 
 					// koordinatak beolvasasa
-					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("x"));
 					logToConsole("x: " + x);
-					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("y"));
 					logToConsole("y: " + y);
 					Point point = new Point(x, y);
 
-					// szin beolvasasa
-					String color = ((Element) element.getElementsByTagName("color").item(0)).getTextContent();
-					logToConsole("Color: " + color);
-
-					// mivel stringkent olvassuk be ezert vizsgaljuk milyen
-					// szint kell hozzaadnunk
-					Color clr = Color.white;
-					if (color.equals("red"))
-						clr = Color.red;
-					else if (color.equals("black"))
-						clr = Color.black;
-					else if (color.equals("green"))
-						clr = Color.green;
-					else if (color.equals("blue"))
-						clr = Color.blue;
-					else if (color.equals("yellow"))
-						clr = Color.yellow;
-
 					// kiterjedes beolvasasa
-					int radius = Integer.parseInt(((Element) element.getElementsByTagName("radius").item(0)).getTextContent());
+					int radius = Integer.parseInt(((Element) element.getElementsByTagName("radius")
+							.item(0)).getTextContent());
 
 					logToConsole("radius: " + radius);
 
 					// athatolhatosag es mozgathatosag beolvasasa
-					String solid = ((Element) element.getElementsByTagName("solid").item(0)).getTextContent();
-					String movable = ((Element) element.getElementsByTagName("movable").item(0)).getTextContent();
+					String solid = ((Element) element.getElementsByTagName("solid").item(0))
+							.getTextContent();
+					String movable = ((Element) element.getElementsByTagName("movable").item(0))
+							.getTextContent();
 
 					logToConsole("solid: " + solid + ", movable: " + movable);
 
@@ -214,13 +209,14 @@ public class XMLBuilder {
 					logToConsole("Add Obstacle");
 
 					// objektum hozzaadasa a szinterhez
-					Obstacle ob = new Obstacle(scene, point, clr, radius, sld, mvbl);
+					Obstacle ob = new Obstacle(scene, point, radius, sld, mvbl);
 					scene.getObstacles().add(ob);
 
 				} else {
 					// amennyiben hibas a beolvasas a kimenetre hibauzenetet
 					// kuldunk
-					System.out.println("Cannot create object, fields are missing! Check XML format!");
+					System.out
+							.println("Cannot create object, fields are missing! Check XML format!");
 				}
 			}
 		}
@@ -236,10 +232,12 @@ public class XMLBuilder {
 				if (element.getElementsByTagName("position").item(0) != null) {
 
 					// koordinatak beolvasasa
-					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("x"));
 					logToConsole("x: " + x);
 
-					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("y"));
 					logToConsole("y: " + y);
 
 					Point point = new Point(x, y);
@@ -253,7 +251,8 @@ public class XMLBuilder {
 				} else {
 					// amennyiben hibas a beolvasas a kimenetre hibauzenetet
 					// kuldunk
-					System.out.println("Cannot create object, fields are missing! Check XML format!");
+					System.out
+							.println("Cannot create object, fields are missing! Check XML format!");
 				}
 
 			}
@@ -268,24 +267,29 @@ public class XMLBuilder {
 
 				// csak akkor olvassuk be az objektumot ha minden mezoje
 				// megfeleloen ki van toltve
-				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("capacity").item(0) != null
+				if (element.getElementsByTagName("position").item(0) != null
+						&& element.getElementsByTagName("capacity").item(0) != null
 						&& element.getElementsByTagName("packet").item(0) != null) {
 
 					// koordinatak beolvasasa
-					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("x"));
 					logToConsole("x: " + x);
 
-					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("y"));
 					logToConsole("y: " + y);
 
 					Point point = new Point(x, y);
 
 					// capacity beolvasasa
-					int capacity = Integer.parseInt(((Element) element.getElementsByTagName("capacity").item(0)).getTextContent());
+					int capacity = Integer.parseInt(((Element) element.getElementsByTagName(
+							"capacity").item(0)).getTextContent());
 					logToConsole("capacity: " + capacity);
 
 					// packet beolvasasa
-					int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet").item(0)).getTextContent());
+					int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet")
+							.item(0)).getTextContent());
 					logToConsole("packet: " + packet);
 
 					logToConsole("Add FoodStorage...");
@@ -297,7 +301,8 @@ public class XMLBuilder {
 				} else {
 					// amennyiben nem megfeleloen vannak a mezok kitoltve nem
 					// olvassuk be az objektumot
-					System.out.println("Cannot create object, fields are missing! Check XML format!");
+					System.out
+							.println("Cannot create object, fields are missing! Check XML format!");
 				}
 
 			}
@@ -312,24 +317,29 @@ public class XMLBuilder {
 
 				// csak akkor olvassuk be az objektumot ha megfeleloen ki van
 				// toltve minden mezoje
-				if (element.getElementsByTagName("position").item(0) != null && element.getElementsByTagName("capacity").item(0) != null
+				if (element.getElementsByTagName("position").item(0) != null
+						&& element.getElementsByTagName("capacity").item(0) != null
 						&& element.getElementsByTagName("packet").item(0) != null) {
 
 					// koordinatak beolvasasa
-					int x = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("x"));
+					int x = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("x"));
 					logToConsole("x: " + x);
 
-					int y = Integer.parseInt(((Element) element.getElementsByTagName("position").item(0)).getAttribute("y"));
+					int y = Integer.parseInt(((Element) element.getElementsByTagName("position")
+							.item(0)).getAttribute("y"));
 					logToConsole("y: " + y);
 
 					Point point = new Point(x, y);
 
 					// amount beolvasasa
-					int capacity = Integer.parseInt(((Element) element.getElementsByTagName("capacity").item(0)).getTextContent());
+					int capacity = Integer.parseInt(((Element) element.getElementsByTagName(
+							"capacity").item(0)).getTextContent());
 					logToConsole("capacity: " + capacity);
 
 					// packet beolvasasa
-					int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet").item(0)).getTextContent());
+					int packet = Integer.parseInt(((Element) element.getElementsByTagName("packet")
+							.item(0)).getTextContent());
 					logToConsole("packet: " + packet);
 
 					logToConsole("Add AntHill");
@@ -341,7 +351,8 @@ public class XMLBuilder {
 				} else {
 					// amennyiben nem megfelelo a formatim nem olvassuk be az
 					// objektumot
-					System.out.println("Cannot create object, fields are missing! Check XML format!");
+					System.out
+							.println("Cannot create object, fields are missing! Check XML format!");
 				}
 
 			}

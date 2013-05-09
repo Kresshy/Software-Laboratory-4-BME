@@ -2,7 +2,6 @@ package hu.miracleworkers.model;
 
 import hu.miracleworkers.model.Point.Direction;
 
-import java.awt.Color;
 import java.util.List;
 
 public class Obstacle extends BaseObject {
@@ -11,9 +10,8 @@ public class Obstacle extends BaseObject {
 	protected boolean	movable;
 	protected Scene		scene;
 
-	public Obstacle(Scene scene, Point position, Color color, int radius, boolean solid,
-			boolean movable) {
-		super(position, color, radius);
+	public Obstacle(Scene scene, Point position, int radius, boolean solid, boolean movable) {
+		super(position, radius);
 		this.solid = solid;
 		this.movable = movable;
 		this.scene = scene;

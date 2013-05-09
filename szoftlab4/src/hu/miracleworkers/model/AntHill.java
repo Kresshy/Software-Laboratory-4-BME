@@ -1,14 +1,11 @@
 package hu.miracleworkers.model;
 
-import java.awt.Color;
-
 public class AntHill extends Storage {
 
 	private Scene	scene;
 
 	public AntHill(Point position, Scene scene, int capacity, int packet) {
-		// TODO: Grafikus jellemzők meghatározása
-		super(position, Color.BLUE, 3, capacity, packet, false);
+		super(position, 3, capacity, packet, false);
 		this.scene = scene;
 	}
 

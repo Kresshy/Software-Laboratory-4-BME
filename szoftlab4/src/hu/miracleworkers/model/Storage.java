@@ -1,7 +1,5 @@
 package hu.miracleworkers.model;
 
-import java.awt.Color;
-
 public abstract class Storage extends BaseObject {
 
 	protected int		amount;
@@ -9,9 +7,8 @@ public abstract class Storage extends BaseObject {
 	protected int		packet;
 	protected boolean	attractive;
 
-	public Storage(Point position, Color color, int radius, int capacity, int packet,
-			boolean attractive) {
-		super(position, color, radius);
+	public Storage(Point position, int radius, int capacity, int packet, boolean attractive) {
+		super(position, radius);
 		this.capacity = capacity;
 		this.amount = capacity;
 		this.packet = packet;

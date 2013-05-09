@@ -25,12 +25,6 @@ public class Scene {
 		this.effects = new HashMap<Point, Effect>();
 	}
 
-	public void buildScene(String settings) {
-
-		// TODO: Pálya építése
-
-	}
-
 	protected void clearDebris() {
 
 		// Minden akadályra

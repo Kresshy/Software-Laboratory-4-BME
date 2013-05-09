@@ -1,9 +1,9 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
 public abstract class Effect {
 
-	protected boolean attractive;
-	protected int timeout;
+	protected boolean	attractive;
+	protected int		timeout;
 
 	public Effect(int timeout, boolean attractive) {
 		this.timeout = timeout;
@@ -11,7 +11,6 @@ public abstract class Effect {
 	}
 
 	public void handleTick() {
-		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Ha még nem illant el
 		if (timeout > 0) {
@@ -19,24 +18,17 @@ public abstract class Effect {
 			timeout--;
 		}
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public abstract void interact(Creature creature);
 
 	public boolean isAttractive() {
-		CallLogger.getLogger().entering(this, "isAttractive");
-
-		CallLogger.getLogger().exiting();
 
 		// Vonzalom visszaadása
 		return attractive;
 	}
 
 	public boolean isDebris() {
-		CallLogger.getLogger().entering(this, "isDebris");
-
-		CallLogger.getLogger().exiting();
 
 		// Eltakaríthatóság visszaadása
 		return (timeout <= 0);

@@ -1,4 +1,4 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -10,12 +10,12 @@ import java.util.Map.Entry;
 
 public class Scene {
 
-	private Dimension dimension;
-	private List<Ant> ants;
-	private List<Storage> storages;
-	private List<Obstacle> obstacles;
-	private List<Creature> creatures;
-	private Map<Point, Effect> effects; // Ez a tároló továbbra sem végleges
+	private Dimension			dimension;
+	private List<Ant>			ants;
+	private List<Storage>		storages;
+	private List<Obstacle>		obstacles;
+	private List<Creature>		creatures;
+	private Map<Point, Effect>	effects;	// Ez a tároló továbbra sem végleges
 
 	public Scene() {
 		this.ants = new ArrayList<Ant>();
@@ -26,15 +26,12 @@ public class Scene {
 	}
 
 	public void buildScene(String settings) {
-		CallLogger.getLogger().entering(this, "buildScene");
 
 		// TODO: Pálya építése
 
-		CallLogger.getLogger().exiting();
 	}
 
 	protected void clearDebris() {
-		CallLogger.getLogger().entering(this, "clearDebris");
 
 		// Minden akadályra
 		Iterator<Obstacle> iobstacles = obstacles.iterator();
@@ -43,7 +40,8 @@ public class Scene {
 			// Ha szemét
 			if (obstacle.isDebris()) {
 				// FIXME: Kimenet eltávolítása
-				System.out.println(String.format("Poison %d evaporated.", getObstacles().indexOf(obstacle)));
+				System.out.println(String.format("Poison %d evaporated.",
+						getObstacles().indexOf(obstacle)));
 				// Eltávolítás
 				iobstacles.remove();
 			}
@@ -59,11 +57,11 @@ public class Scene {
 				ieffects.remove();
 			}
 		}
-		
+
 		// Minden hangyára
 		Iterator<Ant> iants = ants.iterator();
 		while (iants.hasNext()) {
-			Ant	ant = iants.next();
+			Ant ant = iants.next();
 			// Ha szemét
 			if (ant == null) {
 				// Eltávolítás
@@ -71,13 +69,11 @@ public class Scene {
 			}
 		}
 
-		CallLogger.getLogger().exiting();
 	}
 
 	// Egy pont korzeteben eltunteti az effekteket, szagtalanito sprayhez
 	// szukseges
 	public void clearEffects(Point point) {
-		CallLogger.getLogger().entering(this, "clearEffect");
 
 		// Minden effektre
 		Iterator<Entry<Point, Effect>> ieffects = effects.entrySet().iterator();
@@ -91,11 +87,9 @@ public class Scene {
 			}
 		}
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public void delegateTick() {
-		CallLogger.getLogger().entering(this, "delegateTick");
 
 		// Tick-kezelések
 		for (Storage storage : storages) {
@@ -116,11 +110,9 @@ public class Scene {
 		// Szemét eltakarítása
 		clearDebris();
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public Map<Point, Effect> discoverEffects(BaseObject object) {
-		CallLogger.getLogger().entering(this, "discoverEffects");
 
 		Map<Point, Effect> inrange = new HashMap<Point, Effect>();
 		// Minden effektre
@@ -132,14 +124,11 @@ public class Scene {
 			}
 		}
 
-		CallLogger.getLogger().exiting();
-
 		// Hatókörben lévő effektek visszaadása
 		return inrange;
 	}
 
 	public List<Obstacle> discoverObstacles(BaseObject object) {
-		CallLogger.getLogger().entering(this, "discoverObstacles");
 
 		List<Obstacle> inrange = new ArrayList<Obstacle>();
 		// Minden akadályra
@@ -151,25 +140,17 @@ public class Scene {
 			}
 		}
 
-		CallLogger.getLogger().exiting();
-
 		// Hatókörben lévő akadályok visszaadása
 		return inrange;
 	}
 
 	public List<Ant> getAnts() {
-		CallLogger.getLogger().entering(this, "getAnts");
-
-		CallLogger.getLogger().exiting();
 
 		// Hangyák visszaadása
 		return ants;
 	}
 
 	public List<Creature> getCreatures() {
-		CallLogger.getLogger().entering(this, "getCreatures");
-
-		CallLogger.getLogger().exiting();
 
 		// Élőlények visszaadása
 		return creatures;
@@ -177,48 +158,35 @@ public class Scene {
 
 	// Public interface
 	public Dimension getDimension() {
-		CallLogger.getLogger().entering(this, "getDimension");
-
-		CallLogger.getLogger().exiting();
 
 		// Méret visszaadása
 		return dimension;
 	}
 
 	public List<Obstacle> getObstacles() {
-		CallLogger.getLogger().entering(this, "getObstacles");
-
-		CallLogger.getLogger().exiting();
 
 		// Akadályok visszaadása
 		return obstacles;
 	}
 
 	public List<Storage> getStorages() {
-		CallLogger.getLogger().entering(this, "getStorages");
-
-		CallLogger.getLogger().exiting();
 
 		// Tárolók visszaadása
 		return storages;
 	}
 
 	public void placeEffect(Point point, Effect effect) {
-		CallLogger.getLogger().entering(this, "placeEffect");
 
 		// Új effekt eltárolása
 		effects.put(point, effect);
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public void placeObstacle(Obstacle obstacle) {
-		CallLogger.getLogger().entering(this, "placeObstacle");
 
 		// Új objektum eltárolása
 		obstacles.add(obstacle);
 
-		CallLogger.getLogger().exiting();
 	}
 
 }

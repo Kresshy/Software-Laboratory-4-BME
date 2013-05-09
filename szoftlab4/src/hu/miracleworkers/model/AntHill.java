@@ -1,19 +1,19 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
 import java.awt.Color;
 
 public class AntHill extends Storage {
 
-	private Scene scene;
+	private Scene	scene;
 
 	public AntHill(Point position, Scene scene, int capacity, int packet) {
-		super(position, Color.BLUE, 3, capacity, packet, false); // TODO: Grafikus jellemzők meghatározása
+		// TODO: Grafikus jellemzők meghatározása
+		super(position, Color.BLUE, 3, capacity, packet, false);
 		this.scene = scene;
 	}
 
 	@Override
 	public void handleTick() {
-		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Hangyák születése
 		// Minden hangyára
@@ -26,7 +26,6 @@ public class AntHill extends Storage {
 			System.out.println(String.format("Ant %d spawned.", scene.getAnts().indexOf(ant)));
 		}
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public String toString() {

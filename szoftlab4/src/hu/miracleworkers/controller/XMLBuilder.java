@@ -1,4 +1,12 @@
-package hu.miracle.workers;
+package hu.miracleworkers.controller;
+
+import hu.miracleworkers.model.AntEater;
+import hu.miracleworkers.model.AntHill;
+import hu.miracleworkers.model.AntSinker;
+import hu.miracleworkers.model.FoodStorage;
+import hu.miracleworkers.model.Obstacle;
+import hu.miracleworkers.model.Point;
+import hu.miracleworkers.model.Scene;
 
 import java.awt.Color;
 import java.io.File;

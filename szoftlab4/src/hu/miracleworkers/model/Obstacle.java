@@ -1,15 +1,15 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
-import hu.miracle.workers.Point.Direction;
+import hu.miracleworkers.model.Point.Direction;
 
 import java.awt.Color;
 import java.util.List;
 
 public class Obstacle extends BaseObject {
 
-	protected boolean solid;
-	protected boolean movable;
-	protected Scene scene;
+	protected boolean	solid;
+	protected boolean	movable;
+	protected Scene		scene;
 
 	public Obstacle(Scene scene, Point position, Color color, int radius, boolean solid,
 			boolean movable) {
@@ -20,18 +20,12 @@ public class Obstacle extends BaseObject {
 	}
 
 	public boolean isSolid() {
-		CallLogger.getLogger().entering(this, "isSolid");
-
-		CallLogger.getLogger().exiting();
 
 		// Tömörség visszaadása
 		return solid;
 	}
 
 	public boolean isDebris() {
-		CallLogger.getLogger().entering(this, "isDebris");
-
-		CallLogger.getLogger().exiting();
 
 		// Eltávolíthatóság visszaadása
 		return false;
@@ -85,19 +79,15 @@ public class Obstacle extends BaseObject {
 	}
 
 	public void handleTick() {
-		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Dummy default implementáció
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public void interact(Creature creature) {
-		CallLogger.getLogger().entering(this, "interact");
 
 		// Dummy default implementáció
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public String toString() {

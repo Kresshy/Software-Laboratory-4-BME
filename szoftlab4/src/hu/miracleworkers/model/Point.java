@@ -1,4 +1,4 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
 public class Point {
 
@@ -6,10 +6,10 @@ public class Point {
 		TOP_RIGHT, RIGHT, BOTTOM_RIGHT, BOTTOM_LEFT, LEFT, TOP_LEFT
 	}
 
-	private int x;
-	private int y;
-	private int cx;
-	private int cy;
+	private int	x;
+	private int	y;
+	private int	cx;
+	private int	cy;
 
 	public Point() {
 	}

@@ -1,10 +1,10 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
 import java.awt.Color;
 
 public abstract class Creature extends BaseObject {
 
-	protected Scene scene;
+	protected Scene	scene;
 
 	public Creature(Point position, Color color, int radius, Scene scene) {
 		super(position, color, radius);
@@ -12,20 +12,16 @@ public abstract class Creature extends BaseObject {
 	}
 
 	public void setScene(Scene scene) {
-		CallLogger.getLogger().entering(this, "setScene");
 
 		// Pálya beállítása
 		this.scene = scene;
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public void terminate() {
-		CallLogger.getLogger().entering(this, "terminate");
 
 		// Dummy default implementáció
-		
-		CallLogger.getLogger().exiting();
+
 	}
 
 }

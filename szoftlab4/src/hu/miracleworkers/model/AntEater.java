@@ -1,19 +1,20 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
-import hu.miracle.workers.Point.Direction;
+import hu.miracleworkers.model.Point.Direction;
 
 import java.awt.Color;
 import java.util.List;
 
 public class AntEater extends Creature {
 
-	private boolean visible;
-	private int hunger;
-	private int wait;
-	private int timeout;
+	private boolean	visible;
+	private int		hunger;
+	private int		wait;
+	private int		timeout;
 
 	public AntEater(Point position, Scene scene, int wait, int hunger) {
-		super(position, Color.DARK_GRAY, 2, scene); // TODO: Grafikus jellemzők meghatározása
+		// TODO: Grafikus jellemzők meghatározása
+		super(position, Color.DARK_GRAY, 2, scene);
 		this.wait = wait;
 		this.hunger = hunger;
 		this.visible = false;
@@ -22,7 +23,6 @@ public class AntEater extends Creature {
 
 	@Override
 	public void handleTick() {
-		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Ha a sün előtérben van
 		if (visible) {
@@ -61,24 +61,18 @@ public class AntEater extends Creature {
 			}
 		}
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public boolean isVisible() {
-		CallLogger.getLogger().entering(this, "isVisible");
-
-		CallLogger.getLogger().exiting();
-
 		// Láthatóság visszaadása
 		return visible;
 	}
 
 	protected void routeAndMove() {
-		CallLogger.getLogger().entering(this, "routeAndMove");
-		
+
 		Direction new_direction = Direction.RIGHT;
 		Point new_position = getPosition().step(new_direction, 1);
-		
+
 		List<Obstacle> obstacles = scene.getObstacles();
 		for (Obstacle obstacle : obstacles) {
 			if (obstacle.pointInRange(new_position)) {
@@ -91,7 +85,6 @@ public class AntEater extends Creature {
 		setPosition(new_position);
 		// TODO: Algoritmus kidolgozása
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public String toString() {

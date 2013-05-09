@@ -1,10 +1,10 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
 import java.awt.Color;
 
 public class Poison extends Obstacle {
 
-	private int timeout;
+	private int	timeout;
 
 	public Poison(Scene scene, Point position) {
 		super(scene, position, Color.GREEN, 5, false, false);
@@ -13,7 +13,6 @@ public class Poison extends Obstacle {
 
 	@Override
 	public void handleTick() {
-		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Ha még nem illant el
 		if (timeout > 0) {
@@ -21,25 +20,19 @@ public class Poison extends Obstacle {
 			timeout--;
 		}
 
-		CallLogger.getLogger().exiting();
 	}
 
 	@Override
 	public void interact(Creature creature) {
-		CallLogger.getLogger().entering(this, "interact");
 
 		// FIXME
 		// Mérgezés beállítása
 		((Ant) creature).setPoisoned(true);
 
-		CallLogger.getLogger().exiting();
 	}
 
 	@Override
 	public boolean isDebris() {
-		CallLogger.getLogger().entering(this, "isDebris");
-
-		CallLogger.getLogger().exiting();
 
 		// Eltakaríthatóság visszaadása
 		return (timeout <= 0);

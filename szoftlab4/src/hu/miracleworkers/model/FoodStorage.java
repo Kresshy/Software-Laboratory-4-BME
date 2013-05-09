@@ -1,19 +1,18 @@
-package hu.miracle.workers;
+package hu.miracleworkers.model;
 
 import java.awt.Color;
 
 public class FoodStorage extends Storage {
 
 	public FoodStorage(Point position, int capacity, int packet) {
-		super(position, Color.RED, 3, capacity, packet, true); // TODO: Grafikus jellemzők meghatározása
+		// TODO: Grafikus jellemzők meghatározása
+		super(position, Color.RED, 3, capacity, packet, true);
 	}
 
 	public void handleTick() {
-		CallLogger.getLogger().entering(this, "handleTick");
 
 		// Dummy default implementáció
 
-		CallLogger.getLogger().exiting();
 	}
 
 	public String toString() {

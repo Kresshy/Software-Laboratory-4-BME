@@ -1,16 +1,39 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.controller;
 
+/**
+ * Időzítő osztály.
+ */
 public class Timer implements Runnable {
 
+	/** Óraütések között eltelt idő. */
 	private int		interval;
+
+	/** Játék */
 	private Game	game;
+
+	/** Engedélyezés. */
 	private boolean	enabled;
 
+	/**
+	 * Példányosít egy új időzítőt.
+	 * 
+	 * @param interval az óraütések között eltelt idő
+	 */
 	public Timer(int interval) {
 		this.interval = interval;
 		this.enabled = false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		try {
@@ -27,18 +50,33 @@ public class Timer implements Runnable {
 		}
 	}
 
+	/**
+	 * Lekérdezi a játékot amihez az időzítő tartozik.
+	 * 
+	 * @return a játék amihez az időzítő tartozik
+	 */
 	public Game getGame() {
 
 		// Játék visszaadása
 		return game;
 	}
 
+	/**
+	 * Lekérdezi az óraütések között eltelt időt.
+	 * 
+	 * @return az óraütések között eltelt idő
+	 */
 	public int getInterval() {
 
 		// Intervallum visszaadása
 		return interval;
 	}
 
+	/**
+	 * Lekérdezi a játékot amihez az időzítő tartozik.
+	 * 
+	 * @param game az új játék amihez az időzítő tartozik
+	 */
 	public void setGame(Game game) {
 
 		// Játék beállítása
@@ -46,6 +84,11 @@ public class Timer implements Runnable {
 
 	}
 
+	/**
+	 * Beállítja az óraütések között eltelt időt.
+	 * 
+	 * @param interval az óraütések között eltelt új idő
+	 */
 	public void setInterval(int interval) {
 
 		// Intervallum beállítása
@@ -53,6 +96,9 @@ public class Timer implements Runnable {
 
 	}
 
+	/**
+	 * Időzítő indítása.
+	 */
 	synchronized public void start() {
 
 		// Ha van játék ahova a tick-eket továbbítsuk
@@ -64,6 +110,9 @@ public class Timer implements Runnable {
 
 	}
 
+	/**
+	 * Időzítő megálítása.
+	 */
 	synchronized public void stop() {
 
 		// Letiltás
@@ -71,6 +120,9 @@ public class Timer implements Runnable {
 
 	}
 
+	/**
+	 * Óraütés.
+	 */
 	protected void tick() {
 
 		// FIXME: Kimenet eltávolítása

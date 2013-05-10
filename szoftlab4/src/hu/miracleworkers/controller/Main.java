@@ -1,9 +1,22 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.controller;
 
 import hu.miracleworkers.model.Scene;
 
+/**
+ * Main osztály.
+ */
 public class Main {
 
+	/**
+	 * A program belépési pontja.
+	 * 
+	 * @param args a parancssori argumentumok
+	 */
 	public static void main(String[] args) {
 
 		// Inicializálás

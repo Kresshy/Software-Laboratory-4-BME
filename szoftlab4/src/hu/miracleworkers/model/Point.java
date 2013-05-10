@@ -1,59 +1,139 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.model;
 
+/**
+ * Pont osztály.
+ */
 public class Point {
 
+	/**
+	 * Irány enum.
+	 */
 	public static enum Direction {
-		TOP_RIGHT, RIGHT, BOTTOM_RIGHT, BOTTOM_LEFT, LEFT, TOP_LEFT
+
+		/** Jobbra fel. */
+		TOP_RIGHT,
+		/** Jobbra. */
+		RIGHT,
+		/** Jobbra le. */
+		BOTTOM_RIGHT,
+		/** Balra le. */
+		BOTTOM_LEFT,
+		/** Balra. */
+		LEFT,
+		/** Balra fel. */
+		TOP_LEFT
 	}
 
+	/** X koordináta. */
 	private int	x;
+
+	/** Y koordináta. */
 	private int	y;
+
+	/** Valós X koordináta. */
 	private int	cx;
+
+	/** Valós Y koordináta. */
 	private int	cy;
 
+	/**
+	 * Példányosít egy új pontot.
+	 */
 	public Point() {
 	}
 
+	/**
+	 * Példányosít egy új pontot.
+	 * 
+	 * @param x az X koordináta
+	 * @param y az Y koordináta
+	 */
 	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
 		toCoords();
 	}
 
+	/**
+	 * Saját koordináták valós koordinátákká számolása.
+	 */
 	public void toCoords() {
 		cx = x * 2 + y % 2;
 		cy = y;
 	}
 
+	/**
+	 * Valós koordináták saját koordinátákká számolása.
+	 * 
+	 * @param cx a valós X koordináta
+	 * @param cy a valós Y koordináta
+	 * @return egy Pont példány, ha a valós koordináták egy érvényes pontot jelölnek, egyébként null
+	 */
 	public static Point fromCoords(int cx, int cy) {
 		if ((cy % 2 == 0) && (cx % 2 == (cy / 2) % 2)) {
-			String.valueOf(true);
 			return new Point(cx / 2, cy / 2);
 		} else
 			return null;
 	}
 
+	/**
+	 * Lekérdezi az X koordinátát.
+	 * 
+	 * @return az X koordináta
+	 */
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * Lekérdezi az Y koordinátát.
+	 * 
+	 * @return az Y koordináta
+	 */
 	public int getY() {
 		return y;
 	}
 
+	/**
+	 * Lekérdezi a valós X koordinátát.
+	 * 
+	 * @return a valós X koordináta
+	 */
 	public int getCoordX() {
 		return cx;
 	}
 
+	/**
+	 * Lekérdezi a valós Y koordinátát.
+	 * 
+	 * @return a valós Y koordináta
+	 */
 	public int getCoordY() {
 		return cy;
 	}
 
+	/**
+	 * Távolságszámítás.
+	 * 
+	 * @param p a másik pont
+	 * @return a két pont távolsága
+	 */
 	public double distance(Point p) {
 		// TODO
 		return Math.sqrt(Math.pow(p.cx - cx, 2) + Math.pow(p.cy - cy, 2));
 	}
 
+	/**
+	 * Irányszámítás.
+	 * 
+	 * @param to a cél pont
+	 * @return az aktuális pontból a cél pont felé mutató távolság
+	 */
 	public Direction direction(Point to) {
 		int dx = to.x - x;
 		int dy = to.y - y;
@@ -87,6 +167,13 @@ public class Point {
 		}
 	}
 
+	/**
+	 * Léptetés egy adott irányba.
+	 * 
+	 * @param dir az irány
+	 * @param count a lépések száma
+	 * @return a lépések után kapott Pont
+	 */
 	public Point step(Direction dir, int count) {
 		if (count > 0) {
 			int sx, sy;
@@ -112,6 +199,11 @@ public class Point {
 			return this;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return String.format("(%d,%d)", x, y);

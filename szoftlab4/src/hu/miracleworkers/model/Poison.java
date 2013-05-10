@@ -1,14 +1,34 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.model;
 
+/**
+ * Méreg osztály.
+ */
 public class Poison extends Obstacle {
 
+	/** Elillanásig hátralévő idő. */
 	private int	timeout;
 
-	public Poison(Scene scene, Point position) {
-		super(scene, position, 5, false, false);
+	/**
+	 * Példányosít egy új mérget.
+	 * 
+	 * @param position a méreg pozíciója
+	 * @param scene a pálya amihez a méreg tartozik
+	 */
+	public Poison(Point position, Scene scene) {
+		super(position, scene, 5, false, false);
 		this.timeout = 5;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.Obstacle#handleTick()
+	 */
 	@Override
 	public void handleTick() {
 
@@ -20,6 +40,11 @@ public class Poison extends Obstacle {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.Obstacle#interact(hu.miracleworkers.model.Creature )
+	 */
 	@Override
 	public void interact(Creature creature) {
 
@@ -29,6 +54,11 @@ public class Poison extends Obstacle {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.Obstacle#isDebris()
+	 */
 	@Override
 	public boolean isDebris() {
 
@@ -36,6 +66,11 @@ public class Poison extends Obstacle {
 		return (timeout <= 0);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.Obstacle#toString()
+	 */
 	public String toString() {
 		return String.format("Poison %%d < position = %s, radius = %d, timeout = %d >", position,
 				radius, timeout);

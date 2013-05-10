@@ -1,3 +1,8 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.model;
 
 import hu.miracleworkers.model.Point.Direction;
@@ -5,22 +10,46 @@ import hu.miracleworkers.model.Point.Direction;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Hangya osztály.
+ */
 public class Ant extends Creature {
 
+	/** Mérgezettség. */
 	private boolean	poisoned;
+
+	/** Életerő. */
 	private int		health;
+
+	/** Szállított teher. */
 	private int		cargo;
+
+	/** Otthon. */
 	private Storage	home;
+
+	/** Ételforrás. */
 	private Storage	source;
 
+	/**
+	 * Példányosít egy új hangyát.
+	 * 
+	 * @param position a hangya pozíciója
+	 * @param scene a pálya amihez a hangya tartozik
+	 * @param home a hangya otthona
+	 */
 	public Ant(Point position, Scene scene, Storage home) {
-		super(position, 1, scene);
+		super(position, scene, 1);
 		this.home = home;
 		this.poisoned = false;
 		this.health = 3; // TODO: Kezdőérték meghatározása
 		this.cargo = 0;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.BaseObject#handleTick()
+	 */
 	@Override
 	public void handleTick() {
 
@@ -69,7 +98,9 @@ public class Ant extends Creature {
 
 	}
 
-	// Protected methods
+	/**
+	 * Útvonalkeresés és mozgás.
+	 */
 	protected void routeAndMove() {
 
 		// Céltároló kiválasztása
@@ -144,7 +175,11 @@ public class Ant extends Creature {
 
 	}
 
-	// Public interface
+	/**
+	 * Beállítja a hangya mérgezettségét
+	 * 
+	 * @param poisoned a hangya mérgezettsége
+	 */
 	public void setPoisoned(boolean poisoned) {
 
 		// Mérgezettség beállítása
@@ -152,6 +187,11 @@ public class Ant extends Creature {
 
 	}
 
+	/**
+	 * Beállítja a hangya ételforrását.
+	 * 
+	 * @param source a hangya új ételforrása
+	 */
 	public void setSource(Storage source) {
 
 		// Ételforrás beállítása
@@ -159,6 +199,11 @@ public class Ant extends Creature {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.Creature#terminate()
+	 */
 	@Override
 	public void terminate() {
 
@@ -180,6 +225,11 @@ public class Ant extends Creature {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return String.format("Ant %%d < position = %s, health = %d, cargo = %d, poisoned = %s >",
 				position, health, cargo, String.valueOf(poisoned));

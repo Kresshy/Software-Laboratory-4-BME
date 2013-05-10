@@ -1,3 +1,8 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.model;
 
 import java.awt.Dimension;
@@ -8,15 +13,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Pálya osztály.
+ */
 public class Scene {
 
+	/** Méret. */
 	private Dimension			dimension;
+
+	/** Hangyák. */
 	private List<Ant>			ants;
+
+	/** Tárolók. */
 	private List<Storage>		storages;
+
+	/** Akadályok. */
 	private List<Obstacle>		obstacles;
+
+	/** Élőlények. */
 	private List<Creature>		creatures;
+
+	/** Effektek. */
 	private Map<Point, Effect>	effects;	// Ez a tároló továbbra sem végleges
 
+	/**
+	 * Példányosít egy új pályát.
+	 */
 	public Scene() {
 		this.ants = new ArrayList<Ant>();
 		this.storages = new ArrayList<Storage>();
@@ -25,6 +47,9 @@ public class Scene {
 		this.effects = new HashMap<Point, Effect>();
 	}
 
+	/**
+	 * Törmelékek eltakarítása.
+	 */
 	protected void clearDebris() {
 
 		// Minden akadályra
@@ -65,8 +90,11 @@ public class Scene {
 
 	}
 
-	// Egy pont korzeteben eltunteti az effekteket, szagtalanito sprayhez
-	// szukseges
+	/**
+	 * Effektek törlése egy pont környezetében.
+	 * 
+	 * @param point a törlendő terüleet középpontja
+	 */
 	public void clearEffects(Point point) {
 
 		// Minden effektre
@@ -83,6 +111,9 @@ public class Scene {
 
 	}
 
+	/**
+	 * Óraütés delegálása a pályaelemeknek.
+	 */
 	public void delegateTick() {
 
 		// Tick-kezelések
@@ -106,6 +137,12 @@ public class Scene {
 
 	}
 
+	/**
+	 * Effektek felderítése egy pályaelem környezetében.
+	 * 
+	 * @param object a pályaelem
+	 * @return a pályaelem környezetében lévő effektek
+	 */
 	public Map<Point, Effect> discoverEffects(BaseObject object) {
 
 		Map<Point, Effect> inrange = new HashMap<Point, Effect>();
@@ -122,6 +159,12 @@ public class Scene {
 		return inrange;
 	}
 
+	/**
+	 * Akadályok felderítése egy pályaelem környezetében.
+	 * 
+	 * @param object a pályaelem
+	 * @return a pályaelem környezetében lévő akadályok
+	 */
 	public List<Obstacle> discoverObstacles(BaseObject object) {
 
 		List<Obstacle> inrange = new ArrayList<Obstacle>();
@@ -138,37 +181,67 @@ public class Scene {
 		return inrange;
 	}
 
+	/**
+	 * Lekérdezi a hangyák listáját.
+	 * 
+	 * @return a hangyák listája
+	 */
 	public List<Ant> getAnts() {
 
 		// Hangyák visszaadása
 		return ants;
 	}
 
+	/**
+	 * Lekérdezi az élőlények listáját.
+	 * 
+	 * @return az élőlények listája
+	 */
 	public List<Creature> getCreatures() {
 
 		// Élőlények visszaadása
 		return creatures;
 	}
 
-	// Public interface
+	/**
+	 * Lekérdezi a pálya méreteit.
+	 * 
+	 * @return a pálya méretei
+	 */
 	public Dimension getDimension() {
 
 		// Méret visszaadása
 		return dimension;
 	}
 
+	/**
+	 * Lekérdezi az akadályok listáját.
+	 * 
+	 * @return az akadályok listája
+	 */
 	public List<Obstacle> getObstacles() {
 
 		// Akadályok visszaadása
 		return obstacles;
 	}
 
+	/**
+	 * Lekérdezi a tárolók listáját
+	 * 
+	 * @return a tárolók listája
+	 */
 	public List<Storage> getStorages() {
 
 		// Tárolók visszaadása
 		return storages;
 	}
 
+	/**
+	 * Effekt letétele.
+	 * 
+	 * @param point az effekt pozíciója
+	 * @param effect az effekt
+	 */
 	public void placeEffect(Point point, Effect effect) {
 
 		// Új effekt eltárolása
@@ -176,6 +249,11 @@ public class Scene {
 
 	}
 
+	/**
+	 * Akadály letétele.
+	 * 
+	 * @param obstacle az akadály
+	 */
 	public void placeObstacle(Obstacle obstacle) {
 
 		// Új objektum eltárolása

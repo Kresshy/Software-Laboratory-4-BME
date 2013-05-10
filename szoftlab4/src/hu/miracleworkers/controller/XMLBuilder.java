@@ -1,3 +1,8 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.controller;
 
 import hu.miracleworkers.model.AntEater;
@@ -22,20 +27,42 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class XMLBuilder.
+ */
 public class XMLBuilder {
 
 	// loggolas csak akkor tortenik ha ez a valtozo true -> D as debug
+	/** The d. */
 	private boolean	D	= false;
 
+	/**
+	 * Instantiates a new xML builder.
+	 */
 	public XMLBuilder() {
 
 	}
 
+	/**
+	 * Log to console.
+	 * 
+	 * @param message the message
+	 */
 	public void logToConsole(String message) {
 		if (D)
 			System.out.println(message);
 	}
 
+	/**
+	 * Read xml.
+	 * 
+	 * @param path the path
+	 * @return the scene
+	 * @throws SAXException the sAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParserConfigurationException the parser configuration exception
+	 */
 	public Scene readXML(String path) throws SAXException, IOException,
 			ParserConfigurationException {
 
@@ -209,7 +236,7 @@ public class XMLBuilder {
 					logToConsole("Add Obstacle");
 
 					// objektum hozzaadasa a szinterhez
-					Obstacle ob = new Obstacle(scene, point, radius, sld, mvbl);
+					Obstacle ob = new Obstacle(point, scene, radius, sld, mvbl);
 					scene.getObstacles().add(ob);
 
 				} else {
@@ -245,7 +272,7 @@ public class XMLBuilder {
 					logToConsole("Add AntSinker");
 
 					// beolvasott objektum hozzadasa a szinterhez
-					AntSinker as = new AntSinker(scene, point);
+					AntSinker as = new AntSinker(point, scene);
 					scene.getObstacles().add(as);
 
 				} else {

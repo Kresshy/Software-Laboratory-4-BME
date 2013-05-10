@@ -1,29 +1,88 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.model;
 
+/**
+ * Pályaelemek ősosztálya.
+ */
 public abstract class BaseObject {
 
-	protected int	radius;
+	/** Pozíció. */
 	protected Point	position;
+	/** Hatókör. */
+	protected int	radius;
 
+	/**
+	 * Példányosít egy új pályaelemet.
+	 * 
+	 * @param position a pályaelem pozíciója
+	 * @param radius a pályaelem hatóköre
+	 */
 	public BaseObject(Point position, int radius) {
 		this.position = position;
 		this.radius = radius;
 	}
 
+	/**
+	 * Lekérdezi a pályaelem pozícióját.
+	 * 
+	 * @return a pályaelem pozíciója
+	 */
 	public Point getPosition() {
 
 		// Pozíció visszaadása
 		return position;
 	}
 
+	/**
+	 * Beállítja a pályaelem pozícióját.
+	 * 
+	 * @param position a pályaelem új pozíciója
+	 */
+	public void setPosition(Point position) {
+
+		// Pozíció beállítása
+		this.position = position;
+
+	}
+
+	/**
+	 * Lekérdezi a pályaelem hatókörét.
+	 * 
+	 * @return a pályaelem hatóköre
+	 */
 	public int getRadius() {
 
 		// Sugár visszaadása
 		return radius;
 	}
 
+	/**
+	 * Beállítja a pályaelem hatókörét.
+	 * 
+	 * @param radius a pályaelem új hatóköre
+	 */
+	public void setRadius(int radius) {
+
+		// Sugár beállítása
+		this.radius = radius;
+
+	}
+
+	/**
+	 * Óraütés kezelése.
+	 */
 	public abstract void handleTick();
 
+	/**
+	 * Hatókörbe tartozás ellenőrzése.
+	 * 
+	 * @param point az ellenőrizendő pont
+	 * @return true, ha a pont a pályaelem hatókörében van
+	 */
 	public boolean pointInRange(Point point) {
 
 		// Távolság kiszámítása
@@ -32,20 +91,6 @@ public abstract class BaseObject {
 		// A pont az objektum hatókörében van-e
 		// TODO: Hatókör meghatározása
 		return (distance <= radius);
-	}
-
-	public void setPosition(Point position) {
-
-		// Pozíció beállítása
-		this.position = position;
-
-	}
-
-	public void setRadius(int radius) {
-
-		// Sugár beállítása
-		this.radius = radius;
-
 	}
 
 }

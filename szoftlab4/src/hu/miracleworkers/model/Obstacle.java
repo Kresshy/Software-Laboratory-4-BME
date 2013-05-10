@@ -1,34 +1,73 @@
+/*
+ * Szoftver labor 4 - Hangyafarm
+ * 
+ * Copyright (c) 2013 - Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs
+ */
 package hu.miracleworkers.model;
 
 import hu.miracleworkers.model.Point.Direction;
 
 import java.util.List;
 
+/**
+ * Akadály osztály.
+ */
 public class Obstacle extends BaseObject {
 
+	/** Tömörség. */
 	protected boolean	solid;
+
+	/** Mozdíthatóság. */
 	protected boolean	movable;
+
+	/** Pálya. */
 	protected Scene		scene;
 
-	public Obstacle(Scene scene, Point position, int radius, boolean solid, boolean movable) {
+	/**
+	 * Példányosít egy új akadályt.
+	 * 
+	 * @param position az akadály pozíciója
+	 * @param scene a pálya amihez az akadály tartozik
+	 * @param radius az akadály hatóköre
+	 * @param solid az akadály tömörsége
+	 * @param movable az akadály mozdíthatósága
+	 */
+	public Obstacle(Point position, Scene scene, int radius, boolean solid, boolean movable) {
 		super(position, radius);
 		this.solid = solid;
 		this.movable = movable;
 		this.scene = scene;
 	}
 
+	/**
+	 * Ellenőrzi, hogy az akadály tömör-e.
+	 * 
+	 * @return true, ha az akadály tömör
+	 */
 	public boolean isSolid() {
 
 		// Tömörség visszaadása
 		return solid;
 	}
 
+	/**
+	 * Ellenőrzi, hogy az akadály eltakarítható-e.
+	 * 
+	 * @return true, ha az akadály eltakarítható
+	 */
 	public boolean isDebris() {
 
 		// Eltávolíthatóság visszaadása
 		return false;
 	}
 
+	/**
+	 * Ellenőrzi, hogy az akadály mozdítható-e.
+	 * 
+	 * @param direction a mozdítás iránya
+	 * @param depth az akadály mozdítása hány további akadályra hat
+	 * @return true, ha az akadály mozdítható
+	 */
 	public boolean isMovable(Direction direction, int depth) {
 
 		if (depth > 0) {
@@ -56,6 +95,11 @@ public class Obstacle extends BaseObject {
 			return false;
 	}
 
+	/**
+	 * Mozgatás.
+	 * 
+	 * @param direction a mozgatás iránya
+	 */
 	public void moveTo(Direction direction) {
 		if (movable) {
 			// Következő munkapont meghatározása
@@ -76,18 +120,33 @@ public class Obstacle extends BaseObject {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.BaseObject#handleTick()
+	 */
 	public void handleTick() {
 
 		// Dummy default implementáció
 
 	}
 
+	/**
+	 * Kölcsönhatás.
+	 * 
+	 * @param creature a kölcsönhatásba lépő élőlény
+	 */
 	public void interact(Creature creature) {
 
 		// Dummy default implementáció
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return String.format(
 				"Obstacle %%d < position = %s, radius = %d, solid = %s, movable = %s >", position,

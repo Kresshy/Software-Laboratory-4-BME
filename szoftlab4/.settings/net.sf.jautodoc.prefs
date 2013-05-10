@@ -1,0 +1,9 @@
+add_header=true
+eclipse.preferences.version=1
+header_text=/*\r\n * ${project}\r\n * \r\n * Copyright (c) ${year} - ${authors}\r\n * \r\n */
+project_specific_settings=true
+properties=authors,project,
+properties.authors=Cseh G\u00E1bor, Gazsi Istv\u00E1n, T\u00EDm\u00E1r D\u00E1vid Patrik, Turcs\u00E1n Csaba, V\u00E1radi Szabolcs
+properties.project=Szoftver labor 4 - Hangyafarm
+replace_header=true
+replacements=<?xml version\="1.0" standalone\="yes"?>\n\n<replacements>\n<replacement key\="get" scope\="1" mode\="0">Lek&\#233;ri</replacement>\n<replacement key\="set" scope\="1" mode\="0">Be&\#225;ll&\#237;tja</replacement>\n<replacement key\="add" scope\="1" mode\="0">Hozz&\#225;adja</replacement>\n<replacement key\="edit" scope\="1" mode\="0">Szerkeszti</replacement>\n<replacement key\="remove" scope\="1" mode\="0">Elt&\#225;vol&\#237;tja</replacement>\n<replacement key\="init" scope\="1" mode\="0">Inicializ&\#225;lja</replacement>\n<replacement key\="parse" scope\="1" mode\="0">&\#201;rtelmezi</replacement>\n<replacement key\="create" scope\="1" mode\="0">L&\#233;trehozza</replacement>\n<replacement key\="build" scope\="1" mode\="0">Fel&\#233;p&\#237;ti</replacement>\n<replacement key\="is" scope\="1" mode\="0">Leellen&\#337;rzi, hogy</replacement>\n<replacement key\="print" scope\="1" mode\="0">Ki&\#237;rja</replacement>\n<replacement key\="has" scope\="1" mode\="0">Leellen&\#337;rzi, hogy</replacement>\n</replacements>\n\n

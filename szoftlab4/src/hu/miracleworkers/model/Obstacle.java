@@ -39,15 +39,27 @@ public class Obstacle extends BaseObject {
 		this.scene = scene;
 	}
 
-	/**
-	 * Ellenőrzi, hogy az akadály tömör-e.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @return true, ha az akadály tömör
+	 * @see hu.miracleworkers.model.BaseObject#handleTick()
 	 */
-	public boolean isSolid() {
+	@Override
+	public void handleTick() {
 
-		// Tömörség visszaadása
-		return solid;
+		// Dummy default implementáció
+
+	}
+
+	/**
+	 * Kölcsönhatás.
+	 * 
+	 * @param creature a kölcsönhatásba lépő élőlény
+	 */
+	public void interact(Creature creature) {
+
+		// Dummy default implementáció
+
 	}
 
 	/**
@@ -96,6 +108,17 @@ public class Obstacle extends BaseObject {
 	}
 
 	/**
+	 * Ellenőrzi, hogy az akadály tömör-e.
+	 * 
+	 * @return true, ha az akadály tömör
+	 */
+	public boolean isSolid() {
+
+		// Tömörség visszaadása
+		return solid;
+	}
+
+	/**
 	 * Mozgatás.
 	 * 
 	 * @param direction a mozgatás iránya
@@ -123,30 +146,9 @@ public class Obstacle extends BaseObject {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see hu.miracleworkers.model.BaseObject#handleTick()
-	 */
-	public void handleTick() {
-
-		// Dummy default implementáció
-
-	}
-
-	/**
-	 * Kölcsönhatás.
-	 * 
-	 * @param creature a kölcsönhatásba lépő élőlény
-	 */
-	public void interact(Creature creature) {
-
-		// Dummy default implementáció
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return String.format(
 				"Obstacle %%d < position = %s, radius = %d, solid = %s, movable = %s >", position,

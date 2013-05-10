@@ -126,6 +126,7 @@ public class AntEater extends Creature {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return String.format(
 				"AntEater %%d < position = %s, hunger = %d, timeout = %d, visible = %s >",

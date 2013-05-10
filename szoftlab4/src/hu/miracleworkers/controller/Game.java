@@ -49,6 +49,33 @@ public class Game {
 	}
 
 	/**
+	 * Hozzáad egy új rekordot.
+	 * 
+	 * @param name a felhasználó neve
+	 * @param score az elért eredmény
+	 */
+	public void addHighscore(String name, int score) {
+
+		// Highscore hozzáadása
+		highscores.add(new HighScore(name, score));
+		// Rendezés és a legjobb elemek kiválasztása
+		Collections.sort(highscores, Collections.reverseOrder());
+		highscores = highscores.subList(0, (highscores.size() < highscoresize) ? highscores.size()
+				: highscoresize);
+
+	}
+
+	/**
+	 * Lekérdezi a játék nehézségét.
+	 * 
+	 * @return a játék nehézsége
+	 */
+	public int getDifficulty() {
+
+		return difficulty;
+	}
+
+	/**
 	 * Lekérdezi a játékhoz tartozó pályát.
 	 * 
 	 * @return a játékhoz tartozó pálya
@@ -68,6 +95,25 @@ public class Game {
 
 		// Időzítő visszaadása
 		return timer;
+	}
+
+	/**
+	 * Elmenti a rekordokat.
+	 */
+	public void saveHighscores() {
+
+		// Dummy default implementáció
+
+	}
+
+	/**
+	 * Beállítja a játék nehézségét.
+	 * 
+	 * @param difficulty a játék új nehézsége
+	 */
+	public void setDifficulty(int difficulty) {
+
+		this.difficulty = difficulty;
 	}
 
 	/**
@@ -92,52 +138,6 @@ public class Game {
 		// Időzítő beállítása
 		this.timer = timer;
 		timer.setGame(this);
-
-	}
-
-	/**
-	 * Lekérdezi a játék nehézségét.
-	 * 
-	 * @return a játék nehézsége
-	 */
-	public int getDifficulty() {
-
-		return difficulty;
-	}
-
-	/**
-	 * Beállítja a játék nehézségét.
-	 * 
-	 * @param difficulty a játék új nehézsége
-	 */
-	public void setDifficulty(int difficulty) {
-
-		this.difficulty = difficulty;
-	}
-
-	/**
-	 * Hozzáad egy új rekordot.
-	 * 
-	 * @param name a felhasználó neve
-	 * @param score az elért eredmény
-	 */
-	public void addHighscore(String name, int score) {
-
-		// Highscore hozzáadása
-		highscores.add(new HighScore(name, score));
-		// Rendezés és a legjobb elemek kiválasztása
-		Collections.sort(highscores, Collections.reverseOrder());
-		highscores = highscores.subList(0, (highscores.size() < highscoresize) ? highscores.size()
-				: highscoresize);
-
-	}
-
-	/**
-	 * Elmenti a rekordokat.
-	 */
-	public void saveHighscores() {
-
-		// Dummy default implementáció
 
 	}
 

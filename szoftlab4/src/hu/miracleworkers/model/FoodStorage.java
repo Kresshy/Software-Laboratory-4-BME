@@ -26,6 +26,7 @@ public class FoodStorage extends Storage {
 	 * 
 	 * @see hu.miracleworkers.model.BaseObject#handleTick()
 	 */
+	@Override
 	public void handleTick() {
 
 		// Dummy default implementáció
@@ -37,6 +38,7 @@ public class FoodStorage extends Storage {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return String.format(
 				"FoodStorage %%d < position = %s, amount = %d, capacity = %d, packet = %d >",

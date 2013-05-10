@@ -52,6 +52,7 @@ public class AntHill extends Storage {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return String.format(
 				"AntHill %%d < position = %s, amount = %d, capacity = %d, packet = %d >", position,

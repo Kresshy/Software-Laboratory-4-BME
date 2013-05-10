@@ -38,6 +38,7 @@ public class AntSinker extends Obstacle {
 	 * 
 	 * @see hu.miracleworkers.model.Obstacle#toString()
 	 */
+	@Override
 	public String toString() {
 		return String.format("AntSinker %%d < position = %s, radius = %d >", position, radius);
 	}

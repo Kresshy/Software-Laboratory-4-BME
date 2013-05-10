@@ -38,18 +38,6 @@ public abstract class BaseObject {
 	}
 
 	/**
-	 * Beállítja a pályaelem pozícióját.
-	 * 
-	 * @param position a pályaelem új pozíciója
-	 */
-	public void setPosition(Point position) {
-
-		// Pozíció beállítása
-		this.position = position;
-
-	}
-
-	/**
 	 * Lekérdezi a pályaelem hatókörét.
 	 * 
 	 * @return a pályaelem hatóköre
@@ -58,18 +46,6 @@ public abstract class BaseObject {
 
 		// Sugár visszaadása
 		return radius;
-	}
-
-	/**
-	 * Beállítja a pályaelem hatókörét.
-	 * 
-	 * @param radius a pályaelem új hatóköre
-	 */
-	public void setRadius(int radius) {
-
-		// Sugár beállítása
-		this.radius = radius;
-
 	}
 
 	/**
@@ -91,6 +67,30 @@ public abstract class BaseObject {
 		// A pont az objektum hatókörében van-e
 		// TODO: Hatókör meghatározása
 		return (distance <= radius);
+	}
+
+	/**
+	 * Beállítja a pályaelem pozícióját.
+	 * 
+	 * @param position a pályaelem új pozíciója
+	 */
+	public void setPosition(Point position) {
+
+		// Pozíció beállítása
+		this.position = position;
+
+	}
+
+	/**
+	 * Beállítja a pályaelem hatókörét.
+	 * 
+	 * @param radius a pályaelem új hatóköre
+	 */
+	public void setRadius(int radius) {
+
+		// Sugár beállítása
+		this.radius = radius;
+
 	}
 
 }

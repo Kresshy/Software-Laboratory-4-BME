@@ -230,6 +230,7 @@ public class Ant extends Creature {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return String.format("Ant %%d < position = %s, health = %d, cargo = %d, poisoned = %s >",
 				position, health, cargo, String.valueOf(poisoned));

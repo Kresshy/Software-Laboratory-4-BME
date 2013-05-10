@@ -49,7 +49,7 @@ public class Point {
 
 	/**
 	 * Példányosít egy új pontot.
-	 * 
+	 *
 	 * @param x az X koordináta
 	 * @param y az Y koordináta
 	 */
@@ -60,16 +60,8 @@ public class Point {
 	}
 
 	/**
-	 * Saját koordináták valós koordinátákká számolása.
-	 */
-	public void toCoords() {
-		cx = x * 2 + y % 2;
-		cy = y;
-	}
-
-	/**
 	 * Valós koordináták saját koordinátákká számolása.
-	 * 
+	 *
 	 * @param cx a valós X koordináta
 	 * @param cy a valós Y koordináta
 	 * @return egy Pont példány, ha a valós koordináták egy érvényes pontot jelölnek, egyébként null
@@ -79,53 +71,6 @@ public class Point {
 			return new Point(cx / 2, cy / 2);
 		} else
 			return null;
-	}
-
-	/**
-	 * Lekérdezi az X koordinátát.
-	 * 
-	 * @return az X koordináta
-	 */
-	public int getX() {
-		return x;
-	}
-
-	/**
-	 * Lekérdezi az Y koordinátát.
-	 * 
-	 * @return az Y koordináta
-	 */
-	public int getY() {
-		return y;
-	}
-
-	/**
-	 * Lekérdezi a valós X koordinátát.
-	 * 
-	 * @return a valós X koordináta
-	 */
-	public int getCoordX() {
-		return cx;
-	}
-
-	/**
-	 * Lekérdezi a valós Y koordinátát.
-	 * 
-	 * @return a valós Y koordináta
-	 */
-	public int getCoordY() {
-		return cy;
-	}
-
-	/**
-	 * Távolságszámítás.
-	 * 
-	 * @param p a másik pont
-	 * @return a két pont távolsága
-	 */
-	public double distance(Point p) {
-		// TODO
-		return Math.sqrt(Math.pow(p.cx - cx, 2) + Math.pow(p.cy - cy, 2));
 	}
 
 	/**
@@ -168,6 +113,53 @@ public class Point {
 	}
 
 	/**
+	 * Távolságszámítás.
+	 * 
+	 * @param p a másik pont
+	 * @return a két pont távolsága
+	 */
+	public double distance(Point p) {
+		// TODO
+		return Math.sqrt(Math.pow(p.cx - cx, 2) + Math.pow(p.cy - cy, 2));
+	}
+
+	/**
+	 * Lekérdezi a valós X koordinátát.
+	 * 
+	 * @return a valós X koordináta
+	 */
+	public int getCoordX() {
+		return cx;
+	}
+
+	/**
+	 * Lekérdezi a valós Y koordinátát.
+	 * 
+	 * @return a valós Y koordináta
+	 */
+	public int getCoordY() {
+		return cy;
+	}
+
+	/**
+	 * Lekérdezi az X koordinátát.
+	 * 
+	 * @return az X koordináta
+	 */
+	public int getX() {
+		return x;
+	}
+
+	/**
+	 * Lekérdezi az Y koordinátát.
+	 * 
+	 * @return az Y koordináta
+	 */
+	public int getY() {
+		return y;
+	}
+
+	/**
 	 * Léptetés egy adott irányba.
 	 * 
 	 * @param dir az irány
@@ -197,6 +189,14 @@ public class Point {
 			return new Point(x + sx, y + sy).step(dir, count - 1);
 		} else
 			return this;
+	}
+
+	/**
+	 * Saját koordináták valós koordinátákká számolása.
+	 */
+	public void toCoords() {
+		cx = x * 2 + y % 2;
+		cy = y;
 	}
 
 	/*

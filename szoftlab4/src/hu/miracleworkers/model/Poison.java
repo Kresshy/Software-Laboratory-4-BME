@@ -71,6 +71,7 @@ public class Poison extends Obstacle {
 	 * 
 	 * @see hu.miracleworkers.model.Obstacle#toString()
 	 */
+	@Override
 	public String toString() {
 		return String.format("Poison %%d < position = %s, radius = %d, timeout = %d >", position,
 				radius, timeout);

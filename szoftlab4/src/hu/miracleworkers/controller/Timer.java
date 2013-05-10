@@ -29,27 +29,6 @@ public class Timer implements Runnable {
 		this.enabled = false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Runnable#run()
-	 */
-	@Override
-	public void run() {
-		try {
-			while (true) {
-				synchronized (this) {
-					while (!enabled) {
-						wait();
-					}
-				}
-				tick();
-				Thread.sleep(interval * 1000);
-			}
-		} catch (InterruptedException e) {
-		}
-	}
-
 	/**
 	 * Lekérdezi a játékot amihez az időzítő tartozik.
 	 * 
@@ -70,6 +49,27 @@ public class Timer implements Runnable {
 
 		// Intervallum visszaadása
 		return interval;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		try {
+			while (true) {
+				synchronized (this) {
+					while (!enabled) {
+						wait();
+					}
+				}
+				tick();
+				Thread.sleep(interval * 1000);
+			}
+		} catch (InterruptedException e) {
+		}
 	}
 
 	/**

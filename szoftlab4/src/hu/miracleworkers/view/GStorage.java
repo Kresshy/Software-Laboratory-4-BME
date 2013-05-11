@@ -8,11 +8,18 @@ package hu.miracleworkers.view;
 import hu.miracleworkers.model.Storage;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
  * Tároló grafikus osztály.
  */
 public class GStorage extends GraphicsBase<Storage> {
+
+	BufferedImage	foodstorage, anthill;
 
 	/**
 	 * Példányosít egy új grafikus elemet.
@@ -21,6 +28,16 @@ public class GStorage extends GraphicsBase<Storage> {
 	 */
 	public GStorage(Storage wrappedObject) {
 		super(wrappedObject);
+		try {
+
+			anthill = ImageIO.read(new File("graphics\\hangyaboly.png"));
+			foodstorage = ImageIO.read(new File("graphics\\foodstorage.png"));
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	/*
@@ -31,10 +48,13 @@ public class GStorage extends GraphicsBase<Storage> {
 	@Override
 	public void paintObject(Graphics graphics) {
 		// TODO: Tárolók kirajzolása
+		Storage wrappedStorage = getWrappedObject();
 		if (wrappedObject.isAttractive()) {
-			// Ételraktár kirajzolása
+			graphics.drawImage(foodstorage, wrappedStorage.getPosition().getCoordX(),
+					wrappedStorage.getPosition().getCoordY(), null);
 		} else {
-			// Hangyaboly kirajzolása
+			graphics.drawImage(anthill, wrappedStorage.getPosition().getCoordX(), wrappedStorage
+					.getPosition().getCoordY(), null);
 		}
 	}
 

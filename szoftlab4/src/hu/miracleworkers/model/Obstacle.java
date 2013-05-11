@@ -83,6 +83,15 @@ public class Obstacle extends BaseObject {
 	/**
 	 * Ellenőrzi, hogy az akadály mozdítható-e.
 	 * 
+	 * @return true, ha az akadály mozdítható
+	 */
+	public boolean isMovable() {
+		return movable;
+	}
+
+	/**
+	 * Ellenőrzi, hogy az akadály mozdítható-e az adott irányba.
+	 * 
 	 * @param direction a mozdítás iránya
 	 * @param depth az akadály mozdítása hány további akadályra hat
 	 * @return true, ha az akadály mozdítható

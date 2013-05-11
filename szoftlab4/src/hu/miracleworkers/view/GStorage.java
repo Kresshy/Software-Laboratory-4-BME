@@ -30,8 +30,12 @@ public class GStorage extends GraphicsBase<Storage> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO Auto-generated method stub
-
+		// TODO: Tárolók kirajzolása
+		if (wrappedObject.isAttractive()) {
+			// Ételraktár kirajzolása
+		} else {
+			// Hangyaboly kirajzolása
+		}
 	}
 
 }

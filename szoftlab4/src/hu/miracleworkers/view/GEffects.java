@@ -42,7 +42,7 @@ public class GEffects implements GraphicsObject {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO Auto-generated method stub
+		// TODO: Effektek kirajzolása (konkrétan a szagnyomok)
 
 	}
 

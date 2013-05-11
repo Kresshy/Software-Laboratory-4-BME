@@ -30,7 +30,7 @@ public class GPoison extends GraphicsBase<Poison> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO Auto-generated method stub
+		// TODO: Méreg kirajzolása
 
 	}
 

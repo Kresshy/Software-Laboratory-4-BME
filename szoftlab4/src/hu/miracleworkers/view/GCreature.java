@@ -30,7 +30,7 @@ public class GCreature extends GraphicsBase<Creature> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO Auto-generated method stub
+		// TODO: Élőlények kirajzolása (konkrétan a hangyászsün)
 
 	}
 }

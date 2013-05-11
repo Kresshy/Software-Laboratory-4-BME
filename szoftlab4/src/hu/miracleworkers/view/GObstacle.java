@@ -30,8 +30,16 @@ public class GObstacle extends GraphicsBase<Obstacle> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO Auto-generated method stub
-
+		// TODO: Akadályok kirajzolása
+		if (wrappedObject.isMovable()) {
+			// Kavics kirajzolása
+		} else {
+			if (wrappedObject.isSolid()) {
+				// Tócsa kirajzolása
+			} else {
+				// Hangyaleső kirajzolása
+			}
+		}
 	}
 
 }

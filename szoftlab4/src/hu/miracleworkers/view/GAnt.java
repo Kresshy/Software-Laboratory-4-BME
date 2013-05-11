@@ -30,7 +30,7 @@ public class GAnt extends GraphicsBase<Ant> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO Auto-generated method stub
+		// TODO: Hangya kirajzolása
 
 	}
 

@@ -5,6 +5,9 @@
  */
 package hu.miracleworkers.model;
 
+import hu.miracleworkers.view.GAntSinker;
+import hu.miracleworkers.view.GraphicsBase;
+
 /**
  * Hangyaleső osztály
  */
@@ -18,6 +21,11 @@ public class AntSinker extends Obstacle {
 	 */
 	public AntSinker(Point position, Scene scene) {
 		super(position, scene, 2, false, false);
+	}
+
+	@Override
+	public GraphicsBase getGraphicsWrapper() {
+		return new GAntSinker(this);
 	}
 
 	/*

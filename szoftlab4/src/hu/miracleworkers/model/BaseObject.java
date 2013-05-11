@@ -5,6 +5,8 @@
  */
 package hu.miracleworkers.model;
 
+import hu.miracleworkers.view.GraphicsBase;
+
 /**
  * Pályaelemek ősosztálya.
  */
@@ -25,6 +27,8 @@ public abstract class BaseObject {
 		this.position = position;
 		this.radius = radius;
 	}
+
+	public abstract GraphicsBase getGraphicsWrapper();
 
 	/**
 	 * Lekérdezi a pályaelem pozícióját.

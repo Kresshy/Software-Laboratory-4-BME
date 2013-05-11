@@ -6,6 +6,8 @@
 package hu.miracleworkers.model;
 
 import hu.miracleworkers.model.Point.Direction;
+import hu.miracleworkers.view.GObstacle;
+import hu.miracleworkers.view.GraphicsBase;
 
 import java.util.List;
 
@@ -37,6 +39,11 @@ public class Obstacle extends BaseObject {
 		this.solid = solid;
 		this.movable = movable;
 		this.scene = scene;
+	}
+
+	@Override
+	public GraphicsBase getGraphicsWrapper() {
+		return new GObstacle(this);
 	}
 
 	/*

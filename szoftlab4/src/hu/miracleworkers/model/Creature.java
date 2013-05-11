@@ -5,6 +5,9 @@
  */
 package hu.miracleworkers.model;
 
+import hu.miracleworkers.view.GCreature;
+import hu.miracleworkers.view.GraphicsBase;
+
 /**
  * Élőlény osztály.
  */
@@ -25,6 +28,11 @@ public abstract class Creature extends BaseObject {
 		this.scene = scene;
 	}
 
+	@Override
+	public GraphicsBase getGraphicsWrapper() {
+		return new GCreature(this);
+	}
+
 	/**
 	 * Lekérdezi a pályát amihez az élőlény tartozik.
 	 */
@@ -42,5 +50,4 @@ public abstract class Creature extends BaseObject {
 		// Dummy default implementáció
 
 	}
-
 }

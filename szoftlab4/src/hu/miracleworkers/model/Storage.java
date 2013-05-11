@@ -5,6 +5,9 @@
  */
 package hu.miracleworkers.model;
 
+import hu.miracleworkers.view.GStorage;
+import hu.miracleworkers.view.GraphicsBase;
+
 /**
  * Tároló osztály.
  */
@@ -37,6 +40,11 @@ public abstract class Storage extends BaseObject {
 		this.amount = capacity;
 		this.packet = packet;
 		this.attractive = attractive;
+	}
+
+	@Override
+	public GraphicsBase getGraphicsWrapper() {
+		return new GStorage(this);
 	}
 
 	/**
@@ -88,5 +96,4 @@ public abstract class Storage extends BaseObject {
 		amount = Math.min(capacity, amount + count);
 
 	}
-
 }

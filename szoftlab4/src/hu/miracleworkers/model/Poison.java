@@ -5,6 +5,9 @@
  */
 package hu.miracleworkers.model;
 
+import hu.miracleworkers.view.GPoison;
+import hu.miracleworkers.view.GraphicsBase;
+
 /**
  * Méreg osztály.
  */
@@ -22,6 +25,11 @@ public class Poison extends Obstacle {
 	public Poison(Point position, Scene scene) {
 		super(position, scene, 5, false, false);
 		this.timeout = 5;
+	}
+
+	@Override
+	public GraphicsBase getGraphicsWrapper() {
+		return new GPoison(this);
 	}
 
 	/*

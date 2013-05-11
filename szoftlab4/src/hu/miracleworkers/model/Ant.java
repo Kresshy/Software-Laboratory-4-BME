@@ -6,6 +6,8 @@
 package hu.miracleworkers.model;
 
 import hu.miracleworkers.model.Point.Direction;
+import hu.miracleworkers.view.GAnt;
+import hu.miracleworkers.view.GraphicsBase;
 
 import java.util.List;
 import java.util.Map;
@@ -43,6 +45,11 @@ public class Ant extends Creature {
 		this.poisoned = false;
 		this.health = 3; // TODO: Kezdőérték meghatározása
 		this.cargo = 0;
+	}
+
+	@Override
+	public GraphicsBase getGraphicsWrapper() {
+		return new GAnt(this);
 	}
 
 	/*

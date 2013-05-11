@@ -215,6 +215,15 @@ public class Scene {
 	}
 
 	/**
+	 * Lekérdezi az effektek listáját.
+	 * 
+	 * @return az effektek listája
+	 */
+	public Map<Point, Effect> getEffects() {
+		return effects;
+	}
+
+	/**
 	 * Lekérdezi az akadályok listáját.
 	 * 
 	 * @return az akadályok listája

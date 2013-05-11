@@ -7,6 +7,7 @@ package hu.miracleworkers.controller;
 
 import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.model.Scene;
+import hu.miracleworkers.view.Perspective;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +27,9 @@ public class Game {
 	/** Pálya. */
 	private Scene				scene;
 
+	/** Nézet. */
+	private Perspective			perspective;
+
 	/** Időzítő. */
 	private Timer				timer;
 
@@ -41,10 +45,10 @@ public class Game {
 	 * @param scene a játékhoz tartozó pálya
 	 * @param timer a játékhoz tartozó időzítő
 	 */
-	public Game(Scene scene, Timer timer) {
+	public Game(Scene scene, Perspective perspective, Timer timer) {
 		this.scene = scene;
-		this.timer = timer;
-		this.timer.setGame(this);
+		setTimer(timer);
+		setPerspective(perspective);
 		this.highscores = new ArrayList<HighScore>();
 	}
 
@@ -60,8 +64,7 @@ public class Game {
 		highscores.add(new HighScore(name, score));
 		// Rendezés és a legjobb elemek kiválasztása
 		Collections.sort(highscores, Collections.reverseOrder());
-		highscores = highscores.subList(0, (highscores.size() < highscoresize) ? highscores.size()
-				: highscoresize);
+		highscores = highscores.subList(0, Math.min(highscoresize, highscores.size()));
 
 	}
 
@@ -72,7 +75,19 @@ public class Game {
 	 */
 	public int getDifficulty() {
 
+		// Nehézség visszaadása
 		return difficulty;
+	}
+
+	/**
+	 * Lekérdezi a játékhoz tartozó nézetet.
+	 * 
+	 * @return a játékhoz tartozó nézet
+	 */
+	public Perspective getPerspective() {
+
+		// Nézet visszaadása
+		return perspective;
 	}
 
 	/**
@@ -113,7 +128,22 @@ public class Game {
 	 */
 	public void setDifficulty(int difficulty) {
 
+		// Nehézség beállítása
 		this.difficulty = difficulty;
+
+	}
+
+	/**
+	 * Beállítja a játékhoz tartozó nézetet.
+	 * 
+	 * @param perspective a játékhoz tartozó új nézet
+	 */
+	public void setPerspective(Perspective perspective) {
+
+		// Nézet beállítása
+		this.perspective = perspective;
+		perspective.setGame(this);
+
 	}
 
 	/**

@@ -22,7 +22,7 @@ public class Timer implements Runnable {
 	/**
 	 * Példányosít egy új időzítőt.
 	 * 
-	 * @param interval az óraütések között eltelt idő
+	 * @param interval az óraütések között eltelt idő másodpercben
 	 */
 	public Timer(int interval) {
 		this.interval = interval;
@@ -43,7 +43,7 @@ public class Timer implements Runnable {
 	/**
 	 * Lekérdezi az óraütések között eltelt időt.
 	 * 
-	 * @return az óraütések között eltelt idő
+	 * @return az óraütések között eltelt idő másodpercben
 	 */
 	public int getInterval() {
 
@@ -73,7 +73,7 @@ public class Timer implements Runnable {
 	}
 
 	/**
-	 * Lekérdezi a játékot amihez az időzítő tartozik.
+	 * Beállítja a játékot amihez az időzítő tartozik.
 	 * 
 	 * @param game az új játék amihez az időzítő tartozik
 	 */
@@ -87,7 +87,7 @@ public class Timer implements Runnable {
 	/**
 	 * Beállítja az óraütések között eltelt időt.
 	 * 
-	 * @param interval az óraütések között eltelt új idő
+	 * @param interval az óraütések között eltelt új idő másodpercben
 	 */
 	public void setInterval(int interval) {
 

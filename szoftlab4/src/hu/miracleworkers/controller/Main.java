@@ -6,6 +6,7 @@
 package hu.miracleworkers.controller;
 
 import hu.miracleworkers.model.Scene;
+import hu.miracleworkers.view.Perspective;
 
 /**
  * Main osztály.
@@ -21,8 +22,9 @@ public class Main {
 
 		// Inicializálás
 		Scene scene = new Scene();
+		Perspective perspective = new Perspective();
 		Timer timer = new Timer(1);
-		Game game = new Game(scene, timer);
+		Game game = new Game(scene, perspective, timer);
 
 		// Időzítő indítása
 		Thread timerThread = new Thread(timer);

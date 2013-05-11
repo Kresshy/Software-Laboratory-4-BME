@@ -26,6 +26,15 @@ public class GEffects implements GraphicsObject {
 		effects = new HashMap<Point, Effect>();
 	}
 
+	/**
+	 * Példányosít egy új grafikus elemet.
+	 * 
+	 * @param effects a pályán található effektek
+	 */
+	public GEffects(Map<Point, Effect> effects) {
+		this.effects = effects;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

@@ -59,7 +59,7 @@ public class XMLBuilder {
 	 * 
 	 * @param path the path
 	 * @return the scene
-	 * @throws SAXException the sAX exception
+	 * @throws SAXException the SAX exception
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws ParserConfigurationException the parser configuration exception
 	 */

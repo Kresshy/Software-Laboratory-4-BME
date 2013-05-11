@@ -49,7 +49,7 @@ public class Point {
 
 	/**
 	 * Példányosít egy új pontot.
-	 *
+	 * 
 	 * @param x az X koordináta
 	 * @param y az Y koordináta
 	 */
@@ -61,7 +61,7 @@ public class Point {
 
 	/**
 	 * Valós koordináták saját koordinátákká számolása.
-	 *
+	 * 
 	 * @param cx a valós X koordináta
 	 * @param cy a valós Y koordináta
 	 * @return egy Pont példány, ha a valós koordináták egy érvényes pontot jelölnek, egyébként null

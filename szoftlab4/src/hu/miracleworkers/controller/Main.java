@@ -5,11 +5,16 @@
  */
 package hu.miracleworkers.controller;
 
+import java.io.IOException;
+
 import hu.miracleworkers.model.Scene;
 import hu.miracleworkers.swing.ScenePanel;
 import hu.miracleworkers.view.Perspective;
 
 import javax.swing.JFrame;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 /**
  * Main osztály.
@@ -24,27 +29,45 @@ public class Main {
 	public static void main(String[] args) {
 
 		// Inicializálás
+		XMLBuilder builder = new XMLBuilder();
 		Scene scene = new Scene();
+
+		try {
+
+			scene = builder.readXML("test04.xml");
+
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		Perspective perspective = new Perspective();
 		Timer timer = new Timer(1);
 		Game game = new Game(scene, perspective, timer);
-
+		ScenePanel sPanel = new ScenePanel(perspective);
 		// Időzítő indítása
 		Thread timerThread = new Thread(timer);
 		timerThread.start();
+		timer.start();
 
 		JFrame frame = new JFrame("Ant Farm");
-		frame.add(new ScenePanel(perspective));
+		frame.add(sPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
 		// Fejléc
-		System.out.println("\nProto - MiracleWorkers (c) 2013\n"
-				+ "-------------------------------\n" + "Irja be a parancsokat:\n\n");
+		// System.out.println("\nProto - MiracleWorkers (c) 2013\n"
+		// + "-------------------------------\n" + "Irja be a parancsokat:\n\n");
 
-		timerThread.interrupt();
+		// timerThread.interrupt();
 
 		System.out.println();
 	}

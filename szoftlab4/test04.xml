@@ -1,0 +1,19 @@
+<scene>
+    <obstacles>
+        <antsinker>
+            <position x="100" y="100" />
+        </antsinker>
+    </obstacles>
+    <storages>
+        <foodstorage>
+            <position x="300" y="200" />
+            <capacity>15</capacity>
+            <packet>1</packet>
+        </foodstorage>
+        <anthill>
+            <position x="10" y="10" />
+            <capacity>1</capacity>
+            <packet>1</packet>
+        </anthill>
+    </storages>
+</scene>

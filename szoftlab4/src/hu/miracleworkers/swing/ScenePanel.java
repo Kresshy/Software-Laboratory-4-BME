@@ -22,6 +22,7 @@ public class ScenePanel extends JPanel {
 
 			this.perspective = p;
 			size = new Dimension();
+			p.setPanel(this);
 
 			background = ImageIO.read(new File("graphics\\palya.png"));
 

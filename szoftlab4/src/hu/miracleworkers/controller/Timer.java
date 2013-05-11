@@ -62,11 +62,12 @@ public class Timer implements Runnable {
 			while (true) {
 				synchronized (this) {
 					while (!enabled) {
+
 						wait();
 					}
 				}
 				tick();
-				Thread.sleep(interval * 1000);
+				Thread.sleep(interval * 10);
 			}
 		} catch (InterruptedException e) {
 		}
@@ -101,6 +102,7 @@ public class Timer implements Runnable {
 	 */
 	synchronized public void start() {
 
+		System.out.println("-------------------- START --------------------");
 		// Ha van játék ahova a tick-eket továbbítsuk
 		if (game != null) {
 			// Engedélyezés
@@ -129,6 +131,7 @@ public class Timer implements Runnable {
 		System.out.println("-------------------- Tick --------------------");
 		// Tick delegálása
 		game.getScene().delegateTick();
+		game.getPerspective().handleTick();
 
 	}
 

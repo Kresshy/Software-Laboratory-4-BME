@@ -44,8 +44,9 @@ public class Main extends JPanel {
 			e.printStackTrace();
 		}
 	}
-
-	public void paint(Graphics g) {
+	
+	@Override
+	protected void paintComponent(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
 
@@ -58,6 +59,7 @@ public class Main extends JPanel {
 		g2d.drawImage(antsinker, 300, 300, null);
 		g2d.drawImage(anteater, 250, 360, null);
 
+		
 	}
 
 	public static void main(String[] args) {

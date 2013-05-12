@@ -8,20 +8,20 @@
     </creatures>
     <obstacles>
         <obstacle>
-            <position x="160" y="175" />
-            <radius>40</radius>
+            <position x="95" y="85" />
+            <radius>35</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="115" y="310" />
-            <radius>40</radius>
+            <position x="260" y="85" />
+            <radius>25</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="200" y="330" />
-            <radius>20</radius>
+            <position x="200" y="340" />
+            <radius>30</radius>
             <solid>true</solid>
             <movable>false</movable>
         </obstacle>

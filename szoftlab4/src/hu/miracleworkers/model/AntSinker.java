@@ -17,7 +17,7 @@ public class AntSinker extends Obstacle {
 	 * @param scene a pálya amihez a hangyaleső tartozik
 	 */
 	public AntSinker(Point position, Scene scene) {
-		super(position, scene, 2, false, false);
+		super(position, scene, 10, false, false);
 	}
 
 	/*

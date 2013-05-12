@@ -40,7 +40,7 @@ public class Ant extends Creature {
 	 * @param home a hangya otthona
 	 */
 	public Ant(Point position, Scene scene, Storage home) {
-		super(position, scene, 1);
+		super(position, scene, 5);
 		this.home = home;
 		this.poisoned = false;
 		this.health = 3; // TODO: Kezdőérték meghatározása

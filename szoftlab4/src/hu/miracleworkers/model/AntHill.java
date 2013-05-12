@@ -22,7 +22,7 @@ public class AntHill extends Storage {
 	 * @param packet az óraütésenként született hangyák száma
 	 */
 	public AntHill(Point position, Scene scene, int capacity, int packet) {
-		super(position, 3, capacity, packet, false);
+		super(position, 15, capacity, packet, false);
 		this.scene = scene;
 	}
 

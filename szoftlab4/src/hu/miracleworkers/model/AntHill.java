@@ -13,6 +13,9 @@ public class AntHill extends Storage {
 	/** Pálya. */
 	private Scene	scene;
 
+	/** Hangyák születéséig hátralévő idő. */
+	private int		timeout;
+
 	/**
 	 * Példányosít egy új hangyabolyt.
 	 * 
@@ -35,13 +38,18 @@ public class AntHill extends Storage {
 	public void handleTick() {
 
 		// Hangyák születése
-		// Minden hangyára
-		for (int i = getItems(); i > 0; i--) {
-			// Létrehozás
-			Ant ant = new Ant(getPosition(), scene, this);
-			// Tárolás
-			scene.getAnts().add(ant);
+		if (timeout <= 0) {
+			timeout = 50;
+			// Minden hangyára
+			for (int i = getItems(); i > 0; i--) {
+				// Létrehozás
+				Ant ant = new Ant(getPosition(), scene, this);
+				// Tárolás
+				scene.getAnts().add(ant);
+			}
 		}
+
+		timeout--;
 
 	}
 

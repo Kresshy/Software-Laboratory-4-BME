@@ -67,7 +67,7 @@ public class Timer implements Runnable {
 					}
 				}
 				tick();
-				Thread.sleep(interval * 50);
+				Thread.sleep(interval * 25);
 			}
 		} catch (InterruptedException e) {
 		}

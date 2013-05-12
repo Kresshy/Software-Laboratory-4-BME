@@ -131,6 +131,8 @@ public class Ant extends Creature {
 					}
 				}
 			}
+			if (target == null)
+				target = home;
 		}
 
 		Direction direction;
@@ -138,6 +140,9 @@ public class Ant extends Creature {
 		if (target != null) {
 			// Új pozíció meghatározása
 			direction = getPosition().direction(target.getPosition());
+			// Random fordulás
+			int rand = -1 + (int) (Math.random() * 3) + Direction.values().length;
+			direction = Direction.values()[(direction.ordinal() + rand) % Direction.values().length];
 			setPosition(getPosition().step(direction, 1));
 		} else {
 			direction = Direction.RIGHT;

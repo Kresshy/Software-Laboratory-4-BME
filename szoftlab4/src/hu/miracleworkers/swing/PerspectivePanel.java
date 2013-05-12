@@ -21,7 +21,7 @@ public class PerspectivePanel extends JPanel {
 		try {
 			setPerspective(perspective);
 
-			background = ImageIO.read(new File("graphics/palya.png"));
+			background = ImageIO.read(new File("graphics/background.png"));
 
 			size = new Dimension();
 			size.width = background.getWidth(null);

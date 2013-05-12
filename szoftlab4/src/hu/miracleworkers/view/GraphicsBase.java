@@ -7,6 +7,12 @@ package hu.miracleworkers.view;
 
 import hu.miracleworkers.model.BaseObject;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 /**
  * Pályaelemek grafikus ősosztálya.
  * 
@@ -28,6 +34,20 @@ public abstract class GraphicsBase<T extends BaseObject> implements GraphicsObje
 	 */
 	public GraphicsBase(T wrappedObject) {
 		this.wrappedObject = wrappedObject;
+	}
+
+	/**
+	 * Kép betöltése a memóriába.
+	 * 
+	 * @param image a kép elérési útja
+	 * @return a betöltött kép
+	 */
+	public static BufferedImage loadImage(String image) {
+		try {
+			return ImageIO.read(new File(image));
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 	/*

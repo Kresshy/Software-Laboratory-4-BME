@@ -6,20 +6,19 @@
 package hu.miracleworkers.view;
 
 import hu.miracleworkers.model.Obstacle;
+import hu.miracleworkers.model.Point;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 /**
  * Akadály grafikus osztály.
  */
 public class GObstacle extends GraphicsBase<Obstacle> {
 
-	BufferedImage	pebble, puddle, antsinker;
+	private static final BufferedImage	pebble		= loadImage("graphics/pebble.png");
+	private static final BufferedImage	puddle		= loadImage("graphics/puddle.png");
+	private static final BufferedImage	antsinker	= loadImage("graphics/antsinker.png");
 
 	/**
 	 * Példányosít egy új grafikus elemet.
@@ -28,16 +27,6 @@ public class GObstacle extends GraphicsBase<Obstacle> {
 	 */
 	public GObstacle(Obstacle wrappedObject) {
 		super(wrappedObject);
-
-		try {
-
-			pebble = ImageIO.read(new File("graphics\\kavics.png"));
-			puddle = ImageIO.read(new File("graphics\\pocsolya.png"));
-			antsinker = ImageIO.read(new File("graphics\\hangyanyelő.png"));
-
-		} catch (IOException e) {
-		}
-
 	}
 
 	/*
@@ -47,24 +36,24 @@ public class GObstacle extends GraphicsBase<Obstacle> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO: Akadályok kirajzolása
-
-		Obstacle wrappedObstacle = getWrappedObject();
+		// Akadályok kirajzolása
+		BufferedImage image;
 		if (wrappedObject.isMovable()) {
-			graphics.drawImage(pebble, wrappedObstacle.getPosition().getCoordX()
-					- (getPaintSize() / 2), wrappedObstacle.getPosition().getCoordY()
-					- (getPaintSize() / 2), getPaintSize(), getPaintSize(), null);
+			// Kavics kirajzolása
+			image = pebble;
 		} else {
 			if (wrappedObject.isSolid()) {
-				graphics.drawImage(puddle, wrappedObstacle.getPosition().getCoordX()
-						- (getPaintSize() / 2), wrappedObstacle.getPosition().getCoordY()
-						- (getPaintSize() / 2), getPaintSize(), getPaintSize(), null);
+				// Pocsolya kirajzolása
+				image = puddle;
 			} else {
-				graphics.drawImage(antsinker, wrappedObstacle.getPosition().getCoordX()
-						- (getPaintSize() / 2), wrappedObstacle.getPosition().getCoordY()
-						- (getPaintSize() / 2), getPaintSize(), getPaintSize(), null);
+				// Hangyaleső kirajzolása
+				image = antsinker;
 			}
 		}
+		int size = getPaintSize();
+		Point pos = wrappedObject.getPosition();
+		graphics.drawImage(image, pos.getCoordX() - (size / 2), pos.getCoordY() - (size / 2), size,
+				size, null);
 	}
 
 }

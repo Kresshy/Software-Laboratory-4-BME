@@ -6,20 +6,17 @@
 package hu.miracleworkers.view;
 
 import hu.miracleworkers.model.Creature;
+import hu.miracleworkers.model.Point;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 /**
  * Élőlény grafikus osztály.
  */
 public class GCreature extends GraphicsBase<Creature> {
 
-	BufferedImage	anteater;
+	private static final BufferedImage	anteater	= loadImage("graphics/anteater.png");
 
 	/**
 	 * Példányosít egy új grafikus elemet.
@@ -28,12 +25,6 @@ public class GCreature extends GraphicsBase<Creature> {
 	 */
 	public GCreature(Creature wrappedObject) {
 		super(wrappedObject);
-		try {
-
-			anteater = ImageIO.read(new File("graphics\\sün.png"));
-
-		} catch (IOException e) {
-		}
 	}
 
 	/*
@@ -43,10 +34,10 @@ public class GCreature extends GraphicsBase<Creature> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		Creature wrappedCreature = getWrappedObject();
-		graphics.drawImage(anteater,
-				wrappedCreature.getPosition().getCoordX() - (getPaintSize() / 2),
-				wrappedCreature.getPosition().getCoordY() - (getPaintSize() / 2),
-				getPaintSize(), getPaintSize(), null);
+		// Hangyászsün kirajzolása
+		int size = getPaintSize();
+		Point pos = wrappedObject.getPosition();
+		graphics.drawImage(anteater, pos.getCoordX() - (size / 2), pos.getCoordY() - (size / 2),
+				size, size, null);
 	}
 }

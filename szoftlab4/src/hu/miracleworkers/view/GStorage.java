@@ -5,21 +5,23 @@
  */
 package hu.miracleworkers.view;
 
+import hu.miracleworkers.model.Point;
 import hu.miracleworkers.model.Storage;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 /**
  * Tároló grafikus osztály.
  */
 public class GStorage extends GraphicsBase<Storage> {
 
-	BufferedImage	foodstorage, anthill;
+	private static final BufferedImage	foodstorage0	= loadImage("graphics/foodstorage_0.png");
+	private static final BufferedImage	foodstorage1	= loadImage("graphics/foodstorage_1.png");
+	private static final BufferedImage	foodstorage2	= loadImage("graphics/foodstorage_2.png");
+	private static final BufferedImage	foodstorage3	= loadImage("graphics/foodstorage_3.png");
+	private static final BufferedImage	foodstorage4	= loadImage("graphics/foodstorage_4.png");
+	private static final BufferedImage	anthill			= loadImage("graphics/anthill.png");
 
 	/**
 	 * Példányosít egy új grafikus elemet.
@@ -28,14 +30,6 @@ public class GStorage extends GraphicsBase<Storage> {
 	 */
 	public GStorage(Storage wrappedObject) {
 		super(wrappedObject);
-		try {
-
-			anthill = ImageIO.read(new File("graphics\\hangyaboly.png"));
-			foodstorage = ImageIO.read(new File("graphics\\foodstorage.png"));
-
-		} catch (IOException e) {
-		}
-
 	}
 
 	/*
@@ -45,18 +39,20 @@ public class GStorage extends GraphicsBase<Storage> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO: Tárolók kirajzolása
+		// Tárolók kirajzolása
+		BufferedImage image;
 		Storage wrappedStorage = getWrappedObject();
 		if (wrappedObject.isAttractive()) {
-			graphics.drawImage(foodstorage,
-					wrappedStorage.getPosition().getCoordX() - (getPaintSize() / 2),
-					wrappedStorage.getPosition().getCoordY() - (getPaintSize() / 2),
-					getPaintSize(), getPaintSize(), null);
+			// Ételraktár kirajzolása
+			// TODO: Ételmennyiségtől függő kép kiválasztása
+			image = foodstorage4;
 		} else {
-			graphics.drawImage(anthill,
-					wrappedStorage.getPosition().getCoordX() - (getPaintSize() / 2),
-					wrappedStorage.getPosition().getCoordY() - (getPaintSize() / 2),
-					getPaintSize(), getPaintSize(), null);
+			// Hangyaboly kirajzolása
+			image = anthill;
 		}
+		int size = getPaintSize();
+		Point pos = wrappedObject.getPosition();
+		graphics.drawImage(image, pos.getCoordX() - (size / 2), pos.getCoordY() - (size / 2), size,
+				size, null);
 	}
 }

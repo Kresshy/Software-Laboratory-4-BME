@@ -6,20 +6,20 @@
 package hu.miracleworkers.view;
 
 import hu.miracleworkers.model.Ant;
+import hu.miracleworkers.model.Point;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 /**
  * Hangya grafikus osztály.
  */
 public class GAnt extends GraphicsBase<Ant> {
 
-	BufferedImage	ant;
+	private static final BufferedImage	normal				= loadImage("graphics/ant.png");
+	private static final BufferedImage	poisoned			= loadImage("graphics/ant_poisoned.png");
+	private static final BufferedImage	withCargo			= loadImage("graphics/ant_withcargo.png");
+	private static final BufferedImage	poisonedWithCargo	= loadImage("graphics/ant_poisoned_withcargo.png");
 
 	/**
 	 * Példányosít egy új grafikus elemet.
@@ -28,12 +28,6 @@ public class GAnt extends GraphicsBase<Ant> {
 	 */
 	public GAnt(Ant wrappedObject) {
 		super(wrappedObject);
-		try {
-
-			ant = ImageIO.read(new File("graphics\\hangya.png"));
-
-		} catch (IOException e) {
-		}
 	}
 
 	/*
@@ -43,12 +37,14 @@ public class GAnt extends GraphicsBase<Ant> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO: Hangya kirajzolása
-
-		Ant wrappedAnt = getWrappedObject();
-		graphics.drawImage(ant, wrappedAnt.getPosition().getCoordX() - (getPaintSize() / 2),
-				wrappedAnt.getPosition().getCoordY() - (getPaintSize() / 2), getPaintSize(),
-				getPaintSize(), null);
+		// Hangya kirajzolása
+		BufferedImage image = normal;
+		// TODO: Hangya különböző állapotai
+		// TODO: Hangya forgatása
+		int size = getPaintSize();
+		Point pos = wrappedObject.getPosition();
+		graphics.drawImage(image, pos.getCoordX() - (size / 2), pos.getCoordY() - (size / 2), size,
+				size, null);
 	}
 
 }

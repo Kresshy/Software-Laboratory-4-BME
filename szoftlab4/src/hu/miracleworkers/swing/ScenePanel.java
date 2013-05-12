@@ -31,8 +31,6 @@ public class ScenePanel extends JPanel {
 			setPreferredSize(size);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

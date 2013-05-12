@@ -190,7 +190,6 @@ public class XMLBuilder {
 				// helyesen van kitoltve
 				if (element.getElementsByTagName("position").item(0) != null
 						&& element.getElementsByTagName("radius").item(0) != null
-						&& element.getElementsByTagName("color").item(0) != null
 						&& element.getElementsByTagName("solid").item(0) != null
 						&& element.getElementsByTagName("movable").item(0) != null) {
 

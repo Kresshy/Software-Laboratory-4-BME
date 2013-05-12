@@ -214,9 +214,6 @@ public class Ant extends Creature {
 	@Override
 	public void terminate() {
 
-		// FIXME: Kimenet eltávolítása
-		System.out.println(String.format("Ant %d died.", scene.getAnts().indexOf(this)));
-
 		// Étel visszatétele
 		if (source != null) {
 			source.putItems(cargo);

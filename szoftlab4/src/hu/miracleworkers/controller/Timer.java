@@ -67,7 +67,7 @@ public class Timer implements Runnable {
 					}
 				}
 				tick();
-				Thread.sleep(interval * 10);
+				Thread.sleep(interval * 50);
 			}
 		} catch (InterruptedException e) {
 		}
@@ -102,7 +102,6 @@ public class Timer implements Runnable {
 	 */
 	synchronized public void start() {
 
-		System.out.println("-------------------- START --------------------");
 		// Ha van játék ahova a tick-eket továbbítsuk
 		if (game != null) {
 			// Engedélyezés
@@ -127,8 +126,6 @@ public class Timer implements Runnable {
 	 */
 	protected void tick() {
 
-		// FIXME: Kimenet eltávolítása
-		System.out.println("-------------------- Tick --------------------");
 		// Tick delegálása
 		game.getScene().delegateTick();
 		game.getPerspective().handleTick();

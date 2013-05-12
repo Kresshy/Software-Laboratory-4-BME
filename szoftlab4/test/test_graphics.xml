@@ -1,0 +1,44 @@
+<scene>
+    <creatures>
+        <anteater>
+            <position x="0" y="130" />
+            <hunger>10</hunger>
+            <wait>20</wait>
+        </anteater>
+    </creatures>
+    <obstacles>
+        <obstacle>
+            <position x="160" y="175" />
+            <radius>40</radius>
+            <solid>true</solid>
+            <movable>true</movable>
+        </obstacle>
+        <obstacle>
+            <position x="115" y="310" />
+            <radius>40</radius>
+            <solid>true</solid>
+            <movable>true</movable>
+        </obstacle>
+        <obstacle>
+            <position x="200" y="330" />
+            <radius>20</radius>
+            <solid>true</solid>
+            <movable>false</movable>
+        </obstacle>
+        <antsinker>
+            <position x="200" y="230" />
+        </antsinker>
+    </obstacles>
+    <storages>
+        <foodstorage>
+            <position x="350" y="350" />
+            <capacity>10</capacity>
+            <packet>1</packet>
+        </foodstorage>
+        <anthill>
+            <position x="35" y="35" />
+            <capacity>15</capacity>
+            <packet>1</packet>
+        </anthill>
+    </storages>
+</scene>

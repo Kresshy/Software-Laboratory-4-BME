@@ -33,8 +33,6 @@ public class GCreature extends GraphicsBase<Creature> {
 			anteater = ImageIO.read(new File("graphics\\sün.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

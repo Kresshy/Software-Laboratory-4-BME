@@ -6,6 +6,8 @@
 package hu.miracleworkers.controller;
 
 import hu.miracleworkers.model.HighScore;
+import hu.miracleworkers.model.Point;
+import hu.miracleworkers.model.Poison;
 import hu.miracleworkers.model.Scene;
 import hu.miracleworkers.view.Perspective;
 
@@ -22,7 +24,7 @@ public class Game {
 	private static final int	highscoresize	= 10;
 
 	/** Rekordok tárolására használt fájl. */
-	private static final String	path			= "savegame.dat";
+	private static final String	path			= "highscores.dat";
 
 	/** Pálya. */
 	private Scene				scene;
@@ -80,6 +82,15 @@ public class Game {
 	}
 
 	/**
+	 * Lekérdezi a rekordokat.
+	 * 
+	 * @return a rekordok listája
+	 */
+	public List<HighScore> getHighscores() {
+		return highscores;
+	}
+
+	/**
 	 * Lekérdezi a játékhoz tartozó nézetet.
 	 * 
 	 * @return a játékhoz tartozó nézet
@@ -110,6 +121,44 @@ public class Game {
 
 		// Időzítő visszaadása
 		return timer;
+	}
+
+	public void placeDeodorizer(int x, int y) {
+
+		// Érvényes pozíció meghatározása
+		for (int dx = 0; dx <= 3; dx++) {
+			for (int dy = 0; dy <= 2; dy++) {
+				// Próbálkozás amíg érvényes pontot nem találunk
+				Point position = Point.fromCoords(x + dx, y + dy);
+				if (position != null) {
+					// Pálya szagtalanítása
+					getScene().clearEffects(position);
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * Letesz egy mérget a megadott helyre.
+	 * 
+	 * @param x az X koordináta
+	 * @param y az Y koordináta
+	 */
+	public void placePoison(int x, int y) {
+
+		// Érvényes pozíció meghatározása
+		for (int dx = 0; dx <= 3; dx++) {
+			for (int dy = 0; dy <= 2; dy++) {
+				// Próbálkozás amíg érvényes pontot nem találunk
+				Point position = Point.fromCoords(x + dx, y + dy);
+				if (position != null) {
+					// Méreg hozzáadása a pályához
+					getScene().placeObstacle(new Poison(position, getScene()));
+				}
+			}
+		}
+
 	}
 
 	/**

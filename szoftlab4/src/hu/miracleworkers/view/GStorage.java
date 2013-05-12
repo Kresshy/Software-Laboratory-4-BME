@@ -34,8 +34,6 @@ public class GStorage extends GraphicsBase<Storage> {
 			foodstorage = ImageIO.read(new File("graphics\\foodstorage.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}

@@ -14,10 +14,12 @@ import hu.miracleworkers.model.BaseObject;
  */
 public abstract class GraphicsBase<T extends BaseObject> implements GraphicsObject {
 
+	private static final int	paintScale	= 2;
+
 	/**
 	 * Csatolt pályaelem.
 	 */
-	protected T	wrappedObject;
+	protected T					wrappedObject;
 
 	/**
 	 * Páldányosít egy grafikus pályaelemet.
@@ -34,11 +36,16 @@ public abstract class GraphicsBase<T extends BaseObject> implements GraphicsObje
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(GraphicsBase<T> o) {
-		try {
-			return wrappedObject == o.wrappedObject;
-		} catch (ClassCastException e) {
-			return false;
-		}
+		return wrappedObject == o.wrappedObject;
+	}
+
+	/**
+	 * Lekérdezi kirajzolási méretet.
+	 * 
+	 * @return a kirajzolási méret
+	 */
+	public int getPaintSize() {
+		return 2 * wrappedObject.getRadius() * paintScale;
 	}
 
 	/**

@@ -41,8 +41,6 @@ public class AntHill extends Storage {
 			Ant ant = new Ant(getPosition(), scene, this);
 			// Tárolás
 			scene.getAnts().add(ant);
-			// FIXME: Kimenet eltávolítása
-			System.out.println(String.format("Ant %d spawned.", scene.getAnts().indexOf(ant)));
 		}
 
 	}

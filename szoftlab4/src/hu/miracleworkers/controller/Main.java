@@ -5,16 +5,11 @@
  */
 package hu.miracleworkers.controller;
 
-import java.io.IOException;
-
 import hu.miracleworkers.model.Scene;
 import hu.miracleworkers.swing.ScenePanel;
 import hu.miracleworkers.view.Perspective;
 
 import javax.swing.JFrame;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
 
 /**
  * Main osztály.
@@ -34,17 +29,9 @@ public class Main {
 
 		try {
 
-			scene = builder.readXML("test04.xml");
+			scene = builder.readXML("test/test_graphics.xml");
 
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
 		}
 
 		Perspective perspective = new Perspective();

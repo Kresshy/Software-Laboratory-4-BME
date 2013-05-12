@@ -33,8 +33,6 @@ public class GAnt extends GraphicsBase<Ant> {
 			ant = ImageIO.read(new File("graphics\\hangya.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

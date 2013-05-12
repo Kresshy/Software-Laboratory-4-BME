@@ -58,9 +58,6 @@ public class Scene {
 			Obstacle obstacle = iobstacles.next();
 			// Ha szemét
 			if (obstacle.isDebris()) {
-				// FIXME: Kimenet eltávolítása
-				System.out.println(String.format("Poison %d evaporated.",
-						getObstacles().indexOf(obstacle)));
 				// Eltávolítás
 				iobstacles.remove();
 			}

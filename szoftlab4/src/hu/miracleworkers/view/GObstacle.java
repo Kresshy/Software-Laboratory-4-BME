@@ -36,8 +36,6 @@ public class GObstacle extends GraphicsBase<Obstacle> {
 			antsinker = ImageIO.read(new File("graphics\\hangyanyelő.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}

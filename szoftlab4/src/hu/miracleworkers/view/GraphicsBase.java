@@ -6,6 +6,10 @@
 package hu.miracleworkers.view;
 
 import hu.miracleworkers.model.BaseObject;
+import hu.miracleworkers.model.Point;
+
+import java.awt.Color;
+import java.awt.Graphics;
 
 /**
  * Pályaelemek grafikus ősosztálya.
@@ -14,7 +18,7 @@ import hu.miracleworkers.model.BaseObject;
  */
 public abstract class GraphicsBase<T extends BaseObject> implements GraphicsObject {
 
-	private static final int	paintScale	= 2;
+	private static final int	paintScale	= 1;
 
 	/**
 	 * Csatolt pályaelem.
@@ -40,6 +44,13 @@ public abstract class GraphicsBase<T extends BaseObject> implements GraphicsObje
 	}
 
 	/**
+	 * Lekérdezi a csatolt pályaelem színét.
+	 * 
+	 * @return a csatolt pályaelem színe
+	 */
+	public abstract Color getColor();
+
+	/**
 	 * Lekérdezi kirajzolási méretet.
 	 * 
 	 * @return a kirajzolási méret
@@ -55,6 +66,20 @@ public abstract class GraphicsBase<T extends BaseObject> implements GraphicsObje
 	 */
 	public T getWrappedObject() {
 		return wrappedObject;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.view.GraphicsObject#paintObject(java.awt.Graphics)
+	 */
+	@Override
+	public void paintObject(Graphics graphics) {
+		// Pályaelem kirajzolása
+		int size = getPaintSize();
+		Point pos = wrappedObject.getPosition();
+		graphics.setColor(getColor());
+		graphics.fillOval(pos.getCoordX() - size / 2, pos.getCoordY() - size / 2, size, size);
 	}
 
 	/**

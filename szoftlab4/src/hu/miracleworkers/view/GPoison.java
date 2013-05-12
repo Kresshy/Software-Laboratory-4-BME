@@ -7,7 +7,7 @@ package hu.miracleworkers.view;
 
 import hu.miracleworkers.model.Poison;
 
-import java.awt.Graphics;
+import java.awt.Color;
 
 /**
  * Méreg grafikus osztály.
@@ -23,15 +23,10 @@ public class GPoison extends GraphicsBase<Poison> {
 		super(wrappedObject);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hu.miracleworkers.view.GraphicsObject#paintObject(java.awt.Graphics)
-	 */
 	@Override
-	public void paintObject(Graphics graphics) {
-		// TODO: Méreg kirajzolása
-
+	public Color getColor() {
+		// Méreg színe
+		return Color.GREEN;
 	}
 
 }

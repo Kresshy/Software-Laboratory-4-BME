@@ -8,7 +8,7 @@ package hu.miracleworkers.view;
 import hu.miracleworkers.controller.Game;
 import hu.miracleworkers.model.BaseObject;
 import hu.miracleworkers.model.Scene;
-import hu.miracleworkers.swing.ScenePanel;
+import hu.miracleworkers.swing.PerspectivePanel;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -20,12 +20,13 @@ import java.util.List;
 public class Perspective {
 
 	/** Játék. */
-	private Game		game;
+	private Game				game;
 
 	/** Effektek. */
-	private GEffects	effects;
+	private GEffects			effects;
 
-	private ScenePanel	panel;
+	/** Panel. */
+	private PerspectivePanel	panel;
 
 	/**
 	 * Példányosít egy új nézetet.
@@ -34,6 +35,15 @@ public class Perspective {
 	 */
 	public Perspective() {
 		this.effects = new GEffects();
+	}
+
+	/**
+	 * Lekérdezi a játékot amihez a nézet tartozik.
+	 * 
+	 * @return a játék amihez a nézet tartozik
+	 */
+	public Game getGame() {
+		return game;
 	}
 
 	/**
@@ -81,7 +91,12 @@ public class Perspective {
 		this.game = game;
 	}
 
-	public void setPanel(ScenePanel panel) {
+	/**
+	 * Beállítja a panelt amihez a nézet tartozik.
+	 * 
+	 * @param panel az új panel amihez a nézet tartozik
+	 */
+	public void setPanel(PerspectivePanel panel) {
 		this.panel = panel;
 	}
 

@@ -6,7 +6,7 @@
 package hu.miracleworkers.controller;
 
 import hu.miracleworkers.model.Scene;
-import hu.miracleworkers.swing.ScenePanel;
+import hu.miracleworkers.swing.PerspectivePanel;
 import hu.miracleworkers.view.Perspective;
 
 import javax.swing.JFrame;
@@ -37,7 +37,7 @@ public class Main {
 		Perspective perspective = new Perspective();
 		Timer timer = new Timer(1);
 		Game game = new Game(scene, perspective, timer);
-		ScenePanel sPanel = new ScenePanel(perspective);
+		PerspectivePanel sPanel = new PerspectivePanel(perspective);
 		// Időzítő indítása
 		Thread timerThread = new Thread(timer);
 		timerThread.start();

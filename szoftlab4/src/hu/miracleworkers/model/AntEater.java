@@ -57,14 +57,17 @@ public class AntEater extends Creature {
 				List<Ant> ants = scene.getAnts();
 				// Minden hangyára
 				for (Ant ant : ants) {
-					// Ha a sün hatókörében van
-					if (pointInRange(ant.getPosition())) {
-						// Hangya elpusztítása
-						ant.terminate();
-						// Éhség csökkentése
-						hunger -= 1;
-						// Hogy egyesével egye a hangyákat
-						break;
+					try {
+						// Ha a sün hatókörében van
+						if (pointInRange(ant.getPosition())) {
+							// Hangya elpusztítása
+							ant.terminate();
+							// Éhség csökkentése
+							hunger -= 1;
+							// Hogy egyesével egye a hangyákat
+							break;
+						}
+					} catch (NullPointerException e) {
 					}
 				}
 			} else {

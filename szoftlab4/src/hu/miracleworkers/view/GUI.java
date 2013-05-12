@@ -112,9 +112,9 @@ public class GUI {
 		// Ide jön a játéktér
 		JPanel panel_1 = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, panel_1, 10, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, 482, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.EAST, panel_1, -10, SpringLayout.EAST, panel);
+		springLayout.putConstraint(SpringLayout.WEST, panel_1, -884, SpringLayout.EAST, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, 492, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, panel);
 		frame.getContentPane().add(panel_1);
 	}
 }

@@ -51,20 +51,18 @@ public class GObstacle extends GraphicsBase<Obstacle> {
 
 		Obstacle wrappedObstacle = getWrappedObject();
 		if (wrappedObject.isMovable()) {
-			graphics.drawImage(pebble,
-					wrappedObstacle.getPosition().getCoordX() - (pebble.getWidth() / 2),
-					wrappedObstacle.getPosition().getCoordY() - (pebble.getHeight() / 2),
-					getPaintSize(), getPaintSize(), null);
+			graphics.drawImage(pebble, wrappedObstacle.getPosition().getCoordX()
+					- (getPaintSize() / 2), wrappedObstacle.getPosition().getCoordY()
+					- (getPaintSize() / 2), getPaintSize(), getPaintSize(), null);
 		} else {
 			if (wrappedObject.isSolid()) {
-				graphics.drawImage(puddle,
-						wrappedObstacle.getPosition().getCoordX() - (puddle.getWidth() / 2),
-						wrappedObstacle.getPosition().getCoordY() - (puddle.getHeight() / 2),
-						getPaintSize(), getPaintSize(), null);
+				graphics.drawImage(puddle, wrappedObstacle.getPosition().getCoordX()
+						- (getPaintSize() / 2), wrappedObstacle.getPosition().getCoordY()
+						- (getPaintSize() / 2), getPaintSize(), getPaintSize(), null);
 			} else {
 				graphics.drawImage(antsinker, wrappedObstacle.getPosition().getCoordX()
-						- (antsinker.getWidth() / 2), wrappedObstacle.getPosition().getCoordY()
-						- (antsinker.getHeight() / 2), getPaintSize(), getPaintSize(), null);
+						- (getPaintSize() / 2), wrappedObstacle.getPosition().getCoordY()
+						- (getPaintSize() / 2), getPaintSize(), getPaintSize(), null);
 			}
 		}
 	}

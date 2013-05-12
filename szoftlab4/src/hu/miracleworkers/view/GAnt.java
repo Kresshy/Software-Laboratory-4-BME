@@ -46,8 +46,8 @@ public class GAnt extends GraphicsBase<Ant> {
 		// TODO: Hangya kirajzolása
 
 		Ant wrappedAnt = getWrappedObject();
-		graphics.drawImage(ant, wrappedAnt.getPosition().getCoordX() - (ant.getWidth() / 2),
-				wrappedAnt.getPosition().getCoordY() - (ant.getHeight() / 2), getPaintSize(),
+		graphics.drawImage(ant, wrappedAnt.getPosition().getCoordX() - (getPaintSize() / 2),
+				wrappedAnt.getPosition().getCoordY() - (getPaintSize() / 2), getPaintSize(),
 				getPaintSize(), null);
 	}
 

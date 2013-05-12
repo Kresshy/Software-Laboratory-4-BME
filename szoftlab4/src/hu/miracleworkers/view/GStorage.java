@@ -48,12 +48,15 @@ public class GStorage extends GraphicsBase<Storage> {
 		// TODO: Tárolók kirajzolása
 		Storage wrappedStorage = getWrappedObject();
 		if (wrappedObject.isAttractive()) {
-			graphics.drawImage(foodstorage, wrappedStorage.getPosition().getCoordX(),
-					wrappedStorage.getPosition().getCoordY(), null);
+			graphics.drawImage(foodstorage,
+					wrappedStorage.getPosition().getCoordX() - (foodstorage.getWidth() / 4),
+					wrappedStorage.getPosition().getCoordY() - (foodstorage.getHeight() / 4),
+					getPaintSize(), getPaintSize(), null);
 		} else {
-			graphics.drawImage(anthill, wrappedStorage.getPosition().getCoordX(), wrappedStorage
-					.getPosition().getCoordY(), null);
+			graphics.drawImage(anthill,
+					wrappedStorage.getPosition().getCoordX() - (anthill.getWidth() / 4),
+					wrappedStorage.getPosition().getCoordY() - (anthill.getHeight() / 4),
+					getPaintSize(), getPaintSize(), null);
 		}
 	}
-
 }

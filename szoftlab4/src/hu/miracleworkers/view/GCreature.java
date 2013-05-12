@@ -44,7 +44,7 @@ public class GCreature extends GraphicsBase<Creature> {
 	@Override
 	public void paintObject(Graphics graphics) {
 		Creature wrappedCreature = getWrappedObject();
-		graphics.drawImage(anteater, wrappedCreature.getPosition().getCoordX(), wrappedCreature
-				.getPosition().getCoordY(), null);
+		graphics.drawImage(anteater, wrappedCreature.getPosition().getCoordX() - (anteater.getWidth() / 2), wrappedCreature
+				.getPosition().getCoordY() - (anteater.getWidth() / 2), getPaintSize(), getPaintSize(), null);
 	}
 }

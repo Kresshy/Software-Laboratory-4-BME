@@ -27,6 +27,11 @@ public class Poison extends Obstacle {
 		this.timeout = 5;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.Obstacle#getGraphicsWrapper()
+	 */
 	@Override
 	public GraphicsBase getGraphicsWrapper() {
 		return new GPoison(this);

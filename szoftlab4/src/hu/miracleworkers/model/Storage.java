@@ -16,7 +16,7 @@ public abstract class Storage extends BaseObject {
 	/** Tárolt elemek száma. */
 	protected int		amount;
 
-	/** Tárolt elemek maximális száma. */
+	/** Tárolható elemek maximális száma. */
 	protected int		capacity;
 
 	/** Elemkivételkor kiadott elemek száma. */
@@ -42,6 +42,29 @@ public abstract class Storage extends BaseObject {
 		this.attractive = attractive;
 	}
 
+	/**
+	 * Lekérdezi a tárolt elemek számát.
+	 * 
+	 * @return a tárolt elemek száma
+	 */
+	public int getAmount() {
+		return amount;
+	}
+
+	/**
+	 * Lekérdezi a tárolható elemek maximális számát.
+	 * 
+	 * @return a tárolható elemek maximális száma
+	 */
+	public int getCapacity() {
+		return capacity;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.BaseObject#getGraphicsWrapper()
+	 */
 	@Override
 	public GraphicsBase getGraphicsWrapper() {
 		return new GStorage(this);

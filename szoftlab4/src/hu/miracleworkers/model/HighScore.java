@@ -12,10 +12,11 @@ import java.io.Serializable;
  */
 public class HighScore implements Comparable<HighScore>, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 4019851086530768705L;
 
 	/** Elért eredmény. */
-	public int					score;
+	public long					score;
 
 	/** Felhasználó neve. */
 	public String				name;
@@ -26,7 +27,7 @@ public class HighScore implements Comparable<HighScore>, Serializable {
 	 * @param name a felhasználó neve
 	 * @param score az elért eredmény
 	 */
-	public HighScore(String name, int score) {
+	public HighScore(String name, long score) {
 		this.name = name;
 		this.score = score;
 	}

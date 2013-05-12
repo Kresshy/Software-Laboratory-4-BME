@@ -41,6 +41,9 @@ public class Obstacle extends BaseObject {
 		this.scene = scene;
 	}
 
+	/* (non-Javadoc)
+	 * @see hu.miracleworkers.model.BaseObject#getGraphicsWrapper()
+	 */
 	@Override
 	public GraphicsBase getGraphicsWrapper() {
 		return new GObstacle(this);

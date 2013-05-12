@@ -232,7 +232,7 @@ public class Scene {
 	}
 
 	/**
-	 * Lekérdezi a tárolók listáját
+	 * Lekérdezi a tárolók listáját.
 	 * 
 	 * @return a tárolók listája
 	 */

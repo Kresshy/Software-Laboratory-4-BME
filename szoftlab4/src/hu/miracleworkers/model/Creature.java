@@ -13,7 +13,7 @@ import hu.miracleworkers.view.GraphicsBase;
  */
 public abstract class Creature extends BaseObject {
 
-	/** Pálya */
+	/** Pálya. */
 	protected Scene	scene;
 
 	/**
@@ -28,6 +28,9 @@ public abstract class Creature extends BaseObject {
 		this.scene = scene;
 	}
 
+	/* (non-Javadoc)
+	 * @see hu.miracleworkers.model.BaseObject#getGraphicsWrapper()
+	 */
 	@Override
 	public GraphicsBase getGraphicsWrapper() {
 		return new GCreature(this);
@@ -35,6 +38,8 @@ public abstract class Creature extends BaseObject {
 
 	/**
 	 * Lekérdezi a pályát amihez az élőlény tartozik.
+	 *
+	 * @return a pálya amihez az élőlény tartozik
 	 */
 	public Scene getScene() {
 

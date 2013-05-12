@@ -28,6 +28,11 @@ public abstract class BaseObject {
 		this.radius = radius;
 	}
 
+	/**
+	 * Lekérdezi a pályaelem grafikus példányát.
+	 * 
+	 * @return a pályaelem grafikus példánya
+	 */
 	public abstract GraphicsBase getGraphicsWrapper();
 
 	/**

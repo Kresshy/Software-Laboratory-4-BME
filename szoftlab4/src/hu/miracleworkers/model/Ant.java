@@ -18,19 +18,22 @@ import java.util.Map;
 public class Ant extends Creature {
 
 	/** Mérgezettség. */
-	private boolean	poisoned;
+	private boolean		poisoned;
 
 	/** Életerő. */
-	private int		health;
+	private int			health;
 
 	/** Szállított teher. */
-	private int		cargo;
+	private int			cargo;
 
 	/** Otthon. */
-	private Storage	home;
+	private Storage		home;
 
 	/** Ételforrás. */
-	private Storage	source;
+	private Storage		source;
+
+	/** Utolsó mozgás iránya. */
+	private Direction	last_direction;
 
 	/**
 	 * Példányosít egy új hangyát.
@@ -47,6 +50,20 @@ public class Ant extends Creature {
 		this.cargo = 0;
 	}
 
+	/**
+	 * Lekérdezi az utolsó mozgás irányát.
+	 * 
+	 * @return az utolsó mozgás iránya
+	 */
+	public Direction getDirection() {
+		return last_direction;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.Creature#getGraphicsWrapper()
+	 */
 	@Override
 	public GraphicsBase getGraphicsWrapper() {
 		return new GAnt(this);
@@ -106,6 +123,24 @@ public class Ant extends Creature {
 	}
 
 	/**
+	 * Leellenőrzi, hogy cipel-e a hangya élelmet.
+	 * 
+	 * @return true, ha a hangya élelmet cipel
+	 */
+	public boolean hasCargo() {
+		return (cargo > 0);
+	}
+
+	/**
+	 * Leellenőrzi, hogy a hangya meg van-e mérgezve.
+	 * 
+	 * @return true, ha a hangya meg van mérgezve
+	 */
+	public boolean isPoisoned() {
+		return poisoned;
+	}
+
+	/**
 	 * Útvonalkeresés és mozgás.
 	 */
 	protected void routeAndMove() {
@@ -113,7 +148,7 @@ public class Ant extends Creature {
 		// Céltároló kiválasztása
 		Storage target = null;
 		// Ha van rakomány
-		if (cargo > 0) {
+		if (hasCargo()) {
 			// Célpont beállítása a szülőbolyra
 			target = home;
 		} else {
@@ -136,7 +171,7 @@ public class Ant extends Creature {
 		}
 
 		Direction direction;
-		Point old_position = getPosition();
+		Point last_position = getPosition();
 		if (target != null) {
 			// Új pozíció meghatározása
 			direction = getPosition().direction(target.getPosition());
@@ -165,12 +200,13 @@ public class Ant extends Creature {
 					// Az óramutató járásának irányába elfordul
 					direction = Direction.values()[(direction.ordinal() + 1)
 							% Direction.values().length];
-					setPosition(old_position.step(direction, 1));
+					setPosition(last_position.step(direction, 1));
 					clean_step = false;
 					break;
 				}
 			}
 		}
+		last_direction = last_position.direction(getPosition());
 		// TODO: Algoritmus kidolgozása
 
 		// Szagnyom letétele
@@ -188,7 +224,7 @@ public class Ant extends Creature {
 	}
 
 	/**
-	 * Beállítja a hangya mérgezettségét
+	 * Beállítja a hangya mérgezettségét.
 	 * 
 	 * @param poisoned a hangya mérgezettsége
 	 */

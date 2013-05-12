@@ -6,7 +6,7 @@
 package hu.miracleworkers.model;
 
 /**
- * Hangyaleső osztály
+ * Hangyaleső osztály.
  */
 public class AntSinker extends Obstacle {
 

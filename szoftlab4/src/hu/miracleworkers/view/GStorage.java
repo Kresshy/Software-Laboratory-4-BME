@@ -49,13 +49,13 @@ public class GStorage extends GraphicsBase<Storage> {
 		Storage wrappedStorage = getWrappedObject();
 		if (wrappedObject.isAttractive()) {
 			graphics.drawImage(foodstorage,
-					wrappedStorage.getPosition().getCoordX() - (foodstorage.getWidth() / 4),
-					wrappedStorage.getPosition().getCoordY() - (foodstorage.getHeight() / 4),
+					wrappedStorage.getPosition().getCoordX() - (foodstorage.getWidth() / 2),
+					wrappedStorage.getPosition().getCoordY() - (foodstorage.getHeight() / 2),
 					getPaintSize(), getPaintSize(), null);
 		} else {
 			graphics.drawImage(anthill,
-					wrappedStorage.getPosition().getCoordX() - (anthill.getWidth() / 4),
-					wrappedStorage.getPosition().getCoordY() - (anthill.getHeight() / 4),
+					wrappedStorage.getPosition().getCoordX() - (anthill.getWidth() / 2),
+					wrappedStorage.getPosition().getCoordY() - (anthill.getHeight() / 2),
 					getPaintSize(), getPaintSize(), null);
 		}
 	}

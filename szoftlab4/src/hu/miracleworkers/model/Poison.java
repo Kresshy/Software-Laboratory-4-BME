@@ -24,7 +24,7 @@ public class Poison extends Obstacle {
 	 */
 	public Poison(Point position, Scene scene) {
 		super(position, scene, 25, false, false);
-		this.timeout = 5;
+		this.timeout = 500;
 	}
 
 	/*

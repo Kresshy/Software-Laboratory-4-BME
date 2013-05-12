@@ -5,14 +5,18 @@
  */
 package hu.miracleworkers.view;
 
+import hu.miracleworkers.model.Point;
 import hu.miracleworkers.model.Poison;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  * Méreg grafikus osztály.
  */
 public class GPoison extends GraphicsBase<Poison> {
+
+	private static final BufferedImage	image	= loadImage("graphics/poison.png");
 
 	/**
 	 * Példányosít egy új grafikus elemet.
@@ -30,8 +34,11 @@ public class GPoison extends GraphicsBase<Poison> {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO: Méreg kirajzolása
-
+		// Méreg kirajzolása
+		int size = getPaintSize();
+		Point pos = wrappedObject.getPosition();
+		graphics.drawImage(image, pos.getCoordX() - (size / 2), pos.getCoordY() - (size / 2), size,
+				size, null);
 	}
 
 }

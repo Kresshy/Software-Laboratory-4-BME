@@ -35,8 +35,14 @@ public class Game {
 	/** Időzítő. */
 	private Timer				timer;
 
+	/** Eseményfigyelő. */
+	private GameListener		listener;
+
 	/** Nehézség. */
 	private int					difficulty;
+
+	/** Pontszám. */
+	private long				score;
 
 	/** Rekordok. */
 	private List<HighScore>		highscores;
@@ -45,6 +51,7 @@ public class Game {
 	 * Példányosít egy új játékot.
 	 * 
 	 * @param scene a játékhoz tartozó pálya
+	 * @param perspective the perspective
 	 * @param timer a játékhoz tartozó időzítő
 	 */
 	public Game(Scene scene, Perspective perspective, Timer timer) {
@@ -113,6 +120,15 @@ public class Game {
 	}
 
 	/**
+	 * Lekérdezi a játékban elért pontszámot.
+	 * 
+	 * @return a játékban elért pontszám
+	 */
+	public long getScore() {
+		return score;
+	}
+
+	/**
 	 * Lekérdezi a játékhoz tartozó időzítőt.
 	 * 
 	 * @return a játékhoz tartozó időzítő
@@ -123,6 +139,40 @@ public class Game {
 		return timer;
 	}
 
+	/**
+	 * Óraütés kezelése.
+	 */
+	public void handleTick() {
+		score++;
+		if (isOver() && listener != null) {
+			listener.gameOver();
+		}
+	}
+
+	/**
+	 * Ellenőrzi, hogy véget ért-e a játék.
+	 * 
+	 * @return true, ha a játék véget ért
+	 */
+	public boolean isOver() {
+		return false;
+	}
+
+	/**
+	 * Betölti a rekordokat.
+	 */
+	public void loadHighscores() {
+
+		// TODO: Dummy default implementáció
+
+	}
+
+	/**
+	 * Place deodorizer.
+	 * 
+	 * @param x the x
+	 * @param y the y
+	 */
 	public void placeDeodorizer(int x, int y) {
 
 		// Érvényes pozíció meghatározása
@@ -133,6 +183,7 @@ public class Game {
 				if (position != null) {
 					// Pálya szagtalanítása
 					getScene().clearEffects(position);
+					return;
 				}
 			}
 		}
@@ -155,6 +206,7 @@ public class Game {
 				if (position != null) {
 					// Méreg hozzáadása a pályához
 					getScene().placeObstacle(new Poison(position, getScene()));
+					return;
 				}
 			}
 		}
@@ -166,7 +218,7 @@ public class Game {
 	 */
 	public void saveHighscores() {
 
-		// Dummy default implementáció
+		// TODO: Dummy default implementáció
 
 	}
 
@@ -180,6 +232,15 @@ public class Game {
 		// Nehézség beállítása
 		this.difficulty = difficulty;
 
+	}
+
+	/**
+	 * Beállítja a játékhoz tartozó eseményfigyelőt.
+	 * 
+	 * @param listener a játékhoz tartozó új eseményfigyelő
+	 */
+	public void setListener(GameListener listener) {
+		this.listener = listener;
 	}
 
 	/**

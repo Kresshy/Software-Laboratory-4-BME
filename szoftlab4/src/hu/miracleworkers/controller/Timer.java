@@ -129,6 +129,7 @@ public class Timer implements Runnable {
 		// Tick delegálása
 		game.getScene().delegateTick();
 		game.getPerspective().handleTick();
+		game.handleTick();
 
 	}
 

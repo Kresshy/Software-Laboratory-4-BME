@@ -18,7 +18,7 @@ public class FoodStorage extends Storage {
 	 * @param packet a hangyánként kiadott étel mennyisége
 	 */
 	public FoodStorage(Point position, int capacity, int packet) {
-		super(position, 15, capacity, packet, true);
+		super(position, 45, capacity, packet, true);
 	}
 
 	/*

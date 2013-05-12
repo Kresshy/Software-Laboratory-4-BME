@@ -14,7 +14,7 @@ import hu.miracleworkers.model.BaseObject;
  */
 public abstract class GraphicsBase<T extends BaseObject> implements GraphicsObject {
 
-	private static final int	paintScale	= 2;
+	private static final int	paintScale	= 1;
 
 	/**
 	 * Csatolt pályaelem.

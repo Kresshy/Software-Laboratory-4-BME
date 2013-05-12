@@ -23,7 +23,7 @@ public class Poison extends Obstacle {
 	 * @param scene a pálya amihez a méreg tartozik
 	 */
 	public Poison(Point position, Scene scene) {
-		super(position, scene, 10, false, false);
+		super(position, scene, 25, false, false);
 		this.timeout = 5;
 	}
 

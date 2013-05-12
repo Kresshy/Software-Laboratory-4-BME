@@ -35,7 +35,7 @@ public class AntEater extends Creature {
 	 * @param hunger a hangyászsün éhségének mértéke
 	 */
 	public AntEater(Point position, Scene scene, int wait, int hunger) {
-		super(position, scene, 13);
+		super(position, scene, 25);
 		this.wait = wait;
 		this.hunger = hunger;
 		this.visible = false;

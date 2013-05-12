@@ -131,6 +131,16 @@ public class Ant extends Creature {
 		return (cargo > 0);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.BaseObject#isDebris()
+	 */
+	@Override
+	public boolean isDebris() {
+		return health <= 0;
+	}
+
 	/**
 	 * Leellenőrzi, hogy a hangya meg van-e mérgezve.
 	 * 
@@ -263,10 +273,8 @@ public class Ant extends Creature {
 		// Előkészítés respawnra.
 		home.putItems(1);
 
-		// Eltávolítás a scene-ből
-		// scene.getAnts().remove(this);
-		int i = scene.getAnts().indexOf(this);
-		scene.getAnts().set(i, null);
+		// Élet nullára csökkentése
+		health = 0;
 
 	}
 

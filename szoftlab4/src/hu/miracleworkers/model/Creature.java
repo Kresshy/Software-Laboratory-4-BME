@@ -28,7 +28,9 @@ public abstract class Creature extends BaseObject {
 		this.scene = scene;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see hu.miracleworkers.model.BaseObject#getGraphicsWrapper()
 	 */
 	@Override
@@ -38,7 +40,7 @@ public abstract class Creature extends BaseObject {
 
 	/**
 	 * Lekérdezi a pályát amihez az élőlény tartozik.
-	 *
+	 * 
 	 * @return a pálya amihez az élőlény tartozik
 	 */
 	public Scene getScene() {

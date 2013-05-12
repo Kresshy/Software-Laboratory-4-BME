@@ -24,7 +24,7 @@ public class FoodStorage extends Storage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see hu.miracleworkers.model.BaseObject#handleTick()
+	 * @see hu.miracleworkers.model.SceneObject#handleTick()
 	 */
 	@Override
 	public void handleTick() {

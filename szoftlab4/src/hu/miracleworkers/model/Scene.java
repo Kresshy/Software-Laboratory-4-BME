@@ -79,7 +79,7 @@ public class Scene {
 		while (iants.hasNext()) {
 			Ant ant = iants.next();
 			// Ha szemét
-			if (ant == null) {
+			if (ant.isDebris()) {
 				// Eltávolítás
 				iants.remove();
 			}

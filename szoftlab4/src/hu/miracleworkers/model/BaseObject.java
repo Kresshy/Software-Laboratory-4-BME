@@ -10,7 +10,7 @@ import hu.miracleworkers.view.GraphicsBase;
 /**
  * Pályaelemek ősosztálya.
  */
-public abstract class BaseObject {
+public abstract class BaseObject implements SceneObject {
 
 	/** Pozíció. */
 	protected Point	position;
@@ -57,10 +57,17 @@ public abstract class BaseObject {
 		return radius;
 	}
 
-	/**
-	 * Óraütés kezelése.
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.SceneObject#isDebris()
 	 */
-	public abstract void handleTick();
+	@Override
+	public boolean isDebris() {
+
+		// Eltávolíthatóság visszaadása
+		return false;
+	}
 
 	/**
 	 * Hatókörbe tartozás ellenőrzése.

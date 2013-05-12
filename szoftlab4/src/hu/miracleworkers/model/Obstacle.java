@@ -41,7 +41,9 @@ public class Obstacle extends BaseObject {
 		this.scene = scene;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see hu.miracleworkers.model.BaseObject#getGraphicsWrapper()
 	 */
 	@Override
@@ -52,7 +54,7 @@ public class Obstacle extends BaseObject {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see hu.miracleworkers.model.BaseObject#handleTick()
+	 * @see hu.miracleworkers.model.SceneObject#handleTick()
 	 */
 	@Override
 	public void handleTick() {
@@ -70,17 +72,6 @@ public class Obstacle extends BaseObject {
 
 		// Dummy default implementáció
 
-	}
-
-	/**
-	 * Ellenőrzi, hogy az akadály eltakarítható-e.
-	 * 
-	 * @return true, ha az akadály eltakarítható
-	 */
-	public boolean isDebris() {
-
-		// Eltávolíthatóság visszaadása
-		return false;
 	}
 
 	/**

@@ -8,7 +8,7 @@ package hu.miracleworkers.model;
 /**
  * Effekt osztály.
  */
-public abstract class Effect {
+public abstract class Effect implements SceneObject {
 
 	/** Vonzás. */
 	protected boolean	attractive;
@@ -27,9 +27,12 @@ public abstract class Effect {
 		this.attractive = attractive;
 	}
 
-	/**
-	 * Óraütés kezelése.
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see hu.miracleworkers.model.SceneObject#handleTick()
 	 */
+	@Override
 	public void handleTick() {
 
 		// Ha még nem illant el
@@ -63,6 +66,7 @@ public abstract class Effect {
 	 * 
 	 * @return true, ha az effekt eltakarítható
 	 */
+	@Override
 	public boolean isDebris() {
 
 		// Eltakaríthatóság visszaadása

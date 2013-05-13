@@ -3,7 +3,7 @@
         <anteater>
             <position x="0" y="130" />
             <hunger>10</hunger>
-            <wait>20</wait>
+            <wait>600</wait>
         </anteater>
     </creatures>
     <obstacles>

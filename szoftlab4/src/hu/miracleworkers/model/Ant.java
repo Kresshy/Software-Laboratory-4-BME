@@ -186,8 +186,8 @@ public class Ant extends Creature {
 			// Új pozíció meghatározása
 			direction = getPosition().direction(target.getPosition());
 			// Random fordulás
-			int rand = -1 + (int) (Math.random() * 3) + Direction.values().length;
-			direction = Direction.values()[(direction.ordinal() + rand) % Direction.values().length];
+			int rand = -1 + (int) (Math.random() * 4);
+			direction = Point.rotateDirection(direction, rand);
 			setPosition(getPosition().step(direction, 1));
 		} else {
 			direction = Direction.RIGHT;

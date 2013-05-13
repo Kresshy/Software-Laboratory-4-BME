@@ -45,6 +45,7 @@ public class Scene {
 		this.obstacles = new ArrayList<Obstacle>();
 		this.creatures = new ArrayList<Creature>();
 		this.effects = new HashMap<Point, Effect>();
+		this.dimension = new Dimension(880, 480);
 	}
 
 	/**

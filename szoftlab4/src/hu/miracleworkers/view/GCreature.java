@@ -5,6 +5,7 @@
  */
 package hu.miracleworkers.view;
 
+import hu.miracleworkers.model.AntEater;
 import hu.miracleworkers.model.Creature;
 import hu.miracleworkers.model.Point;
 
@@ -35,9 +36,11 @@ public class GCreature extends GraphicsBase<Creature> {
 	@Override
 	public void paintObject(Graphics graphics) {
 		// Hangyászsün kirajzolása
-		int size = getPaintSize();
-		Point pos = wrappedObject.getPosition();
-		graphics.drawImage(anteater, pos.getCoordX() - (size / 2), pos.getCoordY() - (size / 2),
-				size, size, null);
+		if (((AntEater) wrappedObject).isVisible()) {
+			int size = getPaintSize();
+			Point pos = wrappedObject.getPosition();
+			graphics.drawImage(anteater, pos.getCoordX() - (size / 2),
+					pos.getCoordY() - (size / 2), size, size, null);
+		}
 	}
 }

@@ -74,6 +74,19 @@ public class Point {
 	}
 
 	/**
+	 * Irány forgatása.
+	 * 
+	 * 
+	 */
+	public static Direction rotateDirection(Direction dir, int count) {
+		count = count % Direction.values().length;
+		if (count >= 0)
+			return Direction.values()[(dir.ordinal() + count) % Direction.values().length];
+		else
+			return Direction.values()[(dir.ordinal() + count + Direction.values().length) % Direction.values().length];
+	}
+
+	/**
 	 * Irányszámítás.
 	 * 
 	 * @param to a cél pont
@@ -196,7 +209,7 @@ public class Point {
 	 */
 	public void toCoords() {
 		cx = x * 2 + y % 2;
-		cy = y;
+		cy = y * 2;
 	}
 
 	/*

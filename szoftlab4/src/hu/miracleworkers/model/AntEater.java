@@ -15,16 +15,22 @@ import java.util.List;
 public class AntEater extends Creature {
 
 	/** Láthatóság. */
-	private boolean	visible;
+	private boolean		visible;
 
 	/** Éhség. */
-	private int		hunger;
+	private int			hunger;
+
+	/** Megevett hangyák száma. */
+	private int			eaten;
 
 	/** Várakozási idő. */
-	private int		wait;
+	private int			wait;
 
 	/** Megjelenésíg hátralévő idő. */
-	private int		timeout;
+	private int			timeout;
+
+	/** Mozgási irány. */
+	private Direction	direction;
 
 	/**
 	 * Példányosít egy új hangyászsünt.
@@ -40,6 +46,7 @@ public class AntEater extends Creature {
 		this.hunger = hunger;
 		this.visible = false;
 		this.timeout = wait;
+		this.direction = Direction.values()[(int) (Math.random() * (Direction.values().length + 1))];
 	}
 
 	/*
@@ -53,26 +60,24 @@ public class AntEater extends Creature {
 		// Ha a sün előtérben van
 		if (visible) {
 			// Ha a sün éhes
-			if (hunger > 0) {
+			if (hunger > eaten) {
 				List<Ant> ants = scene.getAnts();
 				// Minden hangyára
 				for (Ant ant : ants) {
-					try {
-						// Ha a sün hatókörében van
-						if (pointInRange(ant.getPosition())) {
-							// Hangya elpusztítása
-							ant.terminate();
-							// Éhség csökkentése
-							hunger -= 1;
-							// Hogy egyesével egye a hangyákat
-							break;
-						}
-					} catch (NullPointerException e) {
+					// Ha a sün hatókörében van
+					if (pointInRange(ant.getPosition())) {
+						// Hangya elpusztítása
+						ant.terminate();
+						// Megevett hangyák növelése
+						hunger++;
+						// Hogy egyesével egye a hangyákat
+						break;
 					}
 				}
 			} else {
 				visible = false;
 				timeout = wait;
+				eaten = 0;
 			}
 
 			// Mozgás
@@ -107,8 +112,16 @@ public class AntEater extends Creature {
 	 */
 	protected void routeAndMove() {
 
-		Direction new_direction = Direction.RIGHT;
-		Point new_position = getPosition().step(new_direction, 1);
+		Direction new_direction = direction;
+		Point new_position = getPosition().step(direction, 1);
+
+		int x = new_position.getCoordX(), y = new_position.getCoordY();
+		if (x < 0 || y < 0 || x > getScene().getDimension().width
+				|| y > getScene().getDimension().height) {
+			int rand = -1 + (int) (Math.random() * 4);
+			direction = Point.rotateDirection(direction, 3 + rand);
+			new_position = getPosition().step(direction, 1);
+		}
 
 		List<Obstacle> obstacles = scene.getObstacles();
 		for (Obstacle obstacle : obstacles) {

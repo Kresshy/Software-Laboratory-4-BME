@@ -39,6 +39,15 @@ public class GAnt extends GraphicsBase<Ant> {
 	public void paintObject(Graphics graphics) {
 		// Hangya kirajzolása
 		BufferedImage image = normal;
+		if (getWrappedObject().isPoisoned()) {
+			if (getWrappedObject().hasCargo()) {
+				image = poisonedWithCargo;
+			} else {
+				image = poisoned;
+			}
+		} else if (getWrappedObject().hasCargo()) {
+			image = withCargo;
+		}
 		// TODO: Hangya különböző állapotai
 		// TODO: Hangya forgatása
 		// int deg;

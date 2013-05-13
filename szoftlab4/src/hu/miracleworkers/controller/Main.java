@@ -6,6 +6,7 @@
 package hu.miracleworkers.controller;
 
 import hu.miracleworkers.model.Scene;
+import hu.miracleworkers.swing.GUI;
 import hu.miracleworkers.swing.PerspectivePanel;
 import hu.miracleworkers.view.Perspective;
 
@@ -41,21 +42,11 @@ public class Main {
 		// Időzítő indítása
 		Thread timerThread = new Thread(timer);
 		timerThread.start();
-		timer.start();
+//		timer.start();
 
-		JFrame frame = new JFrame("Ant Farm");
-		frame.add(sPanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-
-		// Fejléc
-		// System.out.println("\nProto - MiracleWorkers (c) 2013\n"
-		// + "-------------------------------\n" + "Irja be a parancsokat:\n\n");
-
-		// timerThread.interrupt();
-
+		GUI window = new GUI(perspective);
+		window.setVisible(true);
+		
 		System.out.println();
 	}
 }

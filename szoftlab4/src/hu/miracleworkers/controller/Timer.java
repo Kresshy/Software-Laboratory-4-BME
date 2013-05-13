@@ -132,5 +132,9 @@ public class Timer implements Runnable {
 		game.handleTick();
 
 	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
 
 }

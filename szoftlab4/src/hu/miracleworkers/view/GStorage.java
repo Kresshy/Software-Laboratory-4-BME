@@ -46,6 +46,23 @@ public class GStorage extends GraphicsBase<Storage> {
 			// Ételraktár kirajzolása
 			// TODO: Ételmennyiségtől függő kép kiválasztása
 			image = foodstorage4;
+
+			if (wrappedStorage.getAmount() <= (wrappedStorage.getCapacity() * 3 / 4)) {
+				image = foodstorage3;
+			}
+			
+			if (wrappedObject.getAmount() <= (wrappedStorage.getCapacity() / 2)) {
+				image = foodstorage2;
+			}
+			
+			if (wrappedStorage.getAmount() <= (wrappedStorage.getCapacity() / 4)) {
+				image = foodstorage1;
+			}
+			
+			if (wrappedStorage.getAmount() <= 0) {
+				image = foodstorage0;
+			}
+
 		} else {
 			// Hangyaboly kirajzolása
 			image = anthill;

@@ -30,7 +30,9 @@ public class GUI implements ActionListener, MouseListener {
 	 * Create the application.
 	 */
 	public GUI(Perspective p) {
+		// Beállítjuk neki a perspektívát
 		this.p = p;
+		// Inicializáljuk az ablakot
 		initialize();
 	}
 
@@ -38,16 +40,22 @@ public class GUI implements ActionListener, MouseListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		// Egy új frame létrehozása a következő méretekkel
 		frame = new JFrame();
 		frame.setBounds(100, 100, 900, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		// Menubar hozzáadása a framehez
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 
+		// Menupont hozzáadása
 		JMenu mnNewMenu = new JMenu("J\u00E1t\u00E9k");
 		menuBar.add(mnNewMenu);
 
+		// Menuponthoz elemek hozzáadása
+		// Minden menüpontnak beállítjuk az ActionListenert
+		// Minden menüpontnak beállítjuk az ActionCommandot
 		JMenuItem mntmNewMenuItem = new JMenuItem("Ind\u00EDt\u00E1s");
 		mntmNewMenuItem.addActionListener(this);
 		mntmNewMenuItem.setActionCommand("start");
@@ -58,9 +66,13 @@ public class GUI implements ActionListener, MouseListener {
 		mntmNewMenuItem_1.setActionCommand("exit");
 		mnNewMenu.add(mntmNewMenuItem_1);
 
+		// Menupont hozzáadása
 		JMenu mnNewMenu_1 = new JMenu("S\u00FAg\u00F3");
 		menuBar.add(mnNewMenu_1);
 
+		// Menuponthoz elemek hozzáadása
+		// Minden menüpontnak beállítjuk az ActionListenert
+		// Minden menüpontnak beállítjuk az ActionCommandot
 		JMenuItem mntmToplista = new JMenuItem("Toplista");
 		mntmToplista.addActionListener(this);
 		mntmToplista.setActionCommand("highscore");
@@ -76,10 +88,14 @@ public class GUI implements ActionListener, MouseListener {
 		mntmCredits.setActionCommand("credits");
 		mnNewMenu_1.add(mntmCredits);
 
+		// Spring layout beállítása
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
 
+		// A felső panel hozzáadása
 		JPanel panel = new JPanel();
+
+		// spring layout megkötések beállítása
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH,
 				frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST,
@@ -89,11 +105,14 @@ public class GUI implements ActionListener, MouseListener {
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		frame.getContentPane().add(panel);
 
+		// Pause gomb hozzáadása a panelhez
 		JButton btnNewButton = new JButton("||");
 		btnNewButton.addActionListener(this);
 		btnNewButton.setActionCommand("pause");
 		btnNewButton.setHorizontalAlignment(SwingConstants.RIGHT);
 
+		// Label hozzáadása
+		// TODO pontszámés nehézségi szint számítása és kiírása
 		JLabel lblElteltId = new JLabel("Pontszám: XXXX  Nehézségi szint: XX");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(
@@ -112,10 +131,11 @@ public class GUI implements ActionListener, MouseListener {
 										.addComponent(lblElteltId)).addContainerGap()));
 		panel.setLayout(gl_panel);
 		// Ide jön a játéktér
-		// JPanel panel_1 = new JPanel();
+		// Ez a panelünk lesz a perspektívát megjelenítő nézet
 		JPanel panel_1 = new PerspectivePanel(p);
 		panel_1.addMouseListener(this);
 
+		// A panel hozzáadása a layouthoz
 		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.WEST, panel_1, 10, SpringLayout.WEST,
 				frame.getContentPane());
@@ -125,12 +145,14 @@ public class GUI implements ActionListener, MouseListener {
 	}
 
 	public void setVisible(boolean b) {
+		// Beállítjuk láthatóként a framet
 		frame.setVisible(b);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		// Az egyes Actionok kezelése a megfelelő if részben
+		// Pause a gomb lenyomásakor, állapottól függően ujraindítja a jatekot
 		if (e.getActionCommand().equals("pause")) {
 			if (p.getGame().getTimer().isEnabled()) {
 				p.getGame().getTimer().stop();
@@ -138,12 +160,15 @@ public class GUI implements ActionListener, MouseListener {
 				p.getGame().getTimer().start();
 			}
 
+			// Jatek indítása
 		} else if (e.getActionCommand().equals("start")) {
 			p.getGame().getTimer().start();
 
+			// kilépés a játékból
 		} else if (e.getActionCommand().equals("exit")) {
 			System.exit(0);
 
+			// highcsore megjenelítése
 		} else if (e.getActionCommand().equals("highscore")) {
 			// TODO Kell egy Frame amire ezt ki lehet rajzolni
 			JFrame frame = new JFrame("Highscore");
@@ -151,6 +176,7 @@ public class GUI implements ActionListener, MouseListener {
 			frame.setBounds(100, 100, 600, 600);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+			// segítség megjelenítése
 		} else if (e.getActionCommand().equals("help")) {
 			// TODO Kell egy Frame amire ezt ki lehet rajzolni
 			JFrame frame = new JFrame("Help");
@@ -158,6 +184,7 @@ public class GUI implements ActionListener, MouseListener {
 			frame.setBounds(100, 100, 600, 600);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+			// creditek megjelenítése
 		} else if (e.getActionCommand().equals("credits")) {
 			// TODO Kell egy Frame amire ezt ki lehet rajzolni
 			JFrame frame = new JFrame("Credits");
@@ -170,21 +197,26 @@ public class GUI implements ActionListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		// Az egérkattintás kezelése az egér megfelelő gombjának lenyomására
+		// Bal egérgomb lenyomása
 		if (e.getButton() == e.BUTTON1) {
 			System.out.println("left button clicked");
 
 			p.getGame().placePoison(e.getX(), e.getY());
 			System.out.println("X: " + e.getX() + " Y: " + e.getY());
-			
+
+			// Görgő vagy középső gomb lenyomása
 		} else if (e.getButton() == e.BUTTON2) {
 			System.out.println("middle button clicked");
+
+			// jobb egérgomb lenyomása
 		} else if (e.getButton() == e.BUTTON3) {
 			System.out.println("right button clicked");
 		}
 	}
 
 	// Ezekre a metódusokra nincs szükségünk viszont a MouseListener interface
-	// miatt muszáj itt legyenek
+	// miatt muszáj itt legyenek implementálva
 	@Override
 	public void mouseEntered(MouseEvent e) {
 

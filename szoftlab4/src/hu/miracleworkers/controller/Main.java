@@ -25,6 +25,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		// Inicializálás
+		// TODO az inicializálást kirakni egy függvénybe, hogy a guiból legyen hívható
+		// ha új játékot akarnánk indítani
 		XMLBuilder builder = new XMLBuilder();
 		Scene scene = new Scene();
 
@@ -38,15 +40,18 @@ public class Main {
 		Perspective perspective = new Perspective();
 		Timer timer = new Timer(1);
 		Game game = new Game(scene, perspective, timer);
-		PerspectivePanel sPanel = new PerspectivePanel(perspective);
+
 		// Időzítő indítása
 		Thread timerThread = new Thread(timer);
 		timerThread.start();
-//		timer.start();
 
+		// A timert a jatek indításával fogjuk elindítani
+		// timer.start();
+
+		// A GUI frame kirajzolása
 		GUI window = new GUI(perspective);
 		window.setVisible(true);
-		
+
 		System.out.println();
 	}
 }

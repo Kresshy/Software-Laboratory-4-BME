@@ -1,5 +1,6 @@
 package hu.miracleworkers.swing;
 
+import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.view.Perspective;
 
 import java.awt.event.ActionEvent;
@@ -16,10 +17,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class GUI implements ActionListener, MouseListener {
 
@@ -172,17 +176,50 @@ public class GUI implements ActionListener, MouseListener {
 		} else if (e.getActionCommand().equals("highscore")) {
 			// TODO Kell egy Frame amire ezt ki lehet rajzolni
 			JFrame frame = new JFrame("Highscore");
+			JPanel hPanel = new JPanel();
+			JTable hTable = new JTable();
+			hTable.setBounds(66, 35, 303, 160);
+			
+			String[] columnNames = {"Név","Pontszám"};
+			DefaultTableModel model = new DefaultTableModel();
+			
+		    hTable.setModel(model);
+		    model.setColumnIdentifiers(columnNames);
+				
+			//Feltoltes	
+			for(HighScore list : p.getGame().getHighscores()) {
+				((DefaultTableModel) hTable.getModel()).addRow(new Object[]{list.name, Long.toString(list.score)}); 
+			}
+			//Elemek hozzaadasa a framehez
 			frame.setVisible(true);
-			frame.setBounds(100, 100, 600, 600);
+			frame.setBounds(66, 35, 303, 210);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setResizable(false);
+			hPanel.add(hTable);
+			frame.add(hPanel);
 
 			// segítség megjelenítése
 		} else if (e.getActionCommand().equals("help")) {
-			// TODO Kell egy Frame amire ezt ki lehet rajzolni
+			String helpString = "Segítség a játékmenethez.\nA játék célja, hogy a játékos minél több ideig \n" +
+					"megvédje az élelmet a hangyák elől.\n" +
+					"Ehhez két eszköz áll a segítségére: \nBal egérgombbal helyezhető el méreg a pályán, mely\n" +
+					"rövid időn belül megöli a belelépő hangyákat ;\njobb egérgombbal helyezhető el hangyaszag\n" +
+					"semlegesítő, mellyel a hangyákat összezavarhatja,\nés eltérítheti az élelem felől.\n" +
+					"A pályán találhatók hangyalesők, melyek a beléjük\ntévedő hangyákat megeszik,továbbá\n" +
+					"bizonyos időnként áthalad a pályán egy hangyászsün,\nmely addig eszi a vele találkozó hangyákat\n" +
+					"amíg jól nem lakott. ";
 			JFrame frame = new JFrame("Help");
+			JPanel hPanel = new JPanel();
+			JTextArea hArea = new JTextArea();
+			hArea.setText(helpString);
+			hArea.setBounds(100,100,300,500);
+			hPanel.add(hArea);
+			frame.add(hPanel);
 			frame.setVisible(true);
-			frame.setBounds(100, 100, 600, 600);
+			frame.setBounds(100, 100, 400, 300);
+			frame.setResizable(false);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
 
 			// creditek megjelenítése
 		} else if (e.getActionCommand().equals("credits")) {

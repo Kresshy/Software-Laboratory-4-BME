@@ -65,6 +65,7 @@ public class StartGame extends JFrame implements ActionListener {
 		panel_1.add(radioButton_2);
 
 		group = new ButtonGroup();
+		radioButton_1.setSelected(true);
 		group.add(radioButton);
 		group.add(radioButton_1);
 		group.add(radioButton_2);
@@ -139,7 +140,7 @@ public class StartGame extends JFrame implements ActionListener {
 			default:
 				break;
 			}
-			
+
 			this.dispose();
 		}
 		if (e.getActionCommand().equals("cancel")) {

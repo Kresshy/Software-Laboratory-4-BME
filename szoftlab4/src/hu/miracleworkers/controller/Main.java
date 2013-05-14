@@ -39,7 +39,7 @@ public class Main {
 
 		Perspective perspective = new Perspective();
 		Timer timer = new Timer(1);
-		Game game = new Game(scene, perspective, timer);
+		Game game = new Game(/*scene,*/ perspective, timer);
 
 		// Időzítő indítása
 		Thread timerThread = new Thread(timer);

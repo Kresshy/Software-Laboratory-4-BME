@@ -171,6 +171,8 @@ public class GUI implements ActionListener, MouseListener {
 
 			// Jatek indítása
 		} else if (e.getActionCommand().equals("start")) {
+			StartGame frame = new StartGame(p);
+			frame.setVisible(true);
 			p.getGame().getTimer().start();
 
 			// kilépés a játékból

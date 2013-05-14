@@ -53,6 +53,10 @@ public class Perspective {
 		this.effects.setEffects(game.getScene().getEffects());
 		panel.repaint();
 	}
+	
+	public void repaitPerspectivePanel() {
+		panel.repaint();
+	}
 
 	/**
 	 * Pályaelemek kirajzolása.

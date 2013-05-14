@@ -54,11 +54,42 @@ public class Game {
 	 * @param perspective the perspective
 	 * @param timer a játékhoz tartozó időzítő
 	 */
-	public Game(Scene scene, Perspective perspective, Timer timer) {
-		this.scene = scene;
+	public Game(/* Scene scene, */Perspective perspective, Timer timer) {
+		this.scene = new Scene();
 		setTimer(timer);
 		setPerspective(perspective);
 		this.highscores = new ArrayList<HighScore>();
+	}
+
+	public void createNewScene(int difficulty) {
+		XMLBuilder builder = new XMLBuilder();
+		// Scene scene = new Scene();
+
+		this.difficulty = difficulty;
+
+		try {
+			switch (difficulty) {
+			case 1:
+				this.scene = builder.readXML("test/test_graphics.xml");
+				break;
+			case 2:
+				this.scene = builder.readXML("test/test_graphics2.xml");
+				break;
+			case 3:
+				this.scene = builder.readXML("test/test_graphics3.xml");
+				break;
+			default:
+				this.scene = builder.readXML("test/test_graphics.xml");
+				break;
+			}
+			
+			perspective.repaitPerspectivePanel();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**

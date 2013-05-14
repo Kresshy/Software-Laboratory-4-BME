@@ -36,8 +36,10 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 
 	private JFrame		frame;
 	private Perspective	p;
-	private JLabel lblElteltId;
-	private Game game;
+	private JLabel		lblElteltId;
+	private Game		game;
+	private int			difficulty;
+	private long		score;
 
 	/**
 	 * Create the application.
@@ -162,7 +164,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 		// Beállítjuk láthatóként a framet
 		frame.setVisible(b);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Az egyes Actionok kezelése a megfelelő if részben
@@ -186,7 +188,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 
 			// highcsore megjenelítése
 		} else if (e.getActionCommand().equals("highscore")) {
-			// TODO Kell egy Frame amire ezt ki lehet rajzolni
+			
 			JFrame frame = new JFrame("Highscore");
 			JPanel hPanel = new JPanel();
 			JTable hTable = new JTable();
@@ -215,14 +217,12 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 				// Sorok száma
 				@Override
 				public int getRowCount() {
-					// TODO Auto-generated method stub
 					return 10;
 				}
 
 				// Oszlopok száma
 				@Override
 				public int getColumnCount() {
-					// TODO Auto-generated method stub
 					return columnNames.length;
 				}
 
@@ -394,10 +394,6 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 		}
 	}
 
-	public void handleTick() {
-		lblElteltId.setText("Pontszám: " + p.getGame().getScore() + "  Nehézségi szint: " + p.getGame().getDifficulty());
-	}
-	
 	// Ezekre a metódusokra nincs szükségünk viszont a MouseListener interface
 	// miatt muszáj itt legyenek implementálva
 	@Override
@@ -422,19 +418,70 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 
 	@Override
 	public void difficultyChange(int new_difficulty) {
-		// TODO Auto-generated method stub
-		
+		this.difficulty = new_difficulty;
+		lblElteltId.setText("Pontszám: " + score + "  Nehézségi szint: " + difficulty);
 	}
 
 	@Override
 	public void gameOver() {
-		// TODO Auto-generated method stub
+		p.getGame().getTimer().stop();
+		
+		JFrame frame = new JFrame("Game Over");
+
+		JPanel hPanel = new JPanel() {
+
+			private static final long	serialVersionUID	= 1L;
+
+			@Override
+			protected void paintComponent(Graphics g) {
+
+				drawString(g, "Game Over", 120, 20, 380);
+				drawString(
+						g,
+						"Zárd be ezt az ablakot és indíts egy új játékot!",
+						10, 40, 380);
+			}
+
+			public void drawString(Graphics g, String s, int x, int y, int width) {
+				// FontMetrics gives us information about the width,
+				// height, etc. of the current Graphics object's Font.
+				FontMetrics fm = g.getFontMetrics();
+
+				int lineHeight = fm.getHeight();
+
+				int curX = x;
+				int curY = y;
+
+				String[] words = s.split(" ");
+
+				for (String word : words) {
+					// Find out thw width of the word.
+					int wordWidth = fm.stringWidth(word + " ");
+
+					// If text exceeds the width, then move to next line.
+					if (curX + wordWidth >= x + width) {
+						curY += lineHeight;
+						curX = x;
+					}
+
+					g.drawString(word, curX, curY);
+
+					// Move over to the right for next word.
+					curX += wordWidth;
+				}
+			}
+		};
+
+		frame.add(hPanel);
+		frame.setVisible(true);
+		frame.setBounds(100, 100, 400, 150);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 	}
 
 	@Override
 	public void scoreChange(long new_score) {
-		// TODO Auto-generated method stub
-		
+		this.score = new_score;
+		lblElteltId.setText("Pontszám: " + score + "  Nehézségi szint: " + difficulty);
 	}
 }

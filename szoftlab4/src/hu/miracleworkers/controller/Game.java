@@ -9,6 +9,7 @@ import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.model.Point;
 import hu.miracleworkers.model.Poison;
 import hu.miracleworkers.model.Scene;
+import hu.miracleworkers.swing.GUI;
 import hu.miracleworkers.view.Perspective;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class Game {
 	/** Rekordok. */
 	private List<HighScore>		highscores;
 
+	private GUI					gui;
+
 	/**
 	 * Példányosít egy új játékot.
 	 * 
@@ -82,10 +85,9 @@ public class Game {
 				this.scene = builder.readXML("test/test_graphics.xml");
 				break;
 			}
-			
+
 			perspective.repaitPerspectivePanel();
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -178,6 +180,7 @@ public class Game {
 		if (isOver() && listener != null) {
 			listener.gameOver();
 		}
+		gui.handleTick();
 	}
 
 	/**
@@ -312,4 +315,7 @@ public class Game {
 
 	}
 
+	public void setGui(GUI gui) {
+		this.gui = gui;
+	}
 }

@@ -1,5 +1,6 @@
 package hu.miracleworkers.swing;
 
+import hu.miracleworkers.controller.Game;
 import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.view.Perspective;
 
@@ -32,15 +33,18 @@ import javax.swing.table.TableModel;
 
 public class GUI implements ActionListener, MouseListener {
 
-	JFrame		frame;
-	Perspective	p;
+	private JFrame		frame;
+	private Perspective	p;
+	private JLabel lblElteltId;
+	private Game game;
 
 	/**
 	 * Create the application.
 	 */
-	public GUI(Perspective p) {
+	public GUI(Perspective p, Game game) {
 		// Beállítjuk neki a perspektívát
 		this.p = p;
+		p.getGame().setGui(this);
 		// Inicializáljuk az ablakot
 		initialize();
 	}
@@ -122,7 +126,7 @@ public class GUI implements ActionListener, MouseListener {
 
 		// Label hozzáadása
 		// TODO pontszámés nehézségi szint számítása és kiírása
-		JLabel lblElteltId = new JLabel("Pontszám: XXXX  Nehézségi szint: XX");
+		lblElteltId = new JLabel("Pontszám: XXXX  Nehézségi szint: XX");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(
 				Alignment.TRAILING,
@@ -157,7 +161,7 @@ public class GUI implements ActionListener, MouseListener {
 		// Beállítjuk láthatóként a framet
 		frame.setVisible(b);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Az egyes Actionok kezelése a megfelelő if részben
@@ -389,6 +393,10 @@ public class GUI implements ActionListener, MouseListener {
 		}
 	}
 
+	public void handleTick() {
+		lblElteltId.setText("Pontszám: " + p.getGame().getScore() + "  Nehézségi szint: " + p.getGame().getDifficulty());
+	}
+	
 	// Ezekre a metódusokra nincs szükségünk viszont a MouseListener interface
 	// miatt muszáj itt legyenek implementálva
 	@Override

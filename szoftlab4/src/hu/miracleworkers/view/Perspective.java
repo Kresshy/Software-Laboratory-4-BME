@@ -26,7 +26,7 @@ public class Perspective {
 	private GEffects			effects;
 
 	/** Panel. */
-	private PerspectivePanel	panel;
+	private PerspectivePanel	perspectivePanel;
 
 	/**
 	 * Példányosít egy új nézetet.
@@ -51,11 +51,11 @@ public class Perspective {
 	 */
 	public void handleTick() {
 		this.effects.setEffects(game.getScene().getEffects());
-		panel.repaint();
+		perspectivePanel.repaint();
 	}
-	
+
 	public void repaitPerspectivePanel() {
-		panel.repaint();
+		perspectivePanel.repaint();
 	}
 
 	/**
@@ -108,8 +108,8 @@ public class Perspective {
 	 * 
 	 * @param panel az új panel amihez a nézet tartozik
 	 */
-	public void setPanel(PerspectivePanel panel) {
-		this.panel = panel;
+	public void setPerspectivePanel(PerspectivePanel panel) {
+		this.perspectivePanel = panel;
 	}
 
 }

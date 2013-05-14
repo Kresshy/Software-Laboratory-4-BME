@@ -40,7 +40,7 @@ public class PerspectivePanel extends JPanel {
 
 	protected void setPerspective(Perspective perspective) {
 		this.perspective = perspective;
-		perspective.setPanel(this);
+		perspective.setPerspectivePanel(this);
 	}
 
 }

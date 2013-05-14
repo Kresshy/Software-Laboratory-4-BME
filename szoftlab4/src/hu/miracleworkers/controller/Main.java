@@ -49,7 +49,8 @@ public class Main {
 		// timer.start();
 
 		// A GUI frame kirajzolása
-		GUI window = new GUI(perspective);
+		GUI window = new GUI(perspective, game);
+		
 		window.setVisible(true);
 
 		System.out.println();

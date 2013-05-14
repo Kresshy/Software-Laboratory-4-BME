@@ -9,19 +9,19 @@
     <obstacles>
         <obstacle>
             <position x="95" y="85" />
-            <radius>20</radius>
+            <radius>35</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
             <position x="260" y="35" />
-            <radius>20</radius>
+            <radius>25</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
             <position x="260" y="35" />
-            <radius>20</radius>
+            <radius>25</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
@@ -49,12 +49,6 @@
             <solid>true</solid>
             <movable>false</movable>
         </obstacle>
-        <obstacle>
-            <position x="200" y="50" />
-            <radius>30</radius>
-            <solid>true</solid>
-            <movable>false</movable>
-        </obstacle>
         <antsinker>
             <position x="200" y="230" />
         </antsinker>
@@ -65,6 +59,16 @@
             <capacity>15</capacity>
             <packet>1</packet>
         </anthill>
+        <anthill>
+            <position x="55" y="225" />
+            <capacity>15</capacity>
+            <packet>1</packet>
+        </anthill>
+        <foodstorage>
+            <position x="350" y="350" />
+            <capacity>20</capacity>
+            <packet>1</packet>
+        </foodstorage>
         <foodstorage>
             <position x="370" y="120" />
             <capacity>10</capacity>
@@ -72,3 +76,4 @@
         </foodstorage>
     </storages>
 </scene>
+

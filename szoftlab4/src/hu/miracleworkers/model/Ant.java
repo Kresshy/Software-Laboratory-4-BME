@@ -100,7 +100,7 @@ public class Ant extends Creature {
 				// Ha a tároló vonzza a hangyát és van benne étel
 				if (storage.isAttractive() && storage.hasItems()) {
 					// Ha a hangya hatókörében van
-					if (pointInRange(storage.getPosition())) {
+					if (storage.pointInRange(getPosition())) {
 						// Rakomány feltöltése
 						cargo = storage.getItems();
 						// Ételforrás beállítása
@@ -220,7 +220,7 @@ public class Ant extends Creature {
 					// Az óramutató járásának irányába elfordul
 					direction = Direction.values()[(direction.ordinal() + 1)
 							% Direction.values().length];
-					setPosition(last_position.step(direction, 1));
+					setPosition(last_position.step(direction, 2));
 					clean_step = false;
 					break;
 				}

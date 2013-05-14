@@ -1,9 +1,9 @@
 <scene>
     <creatures>
         <anteater>
-            <position x="0" y="75" />
+            <position x="25" y="175" />
             <hunger>10</hunger>
-            <wait>600</wait>
+            <wait>900</wait>
         </anteater>
     </creatures>
     <obstacles>
@@ -14,25 +14,19 @@
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="260" y="17" />
+            <position x="260" y="25" />
             <radius>20</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="260" y="17" />
+            <position x="200" y="67" />
             <radius>20</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="200" y="57" />
-            <radius>20</radius>
-            <solid>true</solid>
-            <movable>true</movable>
-        </obstacle>
-        <obstacle>
-            <position x="240" y="57" />
+            <position x="240" y="67" />
             <radius>20</radius>
             <solid>true</solid>
             <movable>true</movable>

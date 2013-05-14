@@ -1,76 +1,76 @@
 <scene>
     <creatures>
         <anteater>
-            <position x="0" y="130" />
+            <position x="0" y="65" />
             <hunger>10</hunger>
             <wait>20</wait>
         </anteater>
     </creatures>
     <obstacles>
         <obstacle>
-            <position x="95" y="85" />
+            <position x="95" y="42" />
             <radius>35</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="260" y="35" />
+            <position x="260" y="17" />
             <radius>25</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="260" y="35" />
+            <position x="260" y="17" />
             <radius>25</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="200" y="115" />
+            <position x="200" y="57" />
             <radius>20</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="240" y="115" />
+            <position x="240" y="57" />
             <radius>20</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="300" y="120" />
+            <position x="300" y="60" />
             <radius>20</radius>
             <solid>true</solid>
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="200" y="340" />
+            <position x="200" y="170" />
             <radius>30</radius>
             <solid>true</solid>
             <movable>false</movable>
         </obstacle>
         <antsinker>
-            <position x="200" y="230" />
+            <position x="200" y="115" />
         </antsinker>
     </obstacles>
     <storages>
         <anthill>
-            <position x="35" y="35" />
+            <position x="35" y="17" />
             <capacity>15</capacity>
             <packet>1</packet>
         </anthill>
         <anthill>
-            <position x="55" y="225" />
+            <position x="55" y="112" />
             <capacity>15</capacity>
             <packet>1</packet>
         </anthill>
         <foodstorage>
-            <position x="350" y="350" />
+            <position x="350" y="175" />
             <capacity>20</capacity>
             <packet>1</packet>
         </foodstorage>
         <foodstorage>
-            <position x="370" y="120" />
+            <position x="370" y="60" />
             <capacity>10</capacity>
             <packet>1</packet>
         </foodstorage>

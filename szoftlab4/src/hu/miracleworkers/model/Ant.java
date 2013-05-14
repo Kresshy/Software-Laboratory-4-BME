@@ -10,6 +10,7 @@ import hu.miracleworkers.view.GAnt;
 import hu.miracleworkers.view.GraphicsBase;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Hangya osztály.
@@ -30,9 +31,6 @@ public class Ant extends Creature {
 
 	/** Ételforrás. */
 	private Storage		source;
-
-	/** Irányváltásig hátralévő idő */
-	private int			timeout;
 
 	/** Utolsó mozgás iránya. */
 	private Direction	last_direction;
@@ -193,20 +191,19 @@ public class Ant extends Creature {
 		// pheromones++;
 
 		// Effectek figyelembe vétele az útválasztásnál
-		int pheromones = scene.discoverEffects(this).size();
+		Map<Point, Effect> effects = scene.discoverEffects(this);
 		// Ha van célpont
 		if (target != null) {
-			// Új pozíció meghatározása, ha kevés a feromon
-			if (pheromones < 30 || timeout <= 0) {
-				timeout = (int) (Math.random() * 25);
-				direction = getPosition().direction(target.getPosition());
-				if (Math.random() > 0.5) {
-					int rand = -1 + (int) (Math.random() * 3);
+			if (target != home) {
+				if (effects.size() == 0) {
+					int rand = -2 + (int) (Math.random() * 5);
+					direction = getPosition().direction(target.getPosition());
 					direction = Point.rotateDirection(direction, rand);
 				}
+			} else {
+				direction = getPosition().direction(target.getPosition());
 			}
 			setPosition(getPosition().step(direction, 1));
-			timeout--;
 		} else {
 			direction = Direction.LEFT;
 		}
@@ -233,8 +230,10 @@ public class Ant extends Creature {
 		// TODO: Algoritmus kidolgozása
 
 		// Szagnyom letétele
-		Pheromone new_pheromone = new Pheromone();
-		scene.placeEffect(getPosition(), new_pheromone);
+		if (effects.size() == 0) {
+			Pheromone new_pheromone = new Pheromone();
+			scene.placeEffect(getPosition(), new_pheromone);
+		}
 		// Akadályokra lépés
 		obstacles = scene.discoverObstacles(this);
 		// TODO: Algoritmus kidolgozása

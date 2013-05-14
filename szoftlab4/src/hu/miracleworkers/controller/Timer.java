@@ -62,12 +62,11 @@ public class Timer implements Runnable {
 			while (true) {
 				synchronized (this) {
 					while (!enabled) {
-
 						wait();
 					}
 				}
 				tick();
-				Thread.sleep(interval * 15);
+				Thread.sleep(interval * 25);
 			}
 		} catch (InterruptedException e) {
 		}

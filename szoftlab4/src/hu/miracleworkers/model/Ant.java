@@ -10,7 +10,6 @@ import hu.miracleworkers.view.GAnt;
 import hu.miracleworkers.view.GraphicsBase;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Hangya osztály.
@@ -32,6 +31,9 @@ public class Ant extends Creature {
 	/** Ételforrás. */
 	private Storage		source;
 
+	/** Irányváltásig hátralévő idő */
+	private int			timeout;
+
 	/** Utolsó mozgás iránya. */
 	private Direction	last_direction;
 
@@ -48,6 +50,8 @@ public class Ant extends Creature {
 		this.poisoned = false;
 		this.health = 200; // TODO: Kezdőérték meghatározása
 		this.cargo = 0;
+		int rand = (int) (Math.random() * Direction.values().length);
+		this.last_direction = Direction.values()[rand];
 	}
 
 	/**
@@ -180,23 +184,32 @@ public class Ant extends Creature {
 				target = home;
 		}
 
-		Direction direction;
+		Direction direction = last_direction;
 		Point last_position = getPosition();
-		if (target != null) {
-			// Új pozíció meghatározása
-			direction = getPosition().direction(target.getPosition());
-			// Random fordulás
-			int rand = -1 + (int) (Math.random() * 4);
-			direction = Point.rotateDirection(direction, rand);
-			setPosition(getPosition().step(direction, 1));
-		} else {
-			direction = Direction.RIGHT;
-		}
-		// TODO: Algoritmus kidolgozása
+
+		// int pheromones = 0;
+		// for (Effect effect : effects.values())
+		// if (effect.isAttractive())
+		// pheromones++;
 
 		// Effectek figyelembe vétele az útválasztásnál
-		// TODO: Meghatározni, hogy hatnak-e az effektek a haza tartó hangyákra
-		Map<Point, Effect> effects = scene.discoverEffects(this);
+		int pheromones = scene.discoverEffects(this).size();
+		// Ha van célpont
+		if (target != null) {
+			// Új pozíció meghatározása, ha kevés a feromon
+			if (pheromones < 30 || timeout <= 0) {
+				timeout = (int) (Math.random() * 25);
+				direction = getPosition().direction(target.getPosition());
+				if (Math.random() > 0.5) {
+					int rand = -1 + (int) (Math.random() * 3);
+					direction = Point.rotateDirection(direction, rand);
+				}
+			}
+			setPosition(getPosition().step(direction, 1));
+			timeout--;
+		} else {
+			direction = Direction.LEFT;
+		}
 		// TODO: Algoritmus kidolgozása
 
 		// Akadályok figyelembe vétele az útválasztásnál

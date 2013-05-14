@@ -46,7 +46,7 @@ public class AntEater extends Creature {
 		this.hunger = hunger;
 		this.visible = false;
 		this.timeout = wait;
-		this.direction = Direction.values()[(int) (Math.random() * (Direction.values().length + 1))];
+		this.direction = Direction.values()[(int) (Math.random() * (Direction.values().length))];
 	}
 
 	/*
@@ -69,7 +69,7 @@ public class AntEater extends Creature {
 						// Hangya elpusztítása
 						ant.terminate();
 						// Megevett hangyák növelése
-						hunger++;
+						eaten++;
 						// Hogy egyesével egye a hangyákat
 						break;
 					}
@@ -115,7 +115,7 @@ public class AntEater extends Creature {
 		Direction new_direction = direction;
 		Point new_position = getPosition().step(direction, 1);
 
-		int x = new_position.getCoordX(), y = new_position.getCoordY();
+		int x = new_position.getX(), y = new_position.getY();
 		if (x < 0 || y < 0 || x > getScene().getDimension().width
 				|| y > getScene().getDimension().height) {
 			int rand = -1 + (int) (Math.random() * 4);

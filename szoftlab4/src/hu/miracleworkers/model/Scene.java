@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Pálya osztály.
@@ -44,8 +45,8 @@ public class Scene {
 		this.storages = new ArrayList<Storage>();
 		this.obstacles = new ArrayList<Obstacle>();
 		this.creatures = new ArrayList<Creature>();
-		this.effects = new HashMap<Point, Effect>();
-		this.dimension = new Dimension(880, 480);
+		this.effects = new ConcurrentHashMap<Point, Effect>();
+		this.dimension = new Dimension(440, 240);
 	}
 
 	/**

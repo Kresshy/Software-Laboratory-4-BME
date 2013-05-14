@@ -5,10 +5,12 @@
  */
 package hu.miracleworkers.controller;
 
+import hu.miracleworkers.model.Ant;
 import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.model.Point;
 import hu.miracleworkers.model.Poison;
 import hu.miracleworkers.model.Scene;
+import hu.miracleworkers.model.Storage;
 import hu.miracleworkers.view.Perspective;
 
 import java.util.ArrayList;
@@ -44,6 +46,12 @@ public class Game {
 	/** Pontszám. */
 	private long				score;
 
+	/** Elérhető méregspray-k száma. */
+	private int					poisons;
+
+	/** Elérhető szagtalanítóspray-k száma. */
+	private int					deodorizers;
+
 	/** Rekordok. */
 	private List<HighScore>		highscores;
 
@@ -61,11 +69,30 @@ public class Game {
 		this.highscores = new ArrayList<HighScore>();
 	}
 
+	/**
+	 * Hozzáad egy új rekordot.
+	 * 
+	 * @param name a felhasználó neve
+	 * @param score az elért eredmény
+	 */
+	public void addHighscore(String name, int score) {
+
+		// Highscore hozzáadása
+		highscores.add(new HighScore(name, score));
+		// Rendezés és a legjobb elemek kiválasztása
+		Collections.sort(highscores, Collections.reverseOrder());
+		highscores = highscores.subList(0, Math.min(highscoresize, highscores.size()));
+
+	}
+
 	public void createNewScene(int difficulty) {
 		XMLBuilder builder = new XMLBuilder();
 		// Scene scene = new Scene();
 
-		this.difficulty = difficulty;
+		setDifficulty(difficulty);
+		poisons = 5;
+		deodorizers = 5;
+		score = 0;
 
 		try {
 			switch (difficulty) {
@@ -83,7 +110,7 @@ public class Game {
 				break;
 			}
 
-			perspective.repaitPerspectivePanel();
+			perspective.refreshPanel();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,19 +119,12 @@ public class Game {
 	}
 
 	/**
-	 * Hozzáad egy új rekordot.
+	 * Lekérdezi a szagtalanító spray-k számát.
 	 * 
-	 * @param name a felhasználó neve
-	 * @param score az elért eredmény
+	 * @return a szagtalanító spray-k száma
 	 */
-	public void addHighscore(String name, int score) {
-
-		// Highscore hozzáadása
-		highscores.add(new HighScore(name, score));
-		// Rendezés és a legjobb elemek kiválasztása
-		Collections.sort(highscores, Collections.reverseOrder());
-		highscores = highscores.subList(0, Math.min(highscoresize, highscores.size()));
-
+	public int getDeodorizers() {
+		return deodorizers;
 	}
 
 	/**
@@ -136,6 +156,15 @@ public class Game {
 
 		// Nézet visszaadása
 		return perspective;
+	}
+
+	/**
+	 * Lekérdezi a méreg spray-k számát.
+	 * 
+	 * @return a méreg spray-k száma
+	 */
+	public int getPoisons() {
+		return poisons;
 	}
 
 	/**
@@ -186,7 +215,15 @@ public class Game {
 	 * @return true, ha a játék véget ért
 	 */
 	public boolean isOver() {
-		return false;
+		for (Storage storage : scene.getStorages()) {
+			if (storage.isAttractive() && storage.hasItems())
+				return false;
+		}
+		for (Ant ant : scene.getAnts()) {
+			if (ant.hasCargo())
+				return false;
+		}
+		return true;
 	}
 
 	/**
@@ -206,15 +243,18 @@ public class Game {
 	 */
 	public void placeDeodorizer(int x, int y) {
 
-		// Érvényes pozíció meghatározása
-		for (int dx = 0; dx <= 3; dx++) {
-			for (int dy = 0; dy <= 2; dy++) {
-				// Próbálkozás amíg érvényes pontot nem találunk
-				Point position = Point.fromCoords(x + dx, y + dy);
-				if (position != null) {
-					// Pálya szagtalanítása
-					getScene().clearEffects(position);
-					return;
+		if (deodorizers > 0) {
+			// Érvényes pozíció meghatározása
+			for (int dx = 0; dx <= 3; dx++) {
+				for (int dy = 0; dy <= 2; dy++) {
+					// Próbálkozás amíg érvényes pontot nem találunk
+					Point position = Point.fromCoords(x + dx, y + dy);
+					if (position != null) {
+						// Pálya szagtalanítása
+						getScene().clearEffects(position);
+						deodorizers--;
+						return;
+					}
 				}
 			}
 		}
@@ -229,19 +269,21 @@ public class Game {
 	 */
 	public void placePoison(int x, int y) {
 
-		// Érvényes pozíció meghatározása
-		for (int dx = 0; dx <= 3; dx++) {
-			for (int dy = 0; dy <= 2; dy++) {
-				// Próbálkozás amíg érvényes pontot nem találunk
-				Point position = Point.fromCoords(x + dx, y + dy);
-				if (position != null) {
-					// Méreg hozzáadása a pályához
-					getScene().placeObstacle(new Poison(position, getScene()));
-					return;
+		if (poisons > 0) {
+			// Érvényes pozíció meghatározása
+			for (int dx = 0; dx <= 3; dx++) {
+				for (int dy = 0; dy <= 2; dy++) {
+					// Próbálkozás amíg érvényes pontot nem találunk
+					Point position = Point.fromCoords(x + dx, y + dy);
+					if (position != null) {
+						// Méreg hozzáadása a pályához
+						getScene().placeObstacle(new Poison(position, getScene()));
+						poisons--;
+						return;
+					}
 				}
 			}
 		}
-
 	}
 
 	/**

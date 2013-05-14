@@ -115,6 +115,7 @@ public class AntEater extends Creature {
 		Direction new_direction = direction;
 		Point new_position = getPosition().step(direction, 1);
 
+		// Visszafordítás a pálya szélén
 		int x = new_position.getX(), y = new_position.getY();
 		if (x < 0 || y < 0 || x > getScene().getDimension().width
 				|| y > getScene().getDimension().height) {

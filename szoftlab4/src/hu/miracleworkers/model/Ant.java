@@ -207,7 +207,15 @@ public class Ant extends Creature {
 		} else {
 			direction = Direction.LEFT;
 		}
-		// TODO: Algoritmus kidolgozása
+
+		// Visszafordítás a pálya szélén
+		int x = getPosition().getX(), y = getPosition().getY();
+		if (x < 0 || y < 0 || x > getScene().getDimension().width
+				|| y > getScene().getDimension().height) {
+			int rand = -1 + (int) (Math.random() * 3);
+			direction = Point.rotateDirection(direction, 2 + rand);
+			setPosition(last_position.step(direction, 1));
+		}
 
 		// Akadályok figyelembe vétele az útválasztásnál
 		List<Obstacle> obstacles;
@@ -220,7 +228,7 @@ public class Ant extends Creature {
 					// Az óramutató járásának irányába elfordul
 					direction = Direction.values()[(direction.ordinal() + 1)
 							% Direction.values().length];
-					setPosition(last_position.step(direction, 2));
+					setPosition(last_position.step(direction, 1));
 					clean_step = false;
 					break;
 				}
@@ -231,8 +239,11 @@ public class Ant extends Creature {
 
 		// Szagnyom letétele
 		if (effects.size() == 0) {
-			Pheromone new_pheromone = new Pheromone();
-			scene.placeEffect(getPosition(), new_pheromone);
+			scene.placeEffect(getPosition(), new Pheromone());
+		} else {
+			for (Point pos : effects.keySet()) {
+				scene.placeEffect(pos, new Pheromone());
+			}
 		}
 		// Akadályokra lépés
 		obstacles = scene.discoverObstacles(this);

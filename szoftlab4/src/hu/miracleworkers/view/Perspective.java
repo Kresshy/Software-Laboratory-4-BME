@@ -51,10 +51,10 @@ public class Perspective {
 	 */
 	public void handleTick() {
 		this.effects.setEffects(game.getScene().getEffects());
-		perspectivePanel.repaint();
+		refreshPanel();
 	}
 
-	public void repaitPerspectivePanel() {
+	public void refreshPanel() {
 		perspectivePanel.repaint();
 	}
 
@@ -67,6 +67,9 @@ public class Perspective {
 		Scene scene = game.getScene();
 		List<BaseObject> objects = new ArrayList<BaseObject>();
 
+		// Effektek kirajzolása
+		effects.paintObject(graphics);
+
 		// Tárolók és akadályok kirajzolása
 		for (Object storage : scene.getStorages().toArray()) {
 			objects.add((BaseObject) storage);
@@ -77,9 +80,6 @@ public class Perspective {
 		for (BaseObject obj : objects) {
 			obj.getGraphicsWrapper().paintObject(graphics);
 		}
-
-		// Effektek kirajzolása
-		effects.paintObject(graphics);
 
 		// Élőlények kirajzolása
 		objects.clear();

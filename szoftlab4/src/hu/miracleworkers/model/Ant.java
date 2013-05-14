@@ -48,6 +48,8 @@ public class Ant extends Creature {
 		this.poisoned = false;
 		this.health = 200; // TODO: Kezdőérték meghatározása
 		this.cargo = 0;
+		int rand = (int) (Math.random() * Direction.values().length);
+		this.last_direction = Direction.values()[rand];
 	}
 
 	/**
@@ -180,23 +182,31 @@ public class Ant extends Creature {
 				target = home;
 		}
 
-		Direction direction;
+		Direction direction = last_direction;
 		Point last_position = getPosition();
-		if (target != null) {
-			// Új pozíció meghatározása
-			direction = getPosition().direction(target.getPosition());
-			// Random fordulás
-			int rand = -1 + (int) (Math.random() * 3) + Direction.values().length;
-			direction = Direction.values()[(direction.ordinal() + rand) % Direction.values().length];
-			setPosition(getPosition().step(direction, 1));
-		} else {
-			direction = Direction.RIGHT;
-		}
-		// TODO: Algoritmus kidolgozása
+
+		// int pheromones = 0;
+		// for (Effect effect : effects.values())
+		// if (effect.isAttractive())
+		// pheromones++;
 
 		// Effectek figyelembe vétele az útválasztásnál
-		// TODO: Meghatározni, hogy hatnak-e az effektek a haza tartó hangyákra
 		Map<Point, Effect> effects = scene.discoverEffects(this);
+		// Ha van célpont
+		if (target != null) {
+			if (target != home) {
+				if (effects.size() == 0) {
+					int rand = -2 + (int) (Math.random() * 5);
+					direction = getPosition().direction(target.getPosition());
+					direction = Point.rotateDirection(direction, rand);
+				}
+			} else {
+				direction = getPosition().direction(target.getPosition());
+			}
+			setPosition(getPosition().step(direction, 1));
+		} else {
+			direction = Direction.LEFT;
+		}
 		// TODO: Algoritmus kidolgozása
 
 		// Akadályok figyelembe vétele az útválasztásnál
@@ -220,8 +230,10 @@ public class Ant extends Creature {
 		// TODO: Algoritmus kidolgozása
 
 		// Szagnyom letétele
-		Pheromone new_pheromone = new Pheromone();
-		scene.placeEffect(getPosition(), new_pheromone);
+		if (effects.size() == 0) {
+			Pheromone new_pheromone = new Pheromone();
+			scene.placeEffect(getPosition(), new_pheromone);
+		}
 		// Akadályokra lépés
 		obstacles = scene.discoverObstacles(this);
 		// TODO: Algoritmus kidolgozása

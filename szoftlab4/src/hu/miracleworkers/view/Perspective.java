@@ -68,8 +68,12 @@ public class Perspective {
 		List<BaseObject> objects = new ArrayList<BaseObject>();
 
 		// Tárolók és akadályok kirajzolása
-		objects.addAll(scene.getStorages());
-		objects.addAll(scene.getObstacles());
+		for (Object storage : scene.getStorages().toArray()) {
+			objects.add((BaseObject) storage);
+		}
+		for (Object obstacle : scene.getObstacles().toArray()) {
+			objects.add((BaseObject) obstacle);
+		}
 		for (BaseObject obj : objects) {
 			obj.getGraphicsWrapper().paintObject(graphics);
 		}
@@ -79,8 +83,12 @@ public class Perspective {
 
 		// Élőlények kirajzolása
 		objects.clear();
-		objects.addAll(scene.getCreatures());
-		objects.addAll(scene.getAnts());
+		for (Object creature : scene.getCreatures().toArray()) {
+			objects.add((BaseObject) creature);
+		}
+		for (Object ant : scene.getAnts().toArray()) {
+			objects.add((BaseObject) ant);
+		}
 		for (BaseObject obj : objects) {
 			obj.getGraphicsWrapper().paintObject(graphics);
 		}

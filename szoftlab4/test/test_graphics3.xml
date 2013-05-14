@@ -14,13 +14,7 @@
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="260" y="17" />
-            <radius>25</radius>
-            <solid>true</solid>
-            <movable>true</movable>
-        </obstacle>
-        <obstacle>
-            <position x="260" y="17" />
+            <position x="240" y="25" />
             <radius>25</radius>
             <solid>true</solid>
             <movable>true</movable>
@@ -44,23 +38,23 @@
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="200" y="170" />
+            <position x="200" y="180" />
             <radius>30</radius>
             <solid>true</solid>
             <movable>false</movable>
         </obstacle>
         <antsinker>
-            <position x="200" y="115" />
+            <position x="260" y="145" />
         </antsinker>
     </obstacles>
     <storages>
         <anthill>
-            <position x="35" y="17" />
+            <position x="35" y="20" />
             <capacity>15</capacity>
             <packet>1</packet>
         </anthill>
         <anthill>
-            <position x="55" y="112" />
+            <position x="55" y="105" />
             <capacity>15</capacity>
             <packet>1</packet>
         </anthill>
@@ -70,7 +64,7 @@
             <packet>1</packet>
         </anthill>
         <foodstorage>
-            <position x="340" y="175" />
+            <position x="365" y="195" />
             <capacity>20</capacity>
             <packet>1</packet>
         </foodstorage>        
@@ -80,7 +74,7 @@
             <packet>1</packet>
         </foodstorage>
         <foodstorage>
-            <position x="370" y="60" />
+            <position x="375" y="60" />
             <capacity>10</capacity>
             <packet>1</packet>
         </foodstorage>

@@ -8,6 +8,7 @@ package hu.miracleworkers.view;
 import hu.miracleworkers.model.Effect;
 import hu.miracleworkers.model.Point;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,8 +43,11 @@ public class GEffects implements GraphicsObject {
 	 */
 	@Override
 	public void paintObject(Graphics graphics) {
-		// TODO: Effektek kirajzolása (konkrétan a szagnyomok)
-
+		// Effektek kirajzolása (konkrétan a szagnyomok)
+		graphics.setColor(Color.RED);
+		for (Point pos : effects.keySet()) {
+			graphics.fillOval(pos.getCoordX() - 1, pos.getCoordY() - 1, 3, 3);
+		}
 	}
 
 	public void setEffects(Map<Point, Effect> effects) {

@@ -62,7 +62,6 @@ public class Timer implements Runnable {
 			while (true) {
 				synchronized (this) {
 					while (!enabled) {
-
 						wait();
 					}
 				}

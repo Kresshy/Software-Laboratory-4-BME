@@ -15,7 +15,7 @@ public class Pheromone extends Effect {
 	 */
 	public Pheromone() {
 		// TODO: Elillanás idejének meghatározása
-		super(10, true);
+		super(50, true);
 	}
 
 	/*

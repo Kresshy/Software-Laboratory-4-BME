@@ -1,11 +1,16 @@
 package hu.miracleworkers.swing;
 
+import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.view.Perspective;
 
+import java.awt.Dimension;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -16,10 +21,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 
 public class GUI implements ActionListener, MouseListener {
 
@@ -172,24 +181,187 @@ public class GUI implements ActionListener, MouseListener {
 		} else if (e.getActionCommand().equals("highscore")) {
 			// TODO Kell egy Frame amire ezt ki lehet rajzolni
 			JFrame frame = new JFrame("Highscore");
-			frame.setVisible(true);
-			frame.setBounds(100, 100, 600, 600);
+			JPanel hPanel = new JPanel();
+			JTable hTable = new JTable();
+			hTable.setPreferredScrollableViewportSize(new Dimension(280, 160));
+
+			// AbstractTableModel amibe kiírjuk a Toplista tartalmát
+			TableModel dataModel = new AbstractTableModel() {
+
+				// Oszlopok nevei
+				String[]	columnNames	= new String[] { "Név", "Pontszám" };
+
+				// Megfelelő cella értékének visszaadása
+				@Override
+				public Object getValueAt(int arg0, int arg1) {
+
+					List<HighScore> list = p.getGame().getHighscores();
+					if (!list.isEmpty() && arg1 <= list.size()) {
+						if (arg0 < columnNames.length - 1)
+							return list.get(arg1).name;
+						else
+							return list.get(arg1).score;
+					}
+					return null;
+				}
+
+				// Sorok száma
+				@Override
+				public int getRowCount() {
+					// TODO Auto-generated method stub
+					return 10;
+				}
+
+				// Oszlopok száma
+				@Override
+				public int getColumnCount() {
+					// TODO Auto-generated method stub
+					return columnNames.length;
+				}
+
+				// Oszlop nevének megjelenítése
+				@Override
+				public String getColumnName(int column) {
+					return columnNames[column];
+				}
+
+				// Oszlop osztályának típusa
+				@Override
+				public Class<?> getColumnClass(int columnIndex) {
+					return String.class;
+				}
+
+				// A cellák ne legyenek módosíthatók
+				@Override
+				public boolean isCellEditable(int rowIndex, int columnIndex) {
+					return false;
+				}
+
+			};
+
+			// Beállítjuk a table modelt az JTablenek
+			hTable.setModel(dataModel);
+
+			// Elemek hozzaadasa a framehez
+			hPanel.add(new JScrollPane(hTable));
+			frame.add(hPanel);
+			frame.setBounds(60, 30, 300, 250);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setResizable(false);
+			frame.setVisible(true);
 
 			// segítség megjelenítése
 		} else if (e.getActionCommand().equals("help")) {
-			// TODO Kell egy Frame amire ezt ki lehet rajzolni
+
 			JFrame frame = new JFrame("Help");
+
+			JPanel hPanel = new JPanel() {
+
+				private static final long	serialVersionUID	= 1L;
+
+				@Override
+				protected void paintComponent(Graphics g) {
+
+					String helpString = "Segítség a játékmenethez. A játék célja, hogy a játékos minél több ideig "
+							+ "megvédje az élelmet a hangyák elől."
+							+ "Ehhez két eszköz áll a segítségére: Bal egérgombbal helyezhető el méreg a pályán, mely"
+							+ "rövid időn belül megöli a belelépő hangyákat, jobb egérgombbal helyezhető le hangyaszag"
+							+ "semlegesítő, mellyel a hangyákat összezavarhatja, és eltérítheti az élelem felől."
+							+ "A pályán találhatók hangyalesők, melyek a beléjük tévedő hangyákat megeszik,továbbá"
+							+ "bizonyos időnként áthalad a pályán egy hangyászsün, mely addig eszi a vele találkozó hangyákat"
+							+ "amíg jól nem lakott. ";
+
+					drawString(g, helpString, 10, 20, 380);
+				}
+
+				public void drawString(Graphics g, String s, int x, int y, int width) {
+					// FontMetrics gives us information about the width,
+					// height, etc. of the current Graphics object's Font.
+					FontMetrics fm = g.getFontMetrics();
+
+					int lineHeight = fm.getHeight();
+
+					int curX = x;
+					int curY = y;
+
+					String[] words = s.split(" ");
+
+					for (String word : words) {
+						// Find out thw width of the word.
+						int wordWidth = fm.stringWidth(word + " ");
+
+						// If text exceeds the width, then move to next line.
+						if (curX + wordWidth >= x + width) {
+							curY += lineHeight;
+							curX = x;
+						}
+
+						g.drawString(word, curX, curY);
+
+						// Move over to the right for next word.
+						curX += wordWidth;
+					}
+				}
+			};
+
+			frame.add(hPanel);
 			frame.setVisible(true);
-			frame.setBounds(100, 100, 600, 600);
+			frame.setBounds(100, 100, 400, 300);
+			frame.setResizable(false);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			// creditek megjelenítése
 		} else if (e.getActionCommand().equals("credits")) {
-			// TODO Kell egy Frame amire ezt ki lehet rajzolni
+
 			JFrame frame = new JFrame("Credits");
+
+			JPanel hPanel = new JPanel() {
+
+				private static final long	serialVersionUID	= 1L;
+
+				@Override
+				protected void paintComponent(Graphics g) {
+
+					drawString(g, "Az alkalmazást készítette:", 120, 20, 380);
+					drawString(
+							g,
+							"Cseh Gábor, Gazsi István, Tímár Dávid Patrik, Turcsán Csaba, Váradi Szabolcs -- 2013 a Szoftver laboratórium 4. című tárgy keretein belül.",
+							10, 40, 380);
+				}
+
+				public void drawString(Graphics g, String s, int x, int y, int width) {
+					// FontMetrics gives us information about the width,
+					// height, etc. of the current Graphics object's Font.
+					FontMetrics fm = g.getFontMetrics();
+
+					int lineHeight = fm.getHeight();
+
+					int curX = x;
+					int curY = y;
+
+					String[] words = s.split(" ");
+
+					for (String word : words) {
+						// Find out thw width of the word.
+						int wordWidth = fm.stringWidth(word + " ");
+
+						// If text exceeds the width, then move to next line.
+						if (curX + wordWidth >= x + width) {
+							curY += lineHeight;
+							curX = x;
+						}
+
+						g.drawString(word, curX, curY);
+
+						// Move over to the right for next word.
+						curX += wordWidth;
+					}
+				}
+			};
+
+			frame.add(hPanel);
 			frame.setVisible(true);
-			frame.setBounds(100, 100, 600, 600);
+			frame.setBounds(100, 100, 400, 150);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 

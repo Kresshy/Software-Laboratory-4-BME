@@ -9,7 +9,6 @@ import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.model.Point;
 import hu.miracleworkers.model.Poison;
 import hu.miracleworkers.model.Scene;
-import hu.miracleworkers.swing.GUI;
 import hu.miracleworkers.view.Perspective;
 
 import java.util.ArrayList;
@@ -47,8 +46,6 @@ public class Game {
 
 	/** Rekordok. */
 	private List<HighScore>		highscores;
-
-	private GUI					gui;
 
 	/**
 	 * Példányosít egy új játékot.
@@ -176,11 +173,11 @@ public class Game {
 	 * Óraütés kezelése.
 	 */
 	public void handleTick() {
-		score++;
+		score += difficulty;
+		listener.scoreChange(score);
 		if (isOver() && listener != null) {
 			listener.gameOver();
 		}
-		gui.handleTick();
 	}
 
 	/**
@@ -265,6 +262,7 @@ public class Game {
 
 		// Nehézség beállítása
 		this.difficulty = difficulty;
+		listener.difficultyChange(difficulty);
 
 	}
 
@@ -313,9 +311,5 @@ public class Game {
 		this.timer = timer;
 		timer.setGame(this);
 
-	}
-
-	public void setGui(GUI gui) {
-		this.gui = gui;
 	}
 }

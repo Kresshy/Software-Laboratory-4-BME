@@ -1,6 +1,7 @@
 package hu.miracleworkers.swing;
 
 import hu.miracleworkers.controller.Game;
+import hu.miracleworkers.controller.GameListener;
 import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.view.Perspective;
 
@@ -31,7 +32,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-public class GUI implements ActionListener, MouseListener {
+public class GUI implements ActionListener, MouseListener, GameListener {
 
 	private JFrame		frame;
 	private Perspective	p;
@@ -44,7 +45,7 @@ public class GUI implements ActionListener, MouseListener {
 	public GUI(Perspective p, Game game) {
 		// Beállítjuk neki a perspektívát
 		this.p = p;
-		p.getGame().setGui(this);
+		game.setListener(this);
 		// Inicializáljuk az ablakot
 		initialize();
 	}
@@ -417,5 +418,23 @@ public class GUI implements ActionListener, MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 
+	}
+
+	@Override
+	public void difficultyChange(int new_difficulty) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void gameOver() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void scoreChange(long new_score) {
+		// TODO Auto-generated method stub
+		
 	}
 }

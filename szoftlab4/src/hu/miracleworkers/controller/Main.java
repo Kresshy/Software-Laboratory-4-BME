@@ -32,7 +32,7 @@ public class Main {
 
 		try {
 
-			scene = builder.readXML("test/test_graphics3.xml");
+			scene = builder.readXML("test/test_graphics.xml");
 
 		} catch (Exception e) {
 		}

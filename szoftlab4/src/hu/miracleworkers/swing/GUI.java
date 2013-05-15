@@ -25,6 +25,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
@@ -40,6 +41,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 	private Game		game;
 	private int			difficulty;
 	private long		score;
+	private JTextField	name;
 
 	/**
 	 * Create the application.
@@ -187,7 +189,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 
 			// highcsore megjenelítése
 		} else if (e.getActionCommand().equals("highscore")) {
-			
+
 			JFrame frame = new JFrame("Highscore");
 			JPanel hPanel = new JPanel();
 			JTable hTable = new JTable();
@@ -369,6 +371,8 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			frame.setVisible(true);
 			frame.setBounds(100, 100, 400, 150);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		} else if (e.getActionCommand().equals("mentes")) {
+			p.getGame().addHighscore(name.getText(), (int) score);
 		}
 
 	}
@@ -390,6 +394,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			// jobb egérgomb lenyomása
 		} else if (e.getButton() == e.BUTTON3) {
 			System.out.println("right button clicked");
+			p.getGame().placeDeodorizer(e.getX(), e.getY());
 		}
 	}
 
@@ -424,7 +429,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 	@Override
 	public void gameOver() {
 		p.getGame().getTimer().stop();
-		
+
 		JFrame frame = new JFrame("Game Over");
 
 		JPanel hPanel = new JPanel() {
@@ -435,10 +440,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			protected void paintComponent(Graphics g) {
 
 				drawString(g, "Game Over", 120, 20, 380);
-				drawString(
-						g,
-						"Zárd be ezt az ablakot és indíts egy új játékot!",
-						10, 40, 380);
+				drawString(g, "Zárd be ezt az ablakot és indíts egy új játékot!", 10, 40, 380);
 			}
 
 			public void drawString(Graphics g, String s, int x, int y, int width) {
@@ -471,11 +473,18 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			}
 		};
 
+		name = new JTextField();
+		JButton button = new JButton("Mentés");
+		button.setActionCommand("mentes");
+		button.addActionListener(this);
+
 		frame.add(hPanel);
+		frame.add(name);
+		frame.add(button);
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 400, 150);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+
 	}
 
 	@Override

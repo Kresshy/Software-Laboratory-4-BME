@@ -13,6 +13,14 @@ import hu.miracleworkers.model.Scene;
 import hu.miracleworkers.model.Storage;
 import hu.miracleworkers.view.Perspective;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -54,6 +62,8 @@ public class Game {
 
 	/** Rekordok. */
 	private List<HighScore>		highscores;
+	
+	final private static String savepath = "saves\\savegame.dat";
 
 	/**
 	 * Példányosít egy új játékot.
@@ -230,11 +240,21 @@ public class Game {
 
 	/**
 	 * Betölti a rekordokat.
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void loadHighscores() {
-
-		// TODO: Dummy default implementáció
-
+	public void loadHighscores() throws IOException, ClassNotFoundException {
+		
+		File file = new File(savepath);
+		FileInputStream fis = new FileInputStream(file);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		
+		HighScore score;
+		
+		while((score = (HighScore) ois.readObject()) != null) {
+			highscores.add(score);
+		}
+		
 	}
 
 	/**
@@ -290,11 +310,18 @@ public class Game {
 
 	/**
 	 * Elmenti a rekordokat.
+	 * @throws IOException 
 	 */
-	public void saveHighscores() {
-
-		// TODO: Dummy default implementáció
-
+	public void saveHighscores() throws IOException {
+		
+		File file = new File(savepath);
+		FileOutputStream fos = new FileOutputStream(file);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		
+		for(HighScore score: highscores){
+			oos.writeObject(score);
+		}
+		
 	}
 
 	/**

@@ -83,7 +83,8 @@ public class Point {
 		if (count >= 0)
 			return Direction.values()[(dir.ordinal() + count) % Direction.values().length];
 		else
-			return Direction.values()[(dir.ordinal() + count + Direction.values().length) % Direction.values().length];
+			return Direction.values()[(dir.ordinal() + count + Direction.values().length)
+					% Direction.values().length];
 	}
 
 	/**

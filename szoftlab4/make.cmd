@@ -1,10 +1,14 @@
-@echo off
+::@echo off
 
 :: Beallitasok
 set bin=bin\
 set src=src\
-set files=hu\miracle\workers\*
-set class=hu.miracle.workers.Main
+set files=hu\miracleworkers\
+set pkgmodel=model\*
+set pkgcontroller=controller\*
+set pkgview=view\*
+set pkgswing=swing\*
+set class=hu.miracleworkers.controller.Main
 
 :: Kepernyotorles
 cls
@@ -19,7 +23,7 @@ md %bin%
 
 :: Forditas
 echo Forditas...
-javac -d %bin% %src%%files%
+javac -d %bin% %src%%files%%pkgmodel% %src%%files%%pkgcontroller% %src%%files%%pkgview% %src%%files%%pkgswing%
 echo Forrasfajlok leforditva.
 
 :: Futtatas

@@ -92,7 +92,8 @@ public class Game {
 		highscores.add(new HighScore(name, score));
 		// Rendezés és a legjobb elemek kiválasztása
 		Collections.sort(highscores, Collections.reverseOrder());
-		Object[] filteredscores = highscores.subList(0, Math.min(highscoresize, highscores.size())).toArray();
+		Object[] filteredscores = highscores.subList(0, Math.min(highscoresize, highscores.size()))
+				.toArray();
 		highscores.clear();
 		for (Object highscore : filteredscores) {
 			highscores.add((HighScore) highscore);
@@ -258,9 +259,9 @@ public class Game {
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 
 		highscores = new ArrayList<HighScore>();
-//		HighScore highscore;
-//		while ((highscore = (HighScore) ois.readObject()) != null)
-//			highscores.add(highscore);
+		// HighScore highscore;
+		// while ((highscore = (HighScore) ois.readObject()) != null)
+		// highscores.add(highscore);
 		highscores = (List<HighScore>) ois.readObject();
 
 		ois.close();
@@ -326,9 +327,9 @@ public class Game {
 		File file = new File(path);
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
 
-//		for (HighScore highscore : highscores) {
-//			oos.writeObject(highscore);
-//		}
+		// for (HighScore highscore : highscores) {
+		// oos.writeObject(highscore);
+		// }
 		oos.writeObject(highscores);
 
 		oos.close();

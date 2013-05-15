@@ -152,15 +152,15 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 		btnNewButton.setActionCommand("pause");
 		btnNewButton.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		remainingPoiosonLabel = new JLabel("Méreg: 5");
+		remainingPoiosonLabel = new JLabel("M\u00E9reg: 5");
 		remainingPoiosonLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		remainingDeodorizeLabel = new JLabel("Szagtalanító: 5");
+		remainingDeodorizeLabel = new JLabel("Szagtalan\u00EDt\u00F3: 5");
 		remainingDeodorizeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		// Label hozzáadása
 		// TODO pontszámés nehézségi szint számítása és kiírása
-		lblElteltId = new JLabel("Pontszám: XXXX  Nehézségi szint: XX");
+		lblElteltId = new JLabel("Pontsz\u00E1m: XXXX  Neh\u00E9zs\u00E9gi szint: XX");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(
 				Alignment.TRAILING,
@@ -220,9 +220,9 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			StartGame frame = new StartGame(p);
 			frame.setVisible(true);
 			// Méreg raktárkészletének frissítése
-			remainingPoiosonLabel.setText("Méreg: 5");
+			remainingPoiosonLabel.setText("M\u00E9reg: 5");
 			// Szagtalanító raktárkészletének frissítése
-			remainingDeodorizeLabel.setText("Szagtalanító: 5");
+			remainingDeodorizeLabel.setText("Szagtalan\u00EDt\u00F3: 5");
 
 			// kilépés a játékból
 		} else if (e.getActionCommand().equals("exit")) {
@@ -240,7 +240,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			TableModel dataModel = new AbstractTableModel() {
 
 				// Oszlopok nevei
-				String[]	columnNames	= new String[] { "Név", "Pontszám" };
+				String[]	columnNames	= new String[] { "N\u00E9v", "Pontsz\u00E1m" };
 
 				// Megfelelő cella értékének visszaadása
 				@Override
@@ -440,11 +440,10 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			p.getGame().placeDeodorizer(e.getX(), e.getY());
 		}
 		// Méreg raktárkészletének frissítése
-		remainingPoiosonLabel.setText("Méreg: " + p.getGame().getPoisons());
+		remainingPoiosonLabel.setText("M\u00E9reg: " + p.getGame().getPoisons());
 
 		// Szagtalanító raktárkészletének frissítése
-		remainingDeodorizeLabel.setText("Szagtalanító: "
-				+ p.getGame().getDeodorizers());
+		remainingDeodorizeLabel.setText("Szagtalan\u00EDt\u00F3: " + p.getGame().getDeodorizers());
 	}
 
 	// Ezekre a metódusokra nincs szükségünk viszont a MouseListener interface
@@ -472,7 +471,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 	@Override
 	public void difficultyChange(int new_difficulty) {
 		this.difficulty = new_difficulty;
-		lblElteltId.setText("Pontszám: " + score + "  Nehézségi szint: " + difficulty);
+		lblElteltId.setText("Pontsz\u00E1m: " + score + "  Neh\u00E9zségi szint: " + difficulty);
 	}
 
 	@Override
@@ -481,11 +480,11 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 
 		frame = new JFrame("Game Over");
 
-		JLabel label = new JLabel("Játék Vége\n kérlek írd be a neved!");
+		JLabel label = new JLabel("Ját\u00E9k V\u00E9ge\n k\u00E9rlek \u00EDrd be a neved!");
 
 		name = new JTextField();
 
-		JButton button = new JButton("Mentés");
+		JButton button = new JButton("Ment\u00E9s");
 		button.setActionCommand("mentes");
 		button.addActionListener(this);
 
@@ -504,6 +503,6 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 	@Override
 	public void scoreChange(long new_score) {
 		this.score = new_score;
-		lblElteltId.setText("Pontszám: " + score + "  Nehézségi szint: " + difficulty);
+		lblElteltId.setText("Pontsz\u00E1m: " + score + "  Neh\u00E9zs\u00E9gi szint: " + difficulty);
 	}
 }

@@ -131,8 +131,7 @@ public class Timer implements Runnable {
 		game.handleTick();
 
 	}
-	
-	// TODO változás a Timer implementációban DOKUMENTÁLNI!
+
 	// vizsgálhatjuk hogy futásban van-e az óra
 	public boolean isEnabled() {
 		return enabled;

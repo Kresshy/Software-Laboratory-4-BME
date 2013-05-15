@@ -102,7 +102,7 @@ public class Scene {
 			Entry<Point, Effect> entry = ieffects.next();
 			// Ha a pont környezetébe esik
 			// TODO: Környezet méretének meghatározása
-			if (point.distance(entry.getKey()) < 10) {
+			if (point.distance(entry.getKey()) < 100) {
 				// Eltávolítás
 				ieffects.remove();
 			}

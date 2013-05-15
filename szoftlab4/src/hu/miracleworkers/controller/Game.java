@@ -15,12 +15,10 @@ import hu.miracleworkers.view.Perspective;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -62,8 +60,6 @@ public class Game {
 
 	/** Rekordok. */
 	private List<HighScore>		highscores;
-	
-	final private static String savepath = "saves\\savegame.dat";
 
 	/**
 	 * Példányosít egy új játékot.
@@ -76,7 +72,12 @@ public class Game {
 		this.scene = new Scene();
 		setTimer(timer);
 		setPerspective(perspective);
-		this.highscores = new ArrayList<HighScore>();
+		try {
+			loadHighscores();
+		} catch (Exception e) {
+		}
+		if (highscores == null)
+			highscores = new ArrayList<HighScore>();
 	}
 
 	/**
@@ -91,8 +92,15 @@ public class Game {
 		highscores.add(new HighScore(name, score));
 		// Rendezés és a legjobb elemek kiválasztása
 		Collections.sort(highscores, Collections.reverseOrder());
-		highscores = highscores.subList(0, Math.min(highscoresize, highscores.size()));
-
+		Object[] filteredscores = highscores.subList(0, Math.min(highscoresize, highscores.size())).toArray();
+		highscores.clear();
+		for (Object highscore : filteredscores) {
+			highscores.add((HighScore) highscore);
+		}
+		try {
+			saveHighscores();
+		} catch (IOException e) {
+		}
 	}
 
 	public void createNewScene(int difficulty) {
@@ -240,21 +248,22 @@ public class Game {
 
 	/**
 	 * Betölti a rekordokat.
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
+	 * 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
 	 */
 	public void loadHighscores() throws IOException, ClassNotFoundException {
-		
-		File file = new File(savepath);
-		FileInputStream fis = new FileInputStream(file);
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		
-		HighScore score;
-		
-		while((score = (HighScore) ois.readObject()) != null) {
-			highscores.add(score);
-		}
-		
+
+		File file = new File(path);
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+
+		highscores = new ArrayList<HighScore>();
+//		HighScore highscore;
+//		while ((highscore = (HighScore) ois.readObject()) != null)
+//			highscores.add(highscore);
+		highscores = (List<HighScore>) ois.readObject();
+
+		ois.close();
 	}
 
 	/**
@@ -310,18 +319,19 @@ public class Game {
 
 	/**
 	 * Elmenti a rekordokat.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public void saveHighscores() throws IOException {
-		
-		File file = new File(savepath);
-		FileOutputStream fos = new FileOutputStream(file);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		
-		for(HighScore score: highscores){
-			oos.writeObject(score);
-		}
-		
+		File file = new File(path);
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+
+//		for (HighScore highscore : highscores) {
+//			oos.writeObject(highscore);
+//		}
+		oos.writeObject(highscores);
+
+		oos.close();
 	}
 
 	/**

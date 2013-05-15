@@ -44,7 +44,7 @@
             <movable>false</movable>
         </obstacle>
         <antsinker>
-            <position x="260" y="145" />
+            <position x="260" y="165" />
         </antsinker>
     </obstacles>
     <storages>

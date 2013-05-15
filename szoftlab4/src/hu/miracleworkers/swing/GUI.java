@@ -42,6 +42,8 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 	private JFrame		frame;
 	private Perspective	p;
 	private JLabel		lblElteltId;
+	private JLabel		remainingPoiosonLabel;
+	private JLabel		remainingDeodorizeLabel;
 	private Game		game;
 	private int			difficulty;
 	private long		score;
@@ -62,8 +64,8 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		 try {
+
+		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -78,7 +80,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
+
 		// Egy új frame létrehozása a következő méretekkel
 		frame = new JFrame();
 		frame.setBounds(100, 100, 900, 600);
@@ -150,6 +152,12 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 		btnNewButton.setActionCommand("pause");
 		btnNewButton.setHorizontalAlignment(SwingConstants.RIGHT);
 
+		remainingPoiosonLabel = new JLabel("Méreg: 5");
+		remainingPoiosonLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+
+		remainingDeodorizeLabel = new JLabel("Szagtalanító: 5");
+		remainingDeodorizeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+
 		// Label hozzáadása
 		// TODO pontszámés nehézségi szint számítása és kiírása
 		lblElteltId = new JLabel("Pontszám: XXXX  Nehézségi szint: XX");
@@ -158,6 +166,8 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 				Alignment.TRAILING,
 				gl_panel.createSequentialGroup().addGap(28).addComponent(lblElteltId)
 						.addPreferredGap(ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+						.addComponent(remainingPoiosonLabel).addContainerGap(4, 50)
+						.addComponent(remainingDeodorizeLabel).addContainerGap(4, 50)
 						.addComponent(btnNewButton).addContainerGap()));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(
 				Alignment.TRAILING,
@@ -166,6 +176,12 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 						.addGroup(
 								gl_panel.createParallelGroup(Alignment.BASELINE)
 										.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 23,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(remainingPoiosonLabel,
+												GroupLayout.PREFERRED_SIZE, 23,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(remainingDeodorizeLabel,
+												GroupLayout.PREFERRED_SIZE, 23,
 												GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblElteltId)).addContainerGap()));
 		panel.setLayout(gl_panel);
@@ -203,6 +219,10 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 		} else if (e.getActionCommand().equals("start")) {
 			StartGame frame = new StartGame(p);
 			frame.setVisible(true);
+			// Méreg raktárkészletének frissítése
+			remainingPoiosonLabel.setText("Méreg: 5");
+			// Szagtalanító raktárkészletének frissítése
+			remainingDeodorizeLabel.setText("Szagtalanító: 5");
 
 			// kilépés a játékból
 		} else if (e.getActionCommand().equals("exit")) {
@@ -227,11 +247,11 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 				public Object getValueAt(int arg0, int arg1) {
 
 					List<HighScore> list = p.getGame().getHighscores();
-					if (!list.isEmpty() && arg1 <= list.size()) {
-						if (arg0 < columnNames.length - 1)
-							return list.get(arg1).name;
+					if (!list.isEmpty() && arg0 < list.size()) {
+						if (arg1 == 0)
+							return list.get(arg0).name;
 						else
-							return list.get(arg1).score;
+							return list.get(arg0).score;
 					}
 					return null;
 				}
@@ -395,7 +415,7 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 		} else if (e.getActionCommand().equals("mentes")) {
 			p.getGame().addHighscore(name.getText(), (int) score);
 			frame.dispose();
-			
+
 		}
 
 	}
@@ -419,6 +439,12 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			System.out.println("right button clicked");
 			p.getGame().placeDeodorizer(e.getX(), e.getY());
 		}
+		// Méreg raktárkészletének frissítése
+		remainingPoiosonLabel.setText("Méreg: " + p.getGame().getPoisons());
+
+		// Szagtalanító raktárkészletének frissítése
+		remainingDeodorizeLabel.setText("Szagtalanító: "
+				+ p.getGame().getDeodorizers());
 	}
 
 	// Ezekre a metódusokra nincs szükségünk viszont a MouseListener interface
@@ -458,13 +484,13 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 		JLabel label = new JLabel("Játék Vége\n kérlek írd be a neved!");
 
 		name = new JTextField();
-		
+
 		JButton button = new JButton("Mentés");
 		button.setActionCommand("mentes");
 		button.addActionListener(this);
 
 		Box verticalBox = Box.createVerticalBox();
-//		frame.setLayout(new BoxLayout(new JPanel(), BoxLayout.Y_AXIS));
+		// frame.setLayout(new BoxLayout(new JPanel(), BoxLayout.Y_AXIS));
 		verticalBox.add(label);
 		verticalBox.add(name);
 		verticalBox.add(button);

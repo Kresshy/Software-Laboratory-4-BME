@@ -5,6 +5,7 @@ import hu.miracleworkers.controller.GameListener;
 import hu.miracleworkers.model.HighScore;
 import hu.miracleworkers.view.Perspective;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -14,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -29,6 +31,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
@@ -58,6 +62,23 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		 try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
 		// Egy új frame létrehozása a következő méretekkel
 		frame = new JFrame();
 		frame.setBounds(100, 100, 900, 600);
@@ -373,6 +394,8 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		} else if (e.getActionCommand().equals("mentes")) {
 			p.getGame().addHighscore(name.getText(), (int) score);
+			frame.dispose();
+			
 		}
 
 	}
@@ -430,57 +453,22 @@ public class GUI implements ActionListener, MouseListener, GameListener {
 	public void gameOver() {
 		p.getGame().getTimer().stop();
 
-		JFrame frame = new JFrame("Game Over");
+		frame = new JFrame("Game Over");
 
-		JPanel hPanel = new JPanel() {
-
-			private static final long	serialVersionUID	= 1L;
-
-			@Override
-			protected void paintComponent(Graphics g) {
-
-				drawString(g, "Game Over", 120, 20, 380);
-				drawString(g, "Zárd be ezt az ablakot és indíts egy új játékot!", 10, 40, 380);
-			}
-
-			public void drawString(Graphics g, String s, int x, int y, int width) {
-				// FontMetrics gives us information about the width,
-				// height, etc. of the current Graphics object's Font.
-				FontMetrics fm = g.getFontMetrics();
-
-				int lineHeight = fm.getHeight();
-
-				int curX = x;
-				int curY = y;
-
-				String[] words = s.split(" ");
-
-				for (String word : words) {
-					// Find out thw width of the word.
-					int wordWidth = fm.stringWidth(word + " ");
-
-					// If text exceeds the width, then move to next line.
-					if (curX + wordWidth >= x + width) {
-						curY += lineHeight;
-						curX = x;
-					}
-
-					g.drawString(word, curX, curY);
-
-					// Move over to the right for next word.
-					curX += wordWidth;
-				}
-			}
-		};
+		JLabel label = new JLabel("Játék Vége\n kérlek írd be a neved!");
 
 		name = new JTextField();
+		
 		JButton button = new JButton("Mentés");
 		button.setActionCommand("mentes");
 		button.addActionListener(this);
 
-		frame.add(hPanel);
-		frame.add(name);
-		frame.add(button);
+		Box verticalBox = Box.createVerticalBox();
+//		frame.setLayout(new BoxLayout(new JPanel(), BoxLayout.Y_AXIS));
+		verticalBox.add(label);
+		verticalBox.add(name);
+		verticalBox.add(button);
+		frame.getContentPane().add(verticalBox, BorderLayout.CENTER);
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 400, 150);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -215,6 +215,8 @@ public class Game {
 	 * @return true, ha a játék véget ért
 	 */
 	public boolean isOver() {
+		if (scene.getStorages().size() == 0)
+			return false;
 		for (Storage storage : scene.getStorages()) {
 			if (storage.isAttractive() && storage.hasItems())
 				return false;
@@ -223,7 +225,7 @@ public class Game {
 			if (ant.hasCargo())
 				return false;
 		}
-		return true;
+		return (score > 0);
 	}
 
 	/**

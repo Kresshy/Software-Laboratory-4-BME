@@ -32,7 +32,7 @@
             <movable>true</movable>
         </obstacle>
         <obstacle>
-            <position x="300" y="65" />
+            <position x="280" y="65" />
             <radius>20</radius>
             <solid>true</solid>
             <movable>true</movable>

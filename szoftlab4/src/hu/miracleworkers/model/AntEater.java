@@ -89,7 +89,7 @@ public class AntEater extends Creature {
 				timeout--;
 			} else {
 				// Belépési pont és irány meghatározása
-				// TODO: Algoritmus kidolgozása
+				direction = Direction.values()[(int) (Math.random() * (Direction.values().length))];
 				// Megjelenés
 				visible = true;
 			}

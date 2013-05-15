@@ -46,7 +46,7 @@ public class Ant extends Creature {
 		super(position, scene, 10);
 		this.home = home;
 		this.poisoned = false;
-		this.health = 200; // TODO: Kezdőérték meghatározása
+		this.health = 1000; // TODO: Kezdőérték meghatározása
 		this.cargo = 0;
 		int rand = (int) (Math.random() * Direction.values().length);
 		this.last_direction = Direction.values()[rand];
@@ -80,7 +80,7 @@ public class Ant extends Creature {
 	public void handleTick() {
 
 		// Ha meg van mérgezve
-		if (poisoned) {
+		if (poisoned || hasCargo()) {
 			// Élet csökkentése
 			health--;
 		}
@@ -219,8 +219,10 @@ public class Ant extends Creature {
 
 		// Akadályok figyelembe vétele az útválasztásnál
 		List<Obstacle> obstacles;
+		int tries = 0;
 		boolean clean_step = false;
-		while (!clean_step) {
+		while (!clean_step && tries <= 6) {
+			tries++;
 			clean_step = true;
 			obstacles = scene.discoverObstacles(this);
 			for (Obstacle obstacle : obstacles) {
@@ -254,6 +256,14 @@ public class Ant extends Creature {
 			}
 		}
 
+		// Megölés ha a pályán kívülre kerül
+		x = getPosition().getX();
+		y = getPosition().getY();
+		if (x < -5 || y < -5 || x > getScene().getDimension().width + 5
+				|| y > getScene().getDimension().height + 5) {
+			terminate();
+		}
+
 	}
 
 	/**
@@ -265,6 +275,7 @@ public class Ant extends Creature {
 
 		// Mérgezettség beállítása
 		this.poisoned = poisoned;
+		health = 200;
 
 	}
 

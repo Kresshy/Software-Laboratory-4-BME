@@ -140,7 +140,7 @@ public class StartGame extends JFrame implements ActionListener {
 			default:
 				break;
 			}
-
+			p.getGame().getTimer().start();
 			this.dispose();
 		}
 		if (e.getActionCommand().equals("cancel")) {
